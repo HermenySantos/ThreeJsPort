@@ -18,12 +18,29 @@ const WorkExperience = () => {
           <div className="work-canvas">
             <Canvas>
               <ambientLight intensity={7} />
-              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-              <directionalLight position={[10, 10, 10]} intensity={1} />
-              <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} />
+              <spotLight position={[5, 8, 5]} angle={0.4} penumbra={1} intensity={3} />
+              <directionalLight position={[0, 5, 5]} intensity={1} />
+              <directionalLight position={[-5, 3, -5]} intensity={0.5} color="#ffeedd" />
+              <spotLight
+                position={[0, 1, 5]}
+                angle={0.5}
+                penumbra={0.8}
+                intensity={2}
+                color="#ffffff"
+                distance={10}
+                target-position={[0, 0, 0]}
+              />
+              <OrbitControls
+                enableZoom={false}
+                maxPolarAngle={Math.PI / 2}
+                minPolarAngle={Math.PI / 3}
+                minAzimuthAngle={-Math.PI / 6}
+                maxAzimuthAngle={Math.PI / 6}
+                target={[0, 0, 0]}
+              />
 
               <Suspense fallback={<CanvasLoader />}>
-                <Developer position-y={-3} scale={3} animationName={animationName} />
+                <Developer position-y={-2} position-x={0} scale={2.1} animationName={animationName} />
               </Suspense>
             </Canvas>
           </div>

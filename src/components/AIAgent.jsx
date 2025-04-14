@@ -98,7 +98,7 @@ const AIAgent = () => {
                 You
               </div>
               <div className="bg-gray-800 rounded-lg p-3 text-white-600 text-sm">
-                Tell me about your experience with React and Next.js
+                Tell me about Hermenegildo's credentials and ORCID ID
               </div>
             </div>
             <div className="flex items-start">
@@ -106,11 +106,16 @@ const AIAgent = () => {
                 AI
               </div>
               <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-3 text-white text-sm">
-                <div className="flex items-center space-x-1">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-75"></span>
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></span>
-                </div>
+                <p>
+                  Hermenegildo has an ORCID ID (0009-0004-3865-7072) which validates his academic and professional
+                  credentials.
+                </p>
+                <p className="mt-2">
+                  His published work includes "Lessons Learned from the Development of a Computerised Badge-based Reward
+                  Tool for Student Engagement in Learning Activities" in the IEEE World Engineering Education
+                  Conference, Edunine (2023).
+                </p>
+                <p className="mt-2">You can find more details on his ORCID profile linked in the About section.</p>
               </div>
             </div>
           </div>

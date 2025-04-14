@@ -103,6 +103,23 @@ const techStack = [
   { name: 'Docker', proficiency: 85, icon: '/assets/skills/docker.svg' },
 ];
 
+// ORCID information
+const orcidInfo = {
+  id: '0009-0004-3865-7072',
+  link: 'https://orcid.org/0009-0004-3865-7072',
+  logo: '/assets/ORCID_iD.svg.png',
+  works: [
+    {
+      title: "Lessons Learned from the Development of a Computerised Badge-based Reward Tool for Student Engagement in Learning Activities",
+      type: "Journal Article",
+      year: "2023",
+      journal: "IEEE World Engineering Education Conference, Edunine",
+      doi: "10.1109/EDUNINE57531.2023.10102849",
+      url: "https://orcid.org/0009-0004-3865-7072/work"
+    }
+  ]
+};
+
 // Achievement data
 const achievements = [
   { value: 4, label: 'Years Experience', symbol: '+' },
@@ -358,7 +375,7 @@ const About = () => {
 
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
         <div className="col-span-1 xl:row-span-3">
-          <div className="grid-container">
+          <div className="grid-container h-full">
             <img src="assets/grid1.png" alt="grid-1" className="w-full sm:h-[276px] h-fit object-contain" />
 
             <div>
@@ -372,8 +389,8 @@ const About = () => {
         </div>
 
         <div className="col-span-1 xl:row-span-3">
-          <div className="grid-container">
-            <div className="p-3">
+          <div className="grid-container h-full">
+            <div className="p-3 h-full flex flex-col">
               <div className="flex justify-between items-center mb-4">
                 <p className="grid-headtext mb-0">Tech Stack</p>
                 <button
@@ -396,28 +413,30 @@ const About = () => {
                 </button>
               </div>
 
-              <div className="skill-bars-container">
+              <div className="skill-bars-container flex-grow">
                 {techStack.map((tech, index) => (
                   <SkillBar key={index} name={tech.name} proficiency={tech.proficiency} icon={tech.icon} />
                 ))}
               </div>
 
-              <div className="tech-tags mt-4 flex flex-wrap gap-2">
-                {[
-                  'Microservices',
-                  'CI/CD',
-                  'Redux',
-                  'Kubernetes',
-                  'Azure',
-                  'PostgreSQL',
-                  'React Native',
-                  'Jest',
-                  'MongoDB',
-                ].map((tag, index) => (
-                  <span key={index} className="px-2 py-1 bg-black-300 text-white-600 text-xs rounded-full">
-                    {tag}
-                  </span>
-                ))}
+              <div className="mt-auto">
+                <div className="tech-tags mt-4 flex flex-wrap gap-2">
+                  {[
+                    'Microservices',
+                    'CI/CD',
+                    'Redux',
+                    'Kubernetes',
+                    'Azure',
+                    'PostgreSQL',
+                    'React Native',
+                    'Jest',
+                    'MongoDB',
+                  ].map((tag, index) => (
+                    <span key={index} className="px-2 py-1 bg-black-300 text-white-600 text-xs rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -427,7 +446,7 @@ const About = () => {
         </div>
 
         <div className="col-span-1 xl:row-span-4">
-          <div className="grid-container">
+          <div className="grid-container h-full">
             <div className="rounded-3xl w-full sm:h-[326px] h-fit flex justify-center items-center relative">
               <Globe
                 height={326}
@@ -466,21 +485,85 @@ const About = () => {
                 I&apos;m based in Covilhã, Portugal and open to remote work worldwide. Click on the globe to explore
                 locations where I have worked.
               </p>
-              <div className="flex gap-4 mt-10">
-                <a href="#contact" className="flex-1">
-                  <Button name="Contact Me" isBeam containerClass="w-full" />
-                </a>
-                <a href="/assets/hermenegildo-santos-resume.pdf" download className="flex-1">
-                  <Button
-                    name="Download CV"
-                    containerClass="w-full border-2 border-blue-500"
-                    bgClass="bg-black-300 hover:bg-black-500"
-                    icon={{
-                      src: 'assets/download.svg',
-                      alt: 'download',
-                      position: 'right',
-                    }}
-                  />
+              <div className="flex flex-col gap-4 mt-6">
+                <div className="flex gap-4">
+                  <a href="#contact" className="flex-1">
+                    <Button name="Contact Me" isBeam containerClass="w-full" />
+                  </a>
+                  <a href="/assets/hermenegildo-santos-resume.pdf" download className="flex-1">
+                    <Button
+                      name="Download CV"
+                      containerClass="w-full border-2 border-blue-500"
+                      bgClass="bg-black-300 hover:bg-black-500"
+                      icon={{
+                        src: 'assets/download.svg',
+                        alt: 'download',
+                        position: 'right',
+                      }}
+                    />
+                  </a>
+                </div>
+
+                {/* ORCID ID Credential - moved here */}
+                <a
+                  href={orcidInfo.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col p-2 bg-gradient-to-r from-[#A6CE39] to-[#A6CE39]/80 rounded-md hover:opacity-90 transition-opacity">
+                  <div className="flex items-center">
+                    <img src={orcidInfo.logo} alt="ORCID" className="w-4 h-4 mr-2 border border-black rounded-full" />
+                    <div>
+                      <span className="text-xs text-white font-medium block">ORCID ID</span>
+                      <span className="text-xs text-white">{orcidInfo.id}</span>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 ml-auto text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </div>
+
+                  {orcidInfo.works && orcidInfo.works.length > 0 && (
+                    <div className="mt-2 pt-2 border-t border-white/20">
+                      <div className="text-white text-xs font-medium mb-1">Validated Work:</div>
+                      {orcidInfo.works.map((work, index) => (
+                        <a
+                          key={index}
+                          href={work.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-white/90 hover:text-white block">
+                          <div className="flex items-start">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-3 w-3 mr-1 mt-0.5 flex-shrink-0"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
+                            </svg>
+                            <span>
+                              {work.title} ({work.year})
+                            </span>
+                          </div>
+                          <div className="text-[10px] ml-4 text-white/70">{work.journal}</div>
+                          {work.doi && (
+                            <div className="text-[10px] ml-4 text-white/70 mt-1">
+                              DOI: <span className="text-blue-300 hover:underline">{work.doi}</span>
+                            </div>
+                          )}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </a>
               </div>
             </div>
@@ -488,7 +571,7 @@ const About = () => {
         </div>
 
         <div className="xl:col-span-2 xl:row-span-3">
-          <div className="grid-container">
+          <div className="grid-container h-full">
             <div className="personal-journey p-5 border-l-4 border-blue-500 rounded-l-none rounded-r-lg bg-black-300 bg-opacity-30 mb-4">
               <h3 className="text-xl font-bold text-white mb-2">My Journey Into Development</h3>
               <div className={`space-y-3 ${!showFullJourney ? 'line-clamp-3' : ''}`}>
@@ -540,7 +623,7 @@ const About = () => {
               </button>
             </div>
 
-            <div>
+            <div className="flex-grow">
               <p className="grid-headtext">My Passion for Coding</p>
               <p className="grid-subtext">
                 I love solving complex problems and building things through code. Programming isn&apos;t just my
@@ -552,14 +635,14 @@ const About = () => {
         </div>
 
         <div className="xl:col-span-1 xl:row-span-2">
-          <div className="grid-container">
+          <div className="grid-container h-full">
             <img
               src="assets/grid4.png"
               alt="grid-4"
               className="w-full md:h-[126px] sm:h-[276px] h-fit object-cover sm:object-top"
             />
 
-            <div className="space-y-2">
+            <div className="space-y-2 flex-grow">
               <p className="grid-subtext text-center">Contact me</p>
               <div className="copy-container" onClick={handleCopy}>
                 <img src={hasCopied ? 'assets/tick.svg' : 'assets/copy.svg'} alt="copy" />

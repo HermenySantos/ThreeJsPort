@@ -218,6 +218,22 @@ export const myProjects = [
       },
     ],
   },
+  {
+    title: 'Coming Soon - More Projects Being Added',
+    desc: "I'm currently developing exciting new projects that demonstrate my evolving skills and expertise. This section will soon feature additional work across various domains and technologies.",
+    subdesc:
+      'These upcoming projects will showcase advanced implementations in areas like AI integration, real-time applications, and innovative user experiences. Check back soon to see the latest additions to my portfolio.',
+    // href: '#projects',
+    texture: '/textures/project/project3.mp4',
+    logo: '/assets/project-logo3.png',
+    logoStyle: {
+      backgroundColor: '#1F2235',
+      border: '0.2px solid #2D2F45',
+      boxShadow: '0px 0px 60px 0px #8B5CF64D',
+    },
+    spotlight: '/assets/spotlight3.png',
+    tags: [],
+  },
   // {
   //   title: 'Podcastr - AI Podcast Platform',
   //   desc: 'Podcastr is a revolutionary Software-as-a-Service platform that transforms the way podcasts are created. With advanced AI-powered features like text-to-multiple-voices functionality, it allows creators to generate diverse voiceovers from a single text input.',

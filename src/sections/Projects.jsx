@@ -209,12 +209,24 @@ const Projects = () => {
           </div>
 
           <div className="flex justify-between items-center mt-7">
-            <button className="arrow-btn" onClick={() => handleNavigation('previous')}>
-              <img src="/assets/left-arrow.png" alt="left arrow" />
+            <button
+              className="arrow-btn bg-blue-500 hover:bg-blue-600 p-3 rounded-full shadow-lg transition-all hover:scale-110 hover:shadow-xl flex items-center justify-center"
+              onClick={() => handleNavigation('previous')}
+              aria-label="Previous project">
+              <img src="/assets/left-arrow.png" alt="left arrow" className="w-5 h-5 filter brightness-0 invert" />
             </button>
 
-            <button className="arrow-btn" onClick={() => handleNavigation('next')}>
-              <img src="/assets/right-arrow.png" alt="right arrow" className="w-4 h-4" />
+            <div className="flex items-center">
+              <span className="text-white-600 text-sm">
+                {selectedProjectIndex + 1} / {projectCount}
+              </span>
+            </div>
+
+            <button
+              className="arrow-btn bg-blue-500 hover:bg-blue-600 p-3 rounded-full shadow-lg transition-all hover:scale-110 hover:shadow-xl flex items-center justify-center"
+              onClick={() => handleNavigation('next')}
+              aria-label="Next project">
+              <img src="/assets/right-arrow.png" alt="right arrow" className="w-5 h-5 filter brightness-0 invert" />
             </button>
           </div>
         </div>

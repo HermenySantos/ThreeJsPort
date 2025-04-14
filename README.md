@@ -429,3 +429,22 @@ Here is the list of all the resources used in the project:
 ## <a name="assets">🔗 Assets</a>
 
 Models and Assets used in the project are available in the public directory.
+
+## GitHub Contributions
+
+This portfolio includes a GitHub contributions section that can display your complete GitHub activity, including private repositories and contributions. To set this up:
+
+1. Create a GitHub Personal Access Token at https://github.com/settings/tokens with the following scopes:
+   - `repo` (for private repository access)
+   - `read:user` (for user profile data)
+
+2. Create a `.env` file in the root of the project with your token:
+   ```
+   GITHUB_TOKEN=your_github_token_here
+   ```
+
+3. Deploy the API serverless functions to your hosting provider (Vercel, Netlify, etc.)
+
+4. If you're using Vercel, make sure to add the `GITHUB_TOKEN` to your environment variables in the Vercel dashboard.
+
+Note: The component will automatically fall back to using the public GitHub API (showing only public repositories and estimated contributions) if the secure API endpoints are not available.

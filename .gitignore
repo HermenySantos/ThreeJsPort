@@ -25,5 +25,9 @@ dist-ssr
 
 # env
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 threejscc_portfolio-public.zip

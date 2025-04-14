@@ -448,3 +448,41 @@ This portfolio includes a GitHub contributions section that can display your com
 4. If you're using Vercel, make sure to add the `GITHUB_TOKEN` to your environment variables in the Vercel dashboard.
 
 Note: The component will automatically fall back to using the public GitHub API (showing only public repositories and estimated contributions) if the secure API endpoints are not available.
+
+## Analytics Setup
+
+The portfolio includes Google Analytics integration to track visitor engagement. To use this feature:
+
+1. Create a Google Analytics 4 property at [analytics.google.com](https://analytics.google.com/)
+2. Replace the placeholder `G-MEASUREMENT_ID` in `index.html` with your actual Google Analytics Measurement ID
+3. Deploy your site
+
+The following events are tracked automatically:
+- Page views
+- Button clicks 
+- Project navigation
+- Form submissions
+
+## Development
+
+To run the project locally:
+
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## Deployment
+
+The site is ready to be deployed on Vercel, Netlify, GitHub Pages, or any other static site hosting service.
+
+```bash
+# Build for production
+npm run build
+```

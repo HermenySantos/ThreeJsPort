@@ -143,13 +143,25 @@ const Projects = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleNavigation = (direction) => {
-    setSelectedProjectIndex((prevIndex) => {
-      if (direction === 'previous') {
-        return prevIndex === 0 ? projectCount - 1 : prevIndex - 1;
-      } else {
-        return prevIndex === projectCount - 1 ? 0 : prevIndex + 1;
-      }
-    });
+    const newIndex =
+      direction === 'previous'
+        ? selectedProjectIndex === 0
+          ? projectCount - 1
+          : selectedProjectIndex - 1
+        : selectedProjectIndex === projectCount - 1
+          ? 0
+          : selectedProjectIndex + 1;
+
+    setSelectedProjectIndex(newIndex);
+
+    // Track project navigation in Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'project_navigation', {
+        event_category: 'engagement',
+        event_label: direction,
+        project_title: myProjects[newIndex].title,
+      });
+    }
   };
 
   useGSAP(() => {

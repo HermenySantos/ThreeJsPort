@@ -51,6 +51,14 @@ const Contact = () => {
               message: '',
             });
           }, [3000]);
+
+          // Track form submission in Google Analytics
+          if (window.gtag) {
+            window.gtag('event', 'form_submission', {
+              event_category: 'engagement',
+              event_label: 'contact_form',
+            });
+          }
         },
         (error) => {
           setLoading(false);

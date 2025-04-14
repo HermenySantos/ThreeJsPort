@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Hero from './sections/Hero.jsx';
 import About from './sections/About.jsx';
 import Footer from './sections/Footer.jsx';
@@ -9,6 +10,17 @@ import WorkExperience from './sections/Experience.jsx';
 import AIAgentSection from './sections/AIAgentSection.jsx';
 
 const App = () => {
+  useEffect(() => {
+    // Log page view when the app loads
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+      });
+    }
+  }, []);
+
   return (
     <main className="max-w-7xl mx-auto relative">
       <Navbar />

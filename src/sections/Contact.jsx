@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 
 import useAlert from '../hooks/useAlert.js';
 import Alert from '../components/Alert.jsx';
+import GitHubContributions from '../components/GitHubContributions.jsx';
 
 const Contact = () => {
   const formRef = useRef();
@@ -66,6 +67,11 @@ const Contact = () => {
 
   return (
     <section className="c-space my-20" id="contact">
+      {/* GitHub Contributions Section */}
+      <div className="mt-16, mb-16">
+        <h2 className="head-text mb-8">GitHub</h2>
+        <GitHubContributions username="HermenySantos" />
+      </div>
       {alert.show && <Alert {...alert} />}
 
       <div className="relative min-h-screen flex items-center justify-center flex-col">

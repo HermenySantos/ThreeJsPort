@@ -473,7 +473,7 @@ const About = () => {
                 <a href="/assets/hermenegildo-santos-resume.pdf" download className="flex-1">
                   <Button
                     name="Download CV"
-                    containerClass="w-full"
+                    containerClass="w-full border-2 border-blue-500"
                     bgClass="bg-black-300 hover:bg-black-500"
                     icon={{
                       src: 'assets/download.svg',
@@ -568,12 +568,6 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* GitHub Contributions Section */}
-      <div className="mt-16">
-        <h2 className="head-text mb-8">Open Source Contributions</h2>
-        <GitHubContributions username="HermenySantos" />
       </div>
     </section>
   );

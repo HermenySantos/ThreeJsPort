@@ -1,160 +1,83 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
+  },
+};
 
 const GitHubContributions = ({ username }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [stats, setStats] = useState({
-    repos: 0,
-    publicRepos: 0,
-    privateRepos: 0,
-    stars: 0,
-    followers: 0,
-    contributions: 0,
-  });
-  const [contributionData, setContributionData] = useState(null);
   const [error, setError] = useState(null);
-  const [useApiEndpoint, setUseApiEndpoint] = useState(false);
   const [hasPrivateAccess, setHasPrivateAccess] = useState(false);
 
   useEffect(() => {
-    // Check if we're in development mode
-    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    // Set a timeout to simulate loading and then show the contribution map
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 800);
 
-    // In development, check the API endpoint directly
-    if (isDevelopment) {
-      // Try to use our serverless API but fallback gracefully
-      fetch('/api/github/stats?username=' + username, { method: 'HEAD' })
-        .then((response) => {
-          if (response.ok) {
-            setUseApiEndpoint(true);
-          } else {
-            setUseApiEndpoint(false);
-          }
-        })
-        .catch(() => {
-          setUseApiEndpoint(false);
-        })
-        .finally(() => {
-          fetchGitHubStats();
-        });
-    } else {
-      // In production, just use the GitHub API directly for now
-      // This can be updated once the serverless functions are deployed
-      setUseApiEndpoint(false);
-      fetchGitHubStats();
-    }
+    return () => clearTimeout(timer);
   }, [username]);
 
-  const fetchGitHubStats = async () => {
-    setIsLoaded(false);
-    setError(null);
-
-    try {
-      if (useApiEndpoint) {
-        // Fetch from secure API endpoint (with private repo access)
-        const statsResponse = await fetch(`/api/github/stats?username=${username}`);
-
-        if (!statsResponse.ok) {
-          throw new Error(`API returned ${statsResponse.status}: ${statsResponse.statusText}`);
-        }
-
-        const statsData = await statsResponse.json();
-
-        // Check if we have access to private repositories
-        setHasPrivateAccess(statsData.hasPrivateAccess);
-
-        // Fetch contribution calendar for heatmap
-        const calendarResponse = await fetch(`/api/github/contributions?username=${username}`);
-        if (calendarResponse.ok) {
-          const calendarData = await calendarResponse.json();
-          setContributionData(calendarData.contributionCalendar);
-        }
-
-        setStats({
-          repos: statsData.repos,
-          publicRepos: statsData.publicRepos,
-          privateRepos: statsData.privateRepos,
-          stars: statsData.stars,
-          followers: statsData.followers,
-          contributions: statsData.contributions,
-        });
-      } else {
-        // Fallback to public API (no private repo access)
-        // Fetch user profile data
-        const userResponse = await fetch(`https://api.github.com/users/${username}`);
-
-        if (!userResponse.ok) {
-          throw new Error(`GitHub API returned ${userResponse.status}: ${userResponse.statusText}`);
-        }
-
-        const userData = await userResponse.json();
-
-        // Fetch repositories to calculate stars
-        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-        const repos = await reposResponse.json();
-
-        // Calculate total stars
-        const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
-
-        // Estimate contributions (since we can't access private contributions without auth)
-        const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`);
-        const events = await eventsResponse.json();
-        const estimatedContributions = events.filter((event) => event.type === 'PushEvent').length * 15;
-
-        setStats({
-          repos: userData.public_repos,
-          publicRepos: userData.public_repos,
-          privateRepos: 0,
-          stars: totalStars,
-          followers: userData.followers,
-          contributions: estimatedContributions || userData.public_repos * 30, // Fallback estimation
-        });
-
-        setHasPrivateAccess(false);
-      }
-
-      setIsLoaded(true);
-    } catch (error) {
-      console.error('Error fetching GitHub stats:', error);
-      setError(error.message);
-
-      // Set fallback data in case of error
-      setStats({
-        repos: 35,
-        publicRepos: 11,
-        privateRepos: 24,
-        stars: 183,
-        followers: 59,
-        contributions: 872,
-      });
-      setIsLoaded(true);
-    }
-  };
-
   return (
-    <div className="github-contributions-container relative overflow-hidden rounded-lg">
+    <motion.div
+      className="github-contributions-container relative overflow-hidden rounded-2xl bg-gradient-to-br from-black-200 to-black-300 border border-black-100"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}>
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black-300 bg-opacity-70 z-10">
-          <div className="loading-spinner"></div>
+        <div className="absolute inset-0 flex items-center justify-center bg-black-300 bg-opacity-80 z-10 backdrop-blur-sm">
+          <div className="flex flex-col items-center">
+            <svg
+              className="animate-spin -ml-1 mr-3 h-10 w-10 text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p className="mt-3 text-white-600">Loading GitHub data...</p>
+          </div>
         </div>
       )}
 
-      <div className="p-4 bg-black-200 bg-opacity-70 rounded-lg">
-        <div className="flex items-center justify-between mb-6">
+      <div className="p-6">
+        <motion.div className="flex items-center justify-between mb-6" variants={itemVariants}>
           <div className="flex items-center">
             <img
               src="/assets/github/github-icon.svg"
               alt="GitHub"
-              className="w-8 h-8 mr-3 text-white"
+              className="w-10 h-10 mr-3"
               style={{ filter: 'invert(1)' }}
             />
-            <h3 className="text-xl font-bold text-white">GitHub Contributions</h3>
+            <h3 className="text-2xl font-bold text-white">GitHub Contributions</h3>
           </div>
           <a
             href={`https://github.com/${username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-400 transition-colors flex items-center text-sm">
-            <span>@{username}</span>
+            className="text-blue-500 hover:text-blue-400 transition-colors flex items-center text-sm bg-black-300 bg-opacity-60 py-2 px-4 rounded-full hover:bg-opacity-80">
+            <span className="text-blue-400">@{username}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -171,100 +94,50 @@ const GitHubContributions = ({ username }) => {
               <line x1="10" y1="14" x2="21" y2="3"></line>
             </svg>
           </a>
-        </div>
+        </motion.div>
 
-        {error && (
-          <div className="mb-6 p-3 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg">
-            <p className="text-red-400 text-sm">{error} - Showing estimated data instead.</p>
-          </div>
-        )}
-
-        {!hasPrivateAccess && (
-          <div className="mb-6 p-3 bg-yellow-500 bg-opacity-20 border border-yellow-500 rounded-lg">
-            <p className="text-yellow-400 text-sm">
-              {useApiEndpoint
-                ? 'Showing only public repositories (private access not available)'
-                : 'Using public GitHub API - private repositories and contributions are not included.'}
-            </p>
-          </div>
-        )}
-
-        {/* GitHub Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="text-center p-3 bg-black-300 bg-opacity-40 rounded-lg">
-            <div className="text-xl font-bold text-white">{stats.repos}</div>
-            <div className="text-sm text-white-600">Repositories</div>
-          </div>
-          {hasPrivateAccess && stats.privateRepos > 0 && (
-            <div className="text-center p-3 bg-black-300 bg-opacity-40 rounded-lg">
-              <div className="text-xl font-bold text-white">{stats.privateRepos}</div>
-              <div className="text-sm text-white-600">Private</div>
-            </div>
-          )}
-          <div className="text-center p-3 bg-black-300 bg-opacity-40 rounded-lg">
-            <div className="text-xl font-bold text-white">{stats.stars}</div>
-            <div className="text-sm text-white-600">Stars</div>
-          </div>
-          <div className="text-center p-3 bg-black-300 bg-opacity-40 rounded-lg">
-            <div className="text-xl font-bold text-white">{stats.followers}</div>
-            <div className="text-sm text-white-600">Followers</div>
-          </div>
-          <div className="text-center p-3 bg-black-300 bg-opacity-40 rounded-lg col-span-2 md:col-span-1">
-            <div className="text-xl font-bold text-white">{stats.contributions}</div>
-            <div className="text-sm text-white-600">{hasPrivateAccess ? 'Contributions' : 'Est. Contributions'}</div>
-          </div>
-        </div>
-
-        <div className="iframe-container bg-black-300 bg-opacity-50 p-3 rounded-lg overflow-hidden">
-          {/* Render custom contribution graph if we have the data, otherwise fallback to external service */}
-          {contributionData ? (
-            <div className="custom-contribution-graph">
-              {/* Custom graph rendering would go here */}
-              <p className="text-center text-white-600 text-sm py-4">
-                Custom contribution graph with {contributionData.totalContributions} contributions
-              </p>
-            </div>
-          ) : (
+        {/* GitHub Contribution Map */}
+        <motion.div
+          className="bg-black-300 bg-opacity-60 backdrop-blur-sm p-4 rounded-2xl overflow-hidden mb-4"
+          variants={itemVariants}>
+          <div className="relative">
             <iframe
               src={`https://ghchart.rshah.org/${username}`}
               width="100%"
-              height="100"
+              height="110"
               frameBorder="0"
               scrolling="no"
               className="block mx-auto github-chart"
               style={{ backgroundColor: 'transparent' }}
               onLoad={() => setIsLoaded(true)}
             />
-          )}
-        </div>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black-300 to-transparent opacity-0"></div>
+          </div>
+        </motion.div>
 
-        <div className="flex justify-between text-xs text-white-600 mt-2 px-3">
+        <motion.div className="flex justify-between text-xs text-white-600 px-4 mb-6" variants={itemVariants}>
           <span>Less</span>
           <div className="flex items-center space-x-1">
-            {[1, 2, 3, 4].map((level) => (
+            {[0.2, 0.4, 0.6, 0.8].map((level, index) => (
               <div
-                key={level}
+                key={index}
                 className="w-3 h-3 rounded"
                 style={{
-                  backgroundColor: `rgba(59, 130, 246, ${level * 0.25})`,
+                  backgroundColor: `rgba(59, 130, 246, ${level})`,
                 }}
               />
             ))}
           </div>
           <span>More</span>
-        </div>
+        </motion.div>
 
-        <div className="mt-6 flex items-center justify-between">
-          <p className="text-white-600 text-sm">
-            {hasPrivateAccess
-              ? 'Visualizing my complete GitHub activity including private repositories.'
-              : 'Visualizing my public GitHub activity.'}
-          </p>
+        <motion.div className="flex items-center justify-between gap-4" variants={itemVariants}>
+          <p className="text-white-600 text-sm">Visualizing my GitHub activity</p>
           <a
             href={`https://github.com/sponsors/${username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-full transition-colors duration-300 flex items-center">
+            className="group px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm rounded-full transition-all duration-300 flex items-center justify-center hover:shadow-lg hover:shadow-blue-500/20 whitespace-nowrap">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -275,14 +148,14 @@ const GitHubContributions = ({ username }) => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="mr-1">
+              className="mr-2 group-hover:animate-pulse">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
-            <span>Sponsor</span>
+            <span>Sponsor on GitHub</span>
           </a>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

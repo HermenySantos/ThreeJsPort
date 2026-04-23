@@ -63,6 +63,113 @@ export const clientReviews = [
 
 export const myProjects = [
   {
+    title: 'PMI AI Moderator — Live Event AI',
+    desc: 'A human-in-the-loop AI moderator built for live PMI panels. Generates contextual responses with Azure OpenAI GPT-4o, voices them in real-time via gpt-4o-mini-tts, and broadcasts to a live audience through WebSockets — all running on Azure App Service.',
+    subdesc:
+      'FastAPI backend + React (Vite/TypeScript/Tailwind) frontend + Three.js visualiser. WebRTC relay for the OpenAI Realtime API, Docker multi-stage build, abstract provider interface supporting both Azure OpenAI and standard OpenAI. Deployed live at pmi-ai-moderator.azurewebsites.net.',
+    href: 'https://pmi-ai-moderator.azurewebsites.net',
+    texture: '/textures/project/project1.mp4',
+    logo: '/assets/azure.svg',
+    logoStyle: {
+      backgroundColor: '#0078D4',
+      border: '0.2px solid #1E90D4',
+      boxShadow: '0px 0px 60px 0px #0078D44D',
+    },
+    spotlight: '/assets/spotlight2.png',
+    tags: [
+      { id: 1, name: 'FastAPI', path: '/assets/skills/fastapi.svg' },
+      { id: 2, name: 'React', path: '/assets/skills/react.svg' },
+      { id: 3, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 4, name: 'Azure', path: '/assets/skills/azure.svg' },
+      { id: 5, name: 'Docker', path: '/assets/skills/docker.svg' },
+      { id: 6, name: 'Python', path: '/assets/skills/python.svg' },
+    ],
+  },
+  {
+    title: 'Scopely Global Event — WebAR Backend',
+    desc: 'Architected an Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations — built from scratch in 5 weeks on an unfamiliar stack. Shipped on time with zero incidents.',
+    subdesc:
+      'Includes rate limiting, anti-abuse controls, GDPR-aligned data handling, and a React admin dashboard. First time working with Azure Functions and Cosmos DB — ramped up, designed the architecture, and delivered under a hard event deadline.',
+    href: 'https://github.com/HermenySantos',
+    texture: '/textures/project/project2.mp4',
+    logo: '/assets/dorier.svg',
+    logoStyle: {
+      backgroundColor: '#0A2342',
+      border: '0.2px solid #1A3A6A',
+      boxShadow: '0px 0px 60px 0px #1A56A04D',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      { id: 1, name: 'Azure', path: '/assets/skills/azure.svg' },
+      { id: 2, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 3, name: 'React', path: '/assets/skills/react.svg' },
+      { id: 4, name: 'Node.js', path: '/assets/skills/nodejs.svg' },
+    ],
+  },
+  {
+    title: 'UN Geneva Visitor Center — FPDN Experience',
+    desc: 'Core contributor (~27% of repo activity) to the institutional experience platform at the United Nations Visitor Center in Geneva. Built a proximity-flash component used simultaneously on all visitor devices during the "Gathering" exhibition moment.',
+    subdesc:
+      'TypeScript monorepo spanning Audio Guide app, Docent Controller, CMS, and cloud services. Go microservices for backend processing, MQTT for real-time messaging, Quuppa indoor positioning for location awareness, React Native Reanimated with 40 automated tests.',
+    href: 'https://github.com/HermenySantos/totem-proximity-flash',
+    texture: '/textures/project/project3.mp4',
+    logo: '/assets/dorier.svg',
+    logoStyle: {
+      backgroundColor: '#1A2E4A',
+      border: '0.2px solid #2A4E7A',
+      boxShadow: '0px 0px 60px 0px #2A6DB54D',
+    },
+    spotlight: '/assets/spotlight3.png',
+    tags: [
+      { id: 1, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 2, name: 'Go', path: '/assets/skills/go.svg' },
+      { id: 3, name: 'React', path: '/assets/skills/react.svg' },
+      { id: 4, name: 'Docker', path: '/assets/skills/docker.svg' },
+    ],
+  },
+  {
+    title: 'InvoFlow — Invoice Management SaaS',
+    desc: 'Full-stack invoice and receipt management SaaS built for Portuguese SMBs. OCR-powered data extraction via Azure Document Intelligence, real-time IVA (VAT) tracking, and accountant-ready export — all in one dashboard.',
+    subdesc:
+      'FastAPI + Next.js 14 + PostgreSQL + Cloudflare R2 for storage + Clerk for auth. Docker Compose deployment with a mock mode for local dev without cloud credentials. Built to solve a real pain point for small business accounting.',
+    href: 'https://github.com/HermenySantos/invoflow',
+    texture: '/textures/project/project4.mp4',
+    logo: '/assets/next.svg',
+    logoStyle: {
+      backgroundColor: '#000000',
+      border: '0.2px solid #333333',
+      boxShadow: '0px 0px 60px 0px #FFFFFF1A',
+    },
+    spotlight: '/assets/spotlight4.png',
+    tags: [
+      { id: 1, name: 'FastAPI', path: '/assets/skills/fastapi.svg' },
+      { id: 2, name: 'Next.js', path: '/assets/skills/next.svg' },
+      { id: 3, name: 'Python', path: '/assets/skills/python.svg' },
+      { id: 4, name: 'Azure', path: '/assets/skills/azure.svg' },
+      { id: 5, name: 'Docker', path: '/assets/skills/docker.svg' },
+    ],
+  },
+  {
+    title: 'NexTool API — Developer Utilities at the Edge',
+    desc: '13+ developer utility endpoints deployed globally on Cloudflare Workers — sub-millisecond latency at the edge. QR codes, meta scraping, text analytics, hashing, IP geolocation, colour conversion, JSON tools and more. Monetized on RapidAPI marketplace.',
+    subdesc:
+      'Built with TypeScript, Hono framework, and Vitest (30 tests). Cloudflare Workers architecture means zero cold starts, global distribution, and zero server management. A side project that turned into a real revenue stream.',
+    href: 'https://github.com/HermenySantos/nextool-api',
+    texture: '/textures/project/project5.mp4',
+    logo: '/assets/skills/vercel.svg',
+    logoStyle: {
+      backgroundColor: '#1A1A2E',
+      border: '0.2px solid #2D2D4E',
+      boxShadow: '0px 0px 60px 0px #6366F14D',
+    },
+    spotlight: '/assets/spotlight5.png',
+    tags: [
+      { id: 1, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 2, name: 'Node.js', path: '/assets/skills/nodejs.svg' },
+      { id: 3, name: 'Vercel', path: '/assets/skills/vercel.svg' },
+    ],
+  },
+  {
     title: 'Seezy - Comprehensive Eye Health Care Platform',
     desc: 'A sophisticated healthcare ecosystem that integrates optical stores, insurance companies, financial institutions, and sales entities into a unified workflow. Seezy centralizes management of eye health plans while enabling multi-partner collaboration with secure data handling and process automation.',
     subdesc:
@@ -219,20 +326,24 @@ export const myProjects = [
     ],
   },
   {
-    title: 'Coming Soon - More Projects Being Added',
-    desc: "I'm currently developing exciting new projects that demonstrate my evolving skills and expertise. This section will soon feature additional work across various domains and technologies.",
+    title: 'NomadEngenuity — Company Website',
+    desc: "The public-facing site for NomadEngenuity, a digital innovation agency specializing in healthcare solutions. A polished corporate presence with captivating animations, fast performance, and CMS-driven content management.",
     subdesc:
-      'These upcoming projects will showcase advanced implementations in areas like AI integration, real-time applications, and innovative user experiences. Check back soon to see the latest additions to my portfolio.',
-    // href: '#projects',
-    texture: '/textures/project/project3.mp4',
-    logo: '/assets/project-logo3.png',
+      'Built with Next.js 14, React 18, TypeScript, and Tailwind CSS. Prismic CMS integration for content flexibility. Next.js App Router for optimal SEO and React Server Components for fast loading. GSAP + Framer Motion animations.',
+    href: 'https://www.nomadengenuity.eu',
+    texture: '/textures/project/projectNull.mp4',
+    logo: '/assets/nomad.svg',
     logoStyle: {
-      backgroundColor: '#1F2235',
-      border: '0.2px solid #2D2F45',
-      boxShadow: '0px 0px 60px 0px #8B5CF64D',
+      backgroundColor: '#2A2D36',
+      border: '0.2px solid #3A3D46',
+      boxShadow: '0px 0px 60px 0px #4A6CC34D',
     },
     spotlight: '/assets/spotlight3.png',
-    tags: [],
+    tags: [
+      { id: 1, name: 'Next.js', path: '/assets/skills/next.svg' },
+      { id: 2, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 3, name: 'React', path: '/assets/skills/react.svg' },
+    ],
   },
   // {
   //   title: 'Podcastr - AI Podcast Platform',
@@ -483,10 +594,69 @@ export const calculateSizes = (isSmall, isMobile, isTablet) => {
 
 export const workExperiences = [
   {
+    id: 0,
+    name: 'Dorier',
+    pos: 'Full Stack Engineer',
+    duration: 'Jun 2025 – Present',
+    title:
+      'Building production systems for global live events and institutional experiences at Dorier, a Geneva-based event technology company. Architected a backend serving 2,100 concurrent users across 12 global locations in 5 weeks — first time on the stack.',
+    icon: '/assets/dorier.svg',
+    animation: 'victory',
+    companyDescription:
+      'Dorier is a Geneva-based event technology and live experience company, delivering large-scale digital installations and immersive experiences for global organizations.',
+    projects: [
+      {
+        name: 'Scopely Global Event — WebAR Backend',
+        description: 'Azure Functions + Cosmos DB backend for a global AR game event:',
+        achievements: [
+          'Architected backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
+          'Built on Azure Functions + Cosmos DB — first time on that stack',
+          'Rate limiting, anti-abuse controls, and GDPR-aligned data handling',
+          'React admin dashboard for event management',
+          'Shipped on time with zero incidents',
+        ],
+      },
+      {
+        name: 'PMI AI Moderator',
+        description: 'Human-in-the-loop AI moderator for live PMI panels (pmi-ai-moderator.azurewebsites.net):',
+        achievements: [
+          'FastAPI backend + React (Vite/TypeScript/Tailwind) + Three.js visualiser',
+          'Azure OpenAI GPT-4o for generation, gpt-4o-mini-tts for voice synthesis',
+          'WebRTC relay for OpenAI Realtime API, WebSockets for audience broadcast',
+          'Abstract provider interface supporting Azure OpenAI and standard OpenAI',
+          'Docker multi-stage build, Azure App Service deployment',
+        ],
+      },
+      {
+        name: 'UN Geneva Visitor Center — FPDN',
+        description: 'Institutional experience platform for the United Nations Visitor Center:',
+        achievements: [
+          'Core contributor (~27% of repo activity) to TypeScript monorepo',
+          'Audio Guide app, Docent Controller, CMS, and back-of-house cloud services',
+          'Go microservices, MQTT real-time messaging, Quuppa indoor positioning',
+          'Built proximity-flash React Native Reanimated component (40 automated tests)',
+          'Component used simultaneously across all visitor devices during the Gathering exhibition',
+        ],
+      },
+    ],
+    achievements: [
+      'Architected Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
+      'Built and deployed live AI moderator for PMI panels using Azure OpenAI GPT-4o + WebRTC Realtime API',
+      'Core contributor to UN Geneva institutional experience platform (TypeScript monorepo + Go microservices)',
+      'Built proximity-based React Native Reanimated component (40 tests) used in production at the UN Visitor Center',
+    ],
+    skills: [
+      'TypeScript', 'React', 'FastAPI', 'Python', 'Go', 'Azure Functions',
+      'Cosmos DB', 'Azure OpenAI', 'WebRTC', 'WebSockets', 'React Native',
+      'MQTT', 'Docker', 'Three.js', 'Node.js',
+    ],
+    certificates: [],
+  },
+  {
     id: 1,
     name: 'NomadEngenuity',
     pos: 'Project Manager / Full Stack Developer',
-    duration: 'April 2024 - Current',
+    duration: 'April 2024 - April 2025',
     title:
       'Led full-stack development of healthcare platforms including Seezy (eye care plan management) and PharmaSee (healthcare staffing). Managed multiple development teams while architecting scalable microservice solutions with modern tech stack.',
     icon: '/assets/nomad.svg',

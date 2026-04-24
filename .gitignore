@@ -31,3 +31,6 @@ dist-ssr
 .env.production.local
 
 threejscc_portfolio-public.zip
+
+# Local resume sources (kept out of the repo)
+*.docx

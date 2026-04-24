@@ -69,11 +69,58 @@ export const myProjects = [
       'FastAPI backend + React (Vite/TypeScript/Tailwind) frontend + Three.js visualiser. WebRTC relay for the OpenAI Realtime API, Docker multi-stage build, abstract provider interface supporting both Azure OpenAI and standard OpenAI. Deployed live at pmi-ai-moderator.azurewebsites.net.',
     href: 'https://pmi-ai-moderator.azurewebsites.net',
     texture: '/textures/project/project1.mp4',
-    logo: '/assets/azure.svg',
+    slideshow: [
+      {
+        src: '/assets/projects/pmi-ai-moderator/01-home.png',
+        title: 'Mode launcher',
+        subtitle: 'One entry point — Conversation, Panel Talk, Workshop, Audience Q&A, and more.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/02-conversation.png',
+        title: 'Conversation mode',
+        subtitle: 'Operator console with push-to-talk, live transcript, and Realtime voice relay.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/04-panel-talk.png',
+        title: 'Panel Talk',
+        subtitle: 'Listen, label, and direct a live panel from a single moderator surface.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/05-workshop.png',
+        title: 'Workshop summaries',
+        subtitle: 'Timed prompts, AI-generated summary playback, and audience narration.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/06-audience-qa.png',
+        title: 'Audience Q&A',
+        subtitle: 'Collect questions, recommend the next one, and present it with the AI voice.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/09-moderator-preview.png',
+        title: 'Moderator preview',
+        subtitle: 'Rehearse scripts with the AI voice and stage visualiser before going live.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/03-stage-visualiser.png',
+        title: 'Stage visualiser',
+        subtitle: 'Three.js orb that reacts to the AI voice on the audience-facing screen.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/07-persistent-memory.png',
+        title: 'Persistent memory',
+        subtitle: 'Import session logs and browse retrieval chunks per event or series.',
+      },
+      {
+        src: '/assets/projects/pmi-ai-moderator/08-all-in.png',
+        title: '“I am all in” moment',
+        subtitle: 'Audience commitment screen designed to feel like a real call to action.',
+      },
+    ],
+    logo: '/assets/pmi-logo.png',
     logoStyle: {
-      backgroundColor: '#0078D4',
-      border: '0.2px solid #1E90D4',
-      boxShadow: '0px 0px 60px 0px #0078D44D',
+      backgroundColor: '#0a1340',
+      border: '0.2px solid #1f2d70',
+      boxShadow: '0px 0px 60px 0px #1f2d7066',
     },
     spotlight: '/assets/spotlight2.png',
     tags: [
@@ -92,11 +139,49 @@ export const myProjects = [
       'Includes rate limiting, anti-abuse controls, GDPR-aligned data handling, and a React admin dashboard. First time working with Azure Functions and Cosmos DB — ramped up, designed the architecture, and delivered under a hard event deadline.',
     href: 'https://github.com/HermenySantos',
     texture: '/textures/project/project2.mp4',
-    logo: '/assets/dorier.svg',
+    slideshow: [
+      {
+        src: '/assets/projects/scopely-character-hunt/01-monopoly.png',
+        title: 'Spawn — Mr. Monopoly',
+        subtitle: 'Live AR character hunt running on the Azure Functions backend.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/video1-02.png',
+        title: 'Movement energy meter',
+        subtitle: 'Anti-abuse / penalty system enforced server-side per session.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/02-spock.png',
+        title: 'Character unlocked — Spock',
+        subtitle: 'Cosmos DB tracks per-user progress across 12 global locations.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/04-spiderman.png',
+        title: 'Character unlocked — Spider-Man',
+        subtitle: '2,100 concurrent users sustained without incident.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/03-captain-america.png',
+        title: 'Character unlocked — Captain America',
+        subtitle: 'Rate limiting and GDPR-aligned data handling baked in.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/video2-02.png',
+        title: 'Mini-game challenge',
+        subtitle: '“What does this character want?” — quiz served from event config.',
+      },
+    ],
+    slideshowOptions: {
+      fit: 'contain',
+      backgroundColor: '#f5c419',
+      intervalMs: 3600,
+      showCaption: false,
+    },
+    logo: '/assets/scopely-character-hunt-logo.png',
     logoStyle: {
-      backgroundColor: '#0A2342',
-      border: '0.2px solid #1A3A6A',
-      boxShadow: '0px 0px 60px 0px #1A56A04D',
+      backgroundColor: '#1a0b2e',
+      border: '0.2px solid #ff3d7f',
+      boxShadow: '0px 0px 60px 0px #ff3d7f55',
     },
     spotlight: '/assets/spotlight1.png',
     tags: [

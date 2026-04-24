@@ -181,7 +181,11 @@ const Projects = () => {
           </div>
 
           <div className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg" style={currentProject.logoStyle}>
-            <img className="w-10 h-10 shadow-sm" src={currentProject.logo} alt="logo" />
+            <img
+              className="h-10 w-auto max-w-[160px] object-contain shadow-sm"
+              src={currentProject.logo}
+              alt="logo"
+            />
           </div>
 
           <div className="flex flex-col gap-5 text-white-600 my-5">
@@ -250,7 +254,11 @@ const Projects = () => {
             <Center>
               <Suspense fallback={<CanvasLoader />}>
                 <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
-                  <DemoComputer texture={currentProject.texture} />
+                  <DemoComputer
+                    texture={currentProject.texture}
+                    slides={currentProject.slideshow}
+                    slideshowOptions={currentProject.slideshowOptions}
+                  />
                 </group>
               </Suspense>
             </Center>

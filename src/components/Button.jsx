@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Button = ({ name, isBeam = false, customStyles, containerClass, bgClass, icon }) => {
-  const handleClick = () => {
+const Button = ({ name, isBeam = false, customStyles, containerClass, bgClass = '', icon, href, download, onClick }) => {
+  const handleClick = (event) => {
     // Track button clicks in Google Analytics
     if (window.gtag) {
       window.gtag('event', 'button_click', {
@@ -9,10 +9,17 @@ const Button = ({ name, isBeam = false, customStyles, containerClass, bgClass, i
         event_label: name,
       });
     }
+
+    if (onClick) {
+      onClick(event);
+    }
   };
 
+  const Component = href ? 'a' : 'button';
+  const componentProps = href ? { href, download } : { type: 'button' };
+
   return (
-    <button className={`btn ${containerClass}`} onClick={handleClick}>
+    <Component className={`btn ${bgClass} ${containerClass}`} onClick={handleClick} {...componentProps}>
       {isBeam && (
         <span className="relative flex h-3 w-3">
           <span className="btn-ping"></span>
@@ -22,7 +29,7 @@ const Button = ({ name, isBeam = false, customStyles, containerClass, bgClass, i
       {icon && icon.position === 'left' && <img src={icon.src} alt={icon.alt} className="w-4 h-4 mr-2" />}
       {name}
       {icon && icon.position === 'right' && <img src={icon.src} alt={icon.alt} className="w-4 h-4 ml-2" />}
-    </button>
+    </Component>
   );
 };
 

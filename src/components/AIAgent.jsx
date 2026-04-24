@@ -156,7 +156,7 @@ const AIAgent = () => {
       {/* Footer */}
       <motion.div className="flex justify-between items-center" variants={itemVariants}>
         <p className="text-white-600 text-sm">Get immediate answers about my professional background</p>
-        <div className="px-5 py-2.5 bg-gray-800 text-white-600 text-sm rounded-full">Coming in 2025</div>
+        <div className="px-5 py-2.5 bg-gray-800 text-white-600 text-sm rounded-full">Coming soon</div>
       </motion.div>
 
       {/* Decorative elements */}

@@ -7,18 +7,24 @@ import { useGLTF, useAnimations, useVideoTexture } from '@react-three/drei';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
+import { useSlideshowTexture } from './useSlideshowTexture.js';
+
 const DemoComputer = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF('/models/computer.glb');
   const { actions } = useAnimations(animations, group);
 
-  const txt = useVideoTexture(props.texture ? props.texture : '/textures/project/project1.mp4');
+  const videoTexture = useVideoTexture(
+    props.texture ? props.texture : '/textures/project/project1.mp4',
+  );
+  const slideshowTexture = useSlideshowTexture(props.slides, props.slideshowOptions);
+  const screenTexture = slideshowTexture || videoTexture;
 
   useEffect(() => {
-    if (txt) {
-      txt.flipY = false;
+    if (videoTexture) {
+      videoTexture.flipY = false;
     }
-  }, [txt]);
+  }, [videoTexture]);
 
   useGSAP(() => {
     gsap.from(group.current.rotation, {
@@ -26,7 +32,7 @@ const DemoComputer = (props) => {
       duration: 1,
       ease: 'power3.out',
     });
-  }, [txt]);
+  }, [screenTexture]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -40,7 +46,7 @@ const DemoComputer = (props) => {
           position={[0.127, 1.831, 0.511]}
           rotation={[1.571, -0.005, 0.031]}
           scale={[0.661, 0.608, 0.401]}>
-          <meshBasicMaterial map={txt} toneMapped={false} />
+          <meshBasicMaterial map={screenTexture} toneMapped={false} />
         </mesh>
         <group name="RootNode" position={[0, 1.093, 0]} rotation={[-Math.PI / 2, 0, -0.033]} scale={0.045}>
           <group

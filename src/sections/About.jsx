@@ -122,10 +122,10 @@ const orcidInfo = {
 
 // Achievement data
 const achievements = [
-  { value: 4, label: 'Years Experience', symbol: '+' },
-  { value: 15, label: 'Projects Completed', symbol: '+' },
-  { value: 12, label: 'Happy Clients', symbol: '+' },
-  { value: 2, label: 'Design Awards', symbol: '' },
+  { value: 5, label: 'Years Experience', symbol: '+' },
+  { value: 15, label: 'Projects Shipped', symbol: '+' },
+  { value: 12, label: 'Global Locations', symbol: '+' },
+  { value: 2100, label: 'Concurrent Users', symbol: '' },
 ];
 
 // AnimatedCounter component for statistics
@@ -338,12 +338,13 @@ const About = () => {
 
   // Locations where I've worked or am willing to work
   const locations = [
-    { lat: 38.7223, lng: -9.1393, text: 'Lisbon, Portugal', description: 'Current Location' },
-    { lat: -8.8383, lng: 13.2344, text: 'Luanda, Angola', description: 'Previous Project' },
-    { lat: -22.5609, lng: 17.0658, text: 'Windhoek, Namibia', description: 'Previous Project' },
-    { lat: 28.6139, lng: 77.209, text: 'New Delhi, India', description: 'Previous Project' },
-    { lat: -33.4489, lng: -70.6693, text: 'Santiago, Chile', description: 'Previous Project' },
-    { lat: 37.7749, lng: -122.4194, text: 'San Francisco, USA', description: 'Previous Project' },
+    { lat: 40.2806, lng: -7.5039, text: 'Covilhã, Portugal', description: 'Current Location' },
+    { lat: 46.2044, lng: 6.1432, text: 'Geneva, Switzerland', description: 'Dorier · Remote' },
+    { lat: 52.2297, lng: 21.0122, text: 'Warsaw, Poland', description: 'Project Region' },
+    { lat: -8.8383, lng: 13.2344, text: 'Luanda, Angola', description: 'Earlier Chapter' },
+    { lat: -22.5609, lng: 17.0658, text: 'Windhoek, Namibia', description: 'Earlier Chapter' },
+    { lat: 28.6139, lng: 77.209, text: 'New Delhi, India', description: 'Earlier Chapter' },
+    { lat: -33.4489, lng: -70.6693, text: 'Santiago, Chile', description: 'Project Region' },
   ];
 
   const handleCopy = () => {
@@ -381,8 +382,9 @@ const About = () => {
             <div>
               <p className="grid-headtext">Hi, I'm Hermenegildo Santos</p>
               <p className="grid-subtext">
-                With 4+ years of experience, I have honed my skills in both frontend and backend development, creating
-                dynamic and responsive websites that deliver exceptional user experiences.
+                Full Stack Engineer with 5+ years shipping production systems across healthcare, enterprise, and
+                immersive-experience domains. Generalist across backend, frontend, mobile, cloud, and AI integration —
+                ramps fast, delivers under pressure.
               </p>
             </div>
           </div>
@@ -487,21 +489,19 @@ const About = () => {
               </p>
               <div className="flex flex-col gap-4 mt-6">
                 <div className="flex gap-4">
-                  <a href="#contact" className="flex-1">
-                    <Button name="Contact Me" isBeam containerClass="w-full" />
-                  </a>
-                  <a href="/assets/hermenegildo-santos-resume.pdf" download className="flex-1">
-                    <Button
-                      name="Download CV"
-                      containerClass="w-full border-2 border-blue-500"
-                      bgClass="bg-black-300 hover:bg-black-500"
-                      icon={{
-                        src: 'assets/download.svg',
-                        alt: 'download',
-                        position: 'right',
-                      }}
-                    />
-                  </a>
+                  <Button href="#contact" name="Contact Me" isBeam containerClass="w-full flex-1" />
+                  <Button
+                    href="/assets/hermenegildo-santos-resume.pdf"
+                    download
+                    name="Download CV"
+                    containerClass="w-full flex-1 border-2 border-blue-500"
+                    bgClass="bg-black-300 hover:bg-black-500"
+                    icon={{
+                      src: 'assets/download.svg',
+                      alt: 'download',
+                      position: 'right',
+                    }}
+                  />
                 </div>
 
                 {/* ORCID ID Credential - moved here */}

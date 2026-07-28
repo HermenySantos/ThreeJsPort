@@ -723,6 +723,16 @@ export const workExperiences = [
           'Component used simultaneously across all visitor devices during the Gathering exhibition',
         ],
       },
+      {
+        name: 'Enterprise Automation — Galderma / Lightcraft',
+        description: 'Python automation tooling for enterprise video-processing workflows:',
+        achievements: [
+          'Python CLI/GUI tool with Dropbox integration and Gmail notifications',
+          'OAuth2 authentication and secure credential handling',
+          'Cross-platform GitHub Actions CI/CD producing standalone executables',
+          'In production for enterprise recording workflows',
+        ],
+      },
     ],
     achievements: [
       'Architected Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations in 5 weeks',

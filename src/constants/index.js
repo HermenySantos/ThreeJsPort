@@ -30,11 +30,11 @@ export const clientReviews = [];
 
 export const myProjects = [
   {
-    title: 'PMI AI Moderator — Live Event AI',
-    desc: 'A human-in-the-loop AI moderator built for live PMI panels. Generates contextual responses with Azure OpenAI GPT-4o, voices them in real-time via gpt-4o-mini-tts, and broadcasts to a live audience through WebSockets — all running on Azure App Service.',
+    title: 'Live-event AI Moderator',
+    desc: 'A human-in-the-loop AI moderator built for enterprise live panels. Generates contextual responses with Azure OpenAI GPT-4o, voices them in real-time via gpt-4o-mini-tts, and broadcasts to a live audience through WebSockets — all running on Azure App Service.',
     subdesc:
-      'FastAPI backend + React (Vite/TypeScript/Tailwind) frontend + Three.js visualiser. WebRTC relay for the OpenAI Realtime API, Docker multi-stage build, abstract provider interface supporting both Azure OpenAI and standard OpenAI. Deployed live at pmi-ai-moderator.azurewebsites.net.',
-    href: 'https://pmi-ai-moderator.azurewebsites.net',
+      'FastAPI backend + React (Vite/TypeScript/Tailwind) frontend + Three.js visualiser. WebRTC relay for the OpenAI Realtime API, Docker multi-stage build, abstract provider interface supporting both Azure OpenAI and standard OpenAI.',
+    href: '#',
     texture: '/textures/project/project1.mp4',
     slideshow: [
       {
@@ -83,7 +83,7 @@ export const myProjects = [
         subtitle: 'Audience commitment screen designed to feel like a real call to action.',
       },
     ],
-    logo: '/assets/pmi-logo.png',
+    logo: '/assets/skills/threejs.svg',
     logoStyle: {
       backgroundColor: '#0a1340',
       border: '0.2px solid #1f2d70',
@@ -669,8 +669,8 @@ export const workExperiences = [
         ],
       },
       {
-        name: 'PMI AI Moderator',
-        description: 'Human-in-the-loop AI moderator for live PMI panels (pmi-ai-moderator.azurewebsites.net):',
+        name: 'Live-event AI Moderator',
+        description: 'Human-in-the-loop AI moderator for enterprise live panels:',
         achievements: [
           'FastAPI backend + React (Vite/TypeScript/Tailwind) + Three.js visualiser',
           'Azure OpenAI GPT-4o for generation, gpt-4o-mini-tts for voice synthesis',
@@ -703,7 +703,7 @@ export const workExperiences = [
     ],
     achievements: [
       'Helped architect Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
-      'Co-built and deployed live AI moderator for PMI panels using Azure OpenAI GPT-4o + WebRTC Realtime API',
+      'Co-built and deployed live-event AI moderator for enterprise live panels using Azure OpenAI GPT-4o + WebRTC Realtime API',
       'Contributor to UN Geneva institutional experience platform (TypeScript monorepo + Go microservices)',
       'Built proximity-based React Native Reanimated component (40 tests) used in production at the UN Visitor Center',
     ],

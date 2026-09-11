@@ -1,6 +1,8 @@
 import { clientReviews } from '../constants/index.js';
 
 const Clients = () => {
+  if (!clientReviews.length) return null;
+
   return (
     <section className="c-space my-20">
       <h3 className="head-text">Hear from My Clients</h3>

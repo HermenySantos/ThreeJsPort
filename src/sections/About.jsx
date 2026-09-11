@@ -484,8 +484,8 @@ const About = () => {
             <div>
               <p className="grid-headtext">I'm very flexible with time zone communications & locations</p>
               <p className="grid-subtext">
-                I&apos;m based in Covilhã, Portugal and open to remote work worldwide. Click on the globe to explore
-                locations where I have worked.
+                Based in Covilhã, Portugal — experienced working remotely with distributed teams. Click on the globe to
+                explore locations where I have worked.
               </p>
               <div className="flex flex-col gap-4 mt-6">
                 <div className="flex gap-4">

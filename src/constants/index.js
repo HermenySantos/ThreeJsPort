@@ -101,9 +101,9 @@ export const myProjects = [
   },
   {
     title: 'Scopely Global Event — WebAR Backend',
-    desc: 'Architected an Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations — built from scratch in 5 weeks on an unfamiliar stack. Shipped on time with zero incidents.',
+    desc: 'Helped architect, with the Dorier team, an Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations — delivered in 5 weeks on an unfamiliar stack. Shipped on time with zero incidents.',
     subdesc:
-      'Includes rate limiting, anti-abuse controls, GDPR-aligned data handling, and a React admin dashboard. First time working with Azure Functions and Cosmos DB — ramped up, designed the architecture, and delivered under a hard event deadline.',
+      'Includes rate limiting, anti-abuse controls, GDPR-aligned data handling, and a React admin dashboard. First time on Azure Functions and Cosmos DB — ramped up quickly and helped design the architecture under a hard event deadline.',
     href: 'https://github.com/HermenySantos',
     texture: '/textures/project/project2.mp4',
     slideshow: [
@@ -160,7 +160,7 @@ export const myProjects = [
   },
   {
     title: 'UN Geneva Visitor Center — FPDN Experience',
-    desc: 'Core contributor (~27% of repo activity) to the institutional experience platform at the United Nations Visitor Center in Geneva. Built a proximity-flash component used simultaneously on all visitor devices during the "Gathering" exhibition moment.',
+    desc: 'Contributor with the Dorier team to the institutional experience platform at the United Nations Visitor Center in Geneva. Built a proximity-flash component used simultaneously on all visitor devices during the "Gathering" exhibition moment.',
     subdesc:
       'TypeScript monorepo spanning Audio Guide app, Docent Controller, CMS, and cloud services. Go microservices for backend processing, MQTT for real-time messaging, Quuppa indoor positioning for location awareness, React Native Reanimated with 40 automated tests.',
     href: 'https://github.com/HermenySantos/totem-proximity-flash',
@@ -651,7 +651,7 @@ export const workExperiences = [
     pos: 'Full Stack Engineer',
     duration: 'Jun 2025 – Present',
     title:
-      'Building production systems for global live events and institutional experiences at Dorier, a Geneva-based event technology company. Architected a backend serving 2,100 concurrent users across 12 global locations in 5 weeks — first time on the stack.',
+      'Building production systems for global live events and institutional experiences at Dorier, a Geneva-based event technology company. Helped architect, with the team, a backend serving 2,100 concurrent users across 12 global locations in 5 weeks — first time on the stack.',
     icon: '/assets/dorier.svg',
     animation: 'victory',
     companyDescription:
@@ -661,7 +661,7 @@ export const workExperiences = [
         name: 'Scopely Global Event — WebAR Backend',
         description: 'Azure Functions + Cosmos DB backend for a global AR game event:',
         achievements: [
-          'Architected backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
+          'Helped architect backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
           'Built on Azure Functions + Cosmos DB — first time on that stack',
           'Rate limiting, anti-abuse controls, and GDPR-aligned data handling',
           'React admin dashboard for event management',
@@ -683,7 +683,7 @@ export const workExperiences = [
         name: 'UN Geneva Visitor Center — FPDN',
         description: 'Institutional experience platform for the United Nations Visitor Center:',
         achievements: [
-          'Core contributor (~27% of repo activity) to TypeScript monorepo',
+          'Contributor to the TypeScript monorepo with the Dorier team',
           'Audio Guide app, Docent Controller, CMS, and back-of-house cloud services',
           'Go microservices, MQTT real-time messaging, Quuppa indoor positioning',
           'Built proximity-flash React Native Reanimated component (40 automated tests)',
@@ -702,9 +702,9 @@ export const workExperiences = [
       },
     ],
     achievements: [
-      'Architected Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
-      'Built and deployed live AI moderator for PMI panels using Azure OpenAI GPT-4o + WebRTC Realtime API',
-      'Core contributor to UN Geneva institutional experience platform (TypeScript monorepo + Go microservices)',
+      'Helped architect Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
+      'Co-built and deployed live AI moderator for PMI panels using Azure OpenAI GPT-4o + WebRTC Realtime API',
+      'Contributor to UN Geneva institutional experience platform (TypeScript monorepo + Go microservices)',
       'Built proximity-based React Native Reanimated component (40 tests) used in production at the UN Visitor Center',
     ],
     skills: [

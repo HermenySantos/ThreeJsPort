@@ -482,7 +482,7 @@ const About = () => {
               )}
             </div>
             <div>
-              <p className="grid-headtext">I'm very flexible with time zone communications & locations</p>
+              <p className="grid-headtext">Used to collaborating across time zones with distributed teams</p>
               <p className="grid-subtext">
                 Based in Covilhã, Portugal — experienced working remotely with distributed teams. Click on the globe to
                 explore locations where I have worked.

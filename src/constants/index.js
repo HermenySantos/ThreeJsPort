@@ -100,42 +100,42 @@ export const myProjects = [
     ],
   },
   {
-    title: 'Scopely Global Event — WebAR Backend',
+    title: 'Major gaming brand — global WebAR event',
     desc: 'Helped architect, with the Dorier team, an Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations — delivered in 5 weeks on an unfamiliar stack. Shipped on time with zero incidents.',
     subdesc:
-      'Includes rate limiting, anti-abuse controls, GDPR-aligned data handling, and a React admin dashboard. First time on Azure Functions and Cosmos DB — ramped up quickly and helped design the architecture under a hard event deadline.',
+      'Includes a React admin dashboard and privacy-aware session handling. First time on Azure Functions and Cosmos DB — ramped up quickly and helped design the architecture under a hard event deadline.',
     href: 'https://github.com/HermenySantos',
     texture: '/textures/project/project2.mp4',
     slideshow: [
       {
         src: '/assets/projects/scopely-character-hunt/01-monopoly.png',
-        title: 'Spawn — Mr. Monopoly',
-        subtitle: 'Live AR character hunt running on the Azure Functions backend.',
+        title: 'Live WebAR spawn',
+        subtitle: 'On-site AR experience running on the Azure Functions backend.',
       },
       {
         src: '/assets/projects/scopely-character-hunt/video1-02.png',
-        title: 'Movement energy meter',
-        subtitle: 'Anti-abuse / penalty system enforced server-side per session.',
+        title: 'Live session controls',
+        subtitle: 'Server-side session limits to keep the live event fair.',
       },
       {
         src: '/assets/projects/scopely-character-hunt/02-spock.png',
-        title: 'Character unlocked — Spock',
+        title: 'Progress unlock',
         subtitle: 'Cosmos DB tracks per-user progress across 12 global locations.',
       },
       {
         src: '/assets/projects/scopely-character-hunt/04-spiderman.png',
-        title: 'Character unlocked — Spider-Man',
+        title: 'Scale under load',
         subtitle: '2,100 concurrent users sustained without incident.',
       },
       {
         src: '/assets/projects/scopely-character-hunt/03-captain-america.png',
-        title: 'Character unlocked — Captain America',
-        subtitle: 'Rate limiting and GDPR-aligned data handling baked in.',
+        title: 'Event operations',
+        subtitle: 'React admin tools for running the live event.',
       },
       {
         src: '/assets/projects/scopely-character-hunt/video2-02.png',
-        title: 'Mini-game challenge',
-        subtitle: '“What does this character want?” — quiz served from event config.',
+        title: 'On-site challenge',
+        subtitle: 'Live challenge content served from event configuration.',
       },
     ],
     slideshowOptions: {
@@ -159,7 +159,7 @@ export const myProjects = [
     ],
   },
   {
-    title: 'UN Geneva Visitor Center — FPDN Experience',
+    title: 'UN Geneva Visitor Center',
     desc: 'Contributor with the Dorier team to the institutional experience platform at the United Nations Visitor Center in Geneva. Built a proximity-flash component used simultaneously on all visitor devices during the "Gathering" exhibition moment.',
     subdesc:
       'TypeScript monorepo spanning Audio Guide app, Docent Controller, CMS, and cloud services. Go microservices for backend processing, MQTT for real-time messaging, Quuppa indoor positioning for location awareness, React Native Reanimated with 40 automated tests.',
@@ -658,13 +658,13 @@ export const workExperiences = [
       'Dorier is a Geneva-based event technology and live experience company, delivering large-scale digital installations and immersive experiences for global organizations.',
     projects: [
       {
-        name: 'Scopely Global Event — WebAR Backend',
-        description: 'Azure Functions + Cosmos DB backend for a global AR game event:',
+        name: 'Major gaming brand — global WebAR event',
+        description: 'Azure Functions + Cosmos DB backend for a global live WebAR event (client):',
         achievements: [
           'Helped architect backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
           'Built on Azure Functions + Cosmos DB — first time on that stack',
-          'Rate limiting, anti-abuse controls, and GDPR-aligned data handling',
-          'React admin dashboard for event management',
+          'React admin dashboard for event operations',
+          'Privacy-aware session handling',
           'Shipped on time with zero incidents',
         ],
       },
@@ -680,7 +680,7 @@ export const workExperiences = [
         ],
       },
       {
-        name: 'UN Geneva Visitor Center — FPDN',
+        name: 'UN Geneva Visitor Center',
         description: 'Institutional experience platform for the United Nations Visitor Center:',
         achievements: [
           'Contributor to the TypeScript monorepo with the Dorier team',
@@ -691,7 +691,7 @@ export const workExperiences = [
         ],
       },
       {
-        name: 'Enterprise Automation — Galderma / Lightcraft',
+        name: 'Enterprise automation for a life-sciences client',
         description: 'Python automation tooling for enterprise video-processing workflows:',
         achievements: [
           'Python CLI/GUI tool with Dropbox integration and Gmail notifications',

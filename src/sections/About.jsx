@@ -490,18 +490,6 @@ const About = () => {
               <div className="flex flex-col gap-4 mt-6">
                 <div className="flex gap-4">
                   <Button href="#contact" name="Contact Me" isBeam containerClass="w-full flex-1" />
-                  <Button
-                    href="/assets/hermenegildo-santos-resume.pdf"
-                    download
-                    name="Download CV"
-                    containerClass="w-full flex-1 border-2 border-blue-500"
-                    bgClass="bg-black-300 hover:bg-black-500"
-                    icon={{
-                      src: 'assets/download.svg',
-                      alt: 'download',
-                      position: 'right',
-                    }}
-                  />
                 </div>
 
                 {/* ORCID ID Credential - moved here */}

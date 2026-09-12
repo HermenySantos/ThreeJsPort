@@ -99,7 +99,7 @@ export const myProjects = [
     desc: 'Owned end-to-end, at Dorier, a same-day global WebAR event — ~2,100 participants across 12 locations in 5 weeks. Built WebAR (Zappar) + Azure Functions + Cosmos + a React admin; shipped on time with zero incidents.',
     subdesc:
       'Full E2E ownership of the live experience and backend — WebAR (Zappar), Azure Functions, Cosmos DB, React admin, and privacy-aware session handling. Delivered on a hard same-day event deadline.',
-    href: 'https://github.com/HermenySantos',
+    href: '#',
     texture: '/textures/project/project2.mp4',
     slideshow: [
       {

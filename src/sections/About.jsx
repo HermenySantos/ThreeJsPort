@@ -4,104 +4,100 @@ import Globe from 'react-globe.gl';
 import Button from '../components/Button.jsx';
 import GitHubContributions from '../components/GitHubContributions.jsx';
 
-// Comprehensive technical skills data organized by categories
+// Technical skills by category — names and icons only, no invented proficiency %
 const technicalSkills = {
   frontend: {
-    title: 'Frontend Development',
+    title: 'Frontend',
     skills: [
-      { name: 'React', proficiency: 95, icon: '/assets/skills/react.svg' },
-      { name: 'Next.js', proficiency: 92, icon: '/assets/skills/next.svg' },
-      { name: 'TypeScript', proficiency: 90, icon: '/assets/skills/typescript.svg' },
-      { name: 'JavaScript', proficiency: 95, icon: '/assets/skills/javascript.svg' },
-      { name: 'HTML5/CSS3', proficiency: 95, icon: '/assets/skills/html.svg' },
+      { name: 'TypeScript', icon: '/assets/skills/typescript.svg' },
+      { name: 'React', icon: '/assets/skills/react.svg' },
+      { name: 'Next.js', icon: '/assets/skills/next.svg' },
+      { name: 'JavaScript', icon: '/assets/skills/javascript.svg' },
+      { name: 'HTML5/CSS3', icon: '/assets/skills/html.svg' },
+      { name: 'Tailwind CSS', icon: '/assets/skills/tailwind.svg' },
+      { name: 'Material UI', icon: '/assets/skills/mui.svg' },
+      { name: 'Three.js', icon: '/assets/skills/threejs.svg' },
+      { name: 'Redux', icon: '/assets/skills/redux.svg' },
     ],
   },
-  ui: {
-    title: 'UI Libraries',
+  backend: {
+    title: 'Backend',
     skills: [
-      { name: 'Material UI', proficiency: 88, icon: '/assets/skills/mui.svg' },
-      { name: 'Tailwind CSS', proficiency: 95, icon: '/assets/skills/tailwind.svg' },
-      { name: 'Bootstrap', proficiency: 85, icon: '/assets/skills/bootstrap.svg' },
-      { name: 'Sass', proficiency: 88, icon: '/assets/skills/sass.svg' },
+      { name: 'Node.js', icon: '/assets/skills/nodejs.svg' },
+      { name: 'Python', icon: '/assets/skills/python.svg' },
+      { name: 'FastAPI', icon: '/assets/skills/fastapi.svg' },
+      { name: 'Go', icon: '/assets/skills/go.svg' },
+      { name: 'NestJS', icon: '/assets/skills/nestjs.svg' },
+      { name: 'Express', icon: '/assets/skills/express.svg' },
+      { name: 'GraphQL', icon: '/assets/skills/graphql.svg' },
     ],
   },
-  state: {
-    title: 'State Management',
+  cloud: {
+    title: 'Cloud & Infra',
     skills: [
-      { name: 'Redux', proficiency: 85, icon: '/assets/skills/redux.svg' },
-      { name: 'Context API', proficiency: 90, icon: '/assets/skills/react.svg' },
-      { name: 'Recoil', proficiency: 85, icon: '/assets/skills/recoil.svg' },
+      { name: 'Azure', icon: '/assets/skills/azure.svg' },
+      { name: 'Azure OpenAI', icon: '/assets/skills/azure.svg' },
+      { name: 'Docker', icon: '/assets/skills/docker.svg' },
+      { name: 'GitHub Actions', icon: '/assets/skills/github.svg' },
+      { name: 'AWS', icon: '/assets/skills/aws.svg' },
+      { name: 'Vercel', icon: '/assets/skills/vercel.svg' },
     ],
+  },
+  database: {
+    title: 'Data',
+    skills: [
+      { name: 'PostgreSQL', icon: '/assets/skills/postgresql.svg' },
+      { name: 'MongoDB', icon: '/assets/skills/mongodb.svg' },
+      { name: 'Redis', icon: '/assets/skills/redis.svg' },
+      { name: 'Prisma', icon: '/assets/skills/prisma.svg' },
+      { name: 'Firebase', icon: '/assets/skills/firebase.svg' },
+    ],
+  },
+  realtime: {
+    title: 'Realtime',
+    skills: [{ name: 'WebRTC' }, { name: 'WebSockets' }],
   },
   mobile: {
-    title: 'Mobile Development',
+    title: 'Mobile',
     skills: [
-      { name: 'Flutter', proficiency: 82, icon: '/assets/skills/flutter.svg' },
-      { name: 'Dart', proficiency: 80, icon: '/assets/skills/dart.svg' },
-      { name: 'React Native', proficiency: 85, icon: '/assets/skills/react.svg' },
+      { name: 'React Native', icon: '/assets/skills/react.svg' },
+      { name: 'Flutter', icon: '/assets/skills/flutter.svg' },
+      { name: 'Dart', icon: '/assets/skills/dart.svg' },
     ],
   },
   testing: {
     title: 'Testing',
     skills: [
-      { name: 'Jest', proficiency: 88, icon: '/assets/skills/jest.svg' },
-      { name: 'React Testing Library', proficiency: 85, icon: '/assets/skills/reacttestinglibrary.svg' },
-      { name: 'Cypress', proficiency: 82, icon: '/assets/skills/cypress.svg' },
+      { name: 'Jest', icon: '/assets/skills/jest.svg' },
+      { name: 'Cypress', icon: '/assets/skills/cypress.svg' },
     ],
   },
-  backend: {
-    title: 'Backend Development',
+  tools: {
+    title: 'Tools',
     skills: [
-      { name: 'Node.js', proficiency: 88, icon: '/assets/skills/nodejs.svg' },
-      { name: 'NestJS', proficiency: 90, icon: '/assets/skills/nestjs.svg' },
-      { name: 'Express', proficiency: 88, icon: '/assets/skills/express.svg' },
-      { name: 'GraphQL', proficiency: 85, icon: '/assets/skills/graphql.svg' },
-      { name: 'Python', proficiency: 80, icon: '/assets/skills/python.svg' },
-      { name: 'FastAPI', proficiency: 78, icon: '/assets/skills/fastapi.svg' },
-    ],
-  },
-  database: {
-    title: 'Database & Storage',
-    skills: [
-      { name: 'PostgreSQL', proficiency: 85, icon: '/assets/skills/postgresql.svg' },
-      { name: 'MySQL', proficiency: 85, icon: '/assets/skills/mysql.svg' },
-      { name: 'MongoDB', proficiency: 92, icon: '/assets/skills/mongodb.svg' },
-      { name: 'Firebase', proficiency: 88, icon: '/assets/skills/firebase.svg' },
-      { name: 'Prisma', proficiency: 90, icon: '/assets/skills/prisma.svg' },
-      { name: 'Redis', proficiency: 82, icon: '/assets/skills/redis.svg' },
-    ],
-  },
-  devops: {
-    title: 'DevOps & Infrastructure',
-    skills: [
-      { name: 'AWS', proficiency: 83, icon: '/assets/skills/aws.svg' },
-      { name: 'Azure', proficiency: 85, icon: '/assets/skills/azure.svg' },
-      { name: 'Vercel', proficiency: 90, icon: '/assets/skills/vercel.svg' },
-      { name: 'Docker', proficiency: 85, icon: '/assets/skills/docker.svg' },
-      { name: 'GitHub Actions', proficiency: 88, icon: '/assets/skills/github.svg' },
-    ],
-  },
-  methodologies: {
-    title: 'Methodologies & Tools',
-    skills: [
-      { name: 'Agile/Scrum', proficiency: 90, icon: '/assets/skills/framer.svg' },
-      { name: 'Git/GitHub', proficiency: 95, icon: '/assets/skills/github.svg' },
-      { name: 'Microservices', proficiency: 88, icon: '/assets/skills/kubernetes.svg' },
-      { name: 'Code Reviews', proficiency: 95, icon: '/assets/skills/git.svg' },
+      { name: 'Git/GitHub', icon: '/assets/skills/github.svg' },
+      { name: 'Sass', icon: '/assets/skills/sass.svg' },
     ],
   },
 };
 
-// Simple tech stack data for condensed view
+// Condensed, ceiling-relevant stack (aligned with LinkedIn / shipped work)
 const techStack = [
-  { name: 'React', proficiency: 95, icon: '/assets/skills/react.svg' },
-  { name: 'Next.js', proficiency: 92, icon: '/assets/skills/next.svg' },
-  { name: 'TypeScript', proficiency: 90, icon: '/assets/skills/typescript.svg' },
-  { name: 'GraphQL', proficiency: 85, icon: '/assets/skills/graphql.svg' },
-  { name: 'NestJS', proficiency: 90, icon: '/assets/skills/nestjs.svg' },
-  { name: 'AWS', proficiency: 83, icon: '/assets/skills/aws.svg' },
-  { name: 'Docker', proficiency: 85, icon: '/assets/skills/docker.svg' },
+  { name: 'TypeScript', icon: '/assets/skills/typescript.svg' },
+  { name: 'React', icon: '/assets/skills/react.svg' },
+  { name: 'Node.js', icon: '/assets/skills/nodejs.svg' },
+  { name: 'Next.js', icon: '/assets/skills/next.svg' },
+  { name: 'Azure', icon: '/assets/skills/azure.svg' },
+  { name: 'Azure OpenAI', icon: '/assets/skills/azure.svg' },
+  { name: 'Python', icon: '/assets/skills/python.svg' },
+  { name: 'FastAPI', icon: '/assets/skills/fastapi.svg' },
+  { name: 'Docker', icon: '/assets/skills/docker.svg' },
+  { name: 'Go', icon: '/assets/skills/go.svg' },
+  { name: 'PostgreSQL', icon: '/assets/skills/postgresql.svg' },
+  { name: 'WebRTC' },
 ];
+
+const secondaryTags = ['NestJS', 'GraphQL', 'React Native', 'Three.js', 'Jest', 'Flutter'];
 
 // ORCID information
 const orcidInfo = {
@@ -125,7 +121,7 @@ const achievements = [
   { value: 5, label: 'Years Experience', symbol: '+' },
   { value: 15, label: 'Projects Shipped', symbol: '+' },
   { value: 12, label: 'Global Locations', symbol: '+' },
-  { value: 2100, label: 'Concurrent Users', symbol: '' },
+  { value: 2100, label: 'Event participants', symbol: '' },
 ];
 
 // AnimatedCounter component for statistics
@@ -182,25 +178,12 @@ const AnimatedCounter = ({ value, duration = 2000, symbol = '' }) => {
   );
 };
 
-// SkillBar component for tech stack visualization
-const SkillBar = ({ name, proficiency, icon }) => {
-  return (
-    <div className="mb-3">
-      <div className="flex items-center justify-between mb-1">
-        <div className="flex items-center gap-2">
-          <img src={icon} alt={name} className="w-5 h-5" />
-          <span className="text-white text-sm">{name}</span>
-        </div>
-        <span className="text-white-600 text-sm">{proficiency}%</span>
-      </div>
-      <div className="h-1.5 w-full bg-black-300 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full skill-bar-animation"
-          style={{ width: `${proficiency}%` }}></div>
-      </div>
-    </div>
-  );
-};
+const SkillChip = ({ name, icon }) => (
+  <span className="skill-chip inline-flex items-center gap-2 px-3 py-1.5 bg-black-300 rounded-full">
+    {icon ? <img src={icon} alt="" className="w-4 h-4" /> : null}
+    <span className="text-white text-sm">{name}</span>
+  </span>
+);
 
 // Tech Stack Modal Component
 const TechStackModal = ({ isOpen, onClose }) => {
@@ -269,9 +252,9 @@ const TechStackModal = ({ isOpen, onClose }) => {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-black-300 rounded-lg p-5">
             <h3 className="text-xl font-semibold text-white mb-4">{technicalSkills[activeCategory].title}</h3>
-            <div className="space-y-4">
-              {technicalSkills[activeCategory].skills.map((skill, index) => (
-                <SkillBar key={index} name={skill.name} proficiency={skill.proficiency} icon={skill.icon} />
+            <div className="flex flex-wrap gap-2">
+              {technicalSkills[activeCategory].skills.map((skill) => (
+                <SkillChip key={skill.name} name={skill.name} icon={skill.icon} />
               ))}
             </div>
           </div>
@@ -285,43 +268,13 @@ const TechStackModal = ({ isOpen, onClose }) => {
                 .map((category) => (
                   <div key={category} className="bg-black-200 rounded-lg p-3">
                     <h4 className="text-sm font-medium text-white-600 mb-2">{technicalSkills[category].title}</h4>
-                    {technicalSkills[category].skills.slice(0, 3).map((skill, index) => (
-                      <div key={index} className="flex items-center gap-2 mb-2">
-                        <img src={skill.icon} alt={skill.name} className="w-4 h-4" />
-                        <span className="text-white text-xs">{skill.name}</span>
-                      </div>
-                    ))}
+                    <div className="flex flex-wrap gap-2">
+                      {technicalSkills[category].skills.map((skill) => (
+                        <SkillChip key={skill.name} name={skill.name} icon={skill.icon} />
+                      ))}
+                    </div>
                   </div>
                 ))}
-            </div>
-
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold text-white mb-3">Skill Distribution</h3>
-              <div className="grid grid-cols-3 gap-2">
-                {Object.keys(technicalSkills).map((category) => {
-                  const avgProficiency =
-                    technicalSkills[category].skills.reduce((sum, skill) => sum + skill.proficiency, 0) /
-                    technicalSkills[category].skills.length;
-
-                  return (
-                    <div
-                      key={category}
-                      className={`relative cursor-pointer ${category === activeCategory ? 'z-10' : ''}`}
-                      onMouseEnter={() => setActiveCategory(category)}>
-                      <div className="text-xs text-white-600 mb-1 truncate">
-                        {technicalSkills[category].title.split(' ')[0]}
-                      </div>
-                      <div
-                        className="h-6 rounded transition-all duration-300"
-                        style={{
-                          backgroundColor: category === activeCategory ? '#3b82f6' : '#1f2937',
-                          width: '100%',
-                          opacity: category === activeCategory ? 1 : 0.7,
-                        }}></div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
           </div>
         </div>
@@ -383,8 +336,8 @@ const About = () => {
               <p className="grid-headtext">Hi, I'm Hermenegildo Santos</p>
               <p className="grid-subtext">
                 Full Stack Engineer with 5+ years shipping production systems across healthcare, enterprise, and
-                immersive-experience domains. Generalist across backend, frontend, mobile, cloud, and AI integration —
-                ramps fast, delivers under pressure.
+                live-event domains. Works across backend, frontend, mobile, cloud, and AI integration — from same-day
+                WebAR events to healthcare platforms.
               </p>
             </div>
           </div>
@@ -415,26 +368,18 @@ const About = () => {
                 </button>
               </div>
 
-              <div className="skill-bars-container flex-grow">
-                {techStack.map((tech, index) => (
-                  <SkillBar key={index} name={tech.name} proficiency={tech.proficiency} icon={tech.icon} />
-                ))}
+              <div className="skill-chips-container flex-grow">
+                <div className="flex flex-wrap gap-2">
+                  {techStack.map((tech) => (
+                    <SkillChip key={tech.name} name={tech.name} icon={tech.icon} />
+                  ))}
+                </div>
               </div>
 
               <div className="mt-auto">
                 <div className="tech-tags mt-4 flex flex-wrap gap-2">
-                  {[
-                    'Microservices',
-                    'CI/CD',
-                    'Redux',
-                    'Kubernetes',
-                    'Azure',
-                    'PostgreSQL',
-                    'React Native',
-                    'Jest',
-                    'MongoDB',
-                  ].map((tag, index) => (
-                    <span key={index} className="px-2 py-1 bg-black-300 text-white-600 text-xs rounded-full">
+                  {secondaryTags.map((tag) => (
+                    <span key={tag} className="px-2 py-1 bg-black-300 text-white-600 text-xs rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -612,11 +557,11 @@ const About = () => {
             </div>
 
             <div className="flex-grow">
-              <p className="grid-headtext">My Passion for Coding</p>
+              <p className="grid-headtext">What I ship</p>
               <p className="grid-subtext">
-                I love solving complex problems and building things through code. Programming isn&apos;t just my
-                profession—it&apos;s my passion. I enjoy exploring new technologies, contributing to open-source
-                projects, and continually enhancing my skills to stay at the cutting edge of web development.
+                Production systems end-to-end: live-event AI (Azure OpenAI + WebRTC), same-day WebAR for ~2,100
+                participants across 12 locations, healthcare platforms, and UN institutional software. Day-to-day stack
+                is TypeScript, React, Node.js, Python/FastAPI, Azure, and Go.
               </p>
             </div>
           </div>

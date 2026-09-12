@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://three-js-port-hermenysantos-projects.vercel.app"><b>🌐 Live Site → three-js-port-hermenysantos-projects.vercel.app</b></a>
+  <a href="https://www.hermenegildosantos.com"><b>🌐 Live Site → hermenegildosantos.com</b></a>
 </p>
 
 <p align="center">
@@ -92,4 +92,4 @@ The GitHub contributions widget falls back to the public API (public repos only)
 ## 📫 Contact
 
 **Hermenegildo Santos** — Full-Stack AI Engineer
-[Portfolio](https://three-js-port-hermenysantos-projects.vercel.app) · [LinkedIn](https://www.linkedin.com/in/hermenegildosantos) · [Email](mailto:hermeny7@hotmail.com)
+[Portfolio](https://www.hermenegildosantos.com) · [LinkedIn](https://www.linkedin.com/in/hermenegildosantos) · [Email](mailto:hermeny7@hotmail.com)

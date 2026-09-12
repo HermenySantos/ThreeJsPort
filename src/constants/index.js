@@ -16,11 +16,6 @@ export const navLinks = [
   },
   {
     id: 4,
-    name: 'AI Agent',
-    href: '#ai-agent',
-  },
-  {
-    id: 5,
     name: 'Contact',
     href: '#contact',
   },

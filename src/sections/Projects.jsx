@@ -7,6 +7,7 @@ import { Center, OrbitControls } from '@react-three/drei';
 import { myProjects } from '../constants/index.js';
 import CanvasLoader from '../components/Loading.jsx';
 import DemoComputer from '../components/DemoComputer.jsx';
+import { getProjectCtaLabel } from './projectCta.helpers.js';
 
 const projectCount = myProjects.length;
 
@@ -169,6 +170,7 @@ const Projects = () => {
   }, [selectedProjectIndex]);
 
   const currentProject = myProjects[selectedProjectIndex];
+  const ctaLabel = getProjectCtaLabel(currentProject.href);
 
   return (
     <section className="c-space my-20" id="projects">
@@ -213,13 +215,13 @@ const Projects = () => {
                 </button>
               )}
 
-              {currentProject.href && currentProject.href !== '#' && (
+              {ctaLabel && (
                 <a
                   className="flex items-center gap-2 cursor-pointer text-white-600"
                   href={currentProject.href}
                   target="_blank"
                   rel="noreferrer">
-                  <p>Check Live Site</p>
+                  <p>{ctaLabel}</p>
                   <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
                 </a>
               )}

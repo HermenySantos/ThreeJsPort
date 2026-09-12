@@ -46,7 +46,7 @@
 
 ```
 src/
-├── sections/      # Hero, About, Projects, Experience, AIAgentSection, Contact, Navbar, Footer
+├── sections/      # Hero, About, Projects, Experience, Contact, Navbar, Footer
 ├── components/    # 3D components — HackerRoom, CommandRigScene, DemoComputer, GitHubContributions…
 ├── constants/     # Content data (projects, skills, experience)
 ├── hooks/         # useAlert

@@ -651,7 +651,7 @@ export const workExperiences = [
     pos: 'Full Stack Engineer',
     duration: 'Jun 2025 – Present',
     title:
-      'Building production systems for global live events and institutional experiences at Dorier, a Geneva-based event technology company. Helped architect, with the team, a backend serving 2,100 concurrent users across 12 global locations in 5 weeks — first time on the stack.',
+      'Building production AI and live-event systems at Dorier (Geneva). Owned a same-day global WebAR event end-to-end — ~2,100 participants across 12 locations in 5 weeks — plus human-in-the-loop live-event AI (Azure OpenAI, WebRTC/WebSockets).',
     icon: '/assets/dorier.svg',
     animation: 'victory',
     companyDescription:
@@ -659,18 +659,18 @@ export const workExperiences = [
     projects: [
       {
         name: 'Major gaming brand — global WebAR event',
-        description: 'Azure Functions + Cosmos DB backend for a global live WebAR event (client):',
+        description:
+          'Owned a same-day global WebAR event end-to-end — WebAR (Zappar) + Azure Functions + Cosmos + React admin:',
         achievements: [
-          'Helped architect backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
-          'Built on Azure Functions + Cosmos DB — first time on that stack',
-          'React admin dashboard for event operations',
-          'Privacy-aware session handling',
+          'Owned the live experience and backend end-to-end — ~2,100 participants across 12 locations in 5 weeks',
+          'Full ownership of the WebAR/Zappar client, Azure Functions, Cosmos DB, and React admin',
+          'Privacy-aware session handling (GDPR)',
           'Shipped on time with zero incidents',
         ],
       },
       {
         name: 'Live-event AI Moderator',
-        description: 'Human-in-the-loop AI moderator for enterprise live panels:',
+        description: 'Owned and built a production human-in-the-loop live-event AI system:',
         achievements: [
           'FastAPI backend + React (Vite/TypeScript/Tailwind) + Three.js visualiser',
           'Azure OpenAI GPT-4o for generation, gpt-4o-mini-tts for voice synthesis',
@@ -702,8 +702,8 @@ export const workExperiences = [
       },
     ],
     achievements: [
-      'Helped architect Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations in 5 weeks',
-      'Co-built and deployed live-event AI moderator for enterprise live panels using Azure OpenAI GPT-4o + WebRTC Realtime API',
+      'Owned a same-day global WebAR event end-to-end — ~2,100 participants across 12 locations in 5 weeks (Zappar, Azure Functions, Cosmos, React admin)',
+      'Owned and built a production live-event AI moderator (Azure OpenAI + WebRTC/WebSockets) for enterprise live panels',
       'Contributor to UN Geneva institutional experience platform (TypeScript monorepo + Go microservices)',
       'Built proximity-based React Native Reanimated component (40 tests) used in production at the UN Visitor Center',
     ],

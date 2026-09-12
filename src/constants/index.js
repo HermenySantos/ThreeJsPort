@@ -31,7 +31,7 @@ export const clientReviews = [];
 export const myProjects = [
   {
     title: 'Live-event AI Moderator',
-    desc: 'A human-in-the-loop AI moderator built for enterprise live panels. Generates contextual responses with Azure OpenAI GPT-4o, voices them in real-time via gpt-4o-mini-tts, and broadcasts to a live audience through WebSockets — all running on Azure App Service.',
+    desc: 'Owned a production human-in-the-loop live-event AI system: Azure OpenAI generates and voices responses in real time, then broadcasts to the audience over WebRTC/WebSockets — operators stay in control of every panel.',
     subdesc:
       'FastAPI backend + React (Vite/TypeScript/Tailwind) frontend + Three.js visualiser. WebRTC relay for the OpenAI Realtime API, Docker multi-stage build, abstract provider interface supporting both Azure OpenAI and standard OpenAI.',
     href: '#',
@@ -101,9 +101,9 @@ export const myProjects = [
   },
   {
     title: 'Major gaming brand — global WebAR event',
-    desc: 'Helped architect, with the Dorier team, an Azure Functions + Cosmos DB backend serving 2,100 concurrent users across 12 global locations — delivered in 5 weeks on an unfamiliar stack. Shipped on time with zero incidents.',
+    desc: 'Owned end-to-end, at Dorier, a same-day global WebAR event — ~2,100 participants across 12 locations in 5 weeks. Built WebAR (Zappar) + Azure Functions + Cosmos + a React admin; shipped on time with zero incidents.',
     subdesc:
-      'Includes a React admin dashboard and privacy-aware session handling. First time on Azure Functions and Cosmos DB — ramped up quickly and helped design the architecture under a hard event deadline.',
+      'Full E2E ownership of the live experience and backend — WebAR (Zappar), Azure Functions, Cosmos DB, React admin, and privacy-aware session handling. Delivered on a hard same-day event deadline.',
     href: 'https://github.com/HermenySantos',
     texture: '/textures/project/project2.mp4',
     slideshow: [
@@ -125,7 +125,7 @@ export const myProjects = [
       {
         src: '/assets/projects/scopely-character-hunt/04-spiderman.png',
         title: 'Scale under load',
-        subtitle: '2,100 concurrent users sustained without incident.',
+        subtitle: '~2,100 participants across 12 locations, sustained without incident.',
       },
       {
         src: '/assets/projects/scopely-character-hunt/03-captain-america.png',

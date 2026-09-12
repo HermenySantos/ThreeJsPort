@@ -36,15 +36,22 @@ const Hero = () => {
         <div className="hero-copy-column">
           <div className="hero-badge">
             <span className="hero-badge_dot"></span>
-            Full-stack engineer
+            Full-Stack AI Engineer
           </div>
 
           <TypeOnLoadText
             as="h1"
             className="hero-title"
-            text="I build the system, the UI, and the live experience around it."
+            text="I ship production AI and live-event systems end-to-end."
             stepMs={58}
           />
+
+          <p className="hero-copy">
+            Owned a same-day global WebAR event — ~2,100 participants across 12
+            locations in 5 weeks (Dorier).
+            <br />
+            TypeScript · React · Node · Azure OpenAI · WebAR
+          </p>
 
           <div className="hero-cta_row">
             <Button
@@ -61,7 +68,7 @@ const Hero = () => {
             />
           </div>
 
-          <p className="hero-meta">PORTUGAL - REMOTE</p>
+          <p className="hero-meta">PORTUGAL · REMOTE</p>
         </div>
       </div>
 

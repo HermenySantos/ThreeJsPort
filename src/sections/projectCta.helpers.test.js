@@ -31,16 +31,26 @@ test('returns Visit site for real product URLs', () => {
 });
 
 test('myProjects hrefs never look like a live site for GitHub or missing demos', () => {
+  assert.deepEqual(
+    myProjects.map((project) => project.title),
+    [
+      'Major gaming brand — global WebAR event',
+      'Live-event AI Moderator',
+      'UN Geneva Visitor Center',
+      'Seezy - Comprehensive Eye Health Care Platform',
+      'InvoFlow — Invoice Management SaaS',
+      'NexTool API — Developer Utilities at the Edge',
+    ],
+  );
+
   const labels = Object.fromEntries(myProjects.map((project) => [project.title, getProjectCtaLabel(project.href)]));
 
-  assert.equal(labels['Live-event AI Moderator'], null);
   assert.equal(labels['Major gaming brand — global WebAR event'], null);
+  assert.equal(labels['Live-event AI Moderator'], null);
   assert.equal(labels['UN Geneva Visitor Center'], 'View repo');
+  assert.equal(labels['Seezy - Comprehensive Eye Health Care Platform'], 'Visit site');
   assert.equal(labels['InvoFlow — Invoice Management SaaS'], 'View repo');
   assert.equal(labels['NexTool API — Developer Utilities at the Edge'], 'View repo');
-  assert.equal(labels['Seezy - Comprehensive Eye Health Care Platform'], 'Visit site');
-  assert.equal(labels['Nomad Engenuity - Modern Startup Digital Presence'], 'Visit site');
-  assert.equal(labels['NomadEngenuity — Company Website'], 'Visit site');
 
   for (const project of myProjects) {
     const label = getProjectCtaLabel(project.href);

@@ -25,6 +25,65 @@ export const clientReviews = [];
 
 export const myProjects = [
   {
+    title: 'Major gaming brand — global WebAR event',
+    desc: 'Owned end-to-end, at Dorier, a same-day global WebAR event — ~2,100 participants across 12 locations in 5 weeks. Built WebAR (Zappar) + Azure Functions + Cosmos + a React admin; shipped on time with zero incidents.',
+    subdesc:
+      'Full E2E ownership of the live experience and backend — WebAR (Zappar), Azure Functions, Cosmos DB, React admin, and privacy-aware session handling. Delivered on a hard same-day event deadline.',
+    href: '#',
+    texture: '/textures/project/project2.mp4',
+    slideshow: [
+      {
+        src: '/assets/projects/scopely-character-hunt/01-monopoly.png',
+        title: 'Live WebAR spawn',
+        subtitle: 'On-site AR experience running on the Azure Functions backend.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/video1-02.png',
+        title: 'Live session controls',
+        subtitle: 'Server-side session limits to keep the live event fair.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/02-spock.png',
+        title: 'Progress unlock',
+        subtitle: 'Cosmos DB tracks per-user progress across 12 global locations.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/04-spiderman.png',
+        title: 'Scale under load',
+        subtitle: '~2,100 participants across 12 locations, sustained without incident.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/03-captain-america.png',
+        title: 'Event operations',
+        subtitle: 'React admin tools for running the live event.',
+      },
+      {
+        src: '/assets/projects/scopely-character-hunt/video2-02.png',
+        title: 'On-site challenge',
+        subtitle: 'Live challenge content served from event configuration.',
+      },
+    ],
+    slideshowOptions: {
+      fit: 'contain',
+      backgroundColor: '#f5c419',
+      intervalMs: 3600,
+      showCaption: false,
+    },
+    logo: '/assets/scopely-character-hunt-logo.png',
+    logoStyle: {
+      backgroundColor: '#1a0b2e',
+      border: '0.2px solid #ff3d7f',
+      boxShadow: '0px 0px 60px 0px #ff3d7f55',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      { id: 1, name: 'Azure', path: '/assets/skills/azure.svg' },
+      { id: 2, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 3, name: 'React', path: '/assets/skills/react.svg' },
+      { id: 4, name: 'Node.js', path: '/assets/skills/nodejs.svg' },
+    ],
+  },
+  {
     title: 'Live-event AI Moderator',
     desc: 'Owned a production human-in-the-loop live-event AI system: Azure OpenAI generates and voices responses in real time, then broadcasts to the audience over WebRTC/WebSockets — operators stay in control of every panel.',
     subdesc:
@@ -95,65 +154,6 @@ export const myProjects = [
     ],
   },
   {
-    title: 'Major gaming brand — global WebAR event',
-    desc: 'Owned end-to-end, at Dorier, a same-day global WebAR event — ~2,100 participants across 12 locations in 5 weeks. Built WebAR (Zappar) + Azure Functions + Cosmos + a React admin; shipped on time with zero incidents.',
-    subdesc:
-      'Full E2E ownership of the live experience and backend — WebAR (Zappar), Azure Functions, Cosmos DB, React admin, and privacy-aware session handling. Delivered on a hard same-day event deadline.',
-    href: '#',
-    texture: '/textures/project/project2.mp4',
-    slideshow: [
-      {
-        src: '/assets/projects/scopely-character-hunt/01-monopoly.png',
-        title: 'Live WebAR spawn',
-        subtitle: 'On-site AR experience running on the Azure Functions backend.',
-      },
-      {
-        src: '/assets/projects/scopely-character-hunt/video1-02.png',
-        title: 'Live session controls',
-        subtitle: 'Server-side session limits to keep the live event fair.',
-      },
-      {
-        src: '/assets/projects/scopely-character-hunt/02-spock.png',
-        title: 'Progress unlock',
-        subtitle: 'Cosmos DB tracks per-user progress across 12 global locations.',
-      },
-      {
-        src: '/assets/projects/scopely-character-hunt/04-spiderman.png',
-        title: 'Scale under load',
-        subtitle: '~2,100 participants across 12 locations, sustained without incident.',
-      },
-      {
-        src: '/assets/projects/scopely-character-hunt/03-captain-america.png',
-        title: 'Event operations',
-        subtitle: 'React admin tools for running the live event.',
-      },
-      {
-        src: '/assets/projects/scopely-character-hunt/video2-02.png',
-        title: 'On-site challenge',
-        subtitle: 'Live challenge content served from event configuration.',
-      },
-    ],
-    slideshowOptions: {
-      fit: 'contain',
-      backgroundColor: '#f5c419',
-      intervalMs: 3600,
-      showCaption: false,
-    },
-    logo: '/assets/scopely-character-hunt-logo.png',
-    logoStyle: {
-      backgroundColor: '#1a0b2e',
-      border: '0.2px solid #ff3d7f',
-      boxShadow: '0px 0px 60px 0px #ff3d7f55',
-    },
-    spotlight: '/assets/spotlight1.png',
-    tags: [
-      { id: 1, name: 'Azure', path: '/assets/skills/azure.svg' },
-      { id: 2, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
-      { id: 3, name: 'React', path: '/assets/skills/react.svg' },
-      { id: 4, name: 'Node.js', path: '/assets/skills/nodejs.svg' },
-    ],
-  },
-  {
     title: 'UN Geneva Visitor Center',
     desc: 'Contributor with the Dorier team to the institutional experience platform at the United Nations Visitor Center in Geneva. Built a proximity-flash component used simultaneously on all visitor devices during the "Gathering" exhibition moment.',
     subdesc:
@@ -172,48 +172,6 @@ export const myProjects = [
       { id: 2, name: 'Go', path: '/assets/skills/go.svg' },
       { id: 3, name: 'React', path: '/assets/skills/react.svg' },
       { id: 4, name: 'Docker', path: '/assets/skills/docker.svg' },
-    ],
-  },
-  {
-    title: 'InvoFlow — Invoice Management SaaS',
-    desc: 'Full-stack invoice and receipt management SaaS built for Portuguese SMBs. OCR-powered data extraction via Azure Document Intelligence, real-time IVA (VAT) tracking, and accountant-ready export — all in one dashboard.',
-    subdesc:
-      'FastAPI + Next.js 14 + PostgreSQL + Cloudflare R2 for storage + Clerk for auth. Docker Compose deployment with a mock mode for local dev without cloud credentials. Built to solve a real pain point for small business accounting.',
-    href: 'https://github.com/HermenySantos/invoflow',
-    texture: '/textures/project/project4.mp4',
-    logo: '/assets/next.svg',
-    logoStyle: {
-      backgroundColor: '#000000',
-      border: '0.2px solid #333333',
-      boxShadow: '0px 0px 60px 0px #FFFFFF1A',
-    },
-    spotlight: '/assets/spotlight4.png',
-    tags: [
-      { id: 1, name: 'FastAPI', path: '/assets/skills/fastapi.svg' },
-      { id: 2, name: 'Next.js', path: '/assets/skills/next.svg' },
-      { id: 3, name: 'Python', path: '/assets/skills/python.svg' },
-      { id: 4, name: 'Azure', path: '/assets/skills/azure.svg' },
-      { id: 5, name: 'Docker', path: '/assets/skills/docker.svg' },
-    ],
-  },
-  {
-    title: 'NexTool API — Developer Utilities at the Edge',
-    desc: '13+ developer utility endpoints deployed globally on Cloudflare Workers — sub-millisecond latency at the edge. QR codes, meta scraping, text analytics, hashing, IP geolocation, colour conversion, JSON tools and more. Monetized on RapidAPI marketplace.',
-    subdesc:
-      'Built with TypeScript, Hono framework, and Vitest (30 tests). Cloudflare Workers architecture means zero cold starts, global distribution, and zero server management. A side project that turned into a real revenue stream.',
-    href: 'https://github.com/HermenySantos/nextool-api',
-    texture: '/textures/project/project5.mp4',
-    logo: '/assets/skills/vercel.svg',
-    logoStyle: {
-      backgroundColor: '#1A1A2E',
-      border: '0.2px solid #2D2D4E',
-      boxShadow: '0px 0px 60px 0px #6366F14D',
-    },
-    spotlight: '/assets/spotlight5.png',
-    tags: [
-      { id: 1, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
-      { id: 2, name: 'Node.js', path: '/assets/skills/nodejs.svg' },
-      { id: 3, name: 'Vercel', path: '/assets/skills/vercel.svg' },
     ],
   },
   {
@@ -321,75 +279,45 @@ export const myProjects = [
     ],
   },
   {
-    title: 'Nomad Engenuity - Modern Startup Digital Presence',
-    desc: "A dynamic startup platform that elegantly showcases the company's identity, services, and client relationships. This polished corporate website serves as both a brand statement and a lead generation tool, featuring captivating animations with GSAP and Framer Motion.",
+    title: 'InvoFlow — Invoice Management SaaS',
+    desc: 'Full-stack invoice and receipt management SaaS built for Portuguese SMBs. OCR-powered data extraction via Azure Document Intelligence, real-time IVA (VAT) tracking, and accountant-ready export — all in one dashboard.',
     subdesc:
-      'Built with Next.js 14, React 18, TypeScript, and Tailwind CSS with Prismic CMS integration. The architecture leverages Next.js App Router for optimal SEO and React Server Components for enhanced loading speeds.',
-    href: 'https://www.nomadengenuity.eu',
-    texture: '/textures/project/project1.mp4',
-    logo: '/assets/nomad.svg',
+      'FastAPI + Next.js 14 + PostgreSQL + Cloudflare R2 for storage + Clerk for auth. Docker Compose deployment with a mock mode for local dev without cloud credentials. Built to solve a real pain point for small business accounting.',
+    href: 'https://github.com/HermenySantos/invoflow',
+    texture: '/textures/project/project4.mp4',
+    logo: '/assets/next.svg',
     logoStyle: {
-      backgroundColor: '#2A2D36',
-      border: '0.2px solid #3A3D46',
-      boxShadow: '0px 0px 60px 0px #4A6CC34D',
+      backgroundColor: '#000000',
+      border: '0.2px solid #333333',
+      boxShadow: '0px 0px 60px 0px #FFFFFF1A',
     },
-    spotlight: '/assets/spotlight1.png',
+    spotlight: '/assets/spotlight4.png',
     tags: [
-      {
-        id: 1,
-        name: 'React.js',
-        path: '/assets/skills/react.svg',
-      },
-      {
-        id: 2,
-        name: 'Next.js',
-        path: '/assets/skills/next.svg',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/skills/typescript.svg',
-      },
-      {
-        id: 4,
-        name: 'Tailwind CSS',
-        path: '/assets/skills/tailwind.svg',
-      },
-      {
-        id: 5,
-        name: 'GSAP',
-        path: '/assets/gsap.svg',
-      },
-      {
-        id: 6,
-        name: 'Framer Motion',
-        path: '/assets/skills/framer.svg',
-      },
-      {
-        id: 7,
-        name: 'Prismic CMS',
-        path: '/assets/prismic.svg',
-      },
+      { id: 1, name: 'FastAPI', path: '/assets/skills/fastapi.svg' },
+      { id: 2, name: 'Next.js', path: '/assets/skills/next.svg' },
+      { id: 3, name: 'Python', path: '/assets/skills/python.svg' },
+      { id: 4, name: 'Azure', path: '/assets/skills/azure.svg' },
+      { id: 5, name: 'Docker', path: '/assets/skills/docker.svg' },
     ],
   },
   {
-    title: 'NomadEngenuity — Company Website',
-    desc: "The public-facing site for NomadEngenuity, a digital innovation agency specializing in healthcare solutions. A polished corporate presence with captivating animations, fast performance, and CMS-driven content management.",
+    title: 'NexTool API — Developer Utilities at the Edge',
+    desc: '13+ developer utility endpoints deployed globally on Cloudflare Workers — sub-millisecond latency at the edge. QR codes, meta scraping, text analytics, hashing, IP geolocation, colour conversion, JSON tools and more. Monetized on RapidAPI marketplace.',
     subdesc:
-      'Built with Next.js 14, React 18, TypeScript, and Tailwind CSS. Prismic CMS integration for content flexibility. Next.js App Router for optimal SEO and React Server Components for fast loading. GSAP + Framer Motion animations.',
-    href: 'https://www.nomadengenuity.eu',
-    texture: '/textures/project/projectNull.mp4',
-    logo: '/assets/nomad.svg',
+      'Built with TypeScript, Hono framework, and Vitest (30 tests). Cloudflare Workers architecture means zero cold starts, global distribution, and zero server management. A side project that turned into a real revenue stream.',
+    href: 'https://github.com/HermenySantos/nextool-api',
+    texture: '/textures/project/project5.mp4',
+    logo: '/assets/skills/vercel.svg',
     logoStyle: {
-      backgroundColor: '#2A2D36',
-      border: '0.2px solid #3A3D46',
-      boxShadow: '0px 0px 60px 0px #4A6CC34D',
+      backgroundColor: '#1A1A2E',
+      border: '0.2px solid #2D2D4E',
+      boxShadow: '0px 0px 60px 0px #6366F14D',
     },
-    spotlight: '/assets/spotlight3.png',
+    spotlight: '/assets/spotlight5.png',
     tags: [
-      { id: 1, name: 'Next.js', path: '/assets/skills/next.svg' },
-      { id: 2, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
-      { id: 3, name: 'React', path: '/assets/skills/react.svg' },
+      { id: 1, name: 'TypeScript', path: '/assets/skills/typescript.svg' },
+      { id: 2, name: 'Node.js', path: '/assets/skills/nodejs.svg' },
+      { id: 3, name: 'Vercel', path: '/assets/skills/vercel.svg' },
     ],
   },
   // {

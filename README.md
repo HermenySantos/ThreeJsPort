@@ -20,4 +20,4 @@ npm run build
 
 ## Site
 
-Single-page home: hero + WebAR metric strip, three locked case studies, also-shipped row, about, contact, footer. Production stays on `main` until cutover.
+Single-page home: compact hero with inline WebAR figures, UN editorial spread + WebAR/AI twin cases, also-shipped row, about, contact, footer. Production stays on `main` until cutover.

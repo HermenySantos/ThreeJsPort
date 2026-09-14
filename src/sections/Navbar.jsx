@@ -26,8 +26,14 @@ const Navbar = () => {
     };
 
     updateScrolled();
+    const rafId = requestAnimationFrame(updateScrolled);
     window.addEventListener('scroll', updateScrolled, { passive: true });
-    return () => window.removeEventListener('scroll', updateScrolled);
+    window.addEventListener('hashchange', updateScrolled);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', updateScrolled);
+      window.removeEventListener('hashchange', updateScrolled);
+    };
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);

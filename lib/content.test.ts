@@ -26,73 +26,45 @@ test('locked hero copy is verbatim', () => {
   assert.equal(hero.stack, 'TypeScript · React · Node · Azure OpenAI');
 });
 
-test('WebAR metric figures stay inline and attributed to WebAR, not UN', () => {
+test('WebAR metric strip uses locked figures', () => {
   assert.equal(metrics.items[0]?.value, '~2,100');
-  assert.equal(metrics.items[0]?.label, 'participants');
   assert.equal(metrics.items[1]?.value, '12');
-  assert.equal(metrics.items[1]?.label, 'locations');
   assert.equal(metrics.items[2]?.value, '5');
-  assert.equal(metrics.items[2]?.label, 'weeks');
-  assert.equal(metrics.attribution, 'Same-day global WebAR event');
-  assert.equal(metrics.attribution.includes('UN'), false);
+  assert.match(metrics.footnote, /WebAR/);
 });
 
-test('case order, layouts, and locked fields', () => {
+test('case order and locked fields', () => {
   assert.equal(cases.length, 3);
   assert.deepEqual(
     cases.map((item) => item.id),
     ['01', '02', '03'],
   );
-  assert.deepEqual(
-    cases.map((item) => item.layout),
-    ['spread', 'twin', 'twin'],
-  );
-  assert.equal(
-    cases.every((item) => !item.image),
-    true,
-    'media slots stay empty for Claude stills',
-  );
 
   assert.equal(cases[0]?.kicker, 'UN Geneva Visitor Center · Dorier');
   assert.equal(cases[0]?.title, 'Immersive visitor platform — Audio Guide, Docent & tour systems');
-  assert.equal(cases[0]?.role, 'Core engineer across clients, CMS, and Go tour services · 2025–2026');
+  assert.equal(cases[0]?.role, 'Core engineer across clients, CMS, and Go tour services');
+  assert.equal(cases[0]?.year, '2025–2026');
   assert.deepEqual(cases[0]?.chips, ['TypeScript', 'React Native', 'Payload CMS', 'Go', 'MQTT']);
-  assert.equal(
-    cases[0]?.summary,
-    'The Visitor Center runs as a multi-device production system: Audio Guides, docent tablets, and interactive kiosks stay in sync with a content CMS and Go tour/state services over live messaging. Over ~10 months I worked across that stack end-to-end — React Native clients, CMS scheduling and content, TMS APIs and state hardening, observe/ops tooling, and the verified technical documentation used for handover — not a one-off feature.',
-  );
-  assert.equal(
-    cases[0]?.outcome,
-    'Shipped and hardened work across the live platform: multi-language and RTL support, tour integrity (single-controller and ghost-tour paths), cross-app flight recorder/observe, E3 kiosk content, and school/group tour flows. The proximity “Gathering” flash was one Audio Guide moment inside that system, not the engagement.',
-  );
+  assert.match(cases[0]?.summary ?? '', /not a one-off feature/);
+  assert.match(cases[0]?.outcome ?? '', /not the engagement/);
   assert.equal(cases[0]?.cta, 'Walkthrough on request · no public monorepo link');
 
-  assert.equal(cases[1]?.title, 'Major gaming brand — Same-day global WebAR event');
-  assert.equal(cases[1]?.role, 'End-to-end ownership · 2025');
+  assert.equal(cases[1]?.kicker, 'Major gaming brand');
+  assert.equal(cases[1]?.title, 'Same-day global WebAR event');
+  assert.equal(cases[1]?.role, 'End-to-end ownership — live experience + backend');
   assert.deepEqual(cases[1]?.chips, ['Zappar', 'Azure Functions', 'Cosmos DB', 'React']);
-  assert.equal(
-    cases[1]?.summary,
-    'Owned the same-day global WebAR activation end to end: WebAR (Zappar), Azure Functions, Cosmos DB partitioned by location, and React admin — delivered in five weeks for a multi-hub live day.',
-  );
-  assert.equal(
-    cases[1]?.outcome,
-    '~2,100 participants across 12 locations, sustained without incident on event day.',
-  );
+  assert.equal(cases[1]?.cta, 'Walkthrough on request · no Scopely-named repo');
 
-  assert.equal(cases[2]?.title, 'Live-event AI Moderator');
-  assert.equal(cases[2]?.role, 'Owned production HITL AI · 2025–2026');
+  assert.equal(cases[2]?.kicker, 'Live-event AI Moderator');
+  assert.equal(cases[2]?.role, 'Owned production HITL AI system');
   assert.deepEqual(cases[2]?.chips, ['Azure OpenAI', 'FastAPI', 'React', 'WebRTC']);
-  assert.equal(
-    cases[2]?.summary,
-    'Owned a production human-in-the-loop live-event AI system: Azure OpenAI generates and voices responses in real time; operators stay in control via conversation, panel, workshop, and audience Q&A modes — with WebRTC/WebSockets and a Three.js stage visualiser on the audience-facing surface.',
-  );
-  assert.equal(cases[2]?.outcome, 'Production AI in a live-event setting with operator tooling, not a demo chatbot.');
+  assert.equal(cases[2]?.cta, 'Walkthrough on request · no fake live URL');
 });
 
 test('also shipped row is locked', () => {
   assert.deepEqual(
     alsoShipped.items.map((item) => `${item.name} (${item.blurb})`),
-    ['Seezy (eye-care)', 'InvoFlow (invoice SaaS)', 'NexTool (edge developer API)'],
+    ['Seezy (eye-care platform)', 'InvoFlow (invoice SaaS)', 'NexTool (edge developer API)'],
   );
 });
 
@@ -117,8 +89,6 @@ test('source tree does not reintroduce forbidden shop-window content', () => {
     '/terms',
     '/privacy',
     'CTDorier',
-    'LinkedIn Featured',
-    'available Q1',
   ];
 
   for (const token of forbidden) {

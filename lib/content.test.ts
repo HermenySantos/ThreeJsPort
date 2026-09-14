@@ -20,10 +20,9 @@ function walk(dir: string, files: string[] = []): string[] {
   return files;
 }
 
-test('locked hero copy is verbatim', () => {
-  assert.equal(hero.eyebrow, 'Full-Stack AI Engineer · Portugal');
-  assert.equal(hero.headline, 'I ship production AI and live-event systems end to end.');
-  assert.equal(hero.stack, 'TypeScript · React · Node · Azure OpenAI');
+test('hero directs visitors to work and contact', () => {
+  assert.equal(hero.primaryCta.href, '#work');
+  assert.equal(hero.secondaryCta.href, '#contact');
 });
 
 test('WebAR metric strip uses locked figures', () => {
@@ -33,32 +32,24 @@ test('WebAR metric strip uses locked figures', () => {
   assert.match(metrics.footnote, /WebAR/);
 });
 
-test('case order and locked fields', () => {
+test('three case studies retain distinct anchors and evidence', () => {
   assert.equal(cases.length, 3);
   assert.deepEqual(
     cases.map((item) => item.id),
     ['01', '02', '03'],
   );
+  for (const study of cases) {
+    assert.ok(study.role && study.challenge && study.decision && study.outcome);
+  }
+  assert.match(cases[0].role, /Core engineer/);
+  assert.match(cases[1].outcome, /2,100.*12 locations/);
+});
 
-  assert.equal(cases[0]?.kicker, 'UN Geneva Visitor Center · Dorier');
-  assert.equal(cases[0]?.title, 'Immersive visitor platform — Audio Guide, Docent & tour systems');
-  assert.equal(cases[0]?.role, 'Core engineer across clients, CMS, and Go tour services');
-  assert.equal(cases[0]?.year, '2025–2026');
-  assert.deepEqual(cases[0]?.chips, ['TypeScript', 'React Native', 'Payload CMS', 'Go', 'MQTT']);
-  assert.match(cases[0]?.summary ?? '', /not a one-off feature/);
-  assert.match(cases[0]?.outcome ?? '', /not the engagement/);
-  assert.equal(cases[0]?.cta, 'Walkthrough on request · no public monorepo link');
-
-  assert.equal(cases[1]?.kicker, 'Major gaming brand');
-  assert.equal(cases[1]?.title, 'Same-day global WebAR event');
-  assert.equal(cases[1]?.role, 'End-to-end ownership — live experience + backend');
-  assert.deepEqual(cases[1]?.chips, ['Zappar', 'Azure Functions', 'Cosmos DB', 'React']);
-  assert.equal(cases[1]?.cta, 'Walkthrough on request · no Scopely-named repo');
-
-  assert.equal(cases[2]?.kicker, 'Live-event AI Moderator');
-  assert.equal(cases[2]?.role, 'Owned production HITL AI system');
-  assert.deepEqual(cases[2]?.chips, ['Azure OpenAI', 'FastAPI', 'React', 'WebRTC']);
-  assert.equal(cases[2]?.cta, 'Walkthrough on request · no fake live URL');
+test('public case copy omits client identities and internal handover details', () => {
+  const copy = JSON.stringify(cases);
+  for (const token of ['Scopely', 'UN Geneva', 'ghost-tour', 'E3 kiosk', 'monorepo', 'fake live URL']) {
+    assert.equal(copy.includes(token), false, `Internal or client detail in public copy: ${token}`);
+  }
 });
 
 test('also shipped row is locked', () => {

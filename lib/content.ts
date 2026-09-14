@@ -1,46 +1,41 @@
 export const site = {
-  name: 'Hermenegildo',
+  name: 'Gildo Santos',
   fullName: 'Hermenegildo Santos',
   title: 'Hermenegildo Santos — Full-Stack AI Engineer',
   description:
-    'Full-Stack AI Engineer in Portugal. Ships production AI and live-event systems end to end — TypeScript, React, Node, Azure OpenAI.',
+    'Full-stack AI engineer in Portugal. Visitor platforms, global WebAR experiences, and operator-controlled AI. Selected shipped work by Hermenegildo Santos.',
   url: 'https://www.hermenegildosantos.com',
   email: 'hermeny7@hotmail.com',
   github: 'https://github.com/HermenySantos',
   linkedin: 'https://www.linkedin.com/in/hermenegildosantos',
-  ogImage: '/assets/og-image.png',
+  ogImage: '/opengraph-image',
 } as const;
-
 export const nav = [
-  { label: 'Work', href: '#work' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Selected work', href: '#work' },
+  { label: 'Approach', href: '#about' },
+  { label: 'Get in touch', href: '#contact' },
 ] as const;
-
 export const hero = {
-  eyebrow: 'Full-Stack AI Engineer · Portugal',
-  headline: 'I ship production AI and live-event systems end to end.',
-  lede: 'From the first architecture sketch to the person on the headset at 3am on event day. Realtime pipelines, human-in-the-loop AI, and the unglamorous infrastructure that has to hold under load.',
-  stack: 'TypeScript · React · Node · Azure OpenAI',
-  primaryCta: { label: 'View selected work', href: '#work' },
-  secondaryCta: { label: 'LinkedIn', href: site.linkedin },
+  eyebrow: 'Hermenegildo Santos / Full-Stack AI Engineer',
+  headline: 'Built for the moment it has to work.',
+  lede: 'I build production AI and live experiences—from the interfaces people touch to the systems behind them. Architecture, delivery, and the day it goes live.',
+  stack: 'Based in Portugal · Working across the stack',
+  primaryCta: { label: 'Explore the work', href: '#work' },
+  secondaryCta: { label: 'Start a conversation', href: '#contact' },
 } as const;
-
 export const metrics = {
-  kicker: 'Most recent delivery',
+  kicker: 'One delivery, in numbers',
   items: [
-    { value: '~2,100', label: 'Participants' },
-    { value: '12', label: 'Locations' },
-    { value: '5', label: 'Weeks, briefed to live' },
+    { value: '~2,100', label: 'participants' },
+    { value: '12', label: 'locations' },
+    { value: '5', label: 'weeks to live' },
   ],
-  footnote: 'Same-day global WebAR event (E2E ownership)',
+  footnote: 'Same-day global WebAR event',
 } as const;
-
 export const work = {
-  heading: 'Selected work',
-  intro: 'Three projects where I owned — or shared ownership of — the parts that had to hold up in production.',
+  heading: 'The work behind the words.',
+  intro: 'One platform. Two live experiences. Responsibility beyond the interface.',
 } as const;
-
 export type CaseStudy = {
   id: string;
   year: string;
@@ -51,67 +46,74 @@ export type CaseStudy = {
   summary: string;
   outcome: string;
   cta: string;
+  challenge: string;
+  decision: string;
 };
-
 export const cases: readonly CaseStudy[] = [
   {
     id: '01',
     year: '2025–2026',
-    kicker: 'UN Geneva Visitor Center · Dorier',
-    title: 'Immersive visitor platform — Audio Guide, Docent & tour systems',
-    role: 'Core engineer across clients, CMS, and Go tour services',
-    chips: ['TypeScript', 'React Native', 'Payload CMS', 'Go', 'MQTT'],
+    kicker: 'Visitor experience · Delivered with Dorier',
+    title: 'Many devices. One visitor experience.',
+    role: 'Core engineer across apps, content, and tour services',
+    chips: ['React Native', 'TypeScript', 'Payload CMS', 'Go'],
     summary:
-      'The Visitor Center runs as a multi-device production system: Audio Guides, docent tablets, and interactive kiosks stay in sync with a content CMS and Go tour/state services over live messaging. Over ~10 months I worked across that stack end-to-end — React Native clients, CMS scheduling and content, TMS APIs and state hardening, observe/ops tooling, and the verified technical documentation used for handover — not a one-off feature.',
+      'Audio guides, docent tablets, and interactive kiosks need to work as one experience. Over approximately ten months, I contributed across the visitor platform—from its apps and content tools to tour services and operational handover.',
     outcome:
-      'Shipped and hardened work across the live platform: multi-language and RTL support, tour integrity (single-controller and ghost-tour paths), cross-app flight recorder/observe, E3 kiosk content, and school/group tour flows. The proximity “Gathering” flash was one Audio Guide moment inside that system, not the engagement.',
-    cta: 'Walkthrough on request · no public monorepo link',
+      'Delivered multilingual experiences, more resilient tour flows, and operational tools that helped the team support the live platform.',
+    challenge: 'Keep the visitor experience coherent across different devices, languages, and guided-tour flows.',
+    decision:
+      'Work across the boundaries between apps, content, and services. Pair feature delivery with diagnostics and documentation so the team can understand and support the system.',
+    cta: 'Discuss this project',
   },
   {
     id: '02',
     year: '2025',
-    kicker: 'Major gaming brand',
-    title: 'Same-day global WebAR event',
-    role: 'End-to-end ownership — live experience + backend',
+    kicker: 'Global WebAR activation',
+    title: 'Twelve locations. One live day.',
+    role: 'End-to-end ownership of the experience and backend',
     chips: ['Zappar', 'Azure Functions', 'Cosmos DB', 'React'],
     summary:
-      'Owned the same-day global WebAR activation end to end: WebAR (Zappar), Azure Functions, Cosmos DB partitioned by location, and React admin — delivered in five weeks for a multi-hub live day.',
-    outcome: '~2,100 participants across 12 locations, sustained without incident on event day.',
-    cta: 'Walkthrough on request · no Scopely-named repo',
+      'A browser-based AR experience, a backend serving multiple locations, and an admin interface. I owned delivery from the brief to the live event in five weeks.',
+    outcome: 'Approximately 2,100 participants across 12 locations, with no reported incidents on event day.',
+    challenge: 'Deliver a coordinated experience across multiple locations against a fixed event date.',
+    decision:
+      'Connect the WebAR experience, location-based data, and React administration in a single delivery scope, carrying responsibility through the live day.',
+    cta: 'Discuss this project',
   },
   {
     id: '03',
     year: '2025–2026',
-    kicker: 'Live-event AI Moderator',
-    title: 'Human-in-the-loop live-event AI',
-    role: 'Owned production HITL AI system',
+    kicker: 'AI for live events',
+    title: 'Live AI. Human judgment.',
+    role: 'Owned the production AI system and operator tooling',
     chips: ['Azure OpenAI', 'FastAPI', 'React', 'WebRTC'],
     summary:
-      'Owned a production human-in-the-loop live-event AI system: Azure OpenAI generates and voices responses in real time; operators stay in control via conversation, panel, workshop, and audience Q&A modes — with WebRTC/WebSockets and a Three.js stage visualiser on the audience-facing surface.',
-    outcome: 'Production AI in a live-event setting with operator tooling, not a demo chatbot.',
-    cta: 'Walkthrough on request · no fake live URL',
+      'Real-time AI responses and voice for a live audience, with an operator in control. I built the system connecting the AI, the operator interface, and the audience experience.',
+    outcome: 'Delivered a production system supporting moderated conversations, panels, workshops, and audience Q&A.',
+    challenge: 'Make generative AI usable in a live setting where people need control over the conversation.',
+    decision:
+      'Put the operator at the centre of the experience, with tools for different event formats and real-time communication between the control interface and the stage.',
+    cta: 'Discuss this project',
   },
 ];
-
 export const alsoShipped = {
-  heading: 'Also shipped',
+  heading: 'Elsewhere in my work',
   items: [
     { name: 'Seezy', blurb: 'eye-care platform', href: 'https://www.seezy.care' },
     { name: 'InvoFlow', blurb: 'invoice SaaS', href: 'https://github.com/HermenySantos/invoflow' },
     { name: 'NexTool', blurb: 'edge developer API', href: 'https://github.com/HermenySantos/nextool-api' },
   ],
 } as const;
-
 export const about = {
-  heading: 'About',
+  heading: 'Own the work.\nSee it through.',
   body: [
-    'Full-stack AI engineer based in Portugal. I take live-event and production AI systems from first architecture through event-day operations — clients, backends, and the infrastructure that has to hold under load.',
-    'Recent work includes a multi-device visitor platform at the UN Geneva Visitor Center (Dorier), a same-day global WebAR activation, and a human-in-the-loop live-event AI system. Earlier: healthcare platforms, invoice SaaS, and edge developer APIs.',
+    'I’m Hermenegildo—Gildo for short. A full-stack AI engineer based in Portugal, working where software meets real people, real places, and a date that cannot move.',
+    'My work spans interfaces, backend services, AI, and delivery. I care about the connections between them: how a system behaves, how a team operates it, and what happens after launch.',
   ],
-  location: 'Portugal · Remote',
+  location: 'Portugal / TypeScript · React · Node · Python · Go',
 } as const;
-
 export const contact = {
-  heading: 'Contact',
-  lede: 'Walkthroughs, roles, and collaborations.',
+  heading: 'What needs\nto work next?',
+  lede: 'For engineering roles, product work, or a closer look at a project—let’s talk.',
 } as const;

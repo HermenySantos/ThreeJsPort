@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#0a0a0a',
+        ink: '#111411',
         paper: '#f5f5f5',
         mute: {
           DEFAULT: '#a3a3a3',
@@ -17,7 +17,7 @@ const config: Config = {
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
-        page: '1180px',
+        page: '1280px',
       },
       letterSpacing: {
         label: '0.18em',

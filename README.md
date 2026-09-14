@@ -9,6 +9,11 @@ Recruiter shop-window for [hermenegildosantos.com](https://www.hermenegildosanto
 
 Next.js (App Router) · TypeScript · Tailwind CSS · Vercel
 
+## Product direction
+
+[Portfolio north star](docs/north-star.md) governs future design, copy, assets,
+and project selection. It takes priority over earlier visual specifications.
+
 ## Run locally
 
 ```bash

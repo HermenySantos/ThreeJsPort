@@ -6,7 +6,7 @@ export function Work() {
     <section id="work" className="mx-auto max-w-page scroll-mt-24 px-5 pb-24 sm:px-8 lg:pb-28">
       <div className="flex flex-col justify-between gap-6 border-t border-white/10 pt-16 sm:pt-20 lg:flex-row lg:items-end">
         <h2 className="text-4xl font-medium tracking-tight text-white sm:text-5xl">{work.heading}</h2>
-        <p className="max-w-sm text-[14px] leading-6 text-white/45 lg:text-right">{work.intro}</p>
+        <p className="max-w-md text-[14px] leading-6 text-white/45 lg:text-right">{work.intro}</p>
       </div>
 
       <div className="mt-12 space-y-4">

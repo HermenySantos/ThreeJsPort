@@ -7,7 +7,7 @@ export function Hero() {
       <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-20">
         <div>
           <p className="text-[11px] uppercase tracking-label text-white/45">{hero.eyebrow}</p>
-          <h1 className="mt-5 max-w-[11.2ch] text-[2.75rem] font-medium leading-[0.98] tracking-[-0.035em] text-white sm:text-6xl lg:text-[4.6rem]">
+          <h1 className="mt-5 max-w-[13.5em] text-[2.75rem] font-medium leading-[0.98] tracking-[-0.035em] text-white sm:text-6xl lg:max-w-[9.6em] lg:text-[4.35rem]">
             {hero.headline}
           </h1>
           <p className="mt-7 max-w-[36rem] text-[17px] leading-7 text-mute">{hero.lede}</p>
@@ -34,12 +34,12 @@ export function Hero() {
           <p className="text-[11px] uppercase tracking-label text-white/40">{metrics.kicker}</p>
           <dl className="mt-8 space-y-7">
             {metrics.items.map((item) => (
-              <div key={item.label} className="grid grid-cols-[auto_1fr] items-baseline gap-x-5">
+              <div key={item.label} className="grid grid-cols-[auto_1fr] items-center gap-x-6">
                 <dt className="sr-only">{item.label}</dt>
-                <dd className="text-[2.75rem] font-medium leading-none tracking-tight text-white sm:text-[3.25rem]">
+                <dd className="text-[2.75rem] font-medium leading-none tracking-tight text-white sm:text-[3.15rem]">
                   {item.value}
                 </dd>
-                <span className="pt-2 text-[13px] text-white/40">{item.label}</span>
+                <span className="text-[13px] text-white/40">{item.label}</span>
               </div>
             ))}
           </dl>

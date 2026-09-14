@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { navLinks } from '../constants/index.js';
+
+const HEADER_SCROLL_THRESHOLD_PX = 8;
 
 const NavItems = ({ onClick = () => {} }) => (
   <ul className="nav-ul">
@@ -16,12 +18,27 @@ const NavItems = ({ onClick = () => {} }) => (
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateScrolled = () => {
+      setIsScrolled(window.scrollY > HEADER_SCROLL_THRESHOLD_PX);
+    };
+
+    updateScrolled();
+    window.addEventListener('scroll', updateScrolled, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrolled);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  const showBackdrop = isScrolled || isOpen;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-[background-color,backdrop-filter,border-color] duration-300 ${
+        showBackdrop ? 'bg-black-100/85 backdrop-blur-md border-white/10' : 'bg-transparent border-transparent'
+      }`}>
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center py-5 mx-auto c-space">
           <a href="/" className="text-neutral-400 font-bold text-xl hover:text-white transition-colors">
@@ -31,6 +48,7 @@ const Navbar = () => {
           <button
             onClick={toggleMenu}
             className="text-neutral-400 hover:text-white focus:outline-none sm:hidden flex"
+            aria-expanded={isOpen}
             aria-label="Toggle menu">
             <img src={isOpen ? 'assets/close.svg' : 'assets/menu.svg'} alt="toggle" className="w-6 h-6" />
           </button>

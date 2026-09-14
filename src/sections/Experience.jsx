@@ -417,7 +417,7 @@ const WorkExperience = () => {
   };
 
   return (
-    <section className="c-space my-20" id="work">
+    <section className="c-space my-20 section-anchor" id="work">
       <div className="w-full text-white-600">
         <div className="flex justify-between items-center mb-8">
           <p className="head-text">My Work Experience</p>

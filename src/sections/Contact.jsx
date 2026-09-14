@@ -74,7 +74,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="c-space my-20" id="contact">
+    <section className="c-space my-20 section-anchor" id="contact">
       {/* GitHub Contributions Section */}
       <div className="mt-16, mb-16">
         <h2 className="head-text mb-8">GitHub</h2>

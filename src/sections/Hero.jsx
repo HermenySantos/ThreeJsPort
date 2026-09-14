@@ -17,7 +17,7 @@ const Hero = () => {
   const sceneConfig = getHeroSceneConfig({ isSmall, isMobile, isTablet });
 
   return (
-    <section className="hero-section" id="home">
+    <section className="hero-section section-anchor" id="home">
       <div className="hero-background">
         <div className="hero-radial"></div>
         <div className="hero-grid-lines"></div>

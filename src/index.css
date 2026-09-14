@@ -4,8 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* py-5 bar + text-xl/hamburger ≈ 68px; 88px leaves clearance under the fixed nav */
+  --header-offset: 5.5rem;
+}
+
 * {
   scroll-behavior: smooth;
+}
+
+html {
+  scroll-padding-top: var(--header-offset);
 }
 
 body {
@@ -36,6 +45,15 @@ body {
 
   .nav-sidebar {
     @apply absolute left-0 right-0 bg-black-200 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block;
+  }
+
+  .section-anchor,
+  #home,
+  #about,
+  #projects,
+  #work,
+  #contact {
+    scroll-margin-top: var(--header-offset);
   }
 
   .text-gray_gradient {

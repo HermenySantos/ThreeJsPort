@@ -314,7 +314,7 @@ const About = () => {
   };
 
   return (
-    <section className="c-space my-20" id="about">
+    <section className="c-space my-20 section-anchor" id="about">
       <h2 className="head-text mb-8 text-center">About Me</h2>
 
       {/* Achievement counters */}

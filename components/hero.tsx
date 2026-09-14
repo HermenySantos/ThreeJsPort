@@ -4,8 +4,13 @@ export function Hero() {
   return (
     <section className="mx-auto flex min-h-[40vh] max-w-page flex-col justify-center px-6 py-16 sm:px-10 sm:py-20 lg:min-h-[48vh] lg:py-24">
       <p className="font-mono text-[11px] uppercase tracking-label text-paper/45">{hero.eyebrow}</p>
-      <h1 className="mt-4 max-w-[13ch] font-display text-[clamp(2.5rem,6.2vw,4.5rem)] leading-[0.96] tracking-[-0.02em] text-paper">
-        {hero.headline}
+      <h1 className="mt-4 max-w-[10.5em] font-display text-[clamp(2.5rem,6.2vw,4.5rem)] leading-[0.96] tracking-[-0.02em] text-paper">
+        {hero.headline.split('live-event').map((part, index) => (
+          <span key={part || 'live-event'}>
+            {index > 0 ? <span className="whitespace-nowrap">live-event</span> : null}
+            {part}
+          </span>
+        ))}
       </h1>
       <p className="mt-8 font-mono text-[11px] uppercase tracking-label text-paper/40">{hero.stack}</p>
 

@@ -16,13 +16,13 @@ export function Work() {
         </div>
       ) : null}
 
-      <div className="mt-20 grid gap-x-10 gap-y-16 border-t border-white/[0.06] pt-16 lg:grid-cols-2">
+      <div data-layout="twins" className="mt-20 grid gap-x-10 gap-y-16 border-t border-white/[0.06] pt-16 lg:grid-cols-2">
         {twins.map((study) => (
           <CaseTwin key={study.id} study={study} />
         ))}
       </div>
 
-      <div className="mt-20 border-t border-white/[0.06] pt-8">
+      <div data-layout="also-shipped" className="mt-20 border-t border-white/[0.06] pt-8">
         <p className="font-mono text-[11px] uppercase tracking-label text-paper/40">{alsoShipped.heading}</p>
         <p className="mt-4 text-[15px] leading-7 text-paper/65">
           {alsoShipped.items.map((item, index) => (

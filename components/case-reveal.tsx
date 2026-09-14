@@ -33,11 +33,11 @@ export function CaseReveal({ id, title, kicker, variant }: CaseRevealProps) {
 
   if (variant === 'spread') {
     return (
-      <div ref={ref} data-shown={shown} className="case-reveal flex items-start gap-6 sm:gap-8">
-        <span className="case-index font-display text-[5.5rem] leading-none text-paper/15 sm:text-[7.5rem] lg:text-[8.5rem]">
+      <div ref={ref} data-shown={shown} className="case-reveal flex flex-col items-start gap-4 sm:flex-row sm:gap-8">
+        <span className="case-index font-display text-[4.5rem] leading-none text-paper/15 sm:text-[7.5rem] lg:text-[8.5rem]">
           {id}
         </span>
-        <div className="min-w-0 pt-3 sm:pt-5">
+        <div className="min-w-0 sm:pt-5">
           {kicker ? <p className="font-mono text-[11px] uppercase tracking-label text-paper/40">{kicker}</p> : null}
           <h3 className="case-title mt-3 max-w-[18ch] font-display text-[2rem] leading-[1.08] tracking-[-0.02em] text-paper sm:text-[2.75rem] lg:text-[3.25rem]">
             {title}

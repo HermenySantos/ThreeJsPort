@@ -4,6 +4,10 @@
 
 :root {
   color-scheme: dark;
+  --ink: #0a0a0b;
+  --paper: #ecece8;
+  --ice: #6aa8ff;
+  --grid: 8px;
 }
 
 html {
@@ -17,15 +21,79 @@ html {
 }
 
 body {
-  background: #0a0a0a;
-  color: #f5f5f5;
+  background: #0a0a0b;
+  color: #ecece8;
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(106, 168, 255, 0.28);
+  color: #ecece8;
 }
 
 :focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.55);
+  outline: 1px solid #6aa8ff;
   outline-offset: 3px;
+}
+
+.media-slot {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #101012;
+  box-shadow: inset 0 0 0 1px rgba(236, 236, 232, 0.08);
+}
+
+.media-slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(236, 236, 232, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 236, 232, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+}
+
+.media-slot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.case-index,
+.case-title {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.case-reveal[data-shown='true'] .case-index {
+  animation: case-rise 160ms ease-out forwards;
+}
+
+.case-reveal[data-shown='true'] .case-title {
+  animation: case-rise 200ms ease-out 80ms forwards;
+}
+
+@keyframes case-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-index,
+  .case-title {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .case-reveal[data-shown='true'] .case-index,
+  .case-reveal[data-shown='true'] .case-title {
+    animation: none;
+  }
 }

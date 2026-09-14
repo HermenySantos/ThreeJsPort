@@ -1,39 +1,40 @@
 import { alsoShipped, cases, work } from '@/lib/content';
-import { CaseCard } from './case-card';
+import { CaseSpread } from './case-spread';
+import { CaseTwin } from './case-twin';
 
 export function Work() {
-  return (
-    <section id="work" className="mx-auto max-w-page scroll-mt-24 px-5 pb-24 sm:px-8 lg:pb-28">
-      <div className="flex flex-col justify-between gap-6 border-t border-white/10 pt-16 sm:pt-20 lg:flex-row lg:items-end">
-        <h2 className="text-4xl font-medium tracking-tight text-white sm:text-5xl">{work.heading}</h2>
-        <p className="max-w-md text-[14px] leading-6 text-white/45 lg:text-right">{work.intro}</p>
-      </div>
+  const featured = cases.find((study) => study.layout === 'spread');
+  const twins = cases.filter((study) => study.layout === 'twin');
 
-      <div className="mt-12 space-y-4">
-        {cases.map((study) => (
-          <CaseCard key={study.id} study={study} />
+  return (
+    <section id="work" className="mx-auto max-w-page scroll-mt-24 px-6 pb-24 sm:px-10 lg:pb-32">
+      <p className="font-mono text-[11px] uppercase tracking-label text-paper/40">{work.heading}</p>
+
+      {featured ? (
+        <div className="mt-10">
+          <CaseSpread study={featured} />
+        </div>
+      ) : null}
+
+      <div data-layout="twins" className="mt-20 grid gap-x-10 gap-y-16 border-t border-white/[0.06] pt-16 lg:grid-cols-2">
+        {twins.map((study) => (
+          <CaseTwin key={study.id} study={study} />
         ))}
       </div>
 
-      <div className="mt-6 rounded-[28px] border border-white/10 px-6 py-7 sm:px-8">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 className="text-[15px] text-white">{alsoShipped.heading}</h3>
-          <p className="text-[14px] leading-6 text-white/45">
-            {alsoShipped.items.map((item, index) => (
-              <span key={item.name}>
-                {index > 0 ? <span className="text-white/25"> · </span> : null}
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-white">
-                  {item.name}
-                </a>
-                <span> ({item.blurb})</span>
-              </span>
-            ))}
-          </p>
-        </div>
+      <div data-layout="also-shipped" className="mt-20 border-t border-white/[0.06] pt-8">
+        <p className="font-mono text-[11px] uppercase tracking-label text-paper/40">{alsoShipped.heading}</p>
+        <p className="mt-4 text-[15px] leading-7 text-paper/65">
+          {alsoShipped.items.map((item, index) => (
+            <span key={item.name}>
+              {index > 0 ? <span className="text-paper/25"> · </span> : null}
+              <a href={item.href} target="_blank" rel="noreferrer" className="text-paper transition-colors hover:text-ice">
+                {item.name}
+              </a>
+              <span className="text-paper/45"> ({item.blurb})</span>
+            </span>
+          ))}
+        </p>
       </div>
     </section>
   );

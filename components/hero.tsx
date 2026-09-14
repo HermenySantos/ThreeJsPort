@@ -1,50 +1,43 @@
 import { hero, metrics } from '@/lib/content';
-import { ArrowRightIcon, ArrowUpRightIcon } from './icons';
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-page px-5 pb-24 pt-16 sm:px-8 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
-      <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-20">
-        <div>
-          <p className="text-[11px] uppercase tracking-label text-white/45">{hero.eyebrow}</p>
-          <h1 className="mt-5 max-w-[13.5em] text-[2.75rem] font-medium leading-[0.98] tracking-[-0.035em] text-white sm:text-6xl lg:max-w-[9.6em] lg:text-[4.35rem]">
-            {hero.headline}
-          </h1>
-          <p className="mt-7 max-w-[36rem] text-[17px] leading-7 text-mute">{hero.lede}</p>
-          <p className="mt-6 text-[13px] text-white/45">{hero.stack}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href={hero.primaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-medium text-black transition-colors hover:bg-white/90">
-              {hero.primaryCta.label}
-              <ArrowRightIcon className="h-3.5 w-3.5" />
-            </a>
-            <a
-              href={hero.secondaryCta.href}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-[13px] text-white/85 transition-colors hover:border-white/40 hover:text-white">
-              {hero.secondaryCta.label}
-              <ArrowUpRightIcon className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </div>
+    <section className="mx-auto flex min-h-[40vh] max-w-page flex-col justify-center px-6 py-16 sm:px-10 sm:py-20 lg:min-h-[48vh] lg:py-24">
+      <p className="font-mono text-[11px] uppercase tracking-label text-paper/45">{hero.eyebrow}</p>
+      <h1 className="mt-4 max-w-[10.5em] font-display text-[clamp(2.5rem,6.2vw,4.5rem)] leading-[0.96] tracking-[-0.02em] text-paper">
+        {hero.headline.split('live-event').map((part, index) => (
+          <span key={part || 'live-event'}>
+            {index > 0 ? <span className="whitespace-nowrap">live-event</span> : null}
+            {part}
+          </span>
+        ))}
+      </h1>
+      <p className="mt-8 font-mono text-[11px] uppercase tracking-label text-paper/40">{hero.stack}</p>
 
-        <aside aria-label="Most recent delivery" className="lg:pt-1">
-          <p className="text-[11px] uppercase tracking-label text-white/40">{metrics.kicker}</p>
-          <dl className="mt-8 space-y-7">
-            {metrics.items.map((item) => (
-              <div key={item.label} className="grid grid-cols-[auto_1fr] items-center gap-x-6">
-                <dt className="sr-only">{item.label}</dt>
-                <dd className="text-[2.75rem] font-medium leading-none tracking-tight text-white sm:text-[3.15rem]">
-                  {item.value}
-                </dd>
-                <span className="text-[13px] text-white/40">{item.label}</span>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-10 max-w-[16rem] text-[13px] leading-5 text-white/35">{metrics.footnote}</p>
-        </aside>
+      <p className="mt-10 max-w-3xl font-display text-[1.35rem] leading-snug text-paper/90 sm:text-[1.65rem]">
+        {metrics.items.map((item, index) => (
+          <span key={item.label}>
+            {index > 0 ? <span className="mx-2 text-paper/25 sm:mx-3">·</span> : null}
+            <span className="text-ice">{item.value}</span>
+            <span className="text-paper/55"> {item.label}</span>
+          </span>
+        ))}
+      </p>
+      <p className="mt-3 font-mono text-[11px] uppercase tracking-label text-ice">{metrics.attribution}</p>
+
+      <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
+        <a
+          href={hero.primaryCta.href}
+          className="font-mono text-[11px] uppercase tracking-label text-paper transition-colors hover:text-ice">
+          {hero.primaryCta.label} →
+        </a>
+        <a
+          href={hero.secondaryCta.href}
+          target="_blank"
+          rel="noreferrer"
+          className="font-mono text-[11px] uppercase tracking-label text-paper/45 transition-colors hover:text-ice">
+          {hero.secondaryCta.label}
+        </a>
       </div>
     </section>
   );

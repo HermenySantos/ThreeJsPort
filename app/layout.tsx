@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { IBM_Plex_Mono, Instrument_Serif, Inter } from 'next/font/google';
 import Script from 'next/script';
 
 import { site } from '@/lib/content';
@@ -10,6 +10,20 @@ const sans = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
+});
+
+const display = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-display',
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -38,11 +52,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body className={`${sans.className} min-h-screen bg-ink antialiased`}>
         <a
           href="#work"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-black">
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-ice focus:px-4 focus:py-2 focus:text-ink">
           Skip to work
         </a>
         {children}

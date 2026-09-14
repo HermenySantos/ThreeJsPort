@@ -9,25 +9,27 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-ink/85 backdrop-blur-md">
-      <div className="mx-auto flex h-[72px] max-w-page items-center justify-between px-5 sm:px-8 md:grid md:grid-cols-3">
-        <a href="#top" className="justify-self-start text-[15px] tracking-tight text-white">
+    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-ink/70 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-page items-center justify-between px-6 sm:px-10 md:grid md:grid-cols-3">
+        <a href="#top" className="justify-self-start font-display text-[22px] tracking-tight text-paper">
           {site.name}
         </a>
 
-        <nav className="hidden items-center justify-center gap-8 text-[13px] text-white/55 md:flex" aria-label="Primary">
+        <nav
+          className="hidden items-center justify-center gap-8 font-mono text-[11px] uppercase tracking-label text-paper/50 md:flex"
+          aria-label="Primary">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} className="transition-colors hover:text-white">
+            <a key={item.href} href={item.href} className="transition-colors hover:text-ice">
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center justify-end gap-3">
+        <div className="flex items-center justify-end gap-4">
           <SocialLinks className="hidden sm:flex" />
           <button
             type="button"
-            className="inline-flex h-9 items-center rounded-full border border-white/15 px-3 text-[13px] text-white/70 md:hidden"
+            className="font-mono text-[11px] uppercase tracking-label text-paper/70 md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}>
@@ -37,14 +39,10 @@ export function Header() {
       </div>
 
       {open ? (
-        <nav id="mobile-nav" className="border-t border-white/10 px-5 py-4 md:hidden" aria-label="Mobile">
-          <div className="flex flex-col gap-3 text-sm text-white/70">
+        <nav id="mobile-nav" className="border-t border-white/[0.06] px-6 py-4 md:hidden" aria-label="Mobile">
+          <div className="flex flex-col gap-3 font-mono text-[12px] uppercase tracking-label text-paper/70">
             {nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="py-1 hover:text-white"
-                onClick={() => setOpen(false)}>
+              <a key={item.href} href={item.href} className="py-1 hover:text-ice" onClick={() => setOpen(false)}>
                 {item.label}
               </a>
             ))}

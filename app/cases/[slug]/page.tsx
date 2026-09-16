@@ -1,8 +1,8 @@
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { CaseMarkdown } from '@/components/case-markdown';
-import { caseSlugs, getFullCase, isCaseSlug } from '@/lib/cases';
-import { site } from '@/lib/content';
+import { getFullCase, isCaseSlug } from '@/lib/cases';
+import { cases, site } from '@/lib/content';
 import { ArrowRightIcon } from '@/components/icons';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -14,7 +14,7 @@ type CasePageProps = {
 };
 
 export function generateStaticParams() {
-  return caseSlugs.map((slug) => ({ slug }));
+  return cases.map((study) => ({ slug: study.slug }));
 }
 
 export async function generateMetadata({ params }: CasePageProps): Promise<Metadata> {
@@ -22,9 +22,10 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
   if (!isCaseSlug(slug)) {
     return { title: 'Case not found' };
   }
+  const study = cases.find((item) => item.slug === slug);
   const full = getFullCase(slug);
   const title = `${full.title} | ${site.fullName}`;
-  const description = full.roleLine || site.description;
+  const description = study?.summary ?? site.description;
   return {
     title,
     description,
@@ -44,6 +45,7 @@ export default async function CasePage({ params }: CasePageProps) {
     notFound();
   }
 
+  const study = cases.find((item) => item.slug === slug);
   const full = getFullCase(slug);
 
   return (
@@ -53,9 +55,11 @@ export default async function CasePage({ params }: CasePageProps) {
         <Link
           href="/#work"
           className="inline-flex items-center gap-2 text-[13px] text-white/45 transition-colors hover:text-white">
-          Work
+          Selected work
         </Link>
-        <p className="mt-10 text-[11px] uppercase tracking-label text-white/40">Engineering case</p>
+        <p className="mt-10 text-[11px] uppercase tracking-label text-white/40">
+          {study ? `${study.id} / ${study.prototype ? 'Working prototype' : 'Engineering case'}` : 'Engineering case'}
+        </p>
         <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
         <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
         <figure className="mt-10 overflow-hidden rounded-[28px] border border-white/10 bg-[#111]">
@@ -80,7 +84,7 @@ export default async function CasePage({ params }: CasePageProps) {
             <ArrowRightIcon className="h-3.5 w-3.5" />
           </Link>
           <Link href="/#work" className="text-[13px] text-white/45 transition-colors hover:text-white">
-            Back to work
+            Back to selected work
           </Link>
         </div>
       </main>

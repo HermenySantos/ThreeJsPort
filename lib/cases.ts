@@ -1,9 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { cases, type CaseSlug } from './content';
+
 export const caseSlugs = ['ai', 'visitor', 'webar', 'concierge'] as const;
 
-export type CaseSlug = (typeof caseSlugs)[number];
+export type { CaseSlug };
 
 export type ArchitectureFigure = {
   src: string;
@@ -79,7 +81,7 @@ export function getFullCase(slug: CaseSlug): FullCase {
   const parsed = parseCaseMarkdown(markdown);
   return {
     slug,
-    title: parsed.title || slug,
+    title: parsed.title || cases.find((item) => item.slug === slug)?.title || slug,
     roleLine: parsed.roleLine,
     body: parsed.body,
     markdown,

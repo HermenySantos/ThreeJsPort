@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { caseSlugs } from '@/lib/cases';
-import { site } from '@/lib/content';
+import { cases, site } from '@/lib/content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,11 +11,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 1,
     },
-    ...caseSlugs.map((slug) => ({
-      url: `${site.url}/cases/${slug}`,
+    ...cases.map((study) => ({
+      url: `${site.url}${study.href}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: 0.8,
     })),
   ];
 }

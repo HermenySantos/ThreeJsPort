@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Hermenegildo Santos — Full-Stack AI Engineer. I ship production AI and live-event systems end to end.';
+export const alt =
+  'Hermenegildo Santos | Full-Stack Engineer · AI & Real-Time Systems. I build the product—and the systems that make it work.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -20,7 +21,7 @@ export default function OpenGraphImage() {
         }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 18, color: 'rgba(255,255,255,0.45)' }}>
           <span>HERMENEGILDO SANTOS</span>
-          <span>FULL-STACK AI ENGINEER · PORTUGAL</span>
+          <span>FULL-STACK ENGINEER</span>
         </div>
         <div
           style={{
@@ -31,9 +32,8 @@ export default function OpenGraphImage() {
             lineHeight: 1.05,
             fontWeight: 500,
           }}>
-          <span>I ship production AI</span>
-          <span>and live-event systems</span>
-          <span>end to end.</span>
+          <span>I build the product—</span>
+          <span>and the systems that make it work.</span>
         </div>
         <div
           style={{
@@ -44,7 +44,7 @@ export default function OpenGraphImage() {
             fontSize: 18,
             color: 'rgba(255,255,255,0.45)',
           }}>
-          <span>TypeScript · React · Node · Azure OpenAI</span>
+          <span>AI products · Real-time systems · Interactive platforms</span>
           <span>hermenegildosantos.com</span>
         </div>
       </div>

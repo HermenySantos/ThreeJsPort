@@ -1,5 +1,5 @@
 import { hero, metrics } from '@/lib/content';
-import { ArrowRightIcon, ArrowUpRightIcon } from './icons';
+import { ArrowRightIcon } from './icons';
 
 export function Hero() {
   return (
@@ -21,16 +21,14 @@ export function Hero() {
             </a>
             <a
               href={hero.secondaryCta.href}
-              target="_blank"
-              rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-[13px] text-white/85 transition-colors hover:border-white/40 hover:text-white">
               {hero.secondaryCta.label}
-              <ArrowUpRightIcon className="h-3.5 w-3.5" />
+              <ArrowRightIcon className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
 
-        <aside aria-label="Most recent delivery" className="lg:pt-1">
+        <aside aria-label={metrics.kicker} className="lg:pt-1">
           <p className="text-[11px] uppercase tracking-label text-white/40">{metrics.kicker}</p>
           <dl className="mt-8 space-y-7">
             {metrics.items.map((item) => (
@@ -43,7 +41,7 @@ export function Hero() {
               </div>
             ))}
           </dl>
-          <p className="mt-10 max-w-[16rem] text-[13px] leading-5 text-white/35">{metrics.footnote}</p>
+          <p className="mt-10 max-w-[18rem] text-[13px] leading-5 text-white/35">{metrics.footnote}</p>
         </aside>
       </div>
     </section>

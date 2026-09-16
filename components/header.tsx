@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { nav, site } from '@/lib/content';
@@ -8,6 +8,14 @@ import { SocialLinks } from './social-links';
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [hash, setHash] = useState('');
+
+  useEffect(() => {
+    const sync = () => setHash(window.location.hash);
+    sync();
+    window.addEventListener('hashchange', sync);
+    return () => window.removeEventListener('hashchange', sync);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-ink/85 backdrop-blur-md">
@@ -17,11 +25,17 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center justify-center gap-8 text-[13px] text-white/55 md:flex" aria-label="Primary">
-          {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="transition-colors hover:text-white">
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) => {
+            const active = hash !== '' && item.href.endsWith(hash);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`transition-colors hover:text-white ${active ? 'text-white' : ''}`}>
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center justify-end gap-3">

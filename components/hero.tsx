@@ -3,7 +3,7 @@ import { ArrowRightIcon, ArrowUpRightIcon } from './icons';
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-page px-5 pb-24 pt-16 sm:px-8 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
+    <section className="mx-auto min-h-[calc(100svh-72px)] max-w-page px-5 pb-24 pt-16 sm:px-8 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
       <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-20">
         <div>
           <p className="text-[11px] uppercase tracking-label text-white/45">{hero.eyebrow}</p>

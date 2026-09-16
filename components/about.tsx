@@ -9,6 +9,7 @@ export function About() {
           {about.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          <p className="text-[13px] text-white/40">{about.location}</p>
         </div>
       </div>
     </section>

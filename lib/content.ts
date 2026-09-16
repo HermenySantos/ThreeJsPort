@@ -1,119 +1,157 @@
 export const site = {
   name: 'Gildo Santos',
   fullName: 'Hermenegildo Santos',
-  title: 'Hermenegildo Santos — Full-Stack AI Engineer',
+  title: 'Hermenegildo Santos | Full-Stack Engineer · AI & Real-Time Systems',
   description:
-    'Full-stack AI engineer in Portugal. Visitor platforms, global WebAR experiences, and operator-controlled AI. Selected shipped work by Hermenegildo Santos.',
+    'Full-stack engineer in Portugal building AI products, real-time systems and interactive platforms. Explore delivered work and the engineering decisions behind it.',
   url: 'https://www.hermenegildosantos.com',
   email: 'hermeny7@hotmail.com',
   github: 'https://github.com/HermenySantos',
   linkedin: 'https://www.linkedin.com/in/hermenegildosantos',
   ogImage: '/opengraph-image',
 } as const;
+
 export const nav = [
-  { label: 'Selected work', href: '#work' },
-  { label: 'Approach', href: '#about' },
-  { label: 'Get in touch', href: '#contact' },
+  { label: 'Selected work', href: '/#work' },
+  { label: 'About', href: '/#about' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Get in touch', href: '/#contact' },
 ] as const;
+
 export const hero = {
-  eyebrow: 'Hermenegildo Santos / Full-Stack AI Engineer',
-  headline: 'Built for the moment it has to work.',
-  lede: 'I build production AI and live experiences—from the interfaces people touch to the systems behind them. Architecture, delivery, and the day it goes live.',
+  eyebrow: 'Hermenegildo Santos / Full-stack engineer',
+  role: 'Full-stack engineer · AI products & real-time systems · Portugal',
+  headline: 'I build the product—and the systems that make it work.',
+  headlineLead: 'I build the product—',
+  headlineEm: 'and the systems that make it work.',
+  lede: 'I work across interfaces, backend services and AI to turn complex requirements into working software. My experience spans operator-controlled AI for live events, a multi-device visitor platform and a global WebAR experience.',
+  proofLabel: 'Delivery proof',
+  proof:
+    'Live-event AI with an operator in the approval loop. Separately: a WebAR experience used by approximately 2,100 participants across 12 locations (core build in five weeks, then refinement).',
   stack: 'Based in Portugal · Working across the stack',
-  primaryCta: { label: 'Explore the work', href: '#work' },
-  secondaryCta: { label: 'Start a conversation', href: '#contact' },
+  primaryCta: { label: 'Explore selected work', href: '#work' },
+  secondaryCta: { label: 'Get in touch', href: '#contact' },
 } as const;
-export const metrics = {
-  kicker: 'One delivery, in numbers',
-  items: [
-    { value: '~2,100', label: 'participants' },
-    { value: '12', label: 'locations' },
-    { value: '5', label: 'weeks to live' },
-  ],
-  footnote: 'Same-day global WebAR event',
-} as const;
+
 export const work = {
-  heading: 'The work behind the words.',
-  intro: 'One platform. Two live experiences. Responsibility beyond the interface.',
+  heading: 'Selected work',
+  eyebrow: 'Selected work / 01—04',
 } as const;
+
+export type CaseSlug = 'ai' | 'visitor' | 'webar' | 'concierge';
+
 export type CaseStudy = {
   id: string;
+  slug: CaseSlug;
   year: string;
-  kicker: string;
   title: string;
-  role: string;
-  chips: readonly string[];
+  label: string;
   summary: string;
-  outcome: string;
+  delivered: readonly string[];
+  stack: readonly string[];
   cta: string;
-  challenge: string;
-  decision: string;
+  href: string;
+  scale?: string;
+  prototype?: boolean;
 };
+
 export const cases: readonly CaseStudy[] = [
   {
     id: '01',
-    year: '2025–2026',
-    kicker: 'Visitor experience · Delivered with Dorier',
-    title: 'Many devices. One visitor experience.',
-    role: 'Core engineer across apps, content, and tour services',
-    chips: ['React Native', 'TypeScript', 'Payload CMS', 'Go'],
+    slug: 'ai',
+    year: '2026',
+    title: 'Operator-controlled AI for live events',
+    label: 'Primary engineer across AI, operator tools and audience delivery · Dorier · 2026',
     summary:
-      'Audio guides, docent tablets, and interactive kiosks need to work as one experience. Over approximately ten months, I contributed across the visitor platform—from its apps and content tools to tour services and operational handover.',
-    outcome:
-      'Delivered multilingual experiences, more resilient tour flows, and operational tools that helped the team support the live platform.',
-    challenge: 'Keep the visitor experience coherent across different devices, languages, and guided-tour flows.',
-    decision:
-      'Work across the boundaries between apps, content, and services. Pair feature delivery with diagnostics and documentation so the team can understand and support the system.',
-    cta: 'Discuss this project',
+      'In a live room, generating a response is only part of the job. Someone has to decide whether it should be heard. I built the workflows connecting real-time AI, backstage review and audience audio, with safeguards around approval and playback.',
+    delivered: [
+      'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
+      'Real-time voice and audience communication using WebRTC and WebSockets.',
+      'Playback coordination that blocks empty drafts, double-approval races and duplicate audience audio.',
+    ],
+    stack: ['React', 'TypeScript', 'Python', 'FastAPI', 'Azure OpenAI', 'WebRTC', 'WebSockets'],
+    cta: 'Explore the engineering',
+    href: '/cases/ai',
   },
   {
     id: '02',
-    year: '2025',
-    kicker: 'Global WebAR activation',
-    title: 'Twelve locations. One live day.',
-    role: 'End-to-end ownership of the experience and backend',
-    chips: ['Zappar', 'Azure Functions', 'Cosmos DB', 'React'],
+    slug: 'visitor',
+    year: '2025–2026',
+    title: 'Multi-device visitor platform',
+    label: 'Core engineer across mobile apps, content management and Go services · Dorier · 2025–2026',
     summary:
-      'A browser-based AR experience, a backend serving multiple locations, and an admin interface. I owned delivery from the brief to the live event in five weeks.',
-    outcome: 'Approximately 2,100 participants across 12 locations, with no reported incidents on event day.',
-    challenge: 'Deliver a coordinated experience across multiple locations against a fixed event date.',
-    decision:
-      'Connect the WebAR experience, location-based data, and React administration in a single delivery scope, carrying responsibility through the live day.',
-    cta: 'Discuss this project',
+      'Audio guides, staff tablets and interactive kiosks share one visitor experience. As a core engineer on the delivery team, I carried changes through React Native apps, content tools and Go services — including the server-side tour-ownership checks and the staff-app integration that uses them.',
+    delivered: [
+      'Tour-control safeguards that connect staff-device identity to server-side ownership checks.',
+      'Group-tour changes spanning applications, CMS fields, shared types, Go services and database migrations.',
+      'Multilingual caption integration and technical handover material for the team operating the platform.',
+    ],
+    stack: ['React Native', 'TypeScript', 'Go', 'Payload CMS', 'MQTT', 'PostgreSQL'],
+    cta: 'Explore the engineering',
+    href: '/cases/visitor',
   },
   {
     id: '03',
-    year: '2025–2026',
-    kicker: 'AI for live events',
-    title: 'Live AI. Human judgment.',
-    role: 'Owned the production AI system and operator tooling',
-    chips: ['Azure OpenAI', 'FastAPI', 'React', 'WebRTC'],
+    slug: 'webar',
+    year: '2025',
+    title: 'Global WebAR experience',
+    label:
+      'End-to-end engineering across the browser experience, backend and admin tools · within wider event delivery · Dorier · 2025',
     summary:
-      'Real-time AI responses and voice for a live audience, with an operator in control. I built the system connecting the AI, the operator interface, and the audience experience.',
-    outcome: 'Delivered a production system supporting moderated conversations, panels, workshops, and audience Q&A.',
-    challenge: 'Make generative AI usable in a live setting where people need control over the conversation.',
-    decision:
-      'Put the operator at the centre of the experience, with tools for different event formats and real-time communication between the control interface and the stage.',
-    cta: 'Discuss this project',
+      'Participants joined from their own phones in the browser — no app install — across twelve event locations. I owned the core implementation (five weeks) plus refinement within the wider event delivery: interaction layer, score APIs, location-scoped leaderboards and React administration.',
+    delivered: [
+      'A WebAR experience participants could enter without installing an app.',
+      'An Azure Functions backend and Cosmos DB data model organised around event locations.',
+      'React administration, sensor-permission handling and gameplay refinements informed by testing and client feedback.',
+    ],
+    stack: ['TypeScript', 'Mattercraft / Zappar', 'Azure Functions', 'Cosmos DB', 'React'],
+    cta: 'Explore the engineering',
+    href: '/cases/webar',
+    scale: 'approximately 2,100 participants across 12 locations.',
+  },
+  {
+    id: '04',
+    slug: 'concierge',
+    year: '2026',
+    title: 'Museum AI concierge',
+    label: 'Primary engineer · working prototype · Dorier · 2026',
+    summary:
+      'An AI answer can sound convincing while drawing on the wrong source. I built a concierge for voice, text and camera input, connecting source selection, conversation monitoring and explicit adaptation rules. An operator view shows how the conversation is being assessed and adapted.',
+    delivered: [
+      'A visitor web app supporting voice, text and camera input in English and French.',
+      'Catalog retrieval and relevance checks to assess whether a source fits the question.',
+      'A diagnostic cockpit showing monitoring estimates, adaptation decisions and strategy carried between turns.',
+    ],
+    stack: ['React', 'TypeScript', 'Express', 'Azure AI Search', 'Azure Speech', 'Vitest'],
+    cta: 'Explore the architecture',
+    href: '/cases/concierge',
+    prototype: true,
   },
 ];
-export const alsoShipped = {
-  heading: 'Elsewhere in my work',
-  items: [
-    { name: 'Seezy', blurb: 'eye-care platform', href: 'https://www.seezy.care' },
-    { name: 'InvoFlow', blurb: 'invoice SaaS', href: 'https://github.com/HermenySantos/invoflow' },
-    { name: 'NexTool', blurb: 'edge developer API', href: 'https://github.com/HermenySantos/nextool-api' },
-  ],
-} as const;
+
 export const about = {
-  heading: 'Own the work.\nSee it through.',
+  heading: 'About',
   body: [
-    'I’m Hermenegildo—Gildo for short. A full-stack AI engineer based in Portugal, working where software meets real people, real places, and a date that cannot move.',
-    'My work spans interfaces, backend services, AI, and delivery. I care about the connections between them: how a system behaves, how a team operates it, and what happens after launch.',
+    'I’m Hermenegildo—Gildo for short—a full-stack engineer based in Portugal.',
+    'I like work that connects a usable product to the engineering underneath it: a mobile interface to a shared state model, an AI response to an operator’s decision, or an event experience to its backend and delivery tools.',
+    'At Dorier, I work across interactive platforms, live-event AI and automation. I’m comfortable contributing to an established team and architecture, or carrying a defined product from its first implementation through delivery. I value clear ownership, practical testing and documentation that helps the next person understand the system.',
   ],
-  location: 'Portugal / TypeScript · React · Node · Python · Go',
 } as const;
+
+export const experience = {
+  heading: 'Experience',
+  title: 'Full Stack Engineer',
+  company: 'Dorier',
+  period: '2025–present',
+  items: [
+    'Contribute across React Native applications, content management and Go services for a multi-device visitor platform.',
+    'Build operator-controlled AI workflows, real-time voice interfaces and audience delivery for live events.',
+    'Delivered end-to-end engineering for a global WebAR experience (browser, Azure backend, React admin) within the wider event delivery.',
+    'Build video-delivery automation and the interfaces needed to operate it.',
+  ],
+} as const;
+
 export const contact = {
-  heading: 'What needs\nto work next?',
-  lede: 'For engineering roles, product work, or a closer look at a project—let’s talk.',
+  heading: 'Let’s talk about what you’re building.',
+  lede: 'For senior full-stack and product engineering roles, product collaborations, or a closer look at the decisions behind this work, get in touch.',
 } as const;

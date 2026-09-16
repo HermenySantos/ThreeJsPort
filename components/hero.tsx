@@ -1,4 +1,4 @@
-import { hero, metrics } from '@/lib/content';
+import { hero } from '@/lib/content';
 import { ArrowRightIcon, ArrowUpRightIcon } from './icons';
 
 export function Hero() {
@@ -13,12 +13,12 @@ export function Hero() {
       </div>
       <div className="hero-main">
         <h1>
-          Built for the moment
+          {hero.headlineLead}
           <br />
-          <em>it has to work.</em>
+          <em>{hero.headlineEm}</em>
         </h1>
         <div className="hero-aside">
-          <span className="small-index">ENGINEERING / DELIVERY / OWNERSHIP</span>
+          <p className="hero-role">{hero.role}</p>
           <p>{hero.lede}</p>
           <a className="text-link" href={hero.secondaryCta.href}>
             {hero.secondaryCta.label}
@@ -40,20 +40,13 @@ export function Hero() {
       </div>
       <div className="proof-strip">
         <div className="proof-caption">
-          <span className="eyebrow">{metrics.kicker}</span>
-          <a href="#case-02">
-            {metrics.footnote}
+          <span className="eyebrow">{hero.proofLabel}</span>
+          <a href="#case-webar">
+            Global WebAR experience
             <ArrowUpRightIcon />
           </a>
         </div>
-        <dl>
-          {metrics.items.map((item) => (
-            <div key={item.label}>
-              <dt>{item.label}</dt>
-              <dd>{item.value}</dd>
-            </div>
-          ))}
-        </dl>
+        <p className="proof-copy">{hero.proof}</p>
       </div>
     </section>
   );

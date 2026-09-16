@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 import { nav, site } from '@/lib/content';
 import { SocialLinks } from './social-links';
@@ -11,18 +12,18 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/95 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-page items-center justify-between px-[22px] sm:px-12 md:grid md:grid-cols-3">
-        <a href="#top" className="justify-self-start text-[15px] tracking-tight text-white">
+        <Link href="/" className="justify-self-start text-[15px] tracking-tight text-white">
           {site.name}
-        </a>
+        </Link>
 
         <nav
           className="hidden items-center justify-center gap-8 text-[13px] text-white/55 md:flex"
           aria-label="Primary"
         >
           {nav.map((item) => (
-            <a key={item.href} href={item.href} className="transition-colors hover:text-white">
+            <Link key={item.href} href={item.href} className="transition-colors hover:text-white">
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -44,9 +45,9 @@ export function Header() {
         <nav id="mobile-nav" className="border-t border-white/10 px-5 py-4 md:hidden" aria-label="Mobile">
           <div className="flex flex-col gap-3 text-sm text-white/70">
             {nav.map((item) => (
-              <a key={item.href} href={item.href} className="py-1 hover:text-white" onClick={() => setOpen(false)}>
+              <Link key={item.href} href={item.href} className="py-1 hover:text-white" onClick={() => setOpen(false)}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
           <SocialLinks className="mt-4 sm:hidden" />

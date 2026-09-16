@@ -6,7 +6,7 @@ export default function NotFound() {
       <p className="text-[11px] uppercase tracking-label text-white/40">404</p>
       <h1 className="mt-4 text-4xl font-medium tracking-tight text-white">Page not found</h1>
       <p className="mt-4 max-w-md text-[16px] leading-7 text-mute">
-        That route is not part of this site. The work, about, and contact sections live on the home page.
+        That route is not part of this site. Selected work, about, experience, and contact live on the home page.
       </p>
       <Link
         href="/"

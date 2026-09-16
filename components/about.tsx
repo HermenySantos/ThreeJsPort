@@ -1,4 +1,5 @@
-import { about, alsoShipped } from '@/lib/content';
+import { about } from '@/lib/content';
+
 export function About() {
   return (
     <section id="about" className="section-shell about-section">
@@ -11,18 +12,6 @@ export function About() {
         <div className="about-copy">
           {about.body.map((p) => (
             <p key={p}>{p}</p>
-          ))}
-          <span className="small-index">{about.location}</span>
-        </div>
-      </div>
-      <div className="elsewhere">
-        <p className="eyebrow">{alsoShipped.heading}</p>
-        <div>
-          {alsoShipped.items.map((item) => (
-            <a key={item.name} href={item.href} target="_blank" rel="noreferrer">
-              <span>{item.name} ↗</span>
-              <small>{item.blurb}</small>
-            </a>
           ))}
         </div>
       </div>

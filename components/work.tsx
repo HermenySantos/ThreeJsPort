@@ -2,32 +2,18 @@ import { cases, work } from '@/lib/content';
 import { CaseCard } from './case-card';
 
 export function Work() {
-  const featured = cases[0];
-  const visitor = cases[1];
-  const webar = cases[2];
-  const concierge = cases[3];
-
-  if (!featured || !visitor || !webar || !concierge) {
-    return null;
-  }
-
   return (
-    <section id="work" className="section-shell work-section">
-      <div className="section-heading">
-        <div>
-          <p className="eyebrow">{work.eyebrow}</p>
-          <h2>{work.heading}</h2>
-        </div>
+    <section id="work" className="mx-auto max-w-page scroll-mt-24 px-5 pb-24 sm:px-8 lg:pb-28">
+      <div className="border-t border-white/10 pt-16 sm:pt-20">
+        <p className="text-[11px] uppercase tracking-label text-white/40">{work.eyebrow}</p>
+        <h2 className="mt-4 text-4xl font-medium tracking-tight text-white sm:text-5xl">{work.heading}</h2>
       </div>
-      <CaseCard study={featured} featured />
-      <div className="supporting-grid">
-        <CaseCard study={visitor} />
-        <CaseCard study={webar} />
+
+      <div className="mt-12 space-y-4">
+        {cases.map((study) => (
+          <CaseCard key={study.id} study={study} />
+        ))}
       </div>
-      <CaseCard study={concierge} compact />
-      <p className="discretion-note">
-        Selected work, shared with discretion. Client identities and operational details are intentionally limited.
-      </p>
     </section>
   );
 }

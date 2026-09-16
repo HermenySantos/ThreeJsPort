@@ -2,16 +2,12 @@ import { about } from '@/lib/content';
 
 export function About() {
   return (
-    <section id="about" className="section-shell about-section">
-      <div className="about-intro">
-        <div>
-          <p className="eyebrow">The person behind the work</p>
-          <h2>{about.heading}</h2>
-          <span className="signature">Gildo.</span>
-        </div>
-        <div className="about-copy">
-          {about.body.map((p) => (
-            <p key={p}>{p}</p>
+    <section id="about" className="mx-auto max-w-page scroll-mt-24 px-5 pb-24 sm:px-8">
+      <div className="grid gap-8 border-t border-white/10 pt-16 sm:pt-20 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)] lg:gap-20">
+        <h2 className="text-4xl font-medium tracking-tight text-white sm:text-5xl">{about.heading}</h2>
+        <div className="max-w-xl space-y-5 text-[16px] leading-7 text-mute">
+          {about.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
       </div>

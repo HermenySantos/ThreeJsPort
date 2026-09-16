@@ -1,8 +1,8 @@
 # Hermenegildo Santos
 
-Recruiter shop-window for [hermenegildosantos.com](https://www.hermenegildosantos.com) — an editorial portfolio built around one flagship platform and two supporting live experiences.
+Black case-study shop-window for [hermenegildosantos.com](https://www.hermenegildosantos.com) — Next.js layout from the original recruiter shop-window, with V4.1 copy and case order.
 
-**Hermenegildo Santos** — Full-Stack AI Engineer · Portugal  
+**Hermenegildo Santos** — Full-stack engineer · AI products & real-time systems · Portugal  
 [Portfolio](https://www.hermenegildosantos.com) · [LinkedIn](https://www.linkedin.com/in/hermenegildosantos) · [GitHub](https://github.com/HermenySantos) · [Email](mailto:hermeny7@hotmail.com)
 
 ## Stack
@@ -11,8 +11,7 @@ Next.js (App Router) · TypeScript · Tailwind CSS · Vercel
 
 ## Product direction
 
-[Portfolio north star](docs/north-star.md) governs future design, copy, assets,
-and project selection. It takes priority over earlier visual specifications.
+[Portfolio north star](docs/north-star.md) governs copy, assets, and project selection. The live visual is the black shop-window shell (large rounded case cards, two-column hero with delivery-proof metrics).
 
 ## Run locally
 
@@ -25,4 +24,4 @@ npm run build
 
 ## Site
 
-Single-page home: outcome-led hero, WebAR evidence strip, featured visitor platform with a conceptual system illustration, two supporting case studies with expandable contributions, approach, and contact. Client identities and internal operational details are omitted. Production deploys from `main`.
+Home: two-column hero, stacked case cards (AI → visitor → WebAR → Concierge), about, experience, and contact. Case routes at `/cases/ai`, `/cases/visitor`, `/cases/webar`, and `/cases/concierge`. Client identities and internal operational details are omitted. Production deploys from `main`.

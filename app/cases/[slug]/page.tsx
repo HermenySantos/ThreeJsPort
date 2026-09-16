@@ -51,32 +51,39 @@ export default async function CasePage({ params }: CasePageProps) {
   return (
     <div>
       <Header />
-      <main className="section-shell case-page">
-        <Link className="text-link case-back" href="/#work">
+      <main className="mx-auto max-w-[860px] px-5 pb-24 pt-12 sm:px-8 lg:pb-32">
+        <Link
+          href="/#work"
+          className="inline-flex items-center gap-2 text-[13px] text-white/45 transition-colors hover:text-white">
           Selected work
         </Link>
-        <p className="eyebrow case-page-kicker">
+        <p className="mt-10 text-[11px] uppercase tracking-label text-white/40">
           {study ? `${study.id} / ${study.prototype ? 'Working prototype' : 'Engineering case'}` : 'Engineering case'}
         </p>
-        <h1 className="case-page-title">{full.title}</h1>
-        <p className="case-role">{full.roleLine}</p>
-        <figure className="case-architecture">
+        <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
+        <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
+        <figure className="mt-10 overflow-hidden rounded-[28px] border border-white/10 bg-[#111]">
           <Image
             src={full.architecture.src}
             alt={full.architecture.alt}
             width={1600}
             height={900}
             sizes="(max-width: 860px) 100vw, 860px"
+            className="aspect-video w-full bg-ink object-contain"
           />
-          <figcaption>{full.architecture.caption}</figcaption>
+          <figcaption className="border-t border-white/10 px-5 py-4 text-[12px] leading-6 text-white/40">
+            {full.architecture.caption}
+          </figcaption>
         </figure>
         <CaseMarkdown markdown={full.body} />
-        <div className="case-page-footer">
-          <Link className="primary-button" href="/#contact">
+        <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/10 pt-8">
+          <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-medium text-black transition-colors hover:bg-white/90">
             Get in touch
-            <ArrowRightIcon />
+            <ArrowRightIcon className="h-3.5 w-3.5" />
           </Link>
-          <Link className="text-link" href="/#work">
+          <Link href="/#work" className="text-[13px] text-white/45 transition-colors hover:text-white">
             Back to selected work
           </Link>
         </div>

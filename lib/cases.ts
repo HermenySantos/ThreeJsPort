@@ -5,6 +5,8 @@ import { cases, type CaseSlug } from './content';
 
 export const caseSlugs = ['ai', 'visitor', 'webar', 'concierge'] as const;
 
+export type { CaseSlug };
+
 export type ArchitectureFigure = {
   src: string;
   alt: string;
@@ -77,14 +79,12 @@ export function parseCaseMarkdown(markdown: string): { title: string; roleLine: 
 export function getFullCase(slug: CaseSlug): FullCase {
   const markdown = loadCaseMarkdown(slug);
   const parsed = parseCaseMarkdown(markdown);
-  const title = parsed.title || cases.find((item) => item.slug === slug)?.title || slug;
   return {
     slug,
-    title,
+    title: parsed.title || cases.find((item) => item.slug === slug)?.title || slug,
     roleLine: parsed.roleLine,
     body: parsed.body,
     markdown,
     architecture: architecture[slug],
   };
 }
-

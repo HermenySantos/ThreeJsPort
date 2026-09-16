@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import test from 'node:test';
 
-import { about, cases, contact, experience, hero, site } from './content.ts';
+import { about, cases, contact, experience, hero, metrics, site } from './content.ts';
 
 const SOURCE_ROOTS = ['app', 'components', 'lib', 'content'];
 const SOURCE_EXTS = new Set(['.ts', '.tsx', '.js', '.jsx', '.css', '.md', '.json']);
@@ -86,6 +86,25 @@ test('visitor homepage stack omits TimescaleDB', () => {
   assert.equal(cases[1].stack.includes('TimescaleDB'), false);
 });
 
+test('metrics strip is V4.1-honest, not WebAR-only #18 copy', () => {
+  assert.equal(metrics.kicker, hero.proofLabel);
+  assert.equal(metrics.kicker, 'Delivery proof');
+  assert.deepEqual(
+    metrics.items.map((item) => [item.value, item.label]),
+    [
+      ['~2,100', 'WebAR participants'],
+      ['12', 'Locations'],
+      ['5', 'Weeks (core build)'],
+    ],
+  );
+  assert.equal(metrics.footnote, hero.proof);
+  assert.match(metrics.footnote, /Live-event AI/);
+  assert.match(metrics.footnote, /Separately/);
+  assert.equal(metrics.kicker.includes('Most recent'), false);
+  assert.equal(metrics.footnote.includes('Same-day'), false);
+  assert.equal(metrics.footnote.includes('briefed to live'), false);
+});
+
 test('about, experience and contact match V4.1', () => {
   assert.equal(about.body[0], 'I’m Hermenegildo—Gildo for short—a full-stack engineer based in Portugal.');
   assert.equal(experience.title, 'Full Stack Engineer');
@@ -125,7 +144,7 @@ test('full cases load locked markdown with conceptual caveats', () => {
   }
 });
 
-test('source tree does not reintroduce forbidden media, clients, or claims', () => {
+test('source tree does not reintroduce forbidden media, clients, or #18 copy', () => {
   const forbidden = [
     'DemoComputer',
     'react-globe',
@@ -142,6 +161,11 @@ test('source tree does not reintroduce forbidden media, clients, or claims', () 
     'incident-free',
     'no reported incidents',
     'universal devices',
+    'UN Geneva',
+    'Walkthrough on request',
+    'Most recent delivery',
+    'I ship production AI',
+    'SystemIllustration',
   ];
 
   for (const token of forbidden) {
@@ -151,4 +175,11 @@ test('source tree does not reintroduce forbidden media, clients, or claims', () 
   const homepage = readFileSync('lib/content.ts', 'utf8');
   assert.equal(homepage.includes('TimescaleDB'), false, 'TimescaleDB must not appear in homepage content');
   assert.equal(homepage.includes('PMI'), false);
+
+  const ink = readFileSync('tailwind.config.ts', 'utf8');
+  assert.match(ink, /ink: '#0a0a0a'/);
+  assert.equal(readFileSync('app/globals.css', 'utf8').includes('background: #0a0a0a'), true);
+  assert.equal(readFileSync('components/hero.tsx', 'utf8').includes('metrics.items'), true);
+  assert.equal(readFileSync('components/case-card.tsx', 'utf8').includes('rounded-[28px]'), true);
+  assert.equal(cases[0].title.includes('UN'), false);
 });

@@ -1,114 +1,55 @@
 import Link from 'next/link';
 
-import { type CaseStudy } from '@/lib/content';
-import { ArrowUpRightIcon } from './icons';
-import { SystemIllustration } from './system-illustration';
+import type { CaseStudy } from '@/lib/content';
+import { ArrowRightIcon } from './icons';
 
-function CaseVisual({ study, featured }: { study: CaseStudy; featured?: boolean }) {
-  if (featured && study.slug === 'ai') {
-    return <SystemIllustration />;
-  }
-
-  if (study.slug === 'webar') {
-    return (
-      <div className="support-visual" aria-hidden="true">
-        <span className="small-index">CONNECTED ACROSS LOCATIONS</span>
-        <div className="location-grid">
-          {Array.from({ length: 12 }, (_, i) => (
-            <span key={i}>
-              <i />
-              <small>{String(i + 1).padStart(2, '0')}</small>
-            </span>
-          ))}
-        </div>
-        <span className="visual-note">Conceptual illustration</span>
-      </div>
-    );
-  }
-
-  if (study.slug === 'visitor') {
-    return (
-      <div className="support-visual" aria-hidden="true">
-        <span className="small-index">ONE CONNECTED EXPERIENCE</span>
-        <div className="operator-flow">
-          <span>Audio</span>
-          <i />
-          <span>Tablet</span>
-          <i />
-          <span>Kiosk</span>
-        </div>
-        <span className="visual-note">Conceptual illustration</span>
-      </div>
-    );
-  }
-
+export function CaseCard({ study }: { study: CaseStudy }) {
   return (
-    <div className="support-visual support-visual-03" aria-hidden="true">
-      <span className="small-index">{study.prototype ? 'WORKING PROTOTYPE' : 'THE OPERATOR STAYS IN CONTROL'}</span>
-      <div className="operator-flow">
-        <span>Source</span>
-        <i />
-        <span className="operator-node">Concierge</span>
-        <i />
-        <span>Cockpit</span>
-      </div>
-      <span className="visual-note">Conceptual illustration</span>
-    </div>
-  );
-}
-
-export function CaseCard({
-  study,
-  featured = false,
-  compact = false,
-}: {
-  study: CaseStudy;
-  featured?: boolean;
-  compact?: boolean;
-}) {
-  const variant = featured ? 'case-featured' : compact ? 'case-supporting case-compact' : 'case-supporting';
-
-  return (
-    <article id={`case-${study.slug}`} className={`case-study ${variant}`}>
-      {compact ? (
-        <div className="prototype-bar">
-          <span className="small-index">04 / Working prototype</span>
-          <span className="visual-note">Visible secondary case</span>
-        </div>
-      ) : (
-        <CaseVisual study={study} featured={featured} />
-      )}
-      <div className="case-body">
-        <div className="case-heading">
-          <p className="eyebrow">
-            <span>{study.id} / </span>
-            {study.prototype ? 'Working prototype' : 'Dorier'}
+    <article
+      id={`case-${study.slug}`}
+      className="scroll-mt-24 rounded-[28px] border border-white/10 px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.15fr)] lg:gap-16">
+        <div>
+          <p className="text-[13px] text-white/40">
+            {study.id}
+            <span className="mx-3 text-white/20">—</span>
+            {study.year}
+            {study.prototype ? (
+              <>
+                <span className="mx-3 text-white/20">—</span>
+                Working prototype
+              </>
+            ) : null}
           </p>
-          <span className="case-year">{study.year}</span>
+          <h3 className="mt-6 max-w-[16ch] text-[1.85rem] font-medium leading-[1.15] tracking-tight text-white sm:text-[2.15rem]">
+            {study.title}
+          </h3>
+          <p className="mt-5 max-w-[22rem] text-[14px] leading-6 text-white/45">{study.label}</p>
         </div>
-        <h3>{study.title}</h3>
-        <p className="case-role">{study.label}</p>
-        <div className="case-narrative">
-          <p>{study.summary}</p>
-          <div className="delivered">
-            {study.scale ? <p className="case-scale">Scale: {study.scale}</p> : null}
-            <span className="eyebrow">What I delivered</span>
-            <ul>
-              {study.delivered.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
+
+        <div>
+          <p className="text-[15px] leading-7 text-mute">{study.summary}</p>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {study.stack.map((chip) => (
+              <li key={chip} className="rounded-full border border-white/10 px-3 py-1.5 text-[12px] text-white/65">
+                {chip}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-[11px] uppercase tracking-label text-white/35">What I delivered</p>
+          {study.scale ? <p className="mt-3 text-[15px] leading-7 text-mute">Scale: {study.scale}</p> : null}
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-7 text-mute">
+            {study.delivered.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <Link
+            href={study.href}
+            className="mt-6 inline-flex items-center gap-2 text-[13px] text-white/55 transition-colors hover:text-white">
+            {study.cta}
+            <ArrowRightIcon className="h-3.5 w-3.5" />
+          </Link>
         </div>
-        <ul className="tech-list">
-          {study.stack.map((chip) => (
-            <li key={chip}>{chip}</li>
-          ))}
-        </ul>
-        <Link className="text-link" href={study.href}>
-          {study.cta}
-          <ArrowUpRightIcon />
-        </Link>
       </div>
     </article>
   );

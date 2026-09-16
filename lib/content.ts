@@ -33,6 +33,16 @@ export const hero = {
   secondaryCta: { label: 'Get in touch', href: '#contact' },
 } as const;
 
+export const metrics = {
+  kicker: hero.proofLabel,
+  items: [
+    { value: '~2,100', label: 'WebAR participants' },
+    { value: '12', label: 'Locations' },
+    { value: '5', label: 'Weeks (core build)' },
+  ],
+  footnote: hero.proof,
+} as const;
+
 export const work = {
   heading: 'Selected work',
   eyebrow: 'Selected work / 01—04',

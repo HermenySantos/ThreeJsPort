@@ -85,6 +85,7 @@ button {
   font-weight: 400;
   line-height: 1.06;
   letter-spacing: -0.055em;
+  text-wrap: balance;
 }
 .hero h1 em {
   font-family: Georgia, 'Times New Roman', serif;

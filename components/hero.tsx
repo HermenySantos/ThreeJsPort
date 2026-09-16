@@ -14,7 +14,6 @@ export function Hero() {
       <div className="hero-main">
         <h1>
           {hero.headlineLead}
-          <br />
           <em>{hero.headlineEm}</em>
         </h1>
         <div className="hero-aside">

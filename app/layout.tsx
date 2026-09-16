@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Link from 'next/link';
 import Script from 'next/script';
 
 import { site } from '@/lib/content';
@@ -40,11 +41,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={sans.variable}>
       <body className={`${sans.className} min-h-screen bg-ink antialiased`}>
-        <a
-          href="#work"
+        <Link
+          href="/#work"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-black">
           Skip to work
-        </a>
+        </Link>
         {children}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2YJQBY70JT" strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">

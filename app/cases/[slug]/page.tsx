@@ -64,15 +64,16 @@ export default async function CasePage({ params }: CasePageProps) {
         <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
         <CaseMarkdown markdown={full.body} />
         <p className="mt-12 text-[11px] uppercase tracking-label text-white/40">Architecture</p>
-        <figure className="mt-4 overflow-hidden rounded-[28px] border border-white/10 bg-[#111]">
+        <figure className="mt-4 rounded-[28px] border border-white/10 bg-[#111]">
           <div className="overflow-x-auto">
             <Image
               src={full.architecture.src}
               alt={full.architecture.alt}
               width={1800}
               height={1120}
-              sizes="1280px"
-              className="h-auto w-[80rem] max-w-none bg-ink object-contain"
+              priority
+              sizes="1800px"
+              className="block h-auto w-[1800px] max-w-none bg-ink"
             />
           </div>
           <figcaption className="border-t border-white/10 px-5 py-4 text-[13px] leading-6 text-white/55">

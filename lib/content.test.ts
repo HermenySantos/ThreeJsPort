@@ -222,6 +222,7 @@ test('case pages put architecture after product, ownership and delivery', () => 
   assert.ok(titleAt > 0 && roleAt > titleAt);
   assert.ok(markdownAt > roleAt);
   assert.ok(architectureAt > markdownAt);
-  assert.match(page, /min-w-0|w-\[80rem\]/);
+  assert.match(page, /w-\[1800px\]/);
   assert.equal(page.includes('aspect-video'), false);
+  assert.match(page, /priority/);
 });

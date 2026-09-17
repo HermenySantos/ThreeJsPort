@@ -24,17 +24,19 @@ const sourceBlob = SOURCE_ROOTS.flatMap((root) => walk(root))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
 
-test('hero uses locked V4.1 copy', () => {
+test('hero keeps the locked headline and a short WebAR proof line', () => {
   assert.equal(hero.headline, 'I build the product—and the systems that make it work.');
   assert.equal(hero.headlineLead + hero.headlineEm, hero.headline);
   assert.equal(
     hero.lede,
-    'I work across interfaces, backend services and AI to turn complex requirements into working software. My experience spans operator-controlled AI for live events, a multi-device visitor platform and a global WebAR experience.',
+    'I work across interfaces, backend services and AI to turn complex requirements into working software. That includes live-event AI with an operator in the approval loop, a multi-device visitor platform and a global WebAR experience.',
   );
+  assert.match(hero.lede, /approval loop/);
   assert.equal(
     hero.proof,
-    'Live-event AI with an operator in the approval loop. Separately: a WebAR experience used by approximately 2,100 participants across 12 locations (core build in five weeks, then refinement).',
+    'Approximately 2,100 participants across 12 locations. Core WebAR build in five weeks, then refinement.',
   );
+  assert.equal(hero.proof.includes('Live-event AI'), false);
   assert.equal(hero.primaryCta.label, 'Explore selected work');
   assert.equal(hero.primaryCta.href, '#work');
   assert.equal(hero.secondaryCta.label, 'Get in touch');
@@ -107,8 +109,10 @@ test('metrics strip is V4.1-honest, not WebAR-only #18 copy', () => {
     ],
   );
   assert.equal(metrics.footnote, hero.proof);
-  assert.match(metrics.footnote, /Live-event AI/);
-  assert.match(metrics.footnote, /Separately/);
+  assert.match(metrics.footnote, /2,100 participants/);
+  assert.match(metrics.footnote, /WebAR/);
+  assert.equal(metrics.footnote.includes('Live-event AI'), false);
+  assert.equal(metrics.footnote.includes('Separately'), false);
   assert.equal(metrics.kicker.includes('Most recent'), false);
   assert.equal(metrics.footnote.includes('Same-day'), false);
   assert.equal(metrics.footnote.includes('briefed to live'), false);
@@ -138,6 +142,8 @@ test('full cases load locked markdown with conceptual caveats', () => {
   );
 
   assert.match(files.ai, /An AI response is not ready just because the model finished/);
+  assert.match(files.ai, /before a live-event reply is heard/);
+  assert.equal(files.ai.includes('A live-event AI system has several participants'), false);
   assert.match(files.visitor, /One tour, several devices, shared state/);
   assert.match(files.webar, /Approximately 2,100 participants/);
   assert.match(files.webar, /within the wider event delivery/);

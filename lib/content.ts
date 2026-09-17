@@ -24,10 +24,10 @@ export const hero = {
   headline: 'I build the product—and the systems that make it work.',
   headlineLead: 'I build the product—',
   headlineEm: 'and the systems that make it work.',
-  lede: 'I work across interfaces, backend services and AI to turn complex requirements into working software. My experience spans operator-controlled AI for live events, a multi-device visitor platform and a global WebAR experience.',
+  lede: 'I work across interfaces, backend services and AI to turn complex requirements into working software. That includes live-event AI with an operator in the approval loop, a multi-device visitor platform and a global WebAR experience.',
   proofLabel: 'Delivery proof',
   proof:
-    'Live-event AI with an operator in the approval loop. Separately: a WebAR experience used by approximately 2,100 participants across 12 locations (core build in five weeks, then refinement).',
+    'Approximately 2,100 participants across 12 locations. Core WebAR build in five weeks, then refinement.',
   stack: 'Based in Portugal · Working across the stack',
   primaryCta: { label: 'Explore selected work', href: '#work' },
   secondaryCta: { label: 'Get in touch', href: '#contact' },

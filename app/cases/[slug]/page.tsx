@@ -62,20 +62,23 @@ export default async function CasePage({ params }: CasePageProps) {
         </p>
         <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
         <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
-        <figure className="mt-10 overflow-hidden rounded-[28px] border border-white/10 bg-[#111]">
-          <Image
-            src={full.architecture.src}
-            alt={full.architecture.alt}
-            width={1600}
-            height={900}
-            sizes="(max-width: 860px) 100vw, 860px"
-            className="aspect-video w-full bg-ink object-contain"
-          />
-          <figcaption className="border-t border-white/10 px-5 py-4 text-[12px] leading-6 text-white/40">
+        <CaseMarkdown markdown={full.body} />
+        <p className="mt-12 text-[11px] uppercase tracking-label text-white/40">Architecture</p>
+        <figure className="mt-4 overflow-hidden rounded-[28px] border border-white/10 bg-[#111]">
+          <div className="overflow-x-auto">
+            <Image
+              src={full.architecture.src}
+              alt={full.architecture.alt}
+              width={1800}
+              height={1120}
+              sizes="1280px"
+              className="h-auto w-[80rem] max-w-none bg-ink object-contain"
+            />
+          </div>
+          <figcaption className="border-t border-white/10 px-5 py-4 text-[13px] leading-6 text-white/55">
             {full.architecture.caption}
           </figcaption>
         </figure>
-        <CaseMarkdown markdown={full.body} />
         <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/10 pt-8">
           <Link
             href="/#contact"

@@ -3,8 +3,8 @@ import { ArrowRightIcon } from './icons';
 
 export function Hero() {
   return (
-    <section className="mx-auto min-h-[calc(100svh-72px)] max-w-page px-5 pb-24 pt-16 sm:px-8 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
-      <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-20">
+    <section className="mx-auto max-w-page px-5 pb-12 pt-10 sm:min-h-[calc(100svh-72px)] sm:px-8 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-20">
         <div>
           <p className="text-[11px] uppercase tracking-label text-white/45">{hero.eyebrow}</p>
           <h1 className="mt-5 max-w-[13.5em] text-[2.75rem] font-medium leading-[0.98] tracking-[-0.035em] text-white sm:text-6xl lg:max-w-[9.6em] lg:text-[4.35rem]">
@@ -30,7 +30,7 @@ export function Hero() {
 
         <aside aria-label={metrics.kicker} className="lg:pt-1">
           <p className="text-[11px] uppercase tracking-label text-white/40">{metrics.kicker}</p>
-          <dl className="mt-8 space-y-7">
+          <dl className="mt-5 space-y-5 sm:mt-8 sm:space-y-7">
             {metrics.items.map((item) => (
               <div key={item.label} className="grid grid-cols-[auto_1fr] items-center gap-x-6">
                 <dt className="sr-only">{item.label}</dt>
@@ -41,7 +41,7 @@ export function Hero() {
               </div>
             ))}
           </dl>
-          <p className="mt-10 max-w-[18rem] text-[13px] leading-5 text-white/35">{metrics.footnote}</p>
+          <p className="mt-6 max-w-[18rem] text-[13px] leading-5 text-white/35 sm:mt-10">{metrics.footnote}</p>
         </aside>
       </div>
     </section>

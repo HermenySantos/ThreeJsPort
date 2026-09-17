@@ -195,3 +195,27 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   assert.equal(readFileSync('components/case-card.tsx', 'utf8').includes('rounded-[28px]'), true);
   assert.equal(cases[0].title.includes('UN'), false);
 });
+
+test('homepage cards scan scope, then bullets, then stack, then link', () => {
+  const card = readFileSync('components/case-card.tsx', 'utf8');
+  const summaryAt = card.indexOf('study.summary');
+  const deliveredAt = card.indexOf('study.delivered');
+  const stackAt = card.indexOf('study.stack');
+  const ctaAt = card.indexOf('study.cta');
+  assert.ok(summaryAt > 0 && deliveredAt > summaryAt);
+  assert.ok(stackAt > deliveredAt);
+  assert.ok(ctaAt > stackAt);
+});
+
+test('case pages put architecture after product, ownership and delivery', () => {
+  const page = readFileSync('app/cases/[slug]/page.tsx', 'utf8');
+  const titleAt = page.indexOf('full.title');
+  const roleAt = page.indexOf('full.roleLine');
+  const markdownAt = page.indexOf('<CaseMarkdown');
+  const architectureAt = page.indexOf('full.architecture.src');
+  assert.ok(titleAt > 0 && roleAt > titleAt);
+  assert.ok(markdownAt > roleAt);
+  assert.ok(architectureAt > markdownAt);
+  assert.match(page, /min-w-0|w-\[80rem\]/);
+  assert.equal(page.includes('aspect-video'), false);
+});

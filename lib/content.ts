@@ -76,8 +76,8 @@ export const cases: readonly CaseStudy[] = [
       'In a live room, generating a response is only part of the job. Someone has to decide whether it should be heard. I built the workflows connecting real-time AI, backstage review and audience audio, with safeguards around approval and playback.',
     delivered: [
       'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
-      'Real-time voice and audience communication using WebRTC and WebSockets.',
-      'Playback coordination that blocks empty drafts, double-approval races and duplicate audience audio.',
+      'Approval guards that block empty drafts from becoming blank cards and block a second click from dispatching twice.',
+      'Playback guard that stops a notify/replay race from starting the same audience clip twice.',
     ],
     stack: ['React', 'TypeScript', 'Python', 'FastAPI', 'Azure OpenAI', 'WebRTC', 'WebSockets'],
     cta: 'Explore the engineering',

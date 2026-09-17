@@ -72,6 +72,15 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.match(cases[3].label, /working prototype/);
   assert.match(cases[2].label, /within wider event delivery/);
   assert.equal(cases[2].scale, 'approximately 2,100 participants across 12 locations.');
+  assert.match(cases[0].delivered[1], /empty drafts/);
+  assert.match(cases[0].delivered[1], /second click/);
+  assert.match(cases[0].delivered[2], /notify\/replay race/);
+  assert.equal(
+    cases[0].delivered.includes(
+      'Real-time voice and audience communication using WebRTC and WebSockets.',
+    ),
+    false,
+  );
 });
 
 test('visitor homepage stack omits TimescaleDB', () => {
@@ -131,6 +140,9 @@ test('full cases load locked markdown with conceptual caveats', () => {
   assert.match(files.ai, /An AI response is not ready just because the model finished/);
   assert.match(files.visitor, /One tour, several devices, shared state/);
   assert.match(files.webar, /Approximately 2,100 participants/);
+  assert.match(files.webar, /within the wider event delivery/);
+  assert.match(files.webar, /Participants joined a WebAR experience from their own phones/);
+  assert.equal(files.webar.includes('A global event needs a common experience'), false);
   assert.match(files.concierge, /Working prototype/);
   assert.match(files.concierge, /A public museum rollout remains a separate milestone/);
   assert.equal(files.visitor.includes('TimescaleDB'), true);

@@ -2,7 +2,7 @@
 
 **Global WebAR experience · Dorier · 2025**
 
-A global event needs a common experience, but participants arrive with different phones, browsers, permissions and movement patterns. Staff need a usable view of the results at their location. I built the browser experience and the systems connecting those two sides.
+Participants joined a WebAR experience from their own phones—no app install—across twelve event locations. Phones, browsers, permissions and movement differed; staff needed results for their location, not one global scoreboard. I owned the browser experience, score APIs and administration within the wider event delivery.
 
 **Approximately 2,100 participants · 12 locations · five weeks for the core implementation, followed by refinement.**
 

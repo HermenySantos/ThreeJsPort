@@ -2,7 +2,7 @@
 
 **Operator-controlled AI for live events · Dorier · 2026**
 
-A live-event AI system has several participants: speakers, a backstage operator, the model and the audience. Generated text, approval state, audio playback and audience displays have to agree on what happens next. I built the workflows that give the operator control over that transition.
+Generated text, approval state, audio playback and audience displays have to agree before a live-event reply is heard. I built the operator workflows that control that transition.
 
 ## My responsibility
 

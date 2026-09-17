@@ -24,17 +24,19 @@ const sourceBlob = SOURCE_ROOTS.flatMap((root) => walk(root))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
 
-test('hero uses locked V4.1 copy', () => {
+test('hero keeps the locked headline and a short WebAR proof line', () => {
   assert.equal(hero.headline, 'I build the product—and the systems that make it work.');
   assert.equal(hero.headlineLead + hero.headlineEm, hero.headline);
   assert.equal(
     hero.lede,
-    'I work across interfaces, backend services and AI to turn complex requirements into working software. My experience spans operator-controlled AI for live events, a multi-device visitor platform and a global WebAR experience.',
+    'I work across interfaces, backend services and AI to turn complex requirements into working software. That includes live-event AI with an operator in the approval loop, a multi-device visitor platform and a global WebAR experience.',
   );
+  assert.match(hero.lede, /approval loop/);
   assert.equal(
     hero.proof,
-    'Live-event AI with an operator in the approval loop. Separately: a WebAR experience used by approximately 2,100 participants across 12 locations (core build in five weeks, then refinement).',
+    'Approximately 2,100 participants across 12 locations. Core WebAR build in five weeks, then refinement.',
   );
+  assert.equal(hero.proof.includes('Live-event AI'), false);
   assert.equal(hero.primaryCta.label, 'Explore selected work');
   assert.equal(hero.primaryCta.href, '#work');
   assert.equal(hero.secondaryCta.label, 'Get in touch');
@@ -72,6 +74,15 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.match(cases[3].label, /working prototype/);
   assert.match(cases[2].label, /within wider event delivery/);
   assert.equal(cases[2].scale, 'approximately 2,100 participants across 12 locations.');
+  assert.match(cases[0].delivered[1], /empty drafts/);
+  assert.match(cases[0].delivered[1], /second click/);
+  assert.match(cases[0].delivered[2], /notify\/replay race/);
+  assert.equal(
+    cases[0].delivered.includes(
+      'Real-time voice and audience communication using WebRTC and WebSockets.',
+    ),
+    false,
+  );
 });
 
 test('visitor homepage stack omits TimescaleDB', () => {
@@ -98,8 +109,10 @@ test('metrics strip is V4.1-honest, not WebAR-only #18 copy', () => {
     ],
   );
   assert.equal(metrics.footnote, hero.proof);
-  assert.match(metrics.footnote, /Live-event AI/);
-  assert.match(metrics.footnote, /Separately/);
+  assert.match(metrics.footnote, /2,100 participants/);
+  assert.match(metrics.footnote, /WebAR/);
+  assert.equal(metrics.footnote.includes('Live-event AI'), false);
+  assert.equal(metrics.footnote.includes('Separately'), false);
   assert.equal(metrics.kicker.includes('Most recent'), false);
   assert.equal(metrics.footnote.includes('Same-day'), false);
   assert.equal(metrics.footnote.includes('briefed to live'), false);
@@ -129,8 +142,13 @@ test('full cases load locked markdown with conceptual caveats', () => {
   );
 
   assert.match(files.ai, /An AI response is not ready just because the model finished/);
+  assert.match(files.ai, /before a live-event reply is heard/);
+  assert.equal(files.ai.includes('A live-event AI system has several participants'), false);
   assert.match(files.visitor, /One tour, several devices, shared state/);
   assert.match(files.webar, /Approximately 2,100 participants/);
+  assert.match(files.webar, /within the wider event delivery/);
+  assert.match(files.webar, /Participants joined a WebAR experience from their own phones/);
+  assert.equal(files.webar.includes('A global event needs a common experience'), false);
   assert.match(files.concierge, /Working prototype/);
   assert.match(files.concierge, /A public museum rollout remains a separate milestone/);
   assert.equal(files.visitor.includes('TimescaleDB'), true);
@@ -182,4 +200,29 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   assert.equal(readFileSync('components/hero.tsx', 'utf8').includes('metrics.items'), true);
   assert.equal(readFileSync('components/case-card.tsx', 'utf8').includes('rounded-[28px]'), true);
   assert.equal(cases[0].title.includes('UN'), false);
+});
+
+test('homepage cards scan scope, then bullets, then stack, then link', () => {
+  const card = readFileSync('components/case-card.tsx', 'utf8');
+  const summaryAt = card.indexOf('study.summary');
+  const deliveredAt = card.indexOf('study.delivered');
+  const stackAt = card.indexOf('study.stack');
+  const ctaAt = card.indexOf('study.cta');
+  assert.ok(summaryAt > 0 && deliveredAt > summaryAt);
+  assert.ok(stackAt > deliveredAt);
+  assert.ok(ctaAt > stackAt);
+});
+
+test('case pages put architecture after product, ownership and delivery', () => {
+  const page = readFileSync('app/cases/[slug]/page.tsx', 'utf8');
+  const titleAt = page.indexOf('full.title');
+  const roleAt = page.indexOf('full.roleLine');
+  const markdownAt = page.indexOf('<CaseMarkdown');
+  const architectureAt = page.indexOf('full.architecture.src');
+  assert.ok(titleAt > 0 && roleAt > titleAt);
+  assert.ok(markdownAt > roleAt);
+  assert.ok(architectureAt > markdownAt);
+  assert.match(page, /w-\[1800px\]/);
+  assert.equal(page.includes('aspect-video'), false);
+  assert.match(page, /priority/);
 });

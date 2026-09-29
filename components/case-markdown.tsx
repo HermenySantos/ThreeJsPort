@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { headingAnchor } from '@/lib/case-layout';
+
 type Block =
   | { type: 'h1' | 'h2' | 'h3'; text: string }
   | { type: 'p'; text: string }
@@ -97,10 +99,18 @@ export function CaseMarkdown({ markdown }: { markdown: string }) {
           return <h1 key={index}>{inline(block.text)}</h1>;
         }
         if (block.type === 'h2') {
-          return <h2 key={index}>{inline(block.text)}</h2>;
+          return (
+            <h2 id={headingAnchor(block.text)} key={index}>
+              {inline(block.text)}
+            </h2>
+          );
         }
         if (block.type === 'h3') {
-          return <h3 key={index}>{inline(block.text)}</h3>;
+          return (
+            <h3 id={headingAnchor(block.text)} key={index}>
+              {inline(block.text)}
+            </h3>
+          );
         }
         if (block.type === 'pre') {
           return <pre key={index}>{block.text}</pre>;

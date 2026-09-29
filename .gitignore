@@ -36,3 +36,7 @@ threejscc_portfolio-public.zip
 
 # Local resume sources (kept out of the repo)
 *.docx
+
+# Uncleared concierge stills kept for local review only.
+# Not in public/, not imported, and not part of the deploy output.
+review-local/

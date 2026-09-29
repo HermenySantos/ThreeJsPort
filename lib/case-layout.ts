@@ -1,0 +1,307 @@
+export const layoutSlugs = ['ai', 'visitor', 'webar', 'concierge'] as const;
+
+export type LayoutSlug = (typeof layoutSlugs)[number];
+
+export type CaseFigure = {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  kind: 'screenshot' | 'diagram';
+};
+
+export type CaseSection = {
+  heading: string;
+  markdown: string;
+  anchor: string;
+  figures: readonly CaseFigure[];
+};
+
+export type CaseDisclosure = {
+  label: 'More product views';
+  figures: readonly CaseFigure[];
+};
+
+export type CaseArticle = {
+  preamble: string;
+  sections: readonly CaseSection[];
+  disclosure?: CaseDisclosure;
+};
+
+type Placement = {
+  afterHeading: string;
+  figures: readonly CaseFigure[];
+};
+
+function shot(
+  src: string,
+  width: number,
+  height: number,
+  alt: string,
+  caption: string,
+  kind: CaseFigure['kind'],
+): CaseFigure {
+  return { src, alt, caption, width, height, kind };
+}
+
+const oveePlacements: readonly Placement[] = [
+  {
+    afterHeading: 'What I delivered',
+    figures: [
+      shot(
+        '/cases/ai/04b-stage-poll-takeover-readable.png',
+        1920,
+        1080,
+        'Audience wall showing a poll takeover with result bars and a sample vote count.',
+        'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
+        'screenshot',
+      ),
+    ],
+  },
+  {
+    afterHeading: 'Two interfaces, one live experience',
+    figures: [
+      shot(
+        '/architecture/ovee-runtime-flow.png',
+        1400,
+        640,
+        'Diagram linking the operator interface, the participant interface, the backend, and the room wall.',
+        'Operator and participant interfaces connect to the backend; the room wall presents audience output.',
+        'diagram',
+      ),
+    ],
+  },
+  {
+    afterHeading: 'A draft needs permission to reach the stage',
+    figures: [
+      shot(
+        '/cases/ai/06b-operator-pending-draft-awaiting-approval.png',
+        1440,
+        900,
+        'Operator screen with a generated draft waiting for approval or discard.',
+        '1. A generated draft waits for the operator to approve or discard it. Synthetic demonstration.',
+        'screenshot',
+      ),
+      shot(
+        '/cases/ai/06c-operator-after-approve-ovee-output.png',
+        1440,
+        900,
+        'Operator transcript and delivery history after a response was approved.',
+        '2. After approval, the response appears in the transcript and delivery history. Synthetic demonstration.',
+        'screenshot',
+      ),
+    ],
+  },
+  {
+    afterHeading: 'One response, one playback start',
+    figures: [
+      shot(
+        '/architecture/ai-playback-desktop.png',
+        2240,
+        1926,
+        'Diagram of a playback guard that suppresses a second start of the same clip version within 1.5 seconds.',
+        'The playback guard suppresses a repeat start of the same clip version within 1.5 seconds.',
+        'diagram',
+      ),
+    ],
+  },
+];
+
+const oveeDisclosure: CaseDisclosure = {
+  label: 'More product views',
+  figures: [
+    shot(
+      '/cases/ai/02b-stage-ambient-readable.png',
+      1920,
+      1080,
+      'Audience wall showing ambient insight cards.',
+      'Ambient insights on the audience wall. Synthetic demonstration.',
+      'screenshot',
+    ),
+    shot(
+      '/cases/ai/02c-stage-speaking-intentional.png',
+      1920,
+      1080,
+      'Audience wall in its speaking state during a text-to-speech broadcast.',
+      'The wall enters its speaking state during a text-to-speech broadcast. Synthetic demonstration.',
+      'screenshot',
+    ),
+    shot(
+      '/architecture/ovee-wall-decision-paths.png',
+      1400,
+      620,
+      'Diagram of wall priority: an active takeover over ambient content, with voice state controlling the overlay.',
+      'An active takeover takes priority over ambient content; voice state controls the accompanying overlay.',
+      'diagram',
+    ),
+  ],
+};
+
+const placements: Record<LayoutSlug, readonly Placement[]> = {
+  ai: oveePlacements,
+  visitor: [
+    {
+      afterHeading: 'How the platform fits together',
+      figures: [
+        shot(
+          '/architecture/visitor-system-overview-02.png',
+          1951,
+          1961,
+          'Diagram of guide, docent and kiosk applications connected to content and show services.',
+          'The visitor platform connects guide, docent and kiosk applications with content and show services. Colleagues owned the external Pixera, Quuppa and device-management systems.',
+          'diagram',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'Making tour ownership part of the client–server contract',
+      figures: [
+        shot(
+          '/architecture/visitor-docent-controller-01.png',
+          2118,
+          975,
+          'Sequence diagram of tour takeover: an ownership update, notice to the previous controller, and confirmation to the new controller.',
+          'Tour takeover updates ownership, notifies the previous controller and confirms the new controller.',
+          'diagram',
+        ),
+      ],
+    },
+  ],
+  webar: [
+    {
+      afterHeading: 'Following a score from interaction to administration',
+      figures: [
+        shot(
+          '/architecture/webar-data-desktop.png',
+          2240,
+          1990,
+          'Diagram of scores passing through the API into location-scoped storage and leaderboards.',
+          'Scores pass through the API into location-scoped storage and leaderboards.',
+          'diagram',
+        ),
+      ],
+    },
+  ],
+  concierge: [
+    {
+      afterHeading: 'Connecting conversation, monitoring and adaptation',
+      figures: [
+        shot(
+          '/architecture/concierge-turn-desktop.png',
+          2240,
+          2372,
+          'Diagram of a concierge turn: the guide responds, then monitoring runs, and adaptation rules run when the turn produces a trigger.',
+          'The guide completes its response before monitoring; adaptation rules run when the turn produces a trigger. Working prototype.',
+          'diagram',
+        ),
+      ],
+    },
+  ],
+};
+
+const disclosures: Partial<Record<LayoutSlug, CaseDisclosure>> = {
+  ai: oveeDisclosure,
+};
+
+export function parseCaseMarkdown(markdown: string): { title: string; roleLine: string; body: string } {
+  const lines = markdown.replace(/\r\n/g, '\n').split('\n');
+  const title = lines[0]?.replace(/^#\s+/, '') ?? '';
+  let index = 1;
+  while (index < lines.length && lines[index].trim() === '') {
+    index += 1;
+  }
+  const roleLine = (lines[index] ?? '').replace(/^\*\*|\*\*$/g, '');
+  index += 1;
+  while (index < lines.length && lines[index].trim() === '') {
+    index += 1;
+  }
+  return {
+    title,
+    roleLine,
+    body: lines.slice(index).join('\n'),
+  };
+}
+
+export function headingAnchor(heading: string): string {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+export function splitCaseSections(body: string): { preamble: string; sections: { heading: string; markdown: string }[] } {
+  const lines = body.replace(/\r\n/g, '\n').split('\n');
+  const preambleLines: string[] = [];
+  const sections: { heading: string; lines: string[] }[] = [];
+  let current: { heading: string; lines: string[] } | null = null;
+
+  for (const line of lines) {
+    if (line.startsWith('## ')) {
+      current = { heading: line.slice(3).trim(), lines: [line] };
+      sections.push(current);
+      continue;
+    }
+    if (current) current.lines.push(line);
+    else preambleLines.push(line);
+  }
+
+  return {
+    preamble: preambleLines.join('\n').trim(),
+    sections: sections.map((section) => ({
+      heading: section.heading,
+      markdown: section.lines.join('\n').trim(),
+    })),
+  };
+}
+
+export function attachFigures(
+  sections: readonly { heading: string; markdown: string }[],
+  sectionPlacements: readonly Placement[],
+): CaseSection[] {
+  const seen = new Set<string>();
+  for (const section of sections) {
+    if (seen.has(section.heading)) {
+      throw new Error(`Duplicate case heading: ${section.heading}`);
+    }
+    seen.add(section.heading);
+  }
+
+  const byHeading = new Map(sectionPlacements.map((placement) => [placement.afterHeading, placement.figures]));
+  const attached = new Set<string>();
+  const result = sections.map((section) => {
+    const figures = byHeading.get(section.heading) ?? [];
+    if (byHeading.has(section.heading)) attached.add(section.heading);
+    return {
+      heading: section.heading,
+      markdown: section.markdown,
+      anchor: headingAnchor(section.heading),
+      figures,
+    };
+  });
+
+  const missing = [...byHeading.keys()].filter((heading) => !attached.has(heading));
+  if (missing.length > 0) {
+    throw new Error(`Missing figure placement anchors: ${missing.join(', ')}`);
+  }
+  return result;
+}
+
+export function buildArticle(slug: LayoutSlug, body: string): CaseArticle {
+  const placementsForSlug = placements[slug];
+  if (!placementsForSlug) {
+    throw new Error(`No figure placements for ${slug}`);
+  }
+  const split = splitCaseSections(body);
+  return {
+    preamble: split.preamble,
+    sections: attachFigures(split.sections, placementsForSlug),
+    disclosure: disclosures[slug],
+  };
+}
+
+export function figuresFor(slug: LayoutSlug): readonly CaseFigure[] {
+  const articleFigures = placements[slug].flatMap((placement) => placement.figures);
+  const extra = disclosures[slug]?.figures ?? [];
+  return [...articleFigures, ...extra];
+}

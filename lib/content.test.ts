@@ -406,6 +406,8 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.match(media, /Open full-size diagram/);
   assert.match(media, /Open full-size image/);
   assert.match(media, /w-full/);
+  assert.match(media, /max-w-\[440px\]/);
+  assert.match(page, /constrainPortraits=\{slug === 'visitor' \|\| slug === 'concierge'\}/);
   assert.equal(media.includes('max-w-none'), false);
   assert.equal(media.includes('Pending brand clearance'), false);
   assert.match(media, /priority/);

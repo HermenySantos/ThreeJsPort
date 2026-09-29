@@ -63,7 +63,7 @@ export default async function CasePage({ params }: CasePageProps) {
         </p>
         <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
         <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
-        <CaseArticle article={full.article} />
+        <CaseArticle article={full.article} constrainPortraits={slug === 'visitor' || slug === 'concierge'} />
         <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-white/10 pt-8">
           <Link
             href="/#contact"

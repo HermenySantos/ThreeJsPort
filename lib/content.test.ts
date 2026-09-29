@@ -141,8 +141,12 @@ test('full cases load locked markdown with conceptual caveats', () => {
     slugs.map((slug) => [slug, readFileSync(join('content/cases', `${slug}.md`), 'utf8')]),
   );
 
-  assert.match(files.ai, /An AI response is not ready just because the model finished/);
-  assert.match(files.ai, /before a live-event reply is heard/);
+  assert.match(files.ai, /Ovee — AI for live event moderation and workshop synthesis/);
+  assert.match(files.ai, /four live events/);
+  assert.match(files.ai, /600 participants across 60 roundtables/);
+  assert.match(files.ai, /approximately five seconds/);
+  assert.match(files.ai, /primary implementation responsibility/);
+  assert.equal(files.ai.includes('An AI response is not ready just because the model finished'), false);
   assert.equal(files.ai.includes('A live-event AI system has several participants'), false);
   assert.match(files.visitor, /One tour, several devices, shared state/);
   assert.match(files.webar, /Approximately 2,100 participants/);
@@ -211,6 +215,70 @@ test('homepage cards scan scope, then bullets, then stack, then link', () => {
   assert.ok(summaryAt > 0 && deliveredAt > summaryAt);
   assert.ok(stackAt > deliveredAt);
   assert.ok(ctaAt > stackAt);
+});
+
+test('r5 selected visuals are public and blocked assets stay out', () => {
+  const shipped = [
+    'public/cases/ai/02b-stage-ambient-readable.png',
+    'public/cases/ai/02c-stage-speaking-intentional.png',
+    'public/cases/ai/04b-stage-poll-takeover-readable.png',
+    'public/cases/ai/04c-stage-poll-with-speaking.png',
+    'public/cases/ai/05-p0-stage-return-ambient-after-takeover.png',
+    'public/cases/ai/06a-operator-context-transcript-present.png',
+    'public/cases/ai/06b-operator-pending-draft-awaiting-approval.png',
+    'public/cases/ai/06c-operator-after-approve-ovee-output.png',
+    'public/cases/ai/06c-audience-wall-during-approved-output.png',
+    'public/cases/ai/01-p0-home-ovee-reference-entry.png',
+    'public/architecture/ovee-runtime-flow.png',
+    'public/architecture/ovee-wall-decision-paths.png',
+    'public/architecture/ai-control-desktop.png',
+    'public/architecture/ai-playback-desktop.png',
+    'public/architecture/webar-data-desktop.png',
+    'public/architecture/visitor-system-overview-02.png',
+    'public/architecture/visitor-docent-controller-01.png',
+    'public/architecture/concierge-turn-desktop.png',
+    'public/cases/concierge/concierge-04-monitor-gate-quiet.png',
+    'public/cases/concierge/concierge-05-strategy-carryover.png',
+    'public/cases/concierge/concierge-spark-livetest.png',
+  ];
+  for (const file of shipped) {
+    assert.equal(statSync(file).isFile(), true, file);
+  }
+
+  const publicNames: string[] = [];
+  function walkPublic(dir: string) {
+    for (const entry of readdirSync(dir)) {
+      const full = join(dir, entry);
+      if (statSync(full).isDirectory()) walkPublic(full);
+      else publicNames.push(entry);
+    }
+  }
+  walkPublic('public');
+  const blocked = [
+    'webar-event-17',
+    'docent-running',
+    'kiosk-priority',
+    'visitor-language-selection',
+    'visitor-tour-takeover',
+    'ai-workshop-operator',
+  ];
+  for (const name of publicNames) {
+    for (const token of blocked) {
+      assert.equal(name.includes(token), false, `${name} is not cleared for the public path`);
+    }
+  }
+
+  const caseModule = readFileSync('lib/cases.ts', 'utf8');
+  assert.match(caseModule, /02b-stage-ambient-readable\.png/);
+  assert.match(caseModule, /Synthetic 120 votes — not event scale/);
+  assert.match(caseModule, /webar-data-desktop\.png/);
+  assert.match(caseModule, /colleague-owned/);
+  assert.match(caseModule, /Pending brand clearance/);
+  assert.match(caseModule, /concierge-turn-desktop\.png/);
+  assert.equal(caseModule.includes('webar-event'), false);
+  assert.equal(caseModule.toLowerCase().includes('narrated'), false);
+  assert.equal(caseModule.includes('docent-running'), false);
+  assert.equal(caseModule.includes('kiosk-priority'), false);
 });
 
 test('case pages put architecture after product, ownership and delivery', () => {

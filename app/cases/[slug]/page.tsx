@@ -1,6 +1,7 @@
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { CaseMarkdown } from '@/components/case-markdown';
+import { CaseMediaList } from '@/components/case-media';
 import { getFullCase, isCaseSlug } from '@/lib/cases';
 import { cases, site } from '@/lib/content';
 import { ArrowRightIcon } from '@/components/icons';
@@ -63,7 +64,16 @@ export default async function CasePage({ params }: CasePageProps) {
         <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
         <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
         <CaseMarkdown markdown={full.body} />
+        {full.leads.length > 0 ? (
+          <section className="mt-12">
+            {full.leadLabel ? (
+              <p className="text-[11px] uppercase tracking-label text-white/40">{full.leadLabel}</p>
+            ) : null}
+            <CaseMediaList figures={full.leads} priorityFirst />
+          </section>
+        ) : null}
         <p className="mt-12 text-[11px] uppercase tracking-label text-white/40">Architecture</p>
+        {full.diagrams.length > 0 ? <CaseMediaList figures={full.diagrams} /> : null}
         <figure className="mt-4 rounded-[28px] border border-white/10 bg-[#111]">
           <div className="overflow-x-auto">
             <Image

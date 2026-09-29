@@ -70,7 +70,7 @@ export const cases: readonly CaseStudy[] = [
     id: '01',
     slug: 'ai',
     year: '2026',
-    title: 'Operator-controlled AI for live events',
+    title: 'Ovee — AI for live events.',
     label: 'Primary engineer across AI, operator tools and audience delivery · Dorier · 2026',
     summary:
       'In a live room, generating a response is only part of the job. Someone has to decide whether it should be heard. I built the workflows connecting real-time AI, backstage review and audience audio, with safeguards around approval and playback.',
@@ -87,7 +87,7 @@ export const cases: readonly CaseStudy[] = [
     id: '02',
     slug: 'visitor',
     year: '2025–2026',
-    title: 'Multi-device visitor platform',
+    title: 'Multi-device visitor platform.',
     label: 'Core engineer across mobile apps, content management and Go services · Dorier · 2025–2026',
     summary:
       'Audio guides, staff tablets and interactive kiosks share one visitor experience. As a core engineer on the delivery team, I carried changes through React Native apps, content tools and Go services — including the server-side tour-ownership checks and the staff-app integration that uses them.',
@@ -104,7 +104,7 @@ export const cases: readonly CaseStudy[] = [
     id: '03',
     slug: 'webar',
     year: '2025',
-    title: 'Global WebAR experience',
+    title: 'Global WebAR experience.',
     label:
       'End-to-end engineering across the browser experience, backend and admin tools · within wider event delivery · Dorier · 2025',
     summary:
@@ -123,7 +123,7 @@ export const cases: readonly CaseStudy[] = [
     id: '04',
     slug: 'concierge',
     year: '2026',
-    title: 'Museum AI concierge',
+    title: 'Museum AI concierge.',
     label: 'Primary engineer · working prototype · Dorier · 2026',
     summary:
       'An AI answer can sound convincing while drawing on the wrong source. I built a concierge for voice, text and camera input, connecting source selection, conversation monitoring and explicit adaptation rules. An operator view shows how the conversation is being assessed and adapted.',

@@ -60,10 +60,10 @@ test('selected work order is AI, visitor, WebAR, concierge', () => {
 });
 
 test('homepage cards keep V4.1 anatomy and titles', () => {
-  assert.equal(cases[0].title, 'Operator-controlled AI for live events');
-  assert.equal(cases[1].title, 'Multi-device visitor platform');
-  assert.equal(cases[2].title, 'Global WebAR experience');
-  assert.equal(cases[3].title, 'Museum AI concierge');
+  assert.equal(cases[0].title, 'Ovee — AI for live events.');
+  assert.equal(cases[1].title, 'Multi-device visitor platform.');
+  assert.equal(cases[2].title, 'Global WebAR experience.');
+  assert.equal(cases[3].title, 'Museum AI concierge.');
   for (const study of cases) {
     assert.equal(study.delivered.length, 3);
     assert.ok(study.label);
@@ -275,8 +275,29 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(aiMain.reduce((count, section) => count + section.figures.length, 0), 5);
 
   assert.deepEqual(
-    articles.visitor.sections.filter((section) => section.figures.length > 0).map((section) => section.heading),
-    ['How the platform fits together', 'Making tour ownership part of the client–server contract'],
+    articles.visitor.sections.filter((section) => section.figures.length > 0).map((section) => ({
+      heading: section.heading,
+      captions: section.figures.map((figure) => figure.caption),
+    })),
+    [
+      {
+        heading: 'My responsibility',
+        captions: [
+          'Staff tablet controlling a running visitor experience.',
+          'Interactive kiosk asking visitors to choose a policy priority.',
+        ],
+      },
+      {
+        heading: 'How the platform fits together',
+        captions: [
+          'The visitor platform connects guide, docent and kiosk applications with content and show services. Colleagues owned the external Pixera, Quuppa and device-management systems.',
+        ],
+      },
+      {
+        heading: 'Making tour ownership part of the client–server contract',
+        captions: ['Tour takeover updates ownership, notifies the previous controller and confirms the new controller.'],
+      },
+    ],
   );
   assert.equal(articles.visitor.disclosure, undefined);
   assert.match(
@@ -290,8 +311,31 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal((webarPlaced[0]?.figures[0]?.caption ?? '').toLowerCase().includes('not cleared'), false);
 
   const conciergePlaced = articles.concierge.sections.filter((section) => section.figures.length > 0);
-  assert.deepEqual(conciergePlaced.map((section) => section.heading), ['Connecting conversation, monitoring and adaptation']);
-  assert.match(conciergePlaced[0]?.figures[0]?.caption ?? '', /Working prototype/);
+  assert.deepEqual(
+    conciergePlaced.map((section) => ({
+      heading: section.heading,
+      captions: section.figures.map((figure) => figure.caption),
+    })),
+    [
+      {
+        heading: 'Connecting conversation, monitoring and adaptation',
+        captions: [
+          'The guide completes its response before monitoring; adaptation rules run when the turn produces a trigger. Working prototype.',
+          'The diagnostic cockpit shows monitoring estimates while the adaptation gate stays quiet. Working prototype.',
+        ],
+      },
+      {
+        heading: 'When a search match is the wrong source',
+        captions: [
+          'The guide acknowledges missing source support and offers a suggested next step. Working prototype.',
+        ],
+      },
+      {
+        heading: 'Keeping a strategy across turns',
+        captions: ['A previously selected strategy remains active without a new trigger. Working prototype.'],
+      },
+    ],
+  );
   assert.equal(articles.concierge.disclosure, undefined);
 
   assert.throws(
@@ -322,15 +366,11 @@ test('figures attach to headings and missing anchors fail', () => {
   const joined = publicFiles.join('\n');
   for (const blocked of [
     'webar-event',
-    'docent-running',
-    'kiosk-priority',
     'visitor-language',
     'visitor-tour-takeover',
-    'concierge-04',
-    'concierge-05',
-    'concierge-spark',
     'ai-control',
     'ai-architecture',
+    'Pending brand clearance',
   ]) {
     assert.equal(joined.includes(blocked), false, blocked);
   }
@@ -348,6 +388,9 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.ok(titleAt > 0 && roleAt > titleAt);
   assert.ok(articleAt > roleAt);
   assert.ok(contactAt > articleAt);
+  assert.match(page, /study\.title/);
+  assert.match(page, /Working prototype/);
+  assert.equal(page.includes('full.title'), true);
   assert.equal(page.includes('full.architecture'), false);
   assert.equal(page.includes('w-[1800px]'), false);
   assert.equal(page.includes('aspect-video'), false);

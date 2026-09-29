@@ -6,6 +6,10 @@ Participants joined a WebAR experience from their own phones—no app install—
 
 **Approximately 2,100 participants · 12 locations · five weeks for the core implementation, followed by refinement.**
 
+## An event space became a character hunt
+
+Participants used their phone’s browser to discover characters around the venue and choose the right props to befriend them. Each encounter contributed to a final summary of points, characters found and completion time—without an app download.
+
 ## My responsibility
 
 I owned the engineering across the Mattercraft/Zappar browser experience, Azure Functions API, Cosmos DB integration and React administration within the wider event delivery. That included gameplay, feedback, data handling and the interfaces used to inspect results.

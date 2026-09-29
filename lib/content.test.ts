@@ -164,6 +164,13 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.visitor, /development-branch/);
   assert.equal(files.visitor.includes('TimescaleDB'), true);
   assert.match(files.webar, /Approximately 2,100 participants/);
+  const huntAt = files.webar.indexOf('## An event space became a character hunt');
+  const responsibilityAt = files.webar.indexOf('## My responsibility');
+  assert.ok(huntAt > 0 && responsibilityAt > huntAt);
+  assert.match(
+    files.webar,
+    /Participants used their phone’s browser to discover characters around the venue and choose the right props to befriend them\. Each encounter contributed to a final summary of points, characters found and completion time—without an app download\./,
+  );
   assert.match(files.webar, /## Following a score from interaction to administration/);
   assert.match(files.webar, /does not itself guarantee that gameplay will progress/);
   assert.match(files.concierge, /Working prototype/);
@@ -182,7 +189,6 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
     '/terms',
     '/privacy',
     'CTDorier',
-    'Scopely',
     'Olympic',
     'gaia-nervous',
     'incident-free',
@@ -198,6 +204,14 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   for (const token of forbidden) {
     assert.equal(sourceBlob.includes(token), false, `forbidden token still present: ${token}`);
   }
+
+  const layoutSource = readFileSync('lib/case-layout.ts', 'utf8');
+  assert.equal(
+    sourceBlob.replace(layoutSource, '').includes('Scopely'),
+    false,
+    'Scopely must stay out of copy other than WebAR event-photo alt text',
+  );
+  assert.equal(layoutSource.split('Scopely').length - 1, 2);
 
   const homepage = readFileSync('lib/content.ts', 'utf8');
   assert.equal(homepage.includes('TimescaleDB'), false, 'TimescaleDB must not appear in homepage content');
@@ -306,9 +320,70 @@ test('figures attach to headings and missing anchors fail', () => {
   );
 
   const webarPlaced = articles.webar.sections.filter((section) => section.figures.length > 0);
-  assert.deepEqual(webarPlaced.map((section) => section.heading), ['Following a score from interaction to administration']);
-  assert.match(webarPlaced[0]?.figures[0]?.caption ?? '', /location-scoped storage and leaderboards/);
-  assert.equal((webarPlaced[0]?.figures[0]?.caption ?? '').toLowerCase().includes('not cleared'), false);
+  assert.deepEqual(
+    webarPlaced.map((section) => section.heading),
+    ['An event space became a character hunt', 'Following a score from interaction to administration'],
+  );
+  assert.equal(webarPlaced[0]?.figures.length, 1);
+  assert.equal(webarPlaced[0]?.figures[0]?.kind, 'screenshot');
+  assert.equal(webarPlaced[0]?.figures[0]?.src, '/cases/webar/webar-event-lead-phone-ar.jpg');
+  assert.equal(webarPlaced[0]?.figures[0]?.width, 2000);
+  assert.equal(webarPlaced[0]?.figures[0]?.height, 1333);
+  assert.equal(
+    webarPlaced[0]?.figures[0]?.caption,
+    'A participant holds a phone showing the Character Hunt AR experience over the live camera view.',
+  );
+  assert.equal(
+    webarPlaced[0]?.figures[0]?.alt,
+    'Close-up of hands holding a smartphone displaying a Monopoly character in browser AR outdoors.',
+  );
+  const scoreFigure = webarPlaced[1]?.figures[0];
+  assert.equal(scoreFigure?.src, '/architecture/webar-data-desktop.png');
+  assert.equal(scoreFigure?.kind, 'diagram');
+  assert.match(scoreFigure?.caption ?? '', /location-scoped storage and leaderboards/);
+  assert.equal((scoreFigure?.caption ?? '').toLowerCase().includes('not cleared'), false);
+  assert.equal(articles.webar.disclosure?.label, 'Event photography');
+  assert.deepEqual(
+    articles.webar.disclosure?.figures.map((figure) => ({
+      src: figure.src,
+      width: figure.width,
+      height: figure.height,
+      kind: figure.kind,
+      caption: figure.caption,
+      alt: figure.alt,
+    })),
+    [
+      {
+        src: '/cases/webar/webar-event-prop-choice.jpg',
+        width: 2000,
+        height: 1333,
+        kind: 'screenshot',
+        caption: 'A participant chooses a prop for a character on their phone during the event.',
+        alt: 'Indoor photo of a phone screen asking which prop a Scopely game character wants.',
+      },
+      {
+        src: '/cases/webar/webar-event-success-points.jpg',
+        width: 1333,
+        height: 2000,
+        kind: 'screenshot',
+        caption: 'A phone shows a successful character interaction and points earned in the browser experience.',
+        alt: 'Hands holding a phone with a SUCCESS and 100 points overlay in the Character Hunt AR quest.',
+      },
+      {
+        src: '/cases/webar/webar-event-signage-phones.jpg',
+        width: 2000,
+        height: 1333,
+        kind: 'screenshot',
+        caption: 'Participants use phones near Character Hunt AR Quest signage at the event.',
+        alt: 'Group indoors beside an AR GAME Scopely Character Hunt AR Quest sign, several holding phones.',
+      },
+    ],
+  );
+  const photoCaptions = [
+    webarPlaced[0]?.figures[0]?.caption,
+    ...(articles.webar.disclosure?.figures.map((figure) => figure.caption) ?? []),
+  ].join('\n');
+  assert.equal(/2,100|12 locations|screenshot/i.test(photoCaptions), false);
 
   const conciergePlaced = articles.concierge.sections.filter((section) => section.figures.length > 0);
   assert.deepEqual(
@@ -365,7 +440,6 @@ test('figures attach to headings and missing anchors fail', () => {
   }
   const joined = publicFiles.join('\n');
   for (const blocked of [
-    'webar-event',
     'visitor-language',
     'visitor-tour-takeover',
     'ai-control',

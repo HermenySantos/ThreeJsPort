@@ -19,7 +19,7 @@ export type CaseSection = {
 };
 
 export type CaseDisclosure = {
-  label: 'More product views';
+  label: 'More product views' | 'Event photography';
   figures: readonly CaseFigure[];
 };
 
@@ -191,6 +191,19 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
   ],
   webar: [
     {
+      afterHeading: 'An event space became a character hunt',
+      figures: [
+        shot(
+          '/cases/webar/webar-event-lead-phone-ar.jpg',
+          2000,
+          1333,
+          'Close-up of hands holding a smartphone displaying a Monopoly character in browser AR outdoors.',
+          'A participant holds a phone showing the Character Hunt AR experience over the live camera view.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
       afterHeading: 'Following a score from interaction to administration',
       figures: [
         shot(
@@ -255,8 +268,39 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
   ],
 };
 
+const webarDisclosure: CaseDisclosure = {
+  label: 'Event photography',
+  figures: [
+    shot(
+      '/cases/webar/webar-event-prop-choice.jpg',
+      2000,
+      1333,
+      'Indoor photo of a phone screen asking which prop a Scopely game character wants.',
+      'A participant chooses a prop for a character on their phone during the event.',
+      'screenshot',
+    ),
+    shot(
+      '/cases/webar/webar-event-success-points.jpg',
+      1333,
+      2000,
+      'Hands holding a phone with a SUCCESS and 100 points overlay in the Character Hunt AR quest.',
+      'A phone shows a successful character interaction and points earned in the browser experience.',
+      'screenshot',
+    ),
+    shot(
+      '/cases/webar/webar-event-signage-phones.jpg',
+      2000,
+      1333,
+      'Group indoors beside an AR GAME Scopely Character Hunt AR Quest sign, several holding phones.',
+      'Participants use phones near Character Hunt AR Quest signage at the event.',
+      'screenshot',
+    ),
+  ],
+};
+
 const disclosures: Partial<Record<LayoutSlug, CaseDisclosure>> = {
   ai: oveeDisclosure,
+  webar: webarDisclosure,
 };
 
 export function parseCaseMarkdown(markdown: string): { title: string; roleLine: string; body: string } {

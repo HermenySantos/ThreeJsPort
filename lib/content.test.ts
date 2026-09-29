@@ -281,6 +281,13 @@ test('figures attach to headings and missing anchors fail', () => {
     })),
     [
       {
+        heading: 'My responsibility',
+        captions: [
+          'Staff tablet controlling a running visitor experience.',
+          'Interactive kiosk asking visitors to choose a policy priority.',
+        ],
+      },
+      {
         heading: 'How the platform fits together',
         captions: [
           'The visitor platform connects guide, docent and kiosk applications with content and show services. Colleagues owned the external Pixera, Quuppa and device-management systems.',
@@ -291,10 +298,6 @@ test('figures attach to headings and missing anchors fail', () => {
         captions: ['Tour takeover updates ownership, notifies the previous controller and confirms the new controller.'],
       },
     ],
-  );
-  assert.equal(
-    articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.length,
-    0,
   );
   assert.equal(articles.visitor.disclosure, undefined);
   assert.match(
@@ -318,7 +321,18 @@ test('figures attach to headings and missing anchors fail', () => {
         heading: 'Connecting conversation, monitoring and adaptation',
         captions: [
           'The guide completes its response before monitoring; adaptation rules run when the turn produces a trigger. Working prototype.',
+          'The diagnostic cockpit shows monitoring estimates while the adaptation gate stays quiet. Working prototype.',
         ],
+      },
+      {
+        heading: 'When a search match is the wrong source',
+        captions: [
+          'The guide acknowledges missing source support and offers a suggested next step. Working prototype.',
+        ],
+      },
+      {
+        heading: 'Keeping a strategy across turns',
+        captions: ['A previously selected strategy remains active without a new trigger. Working prototype.'],
       },
     ],
   );
@@ -354,11 +368,6 @@ test('figures attach to headings and missing anchors fail', () => {
     'webar-event',
     'visitor-language',
     'visitor-tour-takeover',
-    'docent-running',
-    'kiosk-priority',
-    'concierge-04',
-    'concierge-05',
-    'concierge-spark',
     'ai-control',
     'ai-architecture',
     'Pending brand clearance',

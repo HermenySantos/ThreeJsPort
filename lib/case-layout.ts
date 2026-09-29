@@ -142,6 +142,27 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
   ai: oveePlacements,
   visitor: [
     {
+      afterHeading: 'My responsibility',
+      figures: [
+        shot(
+          '/cases/visitor/docent-running.png',
+          1600,
+          2560,
+          'Staff tablet showing a visitor experience in progress, with stop and reset controls.',
+          'Staff tablet controlling a running visitor experience.',
+          'screenshot',
+        ),
+        shot(
+          '/cases/visitor/kiosk-priority-vote-clean.png',
+          1600,
+          900,
+          'Kiosk screen asking a visitor to choose among policy priorities.',
+          'Interactive kiosk asking visitors to choose a policy priority.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
       afterHeading: 'How the platform fits together',
       figures: [
         shot(
@@ -194,6 +215,40 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Diagram of a concierge turn: the guide responds, then monitoring runs, and adaptation rules run when the turn produces a trigger.',
           'The guide completes its response before monitoring; adaptation rules run when the turn produces a trigger. Working prototype.',
           'diagram',
+        ),
+        shot(
+          '/cases/concierge/concierge-04-monitor-gate-quiet.png',
+          1036,
+          1716,
+          'Diagnostic cockpit with monitoring estimates and a quiet adaptation gate.',
+          'The diagnostic cockpit shows monitoring estimates while the adaptation gate stays quiet. Working prototype.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'When a search match is the wrong source',
+      figures: [
+        shot(
+          '/cases/concierge/concierge-spark-livetest.png',
+          2560,
+          1724,
+          'Guide response stating that source support is missing, with a suggested next step.',
+          'The guide acknowledges missing source support and offers a suggested next step. Working prototype.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'Keeping a strategy across turns',
+      figures: [
+        shot(
+          '/cases/concierge/concierge-05-strategy-carryover.png',
+          1036,
+          1716,
+          'Diagnostic cockpit showing a previously selected strategy still active, with no new trigger.',
+          'A previously selected strategy remains active without a new trigger. Working prototype.',
+          'screenshot',
         ),
       ],
     },

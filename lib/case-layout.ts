@@ -21,6 +21,7 @@ export type CaseSection = {
 export type CaseDisclosure = {
   label: 'More product views' | 'Event photography';
   figures: readonly CaseFigure[];
+  afterHeading?: string;
 };
 
 export type CaseArticle = {
@@ -270,6 +271,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
 
 const webarDisclosure: CaseDisclosure = {
   label: 'Event photography',
+  afterHeading: 'Result',
   figures: [
     shot(
       '/cases/webar/webar-event-prop-choice.jpg',
@@ -392,10 +394,14 @@ export function buildArticle(slug: LayoutSlug, body: string): CaseArticle {
     throw new Error(`No figure placements for ${slug}`);
   }
   const split = splitCaseSections(body);
+  const disclosure = disclosures[slug];
+  if (disclosure?.afterHeading && !split.sections.some((section) => section.heading === disclosure.afterHeading)) {
+    throw new Error(`Missing disclosure anchor: ${disclosure.afterHeading}`);
+  }
   return {
     preamble: split.preamble,
     sections: attachFigures(split.sections, placementsForSlug),
-    disclosure: disclosures[slug],
+    disclosure,
   };
 }
 

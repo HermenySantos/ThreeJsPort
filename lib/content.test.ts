@@ -343,6 +343,11 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.match(scoreFigure?.caption ?? '', /location-scoped storage and leaderboards/);
   assert.equal((scoreFigure?.caption ?? '').toLowerCase().includes('not cleared'), false);
   assert.equal(articles.webar.disclosure?.label, 'Event photography');
+  assert.equal(articles.webar.disclosure?.afterHeading, 'Result');
+  assert.equal(articles.ai.disclosure?.afterHeading, undefined);
+  const webarHeadings = articles.webar.sections.map((section) => section.heading);
+  const resultAt = webarHeadings.indexOf('Result');
+  assert.equal(webarHeadings[resultAt + 1], 'What I would improve next');
   assert.deepEqual(
     articles.webar.disclosure?.figures.map((figure) => ({
       src: figure.src,
@@ -475,13 +480,17 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.ok(sectionAt > 0 && figuresAt > sectionAt);
   assert.ok(disclosureAt > figuresAt);
   assert.equal(/<details[^>]*\sopen/.test(article), false);
-  assert.match(article, /article\.disclosure\.label/);
+  assert.match(article, /disclosure\.label/);
+  assert.match(article, /afterHeading/);
   assert.match(readFileSync('lib/case-layout.ts', 'utf8'), /More product views/);
   assert.match(media, /Open full-size diagram/);
   assert.match(media, /Open full-size image/);
   assert.match(media, /w-full/);
   assert.match(media, /max-w-\[440px\]/);
-  assert.match(page, /constrainPortraits=\{slug === 'visitor' \|\| slug === 'concierge'\}/);
+  assert.match(
+    page,
+    /constrainPortraits=\{slug === 'visitor' \|\| slug === 'concierge' \|\| slug === 'webar'\}/,
+  );
   assert.equal(media.includes('max-w-none'), false);
   assert.equal(media.includes('Pending brand clearance'), false);
   assert.match(media, /priority/);

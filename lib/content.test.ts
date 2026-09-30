@@ -350,6 +350,9 @@ test('figures attach to headings and missing anchors fail', () => {
         width: figure.width,
         height: figure.height,
         kind: figure.kind,
+        label: figure.label,
+        layout: figure.layout,
+        sourceHref: figure.sourceHref,
       })),
     })),
     [
@@ -357,12 +360,26 @@ test('figures attach to headings and missing anchors fail', () => {
         heading: 'From arrival to a shared decision',
         figures: [
           {
+            src: '/cases/visitor/visitor-audio-language.png',
+            alt: 'Visitor audio guide language-selection screen with English highlighted and a Confirm button.',
+            caption: 'Visitors select a language on their handheld audio guide before joining the experience.',
+            width: 1080,
+            height: 2400,
+            kind: 'screenshot',
+            label: 'Visitor audio guide',
+            layout: undefined,
+            sourceHref: undefined,
+          },
+          {
             src: '/cases/visitor/docent-running.png',
             alt: 'Guide tablet showing a running experience, stop and reset controls, and a visitor-device table.',
             caption: 'The guide’s tablet shows the tour in progress alongside visitor-device status.',
             width: 1600,
             height: 2560,
             kind: 'screenshot',
+            label: 'Guide tablet',
+            layout: undefined,
+            sourceHref: undefined,
           },
           {
             src: '/cases/visitor/kiosk-priority-vote-clean.png',
@@ -371,6 +388,9 @@ test('figures attach to headings and missing anchors fail', () => {
             width: 1600,
             height: 900,
             kind: 'screenshot',
+            label: 'Interactive kiosk',
+            layout: undefined,
+            sourceHref: undefined,
           },
         ],
       },
@@ -378,13 +398,16 @@ test('figures attach to headings and missing anchors fail', () => {
         heading: 'How the platform fits together',
         figures: [
           {
-            src: '/architecture/visitor-system-overview-02.png',
-            alt: 'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
+            src: '/architecture/visitor-simplified-system.png',
+            alt: 'Simplified system diagram showing guide tablet, visitor audio guide, voting kiosk, tour services, state coordination, CMS, and external show control and indoor positioning.',
             caption:
-              'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
-            width: 1951,
-            height: 1961,
+              'How the visitor experience stays coordinated. Simplified system view — relationships among applications, services and external integrations; not a claim that every component was built by one person or that every arrow is a direct network connection.',
+            width: 1200,
+            height: 1100,
             kind: 'diagram',
+            label: undefined,
+            layout: undefined,
+            sourceHref: '/architecture/visitor-simplified-system.svg',
           },
         ],
       },
@@ -398,18 +421,66 @@ test('figures attach to headings and missing anchors fail', () => {
             width: 2118,
             height: 975,
             kind: 'diagram',
+            label: undefined,
+            layout: undefined,
+            sourceHref: undefined,
+          },
+        ],
+      },
+      {
+        heading: 'Making the platform understandable after handover',
+        figures: [
+          {
+            src: '/cases/visitor/visitor-docs-day-in-life-excerpt.png',
+            alt: 'Excerpt from Day in the Life of a Tour documentation showing the cast of applications and the arrival onboarding step.',
+            caption:
+              'Technical handover documentation connecting the visitor journey to application behaviour and system responsibilities.',
+            width: 770,
+            height: 950,
+            kind: 'screenshot',
+            label: undefined,
+            layout: 'article',
+            sourceHref: undefined,
           },
         ],
       },
     ],
   );
-  assert.equal(articles.visitor.disclosure, undefined);
+  assert.equal(articles.visitor.disclosure?.label, 'Detailed system architecture');
+  assert.equal(articles.visitor.disclosure?.afterHeading, 'How the platform fits together');
+  assert.deepEqual(
+    articles.visitor.disclosure?.figures.map((figure) => ({
+      src: figure.src,
+      alt: figure.alt,
+      caption: figure.caption,
+      kind: figure.kind,
+    })),
+    [
+      {
+        src: '/architecture/visitor-system-overview-02.png',
+        alt: 'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
+        caption:
+          'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+        kind: 'diagram',
+      },
+    ],
+  );
+  assert.equal(
+    articles.visitor.sections.some((section) =>
+      section.figures.some((figure) => figure.src.includes('visitor-system-overview-02')),
+    ),
+    false,
+  );
   assert.equal(
     articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.length,
     0,
   );
-  const visitorSrcs = articles.visitor.sections.flatMap((section) => section.figures.map((figure) => figure.src));
+  const visitorSrcs = [
+    ...articles.visitor.sections.flatMap((section) => section.figures.map((figure) => figure.src)),
+    ...(articles.visitor.disclosure?.figures.map((figure) => figure.src) ?? []),
+  ];
   assert.equal(new Set(visitorSrcs).size, visitorSrcs.length);
+  assert.equal(statSync(join('public', 'architecture/visitor-simplified-system.svg')).isFile(), true);
   assert.deepEqual(
     articles.visitor.sections.map((section) => section.anchor),
     articles.visitor.sections.map((section) => headingAnchor(section.heading)),
@@ -595,6 +666,9 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.equal(media.includes('max-w-none'), false);
   assert.equal(media.includes('Pending brand clearance'), false);
   assert.match(media, /priority/);
+  assert.match(media, /figure\.label/);
+  assert.match(media, /figure\.sourceHref/);
+  assert.match(media, /figure\.layout !== 'article'/);
   assert.match(
     page,
     /Engineering an immersive visitor platform across React Native, native Android, Go and content services: location-aware audio, tour control and technical handover\./,

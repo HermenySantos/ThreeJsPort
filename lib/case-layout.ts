@@ -9,6 +9,10 @@ export type CaseFigure = {
   width: number;
   height: number;
   kind: 'screenshot' | 'diagram';
+  label?: string;
+  /** article keeps a tall still at column width instead of the portrait cap. */
+  layout?: 'portrait' | 'article';
+  sourceHref?: string;
 };
 
 export type CaseSection = {
@@ -19,7 +23,7 @@ export type CaseSection = {
 };
 
 export type CaseDisclosure = {
-  label: 'More product views' | 'Event photography';
+  label: 'More product views' | 'Event photography' | 'Detailed system architecture';
   figures: readonly CaseFigure[];
   afterHeading?: string;
 };
@@ -42,8 +46,9 @@ function shot(
   alt: string,
   caption: string,
   kind: CaseFigure['kind'],
+  extras?: Pick<CaseFigure, 'label' | 'layout' | 'sourceHref'>,
 ): CaseFigure {
-  return { src, alt, caption, width, height, kind };
+  return { src, alt, caption, width, height, kind, ...extras };
 }
 
 const oveePlacements: readonly Placement[] = [
@@ -146,12 +151,22 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       afterHeading: 'From arrival to a shared decision',
       figures: [
         shot(
+          '/cases/visitor/visitor-audio-language.png',
+          1080,
+          2400,
+          'Visitor audio guide language-selection screen with English highlighted and a Confirm button.',
+          'Visitors select a language on their handheld audio guide before joining the experience.',
+          'screenshot',
+          { label: 'Visitor audio guide' },
+        ),
+        shot(
           '/cases/visitor/docent-running.png',
           1600,
           2560,
           'Guide tablet showing a running experience, stop and reset controls, and a visitor-device table.',
           'The guide’s tablet shows the tour in progress alongside visitor-device status.',
           'screenshot',
+          { label: 'Guide tablet' },
         ),
         shot(
           '/cases/visitor/kiosk-priority-vote-clean.png',
@@ -160,6 +175,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Visitor kiosk presenting three policy priorities for a fictional-country voting exercise.',
           'Visitors choose a policy priority as part of the shared voting experience.',
           'screenshot',
+          { label: 'Interactive kiosk' },
         ),
       ],
     },
@@ -167,12 +183,13 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       afterHeading: 'How the platform fits together',
       figures: [
         shot(
-          '/architecture/visitor-system-overview-02.png',
-          1951,
-          1961,
-          'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
-          'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+          '/architecture/visitor-simplified-system.png',
+          1200,
+          1100,
+          'Simplified system diagram showing guide tablet, visitor audio guide, voting kiosk, tour services, state coordination, CMS, and external show control and indoor positioning.',
+          'How the visitor experience stays coordinated. Simplified system view — relationships among applications, services and external integrations; not a claim that every component was built by one person or that every arrow is a direct network connection.',
           'diagram',
+          { sourceHref: '/architecture/visitor-simplified-system.svg' },
         ),
       ],
     },
@@ -186,6 +203,20 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Tour takeover sequence showing ownership update, notification to the previous controller and confirmation to the new controller.',
           'The takeover flow updates the controlling device and notifies the previous controller.',
           'diagram',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'Making the platform understandable after handover',
+      figures: [
+        shot(
+          '/cases/visitor/visitor-docs-day-in-life-excerpt.png',
+          770,
+          950,
+          'Excerpt from Day in the Life of a Tour documentation showing the cast of applications and the arrival onboarding step.',
+          'Technical handover documentation connecting the visitor journey to application behaviour and system responsibilities.',
+          'screenshot',
+          { layout: 'article' },
         ),
       ],
     },
@@ -300,9 +331,25 @@ const webarDisclosure: CaseDisclosure = {
   ],
 };
 
+const visitorDisclosure: CaseDisclosure = {
+  label: 'Detailed system architecture',
+  afterHeading: 'How the platform fits together',
+  figures: [
+    shot(
+      '/architecture/visitor-system-overview-02.png',
+      1951,
+      1961,
+      'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
+      'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+      'diagram',
+    ),
+  ],
+};
+
 const disclosures: Partial<Record<LayoutSlug, CaseDisclosure>> = {
   ai: oveeDisclosure,
   webar: webarDisclosure,
+  visitor: visitorDisclosure,
 };
 
 export function parseCaseMarkdown(markdown: string): { title: string; roleLine: string; body: string } {

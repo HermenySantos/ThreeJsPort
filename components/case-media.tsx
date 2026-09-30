@@ -65,11 +65,6 @@ function CaseMedia({
         <a href={figure.src} className="mt-3 block text-[13px] text-white/55 transition-colors hover:text-white">
           {openLabel}
         </a>
-        {figure.sourceHref ? (
-          <a href={figure.sourceHref} className="mt-1 block text-[13px] text-white/55 transition-colors hover:text-white">
-            Open editable source
-          </a>
-        ) : null}
       </figcaption>
     </figure>
   );

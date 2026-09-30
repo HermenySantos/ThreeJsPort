@@ -1,93 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1100" viewBox="0 0 1200 1100" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="560" viewBox="0 0 1080 560" role="img" aria-labelledby="title desc">
   <title id="title">How the visitor experience stays coordinated</title>
   <desc id="desc">Simplified system view. Information-flow relationships among visitor apps, tour services, state coordination, CMS, and external show-control and positioning systems.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#1e293b"/></marker>
     <style>
-      .bg{fill:#f8fafc}.t{font:700 26px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#0f172a}
+      .bg{fill:#f8fafc}
+      .t{font:700 24px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#0f172a}
       .s{font:500 14px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#475569}
       .h{font:650 13px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#9a3412}
+      .col{font:600 12px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#64748b}
       .l{font:650 15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#0f172a}
-      .e{font:500 12px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#334155}
-      .n{font:500 12px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#64748b}
+      .e{font:600 12px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#334155}
+      .n{font:500 11px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#64748b}
       .box{fill:#fff;stroke:#0f172a;stroke-width:2;rx:10}
       .core{fill:#eff6ff;stroke:#1d4ed8;stroke-width:2;rx:10}
       .ext{fill:#fff7ed;stroke:#c2410c;stroke-width:2;rx:10;stroke-dasharray:6 4}
       .line{stroke:#1e293b;stroke-width:1.8;fill:none;marker-end:url(#arrow)}
     </style>
   </defs>
-  <rect class="bg" width="1200" height="1100"/>
-  <text class="t" x="36" y="44">How the visitor experience stays coordinated</text>
-  <text class="s" x="36" y="72">Simplified system view · relationships only — not sole ownership or every network hop</text>
+  <rect class="bg" width="1080" height="560"/>
+  <text class="t" x="28" y="34">How the visitor experience stays coordinated</text>
+  <text class="s" x="28" y="56">Simplified system view</text>
 
-  <!-- External -->
-  <rect x="36" y="100" width="520" height="150" fill="#fff7ed" stroke="#fdba74" rx="14"/>
-  <text class="h" x="52" y="126">External integrations (colleague-owned)</text>
-  <rect class="ext" x="56" y="146" width="220" height="72"/>
-  <text class="l" x="166" y="188" text-anchor="middle">Show control</text>
-  <rect class="ext" x="312" y="146" width="220" height="72"/>
-  <text class="l" x="422" y="188" text-anchor="middle">Indoor positioning</text>
+  <!-- External integrations -->
+  <rect x="40" y="72" width="520" height="108" fill="#fff7ed" stroke="#fdba74" rx="14"/>
+  <text class="h" x="56" y="94">External integrations</text>
+  <rect class="ext" x="56" y="108" width="200" height="52"/>
+  <text class="l" x="156" y="140" text-anchor="middle">Show control</text>
+  <rect class="ext" x="300" y="108" width="220" height="52"/>
+  <text class="l" x="410" y="140" text-anchor="middle">Indoor positioning</text>
 
-  <!-- Apps column -->
-  <text class="s" x="36" y="300">Applications</text>
-  <rect class="box" x="36" y="316" width="240" height="72"/>
-  <text class="l" x="156" y="358" text-anchor="middle">Guide tablet</text>
-  <rect class="box" x="36" y="430" width="240" height="72"/>
-  <text class="l" x="156" y="472" text-anchor="middle">Visitor audio guide</text>
-  <rect class="box" x="36" y="544" width="240" height="72"/>
-  <text class="l" x="156" y="586" text-anchor="middle">Voting kiosk</text>
+  <!-- Column labels -->
+  <text class="col" x="40" y="214">Applications</text>
+  <text class="col" x="320" y="214">Coordination</text>
+  <text class="col" x="860" y="214">Content</text>
 
-  <!-- Core -->
-  <text class="s" x="420" y="300">Coordination</text>
-  <rect class="core" x="420" y="316" width="260" height="72"/>
-  <text class="l" x="550" y="358" text-anchor="middle">Tour services</text>
-  <rect class="core" x="420" y="450" width="260" height="88"/>
-  <text class="l" x="550" y="490" text-anchor="middle">State coordination</text>
-  <text class="n" x="550" y="512" text-anchor="middle">per-visitor context</text>
+  <!-- Application nodes -->
+  <rect class="box" x="40" y="226" width="200" height="52"/>
+  <text class="l" x="140" y="258" text-anchor="middle">Guide tablet</text>
+  <rect class="box" x="40" y="360" width="200" height="52"/>
+  <text class="l" x="140" y="392" text-anchor="middle">Voting kiosk</text>
+  <rect class="box" x="620" y="360" width="210" height="52"/>
+  <text class="l" x="725" y="392" text-anchor="middle">Visitor audio guide</text>
 
-  <!-- CMS -->
-  <text class="s" x="820" y="300">Content</text>
-  <rect class="box" x="820" y="316" width="340" height="72"/>
-  <text class="l" x="990" y="358" text-anchor="middle">CMS</text>
-  <rect class="box" x="820" y="450" width="340" height="88"/>
-  <text class="l" x="990" y="490" text-anchor="middle">Applications &amp; services</text>
-  <text class="n" x="990" y="512" text-anchor="middle">schedules · content · media</text>
+  <!-- Coordination nodes -->
+  <rect class="core" x="320" y="226" width="210" height="52"/>
+  <text class="l" x="425" y="258" text-anchor="middle">Tour services</text>
+  <rect class="core" x="620" y="226" width="210" height="60"/>
+  <text class="l" x="725" y="252" text-anchor="middle">State coordination</text>
+  <text class="n" x="725" y="270" text-anchor="middle">per-visitor context</text>
 
-  <!-- Edges (straight / orthogonal for readability) -->
-  <!-- Guide tablet → Tour services -->
-  <path class="line" d="M276,352 H420"/>
-  <text class="e" x="300" y="340">tour commands</text>
+  <!-- Content nodes -->
+  <rect class="box" x="860" y="226" width="190" height="52"/>
+  <text class="l" x="955" y="258" text-anchor="middle">CMS</text>
+  <rect class="box" x="860" y="360" width="190" height="60"/>
+  <text class="l" x="955" y="386" text-anchor="middle">Applications &amp; services</text>
+  <text class="n" x="955" y="404" text-anchor="middle">schedules · content · media</text>
 
-  <!-- Tour services → State coordination -->
-  <path class="line" d="M550,388 V450"/>
-  <text class="e" x="560" y="424">tour &amp; visitor context</text>
+  <!-- Edges: Guide tablet → Tour services → State coordination → Visitor audio -->
+  <path class="line" d="M240,252 H320"/>
+  <text class="e" x="248" y="244">tour commands</text>
 
-  <!-- Show control → State coordination -->
-  <path class="line" d="M166,218 V400 H420"/>
-  <text class="e" x="180" y="280">show state &amp; media cues</text>
+  <path class="line" d="M530,252 H620"/>
+  <text class="e" x="538" y="244">tour &amp; visitor context</text>
 
-  <!-- Indoor positioning → State coordination -->
-  <path class="line" d="M422,218 V420 H420"/>
-  <text class="e" x="430" y="268">visitor-location updates</text>
+  <path class="line" d="M725,286 V360"/>
+  <text class="e" x="736" y="328">per-visitor audio &amp; experience state</text>
 
-  <!-- State coordination → Visitor audio guide -->
-  <path class="line" d="M420,494 H276"/>
-  <text class="e" x="290" y="484">per-visitor audio &amp; experience state</text>
+  <!-- Show control → State coordination (dedicated top lane; enters State top-left) -->
+  <path class="line" d="M156,160 V192 H660 V226"/>
+  <text class="e" x="170" y="184">show state &amp; media cues</text>
 
-  <!-- CMS → Applications and services -->
-  <path class="line" d="M990,388 V450"/>
-  <text class="e" x="1000" y="424">schedules, content &amp; media</text>
+  <!-- Indoor positioning → State coordination (parallel lane; enters State top-right) -->
+  <path class="line" d="M410,160 V204 H790 V226"/>
+  <text class="e" x="480" y="198">visitor-location updates</text>
 
-  <!-- Show control → Voting kiosk -->
-  <path class="line" d="M100,218 V580 H36"/>
-  <text class="e" x="40" y="500">presentation cues &amp; results</text>
+  <!-- Kiosk incoming: presentation cues & results (left gutter, around boxes) -->
+  <path class="line" d="M56,134 H18 V386 H40"/>
+  <text class="e" x="28" y="330">presentation cues &amp; results</text>
 
-  <!-- Voting kiosk → Show control (visitor choices) -->
-  <path class="line" d="M156,544 V250"/>
-  <text class="e" x="166" y="620">visitor choices → show-control integration</text>
+  <!-- Kiosk outgoing: visitor choices (gap between apps and coordination, around Guide tablet) -->
+  <path class="line" d="M240,386 H270 V160 H200"/>
+  <text class="e" x="278" y="300">visitor choices</text>
 
-  <text class="n" x="36" y="700">Blue = coordination core · dashed orange = external integrations</text>
-  <text class="n" x="36" y="722">Arrows describe information flow for the visitor journey — not that every component was built by one person, and not that every arrow is a direct socket.</text>
-  <text class="n" x="36" y="744">Editable source: /architecture/visitor-simplified-system.svg</text>
+  <!-- CMS → Applications & services -->
+  <path class="line" d="M955,278 V360"/>
+  <text class="e" x="966" y="324">schedules, content &amp; media</text>
 </svg>

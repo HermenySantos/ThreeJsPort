@@ -352,7 +352,6 @@ test('figures attach to headings and missing anchors fail', () => {
         kind: figure.kind,
         label: figure.label,
         layout: figure.layout,
-        sourceHref: figure.sourceHref,
       })),
     })),
     [
@@ -368,7 +367,6 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: 'Visitor audio guide',
             layout: undefined,
-            sourceHref: undefined,
           },
           {
             src: '/cases/visitor/docent-running.png',
@@ -379,7 +377,6 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: 'Guide tablet',
             layout: undefined,
-            sourceHref: undefined,
           },
           {
             src: '/cases/visitor/kiosk-priority-vote-clean.png',
@@ -390,7 +387,6 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: 'Interactive kiosk',
             layout: undefined,
-            sourceHref: undefined,
           },
         ],
       },
@@ -399,15 +395,14 @@ test('figures attach to headings and missing anchors fail', () => {
         figures: [
           {
             src: '/architecture/visitor-simplified-system.png',
-            alt: 'Simplified system diagram showing guide tablet, visitor audio guide, voting kiosk, tour services, state coordination, CMS, and external show control and indoor positioning.',
+            alt: 'Simplified system view of the guide tablet, voting kiosk, tour services, state coordination, visitor audio guide, CMS, show control and indoor positioning.',
             caption:
-              'How the visitor experience stays coordinated. Simplified system view — relationships among applications, services and external integrations; not a claim that every component was built by one person or that every arrow is a direct network connection.',
-            width: 1200,
-            height: 1100,
+              'Tour services combine guide commands, show cues and visitor-location updates to coordinate the experience.',
+            width: 1080,
+            height: 560,
             kind: 'diagram',
             label: undefined,
             layout: undefined,
-            sourceHref: '/architecture/visitor-simplified-system.svg',
           },
         ],
       },
@@ -423,7 +418,6 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'diagram',
             label: undefined,
             layout: undefined,
-            sourceHref: undefined,
           },
         ],
       },
@@ -440,7 +434,6 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: undefined,
             layout: 'article',
-            sourceHref: undefined,
           },
         ],
       },
@@ -667,7 +660,8 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.equal(media.includes('Pending brand clearance'), false);
   assert.match(media, /priority/);
   assert.match(media, /figure\.label/);
-  assert.match(media, /figure\.sourceHref/);
+  assert.equal(media.includes('sourceHref'), false);
+  assert.equal(media.includes('Open editable source'), false);
   assert.match(media, /figure\.layout !== 'article'/);
   assert.match(
     page,

@@ -12,7 +12,6 @@ export type CaseFigure = {
   label?: string;
   /** article keeps a tall still at column width instead of the portrait cap. */
   layout?: 'portrait' | 'article';
-  sourceHref?: string;
 };
 
 export type CaseSection = {
@@ -46,7 +45,7 @@ function shot(
   alt: string,
   caption: string,
   kind: CaseFigure['kind'],
-  extras?: Pick<CaseFigure, 'label' | 'layout' | 'sourceHref'>,
+  extras?: Pick<CaseFigure, 'label' | 'layout'>,
 ): CaseFigure {
   return { src, alt, caption, width, height, kind, ...extras };
 }
@@ -184,12 +183,11 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       figures: [
         shot(
           '/architecture/visitor-simplified-system.png',
-          1200,
-          1100,
-          'Simplified system diagram showing guide tablet, visitor audio guide, voting kiosk, tour services, state coordination, CMS, and external show control and indoor positioning.',
-          'How the visitor experience stays coordinated. Simplified system view — relationships among applications, services and external integrations; not a claim that every component was built by one person or that every arrow is a direct network connection.',
+          1080,
+          560,
+          'Simplified system view of the guide tablet, voting kiosk, tour services, state coordination, visitor audio guide, CMS, show control and indoor positioning.',
+          'Tour services combine guide commands, show cues and visitor-location updates to coordinate the experience.',
           'diagram',
-          { sourceHref: '/architecture/visitor-simplified-system.svg' },
         ),
       ],
     },

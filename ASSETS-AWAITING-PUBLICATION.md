@@ -8,8 +8,8 @@ They were briefly under `public/` earlier on this branch, then held in `review-l
 
 | File | Public path | Placement |
 | --- | --- | --- |
-| `docent-running.png` | `public/cases/visitor/docent-running.png` | After “My responsibility,” before “How the platform fits together.” Caption: “Staff tablet controlling a running visitor experience.” |
-| `kiosk-priority-vote-clean.png` | `public/cases/visitor/kiosk-priority-vote-clean.png` | Stacked after the staff-tablet still. Caption: “Interactive kiosk asking visitors to choose a policy priority.” |
+| `docent-running.png` | `public/cases/visitor/docent-running.png` | After “From arrival to a shared decision,” before the kiosk still. Caption: “The guide’s tablet shows the tour in progress alongside visitor-device status.” |
+| `kiosk-priority-vote-clean.png` | `public/cases/visitor/kiosk-priority-vote-clean.png` | Stacked after the guide-tablet still in the same section. Caption: “Visitors choose a policy priority as part of the shared voting experience.” |
 
 ## Concierge
 

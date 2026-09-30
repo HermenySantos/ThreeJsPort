@@ -61,7 +61,8 @@ test('selected work order is AI, visitor, WebAR, concierge', () => {
 
 test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.equal(cases[0].title, 'Ovee — AI for live events.');
-  assert.equal(cases[1].title, 'Multi-device visitor platform.');
+  assert.equal(cases[1].title, 'Immersive visitor platform.');
+  assert.equal(`${cases[1].id} / ${cases[1].title}`, '02 / Immersive visitor platform.');
   assert.equal(cases[2].title, 'Global WebAR experience.');
   assert.equal(cases[3].title, 'Museum AI concierge.');
   for (const study of cases) {
@@ -86,16 +87,39 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   );
 });
 
-test('visitor homepage stack omits TimescaleDB', () => {
-  assert.deepEqual(cases[1].stack, [
+test('visitor homepage card uses the immersive platform copy', () => {
+  const visitor = cases[1];
+  assert.equal(visitor.id, '02');
+  assert.equal(visitor.slug, 'visitor');
+  assert.equal(visitor.year, '2025–2026');
+  assert.equal(visitor.href, '/cases/visitor');
+  assert.equal(visitor.title, 'Immersive visitor platform.');
+  assert.equal(
+    visitor.label,
+    'Core engineer across mobile apps, native Android and Go services · Dorier · 2025–2026',
+  );
+  assert.equal(
+    visitor.summary,
+    'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. Within the delivery team, I connected React Native apps, native Android modules, Go services and content tools to support that journey.',
+  );
+  assert.deepEqual(visitor.delivered, [
+    'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',
+    'Device-aware tour control and group-tour language flows across applications, CMS and backend services.',
+    'Multilingual content integration, operator tools and the platform’s technical documentation.',
+  ]);
+  assert.deepEqual(visitor.stack, [
     'React Native',
     'TypeScript',
+    'Kotlin',
     'Go',
-    'Payload CMS',
     'MQTT',
+    'Payload CMS',
     'PostgreSQL',
   ]);
-  assert.equal(cases[1].stack.includes('TimescaleDB'), false);
+  assert.equal(visitor.cta, 'Explore the engineering');
+  assert.equal(visitor.stack.includes('TimescaleDB'), false);
+  assert.equal(visitor.prototype, undefined);
+  assert.equal(visitor.scale, undefined);
 });
 
 test('metrics strip is V4.1-honest, not WebAR-only #18 copy', () => {
@@ -159,10 +183,38 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.ai, /163 contributions/);
   assert.equal(files.ai.includes('An AI response is not ready just because the model finished'), false);
 
+  assert.match(files.visitor, /^# Coordinating an immersive visitor experience across rooms and devices\n/);
+  assert.match(files.visitor, /\*\*Immersive visitor platform · Dorier · 2025–2026\*\*/);
+  assert.match(files.visitor, /## From arrival to a shared decision/);
+  assert.match(files.visitor, /## My responsibility/);
   assert.match(files.visitor, /## How the platform fits together/);
+  assert.match(files.visitor, /## Keeping positioning inside the visitor app/);
+  assert.match(files.visitor, /## Keeping audio aligned with the experience/);
   assert.match(files.visitor, /## Making tour ownership part of the client–server contract/);
-  assert.match(files.visitor, /development-branch/);
-  assert.equal(files.visitor.includes('TimescaleDB'), true);
+  assert.match(files.visitor, /## Carrying language and content through the stack/);
+  assert.match(files.visitor, /## Giving staff tools to operate the system/);
+  assert.match(files.visitor, /## Making the platform understandable after handover/);
+  assert.match(files.visitor, /## Additional engineering: a tour flight recorder/);
+  assert.match(files.visitor, /\*\*Development-branch implementation; production rollout is not confirmed\.\*\*/);
+  assert.match(files.visitor, /## What this work demonstrates/);
+  const visitorHeadings = [...files.visitor.matchAll(/^## (.+)$/gm)].map((match) => match[1]);
+  assert.equal(visitorHeadings.at(-2), 'Additional engineering: a tour flight recorder');
+  assert.equal(visitorHeadings.at(-1), 'What this work demonstrates');
+  const audioAt = files.visitor.indexOf('## Keeping audio aligned with the experience');
+  const ownershipAt = files.visitor.indexOf('## Making tour ownership part of the client–server contract');
+  for (const heading of [
+    '### Correcting drift and stale volume changes',
+    '### Recovering when headphones reconnect',
+    '### Handling visitors who are already in place',
+  ]) {
+    const at = files.visitor.indexOf(heading);
+    assert.ok(at > audioAt && at < ownershipAt, heading);
+  }
+  assert.equal(files.visitor.includes('```'), false);
+  assert.equal(files.visitor.includes('TimescaleDB'), false);
+  assert.equal(files.visitor.includes('UN Geneva'), false);
+  assert.equal(files.visitor.includes('Fondation'), false);
+  assert.equal(files.visitor.includes('Portail des Nations'), false);
   assert.match(files.webar, /Approximately 2,100 participants/);
   const huntAt = files.webar.indexOf('## An event space became a character hunt');
   const responsibilityAt = files.webar.indexOf('## My responsibility');
@@ -291,32 +343,81 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.deepEqual(
     articles.visitor.sections.filter((section) => section.figures.length > 0).map((section) => ({
       heading: section.heading,
-      captions: section.figures.map((figure) => figure.caption),
+      figures: section.figures.map((figure) => ({
+        src: figure.src,
+        alt: figure.alt,
+        caption: figure.caption,
+        width: figure.width,
+        height: figure.height,
+        kind: figure.kind,
+      })),
     })),
     [
       {
-        heading: 'My responsibility',
-        captions: [
-          'Staff tablet controlling a running visitor experience.',
-          'Interactive kiosk asking visitors to choose a policy priority.',
+        heading: 'From arrival to a shared decision',
+        figures: [
+          {
+            src: '/cases/visitor/docent-running.png',
+            alt: 'Guide tablet showing a running experience, stop and reset controls, and a visitor-device table.',
+            caption: 'The guide’s tablet shows the tour in progress alongside visitor-device status.',
+            width: 1600,
+            height: 2560,
+            kind: 'screenshot',
+          },
+          {
+            src: '/cases/visitor/kiosk-priority-vote-clean.png',
+            alt: 'Visitor kiosk presenting three policy priorities for a fictional-country voting exercise.',
+            caption: 'Visitors choose a policy priority as part of the shared voting experience.',
+            width: 1600,
+            height: 900,
+            kind: 'screenshot',
+          },
         ],
       },
       {
         heading: 'How the platform fits together',
-        captions: [
-          'The visitor platform connects guide, docent and kiosk applications with content and show services. Colleagues owned the external Pixera, Quuppa and device-management systems.',
+        figures: [
+          {
+            src: '/architecture/visitor-system-overview-02.png',
+            alt: 'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
+            caption:
+              'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+            width: 1951,
+            height: 1961,
+            kind: 'diagram',
+          },
         ],
       },
       {
         heading: 'Making tour ownership part of the client–server contract',
-        captions: ['Tour takeover updates ownership, notifies the previous controller and confirms the new controller.'],
+        figures: [
+          {
+            src: '/architecture/visitor-docent-controller-01.png',
+            alt: 'Tour takeover sequence showing ownership update, notification to the previous controller and confirmation to the new controller.',
+            caption: 'The takeover flow updates the controlling device and notifies the previous controller.',
+            width: 2118,
+            height: 975,
+            kind: 'diagram',
+          },
+        ],
       },
     ],
   );
   assert.equal(articles.visitor.disclosure, undefined);
-  assert.match(
-    articles.visitor.sections.find((section) => section.heading === 'How the platform fits together')?.figures[0]?.caption ?? '',
-    /Colleagues owned the external Pixera, Quuppa and device-management systems/,
+  assert.equal(
+    articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.length,
+    0,
+  );
+  const visitorSrcs = articles.visitor.sections.flatMap((section) => section.figures.map((figure) => figure.src));
+  assert.equal(new Set(visitorSrcs).size, visitorSrcs.length);
+  assert.deepEqual(
+    articles.visitor.sections.map((section) => section.anchor),
+    articles.visitor.sections.map((section) => headingAnchor(section.heading)),
+  );
+  const visitorCase = parseCaseMarkdown(readFileSync(join('content/cases', 'visitor.md'), 'utf8'));
+  assert.equal(
+    `${visitorCase.title} | ${site.fullName}`,
+    'Coordinating an immersive visitor experience across rooms and devices | Hermenegildo Santos',
   );
 
   const webarPlaced = articles.webar.sections.filter((section) => section.figures.length > 0);
@@ -494,4 +595,10 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.equal(media.includes('max-w-none'), false);
   assert.equal(media.includes('Pending brand clearance'), false);
   assert.match(media, /priority/);
+  assert.match(
+    page,
+    /Engineering an immersive visitor platform across React Native, native Android, Go and content services: location-aware audio, tour control and technical handover\./,
+  );
+  assert.match(page, /slug === 'visitor'/);
+  assert.match(page, /\$\{full\.title\} \| \$\{site\.fullName\}/);
 });

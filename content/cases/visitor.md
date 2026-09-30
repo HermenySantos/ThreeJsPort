@@ -1,101 +1,105 @@
-# One tour, several devices, shared state
+# Coordinating an immersive visitor experience across rooms and devices
 
-**Multi-device visitor platform · Dorier · 2025–2026**
+**Immersive visitor platform · Dorier · 2025–2026**
 
-A visitor platform connects an audio guide in a visitor’s hand, a tablet used by a guide, interactive kiosks, content tools and backend services. A change to a tour has to mean the same thing across those devices—even when a request is retried or a connection drops.
+Visitors move through three experiences with a handheld audio guide, while a guide controls the tour from a tablet. Audio responds to visitor location and show cues; interactive kiosks bring the group into a shared voting exercise.
+
+Within Dorier’s delivery team, I extended the software across React Native applications, native Android modules, Go services and Payload CMS. My work connected the visitor experience to the systems behind it: positioning, audio playback, tour control, multilingual content and the documentation needed to operate the platform.
+
+## From arrival to a shared decision
+
+Visitors join a scheduled tour and select a language on their audio guide. The guide’s tablet shows the group and controls progression through the experiences. As visitors explore, the backend combines location updates with show cues to determine the audio state sent to each handheld.
+
+In the final experience, kiosks assign visitors fictional-country roles. Visitors choose priorities, consider amendments and cast a final vote. The kiosks follow the presentation’s cues and display shared results received through the messaging system.
+
+What looks like one continuous experience spans several applications, content services and physical systems. The engineering challenge is keeping those parts aligned as people move, devices reconnect and guides advance the tour.
 
 ## My responsibility
 
-I worked as a core contributor within the delivery team. My scope crossed React Native clients, Payload CMS, Go tour services and the documentation used to understand and operate the platform. I contributed to an existing, shared system and carried individual changes across the layers they touched.
+I contributed to an existing platform within a wider delivery team. My implementation work included native positioning and headphone-reconnection handling, audio synchronisation fixes, device-aware tour control, group-tour language flows, multilingual content integration and operator tools.
 
-**React Native · TypeScript · Go · MQTT · Payload CMS · PostgreSQL / TimescaleDB**
+I also assembled the technical documentation and operating guidance, combining software verification with material from the colleagues responsible for external systems.
+
+**React Native · TypeScript · Kotlin · Go · MQTT · Payload CMS · PostgreSQL**
 
 ## How the platform fits together
 
-```text
-Audio guide              Docent tablet                Interactive kiosk
-      \                        |                         /
-       \------- live messaging and application APIs ---/
-                                |
-                     Go tour / state services
-                                |
-                      PostgreSQL / TimescaleDB
+The audio guide, guide tablet and voting kiosk serve different roles. Tour services coordinate session and visitor state; the CMS supplies schedules, content and media. Live messages carry tour updates, show cues and kiosk choices alongside the application APIs.
 
-Payload CMS ---------- content and configuration --------> applications
-```
+Two external inputs matter to the experience: show control provides presentation state and media cues, while indoor positioning provides visitor-location updates. The backend uses those inputs to compute the state delivered to each audio guide. The kiosk follows its own cue-and-result flow rather than calculating the room’s result locally.
 
-The clients present different views of the same experience. A docent changes the tour, visitors consume its content, and services coordinate the shared state. MQTT supports live messaging alongside the APIs. Content management is another part of the system: changes to content and data contracts have to remain compatible with the applications consuming them.
+My work covered application and service integration. Colleagues owned show-control configuration, positioning hardware and calibration, device management and site infrastructure.
 
-The central question is which component has authority when a device reconnects, a request is duplicated or a local interface runs ahead of the server.
+## Keeping positioning inside the visitor app
+
+The audio guide originally depended on a separate positioning app running in the background. Android could stop that process independently of the visitor application.
+
+I integrated the positioning SDK through a Kotlin module exposed to React Native. The application starts Bluetooth advertising during registration, restarts it during session recovery and stops it during tour cleanup. The integration includes Android Bluetooth permission handling.
+
+This brought the positioning lifecycle into the application using it. It still depends on device permissions and operating-system behaviour; it does not replace the venue’s positioning hardware or calibration.
+
+## Keeping audio aligned with the experience
+
+### Correcting drift and stale volume changes
+
+An unchanged media reference could leave playback running without applying newer timing information from the show. I added a periodic comparison between the expected position and the audio player’s actual position, seeking when the difference exceeds the correction threshold.
+
+The implementation checks every five seconds and corrects differences above 400 milliseconds. Those values describe the correction policy, not a measured guarantee of synchronisation accuracy.
+
+I also added cancellation for outdated volume fades. A previous fade-to-silence should not continue after a new playback action has set the volume.
+
+### Recovering when headphones reconnect
+
+Unplugging headphones can pause Android playback without a matching automatic resume when they are plugged back in. I added a native audio-output detector and connected it to the existing synchronised playback path, so reconnection could resume from the current show position.
+
+The handler avoids restarting audio during a pending recovery, priority audio playback or an already-playing state.
+
+### Handling visitors who are already in place
+
+A visitor should not need to move again just because the show has entered its exploration phase. I added backend handling that resolves the visitor’s already-known exhibit zone when that phase begins and publishes the corresponding audio state.
+
+This handles two independent triggers—show progression and visitor movement—without requiring them to arrive in a particular order.
 
 ## Making tour ownership part of the client–server contract
 
-Two staff tablets can both appear to control a tour if ownership exists only in their local interfaces. The service needs to know which device is asking to change shared state and whether that device has the right to do so.
+Two tablets can both appear to control a tour if ownership exists only in their interfaces. I implemented device-aware requests and server-side ownership checks, connecting a guide’s action to the device assigned to the tour.
 
-I implemented server-side ownership checks and updated the docent application's requests to carry the controlling device identity. This connected the user-facing action to an explicit service rule.
+For a claimed active tour, the checks reject a missing or conflicting device identity. Unclaimed and inactive tours follow compatibility paths. I also added handling to preserve an existing guide-device claim when another create request arrives.
 
-```text
-Docent action
-    |
-Request includes device identity
-    |
-Service checks the tour's device claim
-    |                         |
-Valid owner              Conflicting owner
-    |                         |
-Apply mutation           Reject unauthorized mutation
-    |
-Client reflects accepted state
-```
+The distinction matters: a local screen can request a change, but the service must decide whether that change is allowed.
 
-A particularly important edge was duplicate tour creation. Retrying a create request should not accidentally erase an existing docent claim. I added handling to preserve that ownership where the duplicate-create path required it.
+## Carrying language and content through the stack
 
-**Tradeoff:** device-aware requests have to coexist with legacy and operational paths. The implementation needed explicit compatibility handling, rather than assuming every caller would immediately supply the same new fields.
+Group tours needed a shared show language carried consistently from scheduling to playback. I connected that setting across CMS fields, the guide tablet, Go services, database storage and messages sent to show control.
 
-## Keeping the interface aligned with accepted state
+I also extended multilingual content handling and integrated approved translations into the CMS data, shared types and kiosk content path. My contribution covered the engineering and integration of that content, alongside caption behaviour and asset work.
 
-A responsive interface can show a transition before the service has confirmed it. In a shared-device system that creates a dangerous ambiguity: the local screen appears to have advanced while the authoritative tour has not.
+These changes crossed boundaries that are easy to miss when applications are treated separately: a field selected by staff must retain the same meaning in the API, stored tour and presentation system.
 
-My tour-workflow investigations focused on distinguishing a requested transition from one the service had accepted: when to allow the next action, and how to handle a failed write without leaving the interface in a state the server never committed.
+## Giving staff tools to operate the system
 
-This complements ownership enforcement. The service decides whether a change is allowed; the client must faithfully represent what the service accepted. Neither half can compensate for the other being wrong.
+I added a device-flag flow that connects an action on the audio guide to a backend update and a visible indicator on the guide’s tablet. It gives staff a way to identify a particular visitor device within the group.
 
-## Reconstructing a tour after a connection drops
+My work also included remote language and caption controls, recovery improvements, persistent device logging and in-app user-guide viewers. Updated guides were subsequently bundled into the application source.
 
-**Development-branch implementation:** I also built a flight recorder across the clients, Go service, database migration and tests. Its production rollout is not confirmed.
+These features support the people running the experience as well as the people taking part in it.
 
-When connectivity is intermittent, an event received at 14:05 may have happened at 14:03. Ordering solely by receive time produces a misleading reconstruction of the tour. I implemented a telemetry path that keeps those two times distinct.
+## Making the platform understandable after handover
 
-### Event time and receive time serve different purposes
+I assembled the technical documentation around how the system actually fits together: application journeys, backend services, API and messaging contracts, verification steps and operating procedures.
 
-The client supplies `occurredAt`, while the service retains receipt time. Client time is clamped server-side so a device clock cannot arbitrarily distort the timeline. Keeping both values also makes ingest delay visible.
+The documentation connects source inspection with recorded API checks and application walkthroughs. It distinguishes verified behaviour from remaining checks and identifies where a subsystem belongs to another specialist.
 
-**Tradeoff:** client time improves reconstruction, but clock skew and delayed replay still require interpretation. Clamping is a bound on bad input, not perfect distributed clock synchronization.
+That distinction is part of the handover itself. The next engineer or operator needs to know both how a flow works and where to look when one part stops behaving as expected.
 
-### An offline queue makes late delivery explicit
+## Additional engineering: a tour flight recorder
 
-Each client has a disk-persisted replay queue capped at **300 events**, with replayed events labelled. The queue lets telemetry survive a temporary loss of connectivity and be submitted after reconnection.
+**Development-branch implementation; production rollout is not confirmed.**
 
-**Tradeoff:** a bounded queue protects local resources but cannot retain an unlimited outage history. A priority policy for problem events is a useful next step when the queue saturates.
+I also built a flight recorder across the applications, Go service and database, with an operator console for inspecting problems and device or tour timelines.
 
-### Connectivity should reflect the transport
+It separates event time from receipt time, retains a bounded offline replay queue, records messaging lifecycle events and applies deduplication and retention rules. The aim is to reconstruct what happened across devices without treating late-arriving events as if they occurred at receipt time.
 
-A cached store flag could remain “online” after the messaging connection had dropped. The implementation uses the transport's live connection state and records lifecycle events such as connect, reconnect, disconnect, and connection/subscription failure.
+## What this work demonstrates
 
-### Deduplication and retention keep the data useful
-
-Anomaly records are deduplicated in a **30-minute window per kind and tour**. Retention differs by event class: short-lived heartbeats, longer routine history, and longer problem-event history. This limits noise and storage growth without treating every record as equally valuable.
-
-The cross-stack change includes tests around timestamp clamping and anomaly deduplication. Those are meaningful boundaries: malformed clocks and repeated signals can undermine the usefulness of the entire timeline.
-
-## Carrying changes beyond the API
-
-My work also crossed group-tour terminology and data changes in the clients, CMS, shared types, Go services, and SQL. I integrated multilingual caption assets and contributed documentation used to understand and operate the platform.
-
-Those changes required the application, service, migration and operating documentation to agree on the same meaning.
-
-## Result and next steps
-
-I delivered device-aware tour APIs and client integration, group-tour changes, caption integration, and handover material within the shared platform. The flight recorder is a separate development-branch implementation.
-
-I would next standardize server-confirmed state transitions across clients and test telemetry reconstruction against known reconnect and clock-skew scenarios. That would provide a stronger basis for evaluating operational usefulness than counting the amount of telemetry collected.
+This project required following behaviour across interfaces, native device APIs, live messaging, backend state and content. My contribution combined new capabilities with investigation and refinement of an established platform—and the documentation needed to make that work understandable to the team operating it.

@@ -74,10 +74,10 @@ export const cases: readonly CaseStudy[] = [
     title: 'Ovee — AI for live events.',
     label: 'Primary engineer across AI, operator tools and audience delivery · Dorier for a Fortune-500 client · 2026',
     summary:
-      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. Delivered at four live events, it supported 600 participants across 60 roundtables at one leadership summit. I took primary implementation responsibility across the operator interfaces, Python services, model integration and audience delivery.',
+      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at four global leadership events for a Fortune-500 multinational, with an operator approving every AI contribution before it reached the stage.',
     delivered: [
       'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
-      'Workshop synthesis that brought contributions onto the main display as themes in approximately five seconds at one leadership summit.',
+      'Workshop synthesis that turned 60 roundtables into themes on the main display in about five seconds.',
       'Session services, playback guards and recovery paths connecting AI output to the live audience experience.',
     ],
     stack: ['React', 'TypeScript', 'Python', 'FastAPI', 'Azure OpenAI', 'WebRTC', 'WebSockets'],
@@ -97,7 +97,7 @@ export const cases: readonly CaseStudy[] = [
     title: 'Immersive visitor platform.',
     label: 'Core engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026',
     summary:
-      'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. Within the delivery team, I connected React Native apps, native Android modules, Go services and content tools to support that journey.',
+      'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
     delivered: [
       'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',
       'Device-aware tour control and group-tour language flows across applications, CMS and backend services.',
@@ -119,9 +119,9 @@ export const cases: readonly CaseStudy[] = [
     year: '2025',
     title: 'Global WebAR experience.',
     label:
-      'End-to-end engineering across the browser experience, backend and admin tools · within wider event delivery · Dorier for Scopely · 2025',
+      'Owned the browser experience, backend and admin tools · Dorier for Scopely · 2025',
     summary:
-      'Participants joined from their own phones in the browser — no app install — across twelve event locations. I owned the core implementation (five weeks) plus refinement within the wider event delivery: interaction layer, score APIs, location-scoped leaderboards and React administration.',
+      'Participants joined from their own phones in the browser — no app install — across twelve event locations. I built the core in five weeks, then refined it through testing and client feedback: interaction layer, score APIs, location-scoped leaderboards and React administration.',
     delivered: [
       'A WebAR experience participants could enter without installing an app.',
       'An Azure Functions backend and Cosmos DB data model organised around event locations.',
@@ -136,7 +136,7 @@ export const cases: readonly CaseStudy[] = [
       width: 2000,
       height: 1333,
     },
-    scale: 'approximately 2,100 participants across 12 locations.',
+    scale: '~2,100 participants across 12 locations.',
   },
   {
     id: '04',

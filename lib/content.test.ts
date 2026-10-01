@@ -74,15 +74,15 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   }
   assert.equal(cases[3].prototype, true);
   assert.match(cases[3].label, /working prototype/);
-  assert.match(cases[2].label, /within wider event delivery/);
-  assert.equal(cases[2].scale, 'approximately 2,100 participants across 12 locations.');
+  assert.match(cases[2].label, /^Owned the browser experience/);
+  assert.equal(cases[2].scale, '~2,100 participants across 12 locations.');
   assert.equal(
     cases[0].summary,
-    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. Delivered at four live events, it supported 600 participants across 60 roundtables at one leadership summit. I took primary implementation responsibility across the operator interfaces, Python services, model integration and audience delivery.',
+    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at four global leadership events for a Fortune-500 multinational, with an operator approving every AI contribution before it reached the stage.',
   );
   assert.deepEqual(cases[0].delivered, [
     'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
-    'Workshop synthesis that brought contributions onto the main display as themes in approximately five seconds at one leadership summit.',
+    'Workshop synthesis that turned 60 roundtables into themes on the main display in about five seconds.',
     'Session services, playback guards and recovery paths connecting AI output to the live audience experience.',
   ]);
   assert.match(cases[0].label, /Primary engineer/);
@@ -113,7 +113,7 @@ test('visitor homepage card uses the immersive platform copy', () => {
   assert.equal(visitor.label, 'Core engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026');
   assert.equal(
     visitor.summary,
-    'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. Within the delivery team, I connected React Native apps, native Android modules, Go services and content tools to support that journey.',
+    'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
   );
   assert.deepEqual(visitor.delivered, [
     'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',

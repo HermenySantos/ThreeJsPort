@@ -26,7 +26,7 @@ const sourceBlob = SOURCE_ROOTS.flatMap((root) => walk(root))
   .join('\n');
 
 test('hero keeps the locked headline and leads with Ovee proof', () => {
-  assert.equal(hero.headline, 'I build the product—and the systems that make it work.');
+  assert.equal(hero.headline, 'I build AI systems that can’t afford a second take.');
   assert.equal(hero.headlineLead + hero.headlineEm, hero.headline);
   assert.equal(
     hero.lede,

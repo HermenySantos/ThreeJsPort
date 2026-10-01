@@ -22,9 +22,9 @@ export const nav = [
 export const hero = {
   eyebrow: 'Hermenegildo Santos / Full-stack AI engineer',
   role: 'Full-stack AI engineer · Real-time & human-in-the-loop systems · Portugal',
-  headline: 'I build the product—and the systems that make it work.',
-  headlineLead: 'I build the product—',
-  headlineEm: 'and the systems that make it work.',
+  headline: 'I build AI systems that can’t afford a second take.',
+  headlineLead: 'I build AI systems ',
+  headlineEm: 'that can’t afford a second take.',
   lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years across web, mobile and cloud.',
   proofLabel: 'Delivery proof',
   proof: 'Ovee, live-event AI for a Fortune-500 multinational: cleared by the client’s IT, privacy and data-control teams; synthesised 60 roundtables for 600 leaders in seconds.',

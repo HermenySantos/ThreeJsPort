@@ -61,6 +61,7 @@ export type CaseStudy = {
   stack: readonly string[];
   cta: string;
   href: string;
+  cover: { src: string; alt: string; width: number; height: number };
   scale?: string;
   prototype?: boolean;
 };
@@ -82,6 +83,12 @@ export const cases: readonly CaseStudy[] = [
     stack: ['React', 'TypeScript', 'Python', 'FastAPI', 'Azure OpenAI', 'WebRTC', 'WebSockets'],
     cta: 'Explore the engineering',
     href: '/cases/ai',
+    cover: {
+      src: '/cases/ai/06b-operator-pending-draft-awaiting-approval.png',
+      alt: 'Operator screen with a generated draft waiting for approval or discard.',
+      width: 1440,
+      height: 900,
+    },
   },
   {
     id: '02',
@@ -99,6 +106,12 @@ export const cases: readonly CaseStudy[] = [
     stack: ['React Native', 'TypeScript', 'Kotlin', 'Go', 'MQTT', 'Payload CMS', 'PostgreSQL'],
     cta: 'Explore the engineering',
     href: '/cases/visitor',
+    cover: {
+      src: '/cases/visitor/kiosk-priority-vote-clean.png',
+      alt: 'Visitor kiosk presenting three policy priorities for a fictional-country voting exercise.',
+      width: 1600,
+      height: 900,
+    },
   },
   {
     id: '03',
@@ -117,6 +130,12 @@ export const cases: readonly CaseStudy[] = [
     stack: ['TypeScript', 'Mattercraft / Zappar', 'Azure Functions', 'Cosmos DB', 'React'],
     cta: 'Explore the engineering',
     href: '/cases/webar',
+    cover: {
+      src: '/cases/webar/webar-event-lead-phone-ar.jpg',
+      alt: 'Close-up of hands holding a smartphone displaying a game character in browser AR outdoors.',
+      width: 2000,
+      height: 1333,
+    },
     scale: 'approximately 2,100 participants across 12 locations.',
   },
   {
@@ -135,6 +154,12 @@ export const cases: readonly CaseStudy[] = [
     stack: ['React', 'TypeScript', 'Express', 'Azure AI Search', 'Azure Speech', 'Vitest'],
     cta: 'Explore the architecture',
     href: '/cases/concierge',
+    cover: {
+      src: '/cases/concierge/concierge-spark-livetest.png',
+      alt: 'Guide response stating that source support is missing, with a suggested next step.',
+      width: 2560,
+      height: 1724,
+    },
     prototype: true,
   },
 ];

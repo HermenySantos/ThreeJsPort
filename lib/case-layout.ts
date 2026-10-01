@@ -9,6 +9,11 @@ export type CaseFigure = {
   width: number;
   height: number;
   kind: 'screenshot' | 'diagram';
+  label?: string;
+  /** article keeps a tall still at column width instead of the portrait cap. */
+  layout?: 'portrait' | 'article';
+  /** Shown below 768px. Desktop `src` remains the fallback image. */
+  mobile?: { src: string; width: number; height: number };
 };
 
 export type CaseSection = {
@@ -19,7 +24,7 @@ export type CaseSection = {
 };
 
 export type CaseDisclosure = {
-  label: 'More product views' | 'Event photography';
+  label: 'More product views' | 'Event photography' | 'Detailed system architecture';
   figures: readonly CaseFigure[];
   afterHeading?: string;
 };
@@ -42,8 +47,9 @@ function shot(
   alt: string,
   caption: string,
   kind: CaseFigure['kind'],
+  extras?: Pick<CaseFigure, 'label' | 'layout' | 'mobile'>,
 ): CaseFigure {
-  return { src, alt, caption, width, height, kind };
+  return { src, alt, caption, width, height, kind, ...extras };
 }
 
 const oveePlacements: readonly Placement[] = [
@@ -143,23 +149,46 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
   ai: oveePlacements,
   visitor: [
     {
-      afterHeading: 'My responsibility',
+      afterHeading: 'From arrival to a shared decision',
       figures: [
+        shot(
+          '/architecture/visitor/visitor-journey-desktop.svg',
+          1200,
+          520,
+          'Four steps: join a scheduled tour and choose a language on the audio guide; explore with audio responding to location and show cues; cast a vote at a kiosk; see shared results. A guide tablet controls tour progression.',
+          'Visitors join a tour, explore with location-aware audio and take part in a shared voting experience. Staff coordinate the tour from a separate tablet.',
+          'diagram',
+          {
+            layout: 'article',
+            mobile: { src: '/architecture/visitor/visitor-journey-mobile.svg', width: 420, height: 1030 },
+          },
+        ),
+        shot(
+          '/cases/visitor/visitor-audio-language.png',
+          1080,
+          2400,
+          'Visitor audio guide language-selection screen with English highlighted and a Confirm button.',
+          'Visitors select a language on their handheld audio guide before joining the experience.',
+          'screenshot',
+          { label: 'Visitor audio guide' },
+        ),
         shot(
           '/cases/visitor/docent-running.png',
           1600,
           2560,
-          'Staff tablet showing a visitor experience in progress, with stop and reset controls.',
-          'Staff tablet controlling a running visitor experience.',
+          'Guide tablet showing a running experience, stop and reset controls, and a visitor-device table.',
+          'The guide’s tablet shows the tour in progress alongside visitor-device status.',
           'screenshot',
+          { label: 'Guide tablet' },
         ),
         shot(
           '/cases/visitor/kiosk-priority-vote-clean.png',
           1600,
           900,
-          'Kiosk screen asking a visitor to choose among policy priorities.',
-          'Interactive kiosk asking visitors to choose a policy priority.',
+          'Visitor kiosk presenting three policy priorities for a fictional-country voting exercise.',
+          'Visitors choose a policy priority as part of the shared voting experience.',
           'screenshot',
+          { label: 'Interactive kiosk' },
         ),
       ],
     },
@@ -167,12 +196,16 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       afterHeading: 'How the platform fits together',
       figures: [
         shot(
-          '/architecture/visitor-system-overview-02.png',
-          1951,
-          1961,
-          'Diagram of guide, docent and kiosk applications connected to content and show services.',
-          'The visitor platform connects guide, docent and kiosk applications with content and show services. Colleagues owned the external Pixera, Quuppa and device-management systems.',
+          '/architecture/visitor/visitor-coordination-desktop.svg',
+          1200,
+          860,
+          'Tour API context, show-control cues and processed indoor-positioning updates feed state coordination, which sends live state to visitor audio guides. Separately, show-control integration sends cues and results to kiosks and receives visitor choices. CMS supplies content; APIs and MQTT carry requests and live updates.',
+          'Tour context, show cues and location updates determine each visitor’s audio state. Kiosks exchange choices, presentation cues and shared results through a separate messaging flow.',
           'diagram',
+          {
+            layout: 'article',
+            mobile: { src: '/architecture/visitor/visitor-coordination-mobile.svg', width: 420, height: 1330 },
+          },
         ),
       ],
     },
@@ -183,9 +216,23 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           '/architecture/visitor-docent-controller-01.png',
           2118,
           975,
-          'Sequence diagram of tour takeover: an ownership update, notice to the previous controller, and confirmation to the new controller.',
-          'Tour takeover updates ownership, notifies the previous controller and confirms the new controller.',
+          'Tour takeover sequence showing ownership update, notification to the previous controller and confirmation to the new controller.',
+          'The takeover flow updates the controlling device and notifies the previous controller.',
           'diagram',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'Making the platform understandable after handover',
+      figures: [
+        shot(
+          '/cases/visitor/visitor-docs-day-in-life-excerpt.png',
+          770,
+          950,
+          'Excerpt from Day in the Life of a Tour documentation showing the cast of applications and the arrival onboarding step.',
+          'Technical handover documentation connecting the visitor journey to application behaviour and system responsibilities.',
+          'screenshot',
+          { layout: 'article' },
         ),
       ],
     },
@@ -300,9 +347,25 @@ const webarDisclosure: CaseDisclosure = {
   ],
 };
 
+const visitorDisclosure: CaseDisclosure = {
+  label: 'Detailed system architecture',
+  afterHeading: 'How the platform fits together',
+  figures: [
+    shot(
+      '/architecture/visitor-system-overview-02.png',
+      1951,
+      1961,
+      'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
+      'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+      'diagram',
+    ),
+  ],
+};
+
 const disclosures: Partial<Record<LayoutSlug, CaseDisclosure>> = {
   ai: oveeDisclosure,
   webar: webarDisclosure,
+  visitor: visitorDisclosure,
 };
 
 export function parseCaseMarkdown(markdown: string): { title: string; roleLine: string; body: string } {

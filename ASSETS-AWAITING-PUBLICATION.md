@@ -8,8 +8,10 @@ They were briefly under `public/` earlier on this branch, then held in `review-l
 
 | File | Public path | Placement |
 | --- | --- | --- |
-| `docent-running.png` | `public/cases/visitor/docent-running.png` | After “My responsibility,” before “How the platform fits together.” Caption: “Staff tablet controlling a running visitor experience.” |
-| `kiosk-priority-vote-clean.png` | `public/cases/visitor/kiosk-priority-vote-clean.png` | Stacked after the staff-tablet still. Caption: “Interactive kiosk asking visitors to choose a policy priority.” |
+| `visitor-audio-language.png` | `public/cases/visitor/visitor-audio-language.png` | First of three roles after “From arrival to a shared decision.” Label: “Visitor audio guide.” |
+| `docent-running.png` | `public/cases/visitor/docent-running.png` | Second role in that section. Label: “Guide tablet.” |
+| `kiosk-priority-vote-clean.png` | `public/cases/visitor/kiosk-priority-vote-clean.png` | Third role in that section. Label: “Interactive kiosk.” |
+| `visitor-docs-day-in-life-excerpt.png` | `public/cases/visitor/visitor-docs-day-in-life-excerpt.png` | After “Making the platform understandable after handover,” at article width. |
 
 ## Concierge
 

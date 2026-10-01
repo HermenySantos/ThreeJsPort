@@ -24,7 +24,10 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
   const study = cases.find((item) => item.slug === slug);
   const full = getFullCase(slug);
   const title = `${full.title} | ${site.fullName}`;
-  const description = study?.summary ?? site.description;
+  const description =
+    slug === 'visitor'
+      ? 'Engineering an immersive visitor platform across React Native, native Android, Go and content services: location-aware audio, tour control and technical handover.'
+      : (study?.summary ?? site.description);
   return {
     title,
     description,

@@ -25,17 +25,17 @@ const sourceBlob = SOURCE_ROOTS.flatMap((root) => walk(root))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
 
-test('hero keeps the locked headline and a short WebAR proof line', () => {
-  assert.equal(hero.headline, 'I build the product—and the systems that make it work.');
+test('hero keeps the locked headline and leads with Ovee proof', () => {
+  assert.equal(hero.headline, 'I build AI systems that can’t afford a second take.');
   assert.equal(hero.headlineLead + hero.headlineEm, hero.headline);
   assert.equal(
     hero.lede,
-    'I work across interfaces, backend services and AI to turn complex requirements into working software. That includes live-event AI with an operator in the approval loop, a multi-device visitor platform and a global WebAR experience.',
+    'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years across web, mobile and cloud.',
   );
   assert.match(hero.lede, /approval loop/);
   assert.equal(
     hero.proof,
-    'Approximately 2,100 participants across 12 locations. Core WebAR build in five weeks, then refinement.',
+    'Ovee, live-event AI for a Fortune-500 multinational: cleared by the client’s IT, privacy and data-control teams; synthesised 60 roundtables for 600 leaders in seconds.',
   );
   assert.equal(hero.proof.includes('Live-event AI'), false);
   assert.equal(hero.primaryCta.label, 'Explore selected work');
@@ -74,15 +74,15 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   }
   assert.equal(cases[3].prototype, true);
   assert.match(cases[3].label, /working prototype/);
-  assert.match(cases[2].label, /within wider event delivery/);
-  assert.equal(cases[2].scale, 'approximately 2,100 participants across 12 locations.');
+  assert.match(cases[2].label, /^Owned the browser experience/);
+  assert.equal(cases[2].scale, '~2,100 participants across 12 locations.');
   assert.equal(
     cases[0].summary,
-    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. Delivered at four live events, it supported 600 participants across 60 roundtables at one leadership summit. I took primary implementation responsibility across the operator interfaces, Python services, model integration and audience delivery.',
+    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at four global leadership events for a Fortune-500 multinational, with an operator approving every AI contribution before it reached the stage.',
   );
   assert.deepEqual(cases[0].delivered, [
     'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
-    'Workshop synthesis that brought contributions onto the main display as themes in approximately five seconds at one leadership summit.',
+    'Workshop synthesis that turned 60 roundtables into themes on the main display in about five seconds.',
     'Session services, playback guards and recovery paths connecting AI output to the live audience experience.',
   ]);
   assert.match(cases[0].label, /Primary engineer/);
@@ -110,10 +110,10 @@ test('visitor homepage card uses the immersive platform copy', () => {
   assert.equal(visitor.year, '2025–2026');
   assert.equal(visitor.href, '/cases/visitor');
   assert.equal(visitor.title, 'Immersive visitor platform.');
-  assert.equal(visitor.label, 'Core engineer across mobile apps, native Android and Go services · Dorier · 2025–2026');
+  assert.equal(visitor.label, 'Core engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026');
   assert.equal(
     visitor.summary,
-    'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. Within the delivery team, I connected React Native apps, native Android modules, Go services and content tools to support that journey.',
+    'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
   );
   assert.deepEqual(visitor.delivered, [
     'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',
@@ -127,20 +127,20 @@ test('visitor homepage card uses the immersive platform copy', () => {
   assert.equal(visitor.scale, undefined);
 });
 
-test('metrics strip is V4.1-honest, not WebAR-only #18 copy', () => {
+test('metrics strip leads with Ovee, the primary story', () => {
   assert.equal(metrics.kicker, hero.proofLabel);
   assert.equal(metrics.kicker, 'Delivery proof');
   assert.deepEqual(
     metrics.items.map((item) => [item.value, item.label]),
     [
-      ['~2,100', 'WebAR participants'],
-      ['12', 'Locations'],
-      ['5', 'Weeks (core build)'],
+      ['4', 'Global events, Asia & Europe'],
+      ['0', 'Off-message incidents on stage'],
+      ['~5 s', 'Workshop synthesis, vs ~30 min by hand'],
     ],
   );
   assert.equal(metrics.footnote, hero.proof);
-  assert.match(metrics.footnote, /2,100 participants/);
-  assert.match(metrics.footnote, /WebAR/);
+  assert.match(metrics.footnote, /600 leaders/);
+  assert.match(metrics.footnote, /Ovee/);
   assert.equal(metrics.footnote.includes('Live-event AI'), false);
   assert.equal(metrics.footnote.includes('Separately'), false);
   assert.equal(metrics.kicker.includes('Most recent'), false);
@@ -149,7 +149,7 @@ test('metrics strip is V4.1-honest, not WebAR-only #18 copy', () => {
 });
 
 test('about, experience and contact match V4.1', () => {
-  assert.equal(about.body[0], 'I’m Hermenegildo—Gildo for short—a full-stack engineer based in Portugal.');
+  assert.equal(about.body[0], 'I’m Hermenegildo—Gildo for short—a full-stack AI engineer based in Portugal.');
   assert.equal(experience.title, 'Full Stack Engineer');
   assert.equal(experience.company, 'Dorier');
   assert.equal(experience.period, '2025–present');
@@ -158,10 +158,10 @@ test('about, experience and contact match V4.1', () => {
   assert.equal(site.email, 'hermeny7@hotmail.com');
   assert.equal(site.github, 'https://github.com/HermenySantos');
   assert.equal(site.linkedin, 'https://www.linkedin.com/in/hermenegildosantos');
-  assert.equal(site.title, 'Hermenegildo Santos | Full-Stack Engineer · AI & Real-Time Systems');
+  assert.equal(site.title, 'Hermenegildo Santos | Full-Stack AI Engineer · Real-Time & Human-in-the-Loop Systems');
   assert.equal(
     site.description,
-    'Full-stack engineer in Portugal building AI products, real-time systems and interactive platforms. Explore delivered work and the engineering decisions behind it.',
+    'Full-stack AI engineer in Portugal building real-time, human-in-the-loop AI systems and interactive platforms. Explore delivered work and the engineering decisions behind it.',
   );
 });
 
@@ -189,7 +189,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.equal(files.ai.includes('An AI response is not ready just because the model finished'), false);
 
   assert.match(files.visitor, /^# Coordinating an immersive visitor experience across rooms and devices\n/);
-  assert.match(files.visitor, /\*\*Immersive visitor platform · Dorier · 2025–2026\*\*/);
+  assert.match(files.visitor, /\*\*Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026\*\*/);
   assert.match(files.visitor, /## From arrival to a shared decision/);
   assert.match(files.visitor, /## My responsibility/);
   assert.match(files.visitor, /## How the platform fits together/);
@@ -217,7 +217,6 @@ test('case prose keeps engineering substance and supplied headings', () => {
   }
   assert.equal(files.visitor.includes('```'), false);
   assert.equal(files.visitor.includes('TimescaleDB'), false);
-  assert.equal(files.visitor.includes('UN Geneva'), false);
   assert.equal(files.visitor.includes('Fondation'), false);
   assert.equal(files.visitor.includes('Portail des Nations'), false);
   assert.match(files.webar, /Approximately 2,100 participants/);
@@ -263,7 +262,6 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
     'incident-free',
     'no reported incidents',
     'universal devices',
-    'UN Geneva',
     'Walkthrough on request',
     'Most recent delivery',
     'I ship production AI',
@@ -275,16 +273,14 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   }
 
   const layoutSource = readFileSync('lib/case-layout.ts', 'utf8');
-  assert.equal(
-    sourceBlob.replace(layoutSource, '').includes('Scopely'),
-    false,
-    'Scopely must stay out of copy other than WebAR event-photo alt text',
-  );
   assert.equal(layoutSource.split('Scopely').length - 1, 2);
 
   const homepage = readFileSync('lib/content.ts', 'utf8');
   assert.equal(homepage.includes('TimescaleDB'), false, 'TimescaleDB must not appear in homepage content');
-  assert.equal(homepage.includes('PMI'), false);
+
+  for (const name of ['PMI', 'CheckedIn']) {
+    assert.equal(sourceBlob.includes(name), false, `client must stay unnamed: ${name}`);
+  }
 
   const ink = readFileSync('tailwind.config.ts', 'utf8');
   assert.match(ink, /ink: '#0a0a0a'/);

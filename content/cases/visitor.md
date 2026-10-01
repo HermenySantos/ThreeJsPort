@@ -1,6 +1,6 @@
 # Coordinating an immersive visitor experience across rooms and devices
 
-**Immersive visitor platform · Dorier · 2025–2026**
+**Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026**
 
 Visitors move through three experiences with a handheld audio guide, while a guide controls the tour from a tablet. Audio responds to visitor location and show cues; interactive kiosks bring the group into a shared voting exercise.
 

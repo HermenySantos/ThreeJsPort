@@ -37,7 +37,7 @@ export function Header() {
         </Link>
 
         <nav
-          className="hidden items-center justify-center gap-8 text-[13px] text-white/55 md:flex"
+          className="hidden items-center justify-center gap-5 whitespace-nowrap text-[13px] text-white/70 md:flex lg:gap-8"
           aria-label="Primary"
         >
           {nav.map((item) => {
@@ -56,6 +56,14 @@ export function Header() {
 
         <div className="flex items-center justify-end gap-3">
           <SocialLinks className="hidden sm:flex" />
+          <a
+            href={site.cv}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-9 items-center rounded-full bg-white px-4 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
+          >
+            Résumé
+          </a>
           <button
             ref={menuToggleRef}
             type="button"

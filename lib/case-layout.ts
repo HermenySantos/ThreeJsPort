@@ -110,6 +110,9 @@ const oveePlacements: readonly Placement[] = [
         'Diagram of a playback guard that suppresses a second start of the same clip version within 1.5 seconds.',
         'The playback guard suppresses a repeat start of the same clip version within 1.5 seconds.',
         'diagram',
+        {
+          mobile: { src: '/architecture/ai-playback-mobile.svg', width: 320, height: 1246 },
+        },
       ),
     ],
   },
@@ -229,7 +232,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           '/cases/visitor/visitor-docs-day-in-life-excerpt.png',
           770,
           950,
-          'Excerpt from Day in the Life of a Tour documentation showing the cast of applications and the arrival onboarding step.',
+          'Excerpt from Day in the Life of a Tour documentation explaining the visitor journey and the roles of the audio guide, guide tablet, kiosk and backend.',
           'Technical handover documentation connecting the visitor journey to application behaviour and system responsibilities.',
           'screenshot',
           { layout: 'article' },
@@ -261,6 +264,9 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Diagram of scores passing through the API into location-scoped storage and leaderboards.',
           'Scores pass through the API into location-scoped storage and leaderboards.',
           'diagram',
+          {
+            mobile: { src: '/architecture/webar-data-mobile.svg', width: 320, height: 1332 },
+          },
         ),
       ],
     },
@@ -276,6 +282,9 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Diagram of a concierge turn: the guide responds, then monitoring runs, and adaptation rules run when the turn produces a trigger.',
           'The guide completes its response before monitoring; adaptation rules run when the turn produces a trigger. Working prototype.',
           'diagram',
+          {
+            mobile: { src: '/architecture/concierge-turn-mobile.svg', width: 320, height: 1656 },
+          },
         ),
         shot(
           '/cases/concierge/concierge-04-monitor-gate-quiet.png',
@@ -394,7 +403,10 @@ export function headingAnchor(heading: string): string {
     .replace(/^-|-$/g, '');
 }
 
-export function splitCaseSections(body: string): { preamble: string; sections: { heading: string; markdown: string }[] } {
+export function splitCaseSections(body: string): {
+  preamble: string;
+  sections: { heading: string; markdown: string }[];
+} {
   const lines = body.replace(/\r\n/g, '\n').split('\n');
   const preambleLines: string[] = [];
   const sections: { heading: string; lines: string[] }[] = [];

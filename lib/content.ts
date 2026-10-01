@@ -26,8 +26,7 @@ export const hero = {
   headlineEm: 'and the systems that make it work.',
   lede: 'I work across interfaces, backend services and AI to turn complex requirements into working software. That includes live-event AI with an operator in the approval loop, a multi-device visitor platform and a global WebAR experience.',
   proofLabel: 'Delivery proof',
-  proof:
-    'Approximately 2,100 participants across 12 locations. Core WebAR build in five weeks, then refinement.',
+  proof: 'Approximately 2,100 participants across 12 locations. Core WebAR build in five weeks, then refinement.',
   stack: 'Based in Portugal · Working across the stack',
   primaryCta: { label: 'Explore selected work', href: '#work' },
   secondaryCta: { label: 'Get in touch', href: '#contact' },
@@ -73,11 +72,11 @@ export const cases: readonly CaseStudy[] = [
     title: 'Ovee — AI for live events.',
     label: 'Primary engineer across AI, operator tools and audience delivery · Dorier · 2026',
     summary:
-      'In a live room, generating a response is only part of the job. Someone has to decide whether it should be heard. I built the workflows connecting real-time AI, backstage review and audience audio, with safeguards around approval and playback.',
+      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. Delivered at four live events, it supported 600 participants across 60 roundtables at one leadership summit. I took primary implementation responsibility across the operator interfaces, Python services, model integration and audience delivery.',
     delivered: [
       'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
-      'Approval guards that block empty drafts from becoming blank cards and block a second click from dispatching twice.',
-      'Playback guard that stops a notify/replay race from starting the same audience clip twice.',
+      'Workshop synthesis that brought contributions onto the main display as themes in approximately five seconds at one leadership summit.',
+      'Session services, playback guards and recovery paths connecting AI output to the live audience experience.',
     ],
     stack: ['React', 'TypeScript', 'Python', 'FastAPI', 'Azure OpenAI', 'WebRTC', 'WebSockets'],
     cta: 'Explore the engineering',

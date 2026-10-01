@@ -18,30 +18,6 @@ The recorded demo shows voice and text interaction, language switching and the d
 
 ## Connecting conversation, monitoring and adaptation
 
-```text
-Visitor PWA
-    |
-Express turn handler
-    |
-Guide provider <------- catalog / source-selection logic
-    |
-Append finalized visitor + assistant transcript
-    |
-Monitor provider
-    |
-Trigger event? ---- no ----> retain current session state
-    |
-   yes
-    |
-Rule-based strategy selection
-    |
-Rule-based intervention / Gamification selection
-    |
-Store active strategy and rules
-    |
-Response + diagnostic trace --> visitor UI / cockpit
-```
-
 The Guide and Monitor providers handle conversation and monitoring according to the runtime configuration. When the Monitor produces a trigger, synchronous rule-based functions select a strategy and an intervention. This makes the adaptation logic explicit and available to inspect.
 
 ## Monitoring the answer the visitor actually received

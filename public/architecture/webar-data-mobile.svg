@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1332" viewBox="0 0 320 1332" role="img" aria-labelledby="title desc">
+<title id="title">One experience, local scores</title>
+<desc id="desc">Scores pass through the API into location-scoped storage and leaderboards.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 1.2 1.2 L 8.6 5 L 1.2 8.8" fill="none" stroke="#b8efd3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect width="320" height="1332" fill="#101716"/>
+<text x="16" y="36" fill="#b8efd3" font-size="15" font-weight="700">LOGICAL FLOW</text>
+<text x="16" y="56" fill="#b8efd3" font-size="15" font-weight="700">PARTICIPANT AND SCORE PATH</text>
+<text x="16" y="92" fill="#f0f3ed" font-size="20" font-weight="700">One experience, local scores</text>
+<text x="16" y="126" fill="#c5d4cc" font-size="15" font-weight="400">Simplified system view</text>
+<text x="16" y="147" fill="#c5d4cc" font-size="15" font-weight="400">Arrows follow the main path.</text>
+<rect x="16" y="184" width="288" height="250" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="216" fill="#b8efd3" font-size="15" font-weight="700">01</text>
+<text x="32" y="242" fill="#f0f3ed" font-size="17" font-weight="700">Browser AR experience</text>
+<text x="32" y="268" fill="#c5d4cc" font-size="15" font-weight="400">Camera interaction and sensor-aware</text>
+<text x="32" y="290" fill="#c5d4cc" font-size="15" font-weight="400">gameplay run on the participant’s</text>
+<text x="32" y="312" fill="#c5d4cc" font-size="15" font-weight="400">phone.</text>
+<line x1="32" y1="326" x2="288" y2="326" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="350" fill="#b8efd3" font-size="15" font-weight="700">PERMISSION + SENSOR HEALTH</text>
+<text x="32" y="372" fill="#c5d4cc" font-size="15" font-weight="400">User gestures gate permissions.</text>
+<text x="32" y="394" fill="#c5d4cc" font-size="15" font-weight="400">Health checks expose unavailable or</text>
+<text x="32" y="416" fill="#c5d4cc" font-size="15" font-weight="400">stuck sensor states.</text>
+<path d="M 160 436 V 454" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="462" width="288" height="228" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="494" fill="#b8efd3" font-size="15" font-weight="700">02</text>
+<text x="32" y="520" fill="#f0f3ed" font-size="17" font-weight="700">Azure Functions API</text>
+<text x="32" y="546" fill="#c5d4cc" font-size="15" font-weight="400">Validate and sanitize a score</text>
+<text x="32" y="568" fill="#c5d4cc" font-size="15" font-weight="400">submission before storage.</text>
+<line x1="32" y1="582" x2="288" y2="582" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="606" fill="#b8efd3" font-size="15" font-weight="700">VALIDATION BOUNDARY</text>
+<text x="32" y="628" fill="#c5d4cc" font-size="15" font-weight="400">Input checks improve data quality.</text>
+<text x="32" y="650" fill="#c5d4cc" font-size="15" font-weight="400">They do not make a client score</text>
+<text x="32" y="672" fill="#c5d4cc" font-size="15" font-weight="400">cheat-proof.</text>
+<path d="M 160 692 V 710" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="718" width="288" height="226" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="750" fill="#b8efd3" font-size="15" font-weight="700">03</text>
+<text x="32" y="776" fill="#f0f3ed" font-size="17" font-weight="700">Cosmos DB</text>
+<text x="32" y="802" fill="#c5d4cc" font-size="15" font-weight="400">Store the submission using its event</text>
+<text x="32" y="824" fill="#c5d4cc" font-size="15" font-weight="400">location as the partition key.</text>
+<line x1="32" y1="838" x2="288" y2="838" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="862" fill="#b8efd3" font-size="15" font-weight="700">LOCATION IS PART</text>
+<text x="32" y="882" fill="#b8efd3" font-size="15" font-weight="700">OF THE MODEL</text>
+<text x="32" y="904" fill="#c5d4cc" font-size="15" font-weight="400">A location is a data boundary, not just</text>
+<text x="32" y="926" fill="#c5d4cc" font-size="15" font-weight="400">a leaderboard display label.</text>
+<path d="M 160 946 V 978" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="174" y="968" fill="#b8efd3" font-size="15" font-weight="700">leaderboard read</text>
+<rect x="16" y="986" width="288" height="228" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="1018" fill="#b8efd3" font-size="15" font-weight="700">04</text>
+<text x="32" y="1044" fill="#f0f3ed" font-size="17" font-weight="700">Location leaderboard</text>
+<text x="32" y="1070" fill="#c5d4cc" font-size="15" font-weight="400">The score query filters by location</text>
+<text x="32" y="1092" fill="#c5d4cc" font-size="15" font-weight="400">before presenting results.</text>
+<line x1="32" y1="1106" x2="288" y2="1106" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="1130" fill="#b8efd3" font-size="15" font-weight="700">REACT ADMINISTRATION</text>
+<text x="32" y="1152" fill="#c5d4cc" font-size="15" font-weight="400">Separate staff views support</text>
+<text x="32" y="1174" fill="#c5d4cc" font-size="15" font-weight="400">administration and score visibility. This</text>
+<text x="32" y="1196" fill="#c5d4cc" font-size="15" font-weight="400">diagram follows the participant path.</text>
+<rect x="16" y="1222" width="288" height="94" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="1250" fill="#c5d4cc" font-size="15" font-weight="400">Scores pass through the API into</text>
+<text x="32" y="1272" fill="#c5d4cc" font-size="15" font-weight="400">location-scoped storage and</text>
+<text x="32" y="1294" fill="#c5d4cc" font-size="15" font-weight="400">leaderboards.</text>
+</g>
+</svg>

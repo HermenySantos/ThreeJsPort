@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1656" viewBox="0 0 320 1656" role="img" aria-labelledby="title desc">
+<title id="title">Make adaptation inspectable</title>
+<desc id="desc">The guide completes its response before monitoring. Adaptation rules run when the turn produces a trigger. Working prototype.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 1.2 1.2 L 8.6 5 L 1.2 8.8" fill="none" stroke="#b8efd3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect width="320" height="1656" fill="#101716"/>
+<text x="16" y="36" fill="#b8efd3" font-size="15" font-weight="700">WORKING PROTOTYPE</text>
+<text x="16" y="56" fill="#b8efd3" font-size="15" font-weight="700">LOGICAL TURN FLOW</text>
+<text x="16" y="92" fill="#f0f3ed" font-size="20" font-weight="700">Make adaptation inspectable</text>
+<text x="16" y="126" fill="#c5d4cc" font-size="15" font-weight="400">Simplified system view</text>
+<text x="16" y="147" fill="#c5d4cc" font-size="15" font-weight="400">Arrows follow the main path.</text>
+<rect x="16" y="184" width="288" height="228" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="216" fill="#b8efd3" font-size="15" font-weight="700">01</text>
+<text x="32" y="242" fill="#f0f3ed" font-size="17" font-weight="700">Visitor input → Guide</text>
+<text x="32" y="268" fill="#c5d4cc" font-size="15" font-weight="400">Voice or text enters the turn handler</text>
+<text x="32" y="290" fill="#c5d4cc" font-size="15" font-weight="400">and its configured Guide provider.</text>
+<line x1="32" y1="304" x2="288" y2="304" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="328" fill="#b8efd3" font-size="15" font-weight="700">SOURCE SELECTION</text>
+<text x="32" y="350" fill="#c5d4cc" font-size="15" font-weight="400">Catalog retrieval and relevance</text>
+<text x="32" y="372" fill="#c5d4cc" font-size="15" font-weight="400">checks help determine what can</text>
+<text x="32" y="394" fill="#c5d4cc" font-size="15" font-weight="400">support an answer.</text>
+<path d="M 160 414 V 432" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="440" width="288" height="228" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="472" fill="#b8efd3" font-size="15" font-weight="700">02</text>
+<text x="32" y="498" fill="#f0f3ed" font-size="17" font-weight="700">Finalize the transcript</text>
+<text x="32" y="524" fill="#c5d4cc" font-size="15" font-weight="400">Append the visitor and assistant pair</text>
+<text x="32" y="546" fill="#c5d4cc" font-size="15" font-weight="400">after the final answer is available.</text>
+<line x1="32" y1="560" x2="288" y2="560" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="584" fill="#b8efd3" font-size="15" font-weight="700">WHY THIS ORDER</text>
+<text x="32" y="606" fill="#c5d4cc" font-size="15" font-weight="400">Monitoring should see the answer the</text>
+<text x="32" y="628" fill="#c5d4cc" font-size="15" font-weight="400">visitor receives, not an intermediate</text>
+<text x="32" y="650" fill="#c5d4cc" font-size="15" font-weight="400">draft.</text>
+<path d="M 160 670 V 688" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="696" width="288" height="228" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="728" fill="#b8efd3" font-size="15" font-weight="700">03</text>
+<text x="32" y="754" fill="#f0f3ed" font-size="17" font-weight="700">Monitor the turn</text>
+<text x="32" y="780" fill="#c5d4cc" font-size="15" font-weight="400">Evaluate finalized text, source context</text>
+<text x="32" y="802" fill="#c5d4cc" font-size="15" font-weight="400">and recent session state.</text>
+<line x1="32" y1="816" x2="288" y2="816" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="840" fill="#b8efd3" font-size="15" font-weight="700">NO TRIGGER → RETAIN STATE</text>
+<text x="32" y="862" fill="#c5d4cc" font-size="15" font-weight="400">An earlier strategy can remain active</text>
+<text x="32" y="884" fill="#c5d4cc" font-size="15" font-weight="400">while the current adaptation gate is</text>
+<text x="32" y="906" fill="#c5d4cc" font-size="15" font-weight="400">quiet.</text>
+<path d="M 160 926 V 958" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="174" y="948" fill="#b8efd3" font-size="15" font-weight="700">trigger</text>
+<rect x="16" y="966" width="288" height="272" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="998" fill="#b8efd3" font-size="15" font-weight="700">04</text>
+<text x="32" y="1024" fill="#f0f3ed" font-size="17" font-weight="700">Select and store rules</text>
+<text x="32" y="1050" fill="#c5d4cc" font-size="15" font-weight="400">Synchronous rules choose a strategy</text>
+<text x="32" y="1072" fill="#c5d4cc" font-size="15" font-weight="400">and intervention, then store active</text>
+<text x="32" y="1094" fill="#c5d4cc" font-size="15" font-weight="400">state.</text>
+<line x1="32" y1="1108" x2="288" y2="1108" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="1132" fill="#b8efd3" font-size="15" font-weight="700">EXPLICIT CONFIDENCE TIERS</text>
+<text x="32" y="1154" fill="#c5d4cc" font-size="15" font-weight="400">Below 0.4: quiet. Below 0.7: gentler</text>
+<text x="32" y="1176" fill="#c5d4cc" font-size="15" font-weight="400">probe. Otherwise: primary</text>
+<text x="32" y="1198" fill="#c5d4cc" font-size="15" font-weight="400">intervention, subject to a calmness</text>
+<text x="32" y="1220" fill="#c5d4cc" font-size="15" font-weight="400">override.</text>
+<path d="M 160 1240 V 1258" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="1266" width="288" height="250" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="1298" fill="#b8efd3" font-size="15" font-weight="700">05</text>
+<text x="32" y="1324" fill="#f0f3ed" font-size="17" font-weight="700">Response + trace</text>
+<text x="32" y="1350" fill="#c5d4cc" font-size="15" font-weight="400">Return the response and diagnostic</text>
+<text x="32" y="1372" fill="#c5d4cc" font-size="15" font-weight="400">information to the visitor UI and</text>
+<text x="32" y="1394" fill="#c5d4cc" font-size="15" font-weight="400">cockpit.</text>
+<line x1="32" y1="1408" x2="288" y2="1408" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="1432" fill="#b8efd3" font-size="15" font-weight="700">PROTOTYPE BOUNDARY</text>
+<text x="32" y="1454" fill="#c5d4cc" font-size="15" font-weight="400">Guide and Monitor are provider roles.</text>
+<text x="32" y="1476" fill="#c5d4cc" font-size="15" font-weight="400">Strategy and intervention are rule</text>
+<text x="32" y="1498" fill="#c5d4cc" font-size="15" font-weight="400">functions in this inspected path.</text>
+<rect x="16" y="1524" width="288" height="116" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="1552" fill="#c5d4cc" font-size="15" font-weight="400">The guide completes its response</text>
+<text x="32" y="1574" fill="#c5d4cc" font-size="15" font-weight="400">before monitoring; adaptation rules</text>
+<text x="32" y="1596" fill="#c5d4cc" font-size="15" font-weight="400">run when the turn produces a trigger.</text>
+<text x="32" y="1618" fill="#c5d4cc" font-size="15" font-weight="400">Working prototype.</text>
+</g>
+</svg>

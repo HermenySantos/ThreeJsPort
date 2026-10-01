@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1246" viewBox="0 0 320 1246" role="img" aria-labelledby="title desc">
+<title id="title">One clip, competing signals</title>
+<desc id="desc">A playback guard that suppresses a second start of the same clip version within 1.5 seconds.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 1.2 1.2 L 8.6 5 L 1.2 8.8" fill="none" stroke="#b8efd3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect width="320" height="1246" fill="#101716"/>
+<text x="16" y="36" fill="#b8efd3" font-size="15" font-weight="700">DETAIL FLOW</text>
+<text x="16" y="56" fill="#b8efd3" font-size="15" font-weight="700">STORED-CLIP PLAYBACK</text>
+<text x="16" y="92" fill="#f0f3ed" font-size="20" font-weight="700">One clip, competing signals</text>
+<text x="16" y="126" fill="#c5d4cc" font-size="15" font-weight="400">Simplified system view</text>
+<text x="16" y="147" fill="#c5d4cc" font-size="15" font-weight="400">Arrows follow the main path.</text>
+<rect x="16" y="184" width="288" height="206" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="216" fill="#b8efd3" font-size="15" font-weight="700">01</text>
+<text x="32" y="242" fill="#f0f3ed" font-size="17" font-weight="700">Discover stored audio</text>
+<text x="32" y="268" fill="#c5d4cc" font-size="15" font-weight="400">WebSocket notifications and HTTP</text>
+<text x="32" y="290" fill="#c5d4cc" font-size="15" font-weight="400">polling can both surface a clip.</text>
+<line x1="32" y1="304" x2="288" y2="304" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="328" fill="#b8efd3" font-size="15" font-weight="700">TWO ARRIVAL PATHS</text>
+<text x="32" y="350" fill="#c5d4cc" font-size="15" font-weight="400">A notification and a poll can refer to</text>
+<text x="32" y="372" fill="#c5d4cc" font-size="15" font-weight="400">the same audio version.</text>
+<path d="M 160 392 V 410" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="418" width="288" height="228" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="450" fill="#b8efd3" font-size="15" font-weight="700">02</text>
+<text x="32" y="476" fill="#f0f3ed" font-size="17" font-weight="700">Check version + time</text>
+<text x="32" y="502" fill="#c5d4cc" font-size="15" font-weight="400">Compare the clip with the most recent</text>
+<text x="32" y="524" fill="#c5d4cc" font-size="15" font-weight="400">playback record.</text>
+<line x1="32" y1="538" x2="288" y2="538" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="562" fill="#b8efd3" font-size="15" font-weight="700">WITHIN 1.5 SECONDS → STOP</text>
+<text x="32" y="584" fill="#c5d4cc" font-size="15" font-weight="400">Suppress this playback attempt. The</text>
+<text x="32" y="606" fill="#c5d4cc" font-size="15" font-weight="400">window can also catch an intentional</text>
+<text x="32" y="628" fill="#c5d4cc" font-size="15" font-weight="400">immediate replay.</text>
+<path d="M 160 648 V 680" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="174" y="670" fill="#b8efd3" font-size="15" font-weight="700">otherwise</text>
+<rect x="16" y="688" width="288" height="206" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="720" fill="#b8efd3" font-size="15" font-weight="700">03</text>
+<text x="32" y="746" fill="#f0f3ed" font-size="17" font-weight="700">Record before invoking</text>
+<text x="32" y="772" fill="#c5d4cc" font-size="15" font-weight="400">Update the version and timestamp</text>
+<text x="32" y="794" fill="#c5d4cc" font-size="15" font-weight="400">before the playback callback.</text>
+<line x1="32" y1="808" x2="288" y2="808" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="832" fill="#b8efd3" font-size="15" font-weight="700">ORDERING MATTERS</text>
+<text x="32" y="854" fill="#c5d4cc" font-size="15" font-weight="400">The next competing callback sees the</text>
+<text x="32" y="876" fill="#c5d4cc" font-size="15" font-weight="400">updated record.</text>
+<path d="M 160 896 V 914" fill="none" stroke="#b8efd3" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="16" y="922" width="288" height="206" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="954" fill="#b8efd3" font-size="15" font-weight="700">04</text>
+<text x="32" y="980" fill="#f0f3ed" font-size="17" font-weight="700">Invoke playback</text>
+<text x="32" y="1006" fill="#c5d4cc" font-size="15" font-weight="400">Pass the clip to the audience playback</text>
+<text x="32" y="1028" fill="#c5d4cc" font-size="15" font-weight="400">callback.</text>
+<line x1="32" y1="1042" x2="288" y2="1042" stroke="#354b45" stroke-width="1"/>
+<text x="32" y="1066" fill="#b8efd3" font-size="15" font-weight="700">BOUNDED PROTECTION</text>
+<text x="32" y="1088" fill="#c5d4cc" font-size="15" font-weight="400">A short duplicate guard, not</text>
+<text x="32" y="1110" fill="#c5d4cc" font-size="15" font-weight="400">permanent exactly-once delivery.</text>
+<rect x="16" y="1136" width="288" height="94" rx="16" fill="#192321" stroke="#354b45"/>
+<text x="32" y="1164" fill="#c5d4cc" font-size="15" font-weight="400">The playback guard suppresses a</text>
+<text x="32" y="1186" fill="#c5d4cc" font-size="15" font-weight="400">repeat start of the same clip version</text>
+<text x="32" y="1208" fill="#c5d4cc" font-size="15" font-weight="400">within 1.5 seconds.</text>
+</g>
+</svg>

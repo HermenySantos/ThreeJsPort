@@ -76,13 +76,29 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.match(cases[3].label, /working prototype/);
   assert.match(cases[2].label, /within wider event delivery/);
   assert.equal(cases[2].scale, 'approximately 2,100 participants across 12 locations.');
-  assert.match(cases[0].delivered[1], /empty drafts/);
-  assert.match(cases[0].delivered[1], /second click/);
-  assert.match(cases[0].delivered[2], /notify\/replay race/);
   assert.equal(
-    cases[0].delivered.includes(
-      'Real-time voice and audience communication using WebRTC and WebSockets.',
-    ),
+    cases[0].summary,
+    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. Delivered at four live events, it supported 600 participants across 60 roundtables at one leadership summit. I took primary implementation responsibility across the operator interfaces, Python services, model integration and audience delivery.',
+  );
+  assert.deepEqual(cases[0].delivered, [
+    'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
+    'Workshop synthesis that brought contributions onto the main display as themes in approximately five seconds at one leadership summit.',
+    'Session services, playback guards and recovery paths connecting AI output to the live audience experience.',
+  ]);
+  assert.match(cases[0].label, /Primary engineer/);
+  assert.match(cases[0].label, /Dorier/);
+  assert.deepEqual(cases[0].stack, [
+    'React',
+    'TypeScript',
+    'Python',
+    'FastAPI',
+    'Azure OpenAI',
+    'WebRTC',
+    'WebSockets',
+  ]);
+  assert.equal(cases[0].summary.includes('operator approval'), false);
+  assert.equal(
+    cases[0].delivered.includes('Real-time voice and audience communication using WebRTC and WebSockets.'),
     false,
   );
 });
@@ -94,10 +110,7 @@ test('visitor homepage card uses the immersive platform copy', () => {
   assert.equal(visitor.year, '2025–2026');
   assert.equal(visitor.href, '/cases/visitor');
   assert.equal(visitor.title, 'Immersive visitor platform.');
-  assert.equal(
-    visitor.label,
-    'Core engineer across mobile apps, native Android and Go services · Dorier · 2025–2026',
-  );
+  assert.equal(visitor.label, 'Core engineer across mobile apps, native Android and Go services · Dorier · 2025–2026');
   assert.equal(
     visitor.summary,
     'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. Within the delivery team, I connected React Native apps, native Android modules, Go services and content tools to support that journey.',
@@ -107,15 +120,7 @@ test('visitor homepage card uses the immersive platform copy', () => {
     'Device-aware tour control and group-tour language flows across applications, CMS and backend services.',
     'Multilingual content integration, operator tools and the platform’s technical documentation.',
   ]);
-  assert.deepEqual(visitor.stack, [
-    'React Native',
-    'TypeScript',
-    'Kotlin',
-    'Go',
-    'MQTT',
-    'Payload CMS',
-    'PostgreSQL',
-  ]);
+  assert.deepEqual(visitor.stack, ['React Native', 'TypeScript', 'Kotlin', 'Go', 'MQTT', 'Payload CMS', 'PostgreSQL']);
   assert.equal(visitor.cta, 'Explore the engineering');
   assert.equal(visitor.stack.includes('TimescaleDB'), false);
   assert.equal(visitor.prototype, undefined);
@@ -227,6 +232,18 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.webar, /does not itself guarantee that gameplay will progress/);
   assert.match(files.concierge, /Working prototype/);
   assert.match(files.concierge, /## Connecting conversation, monitoring and adaptation/);
+  assert.match(
+    files.concierge,
+    /## Connecting conversation, monitoring and adaptation\n\nThe Guide and Monitor providers handle conversation and monitoring according to the runtime configuration\./,
+  );
+  assert.equal(files.concierge.includes('```'), false);
+  assert.equal(files.concierge.includes('Visitor PWA'), false);
+  assert.match(files.webar, /Those constraints connected three engineering responsibilities/);
+  assert.match(files.webar, /This keeps the access pattern understandable/);
+  assert.match(files.webar, /staff and participants care about the results at their own venue\./);
+  assert.equal(files.webar.includes('```'), false);
+  assert.equal(files.webar.includes('Phone browser / Mattercraft'), false);
+  assert.equal(files.webar.includes('Show local leaderboard'), false);
   assert.match(files.concierge, /A public museum rollout remains a separate milestone/);
 });
 
@@ -327,34 +344,49 @@ test('figures attach to headings and missing anchors fail', () => {
     articles.ai.sections.find((section) => section.heading === 'What I delivered')?.figures[0]?.caption,
     'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
   );
+  const playbackFigure = articles.ai.sections.find((section) => section.heading === 'One response, one playback start')
+    ?.figures[0];
   assert.equal(
-    articles.ai.sections.find((section) => section.heading === 'One response, one playback start')?.figures[0]?.caption,
+    playbackFigure?.caption,
     'The playback guard suppresses a repeat start of the same clip version within 1.5 seconds.',
   );
+  assert.equal(playbackFigure?.src, '/architecture/ai-playback-desktop.png');
+  assert.deepEqual(playbackFigure?.mobile, {
+    src: '/architecture/ai-playback-mobile.svg',
+    width: 320,
+    height: 1246,
+  });
 
   const removed = ['04c', '05-p0', '06a', '06c-audience', '01-p0', 'ai-control', 'ai-architecture'];
-  const aiSrcs = figuresFor('ai').map((figure) => figure.src).join('\n');
+  const aiSrcs = figuresFor('ai')
+    .map((figure) => figure.src)
+    .join('\n');
   for (const token of removed) {
     assert.equal(aiSrcs.includes(token), false, token);
   }
   assert.equal(articles.ai.disclosure?.figures.length, 3);
-  assert.equal(aiMain.reduce((count, section) => count + section.figures.length, 0), 5);
+  assert.equal(
+    aiMain.reduce((count, section) => count + section.figures.length, 0),
+    5,
+  );
 
   assert.deepEqual(
-    articles.visitor.sections.filter((section) => section.figures.length > 0).map((section) => ({
-      heading: section.heading,
-      figures: section.figures.map((figure) => ({
-        src: figure.src,
-        alt: figure.alt,
-        caption: figure.caption,
-        width: figure.width,
-        height: figure.height,
-        kind: figure.kind,
-        label: figure.label,
-        layout: figure.layout,
-        mobile: figure.mobile,
+    articles.visitor.sections
+      .filter((section) => section.figures.length > 0)
+      .map((section) => ({
+        heading: section.heading,
+        figures: section.figures.map((figure) => ({
+          src: figure.src,
+          alt: figure.alt,
+          caption: figure.caption,
+          width: figure.width,
+          height: figure.height,
+          kind: figure.kind,
+          label: figure.label,
+          layout: figure.layout,
+          mobile: figure.mobile,
+        })),
       })),
-    })),
     [
       {
         heading: 'From arrival to a shared decision',
@@ -444,7 +476,7 @@ test('figures attach to headings and missing anchors fail', () => {
         figures: [
           {
             src: '/cases/visitor/visitor-docs-day-in-life-excerpt.png',
-            alt: 'Excerpt from Day in the Life of a Tour documentation showing the cast of applications and the arrival onboarding step.',
+            alt: 'Excerpt from Day in the Life of a Tour documentation explaining the visitor journey and the roles of the audio guide, guide tablet, kiosk and backend.',
             caption:
               'Technical handover documentation connecting the visitor journey to application behaviour and system responsibilities.',
             width: 770,
@@ -483,10 +515,7 @@ test('figures attach to headings and missing anchors fail', () => {
     ),
     false,
   );
-  assert.equal(
-    articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.length,
-    0,
-  );
+  assert.equal(articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.length, 0);
   const visitorSrcs = [
     ...articles.visitor.sections.flatMap((section) => section.figures.map((figure) => figure.src)),
     ...(articles.visitor.disclosure?.figures.map((figure) => figure.src) ?? []),
@@ -536,6 +565,11 @@ test('figures attach to headings and missing anchors fail', () => {
   );
   const scoreFigure = webarPlaced[1]?.figures[0];
   assert.equal(scoreFigure?.src, '/architecture/webar-data-desktop.png');
+  assert.deepEqual(scoreFigure?.mobile, {
+    src: '/architecture/webar-data-mobile.svg',
+    width: 320,
+    height: 1332,
+  });
   assert.equal(scoreFigure?.kind, 'diagram');
   assert.match(scoreFigure?.caption ?? '', /location-scoped storage and leaderboards/);
   assert.equal((scoreFigure?.caption ?? '').toLowerCase().includes('not cleared'), false);
@@ -614,6 +648,15 @@ test('figures attach to headings and missing anchors fail', () => {
     ],
   );
   assert.equal(articles.concierge.disclosure, undefined);
+  const conciergeTurn = articles.concierge.sections.find(
+    (section) => section.heading === 'Connecting conversation, monitoring and adaptation',
+  )?.figures[0];
+  assert.equal(conciergeTurn?.src, '/architecture/concierge-turn-desktop.png');
+  assert.deepEqual(conciergeTurn?.mobile, {
+    src: '/architecture/concierge-turn-mobile.svg',
+    width: 320,
+    height: 1656,
+  });
 
   assert.throws(
     () => attachFigures([], [{ afterHeading: 'What I delivered', figures: [] }]),
@@ -622,7 +665,13 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(headingAnchor('How the platform fits together'), 'how-the-platform-fits-together');
 
   const referenced = new Set(
-    (['ai', 'visitor', 'webar', 'concierge'] as const).flatMap((slug) => figuresFor(slug).map((figure) => figure.src.slice(1))),
+    (['ai', 'visitor', 'webar', 'concierge'] as const).flatMap((slug) =>
+      figuresFor(slug).flatMap((figure) => {
+        const paths = [figure.src.slice(1)];
+        if (figure.mobile) paths.push(figure.mobile.src.slice(1));
+        return paths;
+      }),
+    ),
   );
   for (const src of referenced) {
     assert.equal(statSync(join('public', src)).isFile(), true, src);
@@ -684,10 +733,7 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.match(media, /Open full-size image/);
   assert.match(media, /w-full/);
   assert.match(media, /max-w-\[440px\]/);
-  assert.match(
-    page,
-    /constrainPortraits=\{slug === 'visitor' \|\| slug === 'concierge' \|\| slug === 'webar'\}/,
-  );
+  assert.match(page, /constrainPortraits=\{slug === 'visitor' \|\| slug === 'concierge' \|\| slug === 'webar'\}/);
   assert.equal(media.includes('max-w-none'), false);
   assert.equal(media.includes('Pending brand clearance'), false);
   assert.match(media, /priority/);
@@ -705,4 +751,12 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   );
   assert.match(page, /slug === 'visitor'/);
   assert.match(page, /\$\{full\.title\} \| \$\{site\.fullName\}/);
+  assert.match(page, /images: \[\{ url: site\.ogImage, alt: site\.title \}\]/);
+  assert.match(page, /card: 'summary_large_image'/);
+  assert.match(page, /images: \[site\.ogImage\]/);
+
+  const header = readFileSync('components/header.tsx', 'utf8');
+  assert.match(header, /event\.key !== 'Escape'/);
+  assert.match(header, /menuToggleRef\.current\?\.focus\(\)/);
+  assert.match(header, /ref=\{menuToggleRef\}/);
 });

@@ -22,18 +22,6 @@ Participants needed to enter from their own phones without installing a native a
 
 Those constraints connected three engineering responsibilities: the interaction must communicate what the participant should do, the API must validate and store results, and the administration surface must organise the data around how the event is run.
 
-```text
-PARTICIPANT                         BACKEND                        STAFF
-Phone browser / Mattercraft  --->  Azure Functions  <---  React administration
-  camera and motion                score submission       location context
-  character interaction            validation             configuration / results
-  feedback and scoring                   |
-                                    Cosmos DB
-                              location-scoped score data
-                                         |
-                            leaderboard query by location
-```
-
 ## Letting participants join from the browser
 
 Browser AR avoids asking a walk-up participant to find and install an app. Mattercraft provided the authoring environment, while TypeScript controlled the game behaviour and its connection to the backend.
@@ -59,20 +47,6 @@ In the development version described here, synthetic fallback movement is disabl
 ## Organising scores around the event’s locations
 
 Score submission attaches a location partition, and leaderboard queries use that same location boundary. This follows the event's operating model: staff and participants care about the results at their own venue.
-
-```text
-Score submission
-    |
-Validate supplied fields
-    |
-Assign location partition
-    |
-Store score
-    |
-Query scores for that location
-    |
-Show local leaderboard
-```
 
 This keeps the access pattern understandable: a local leaderboard is a location-bound read, rather than a global query filtered only in the interface.
 

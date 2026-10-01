@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 import { nav, site } from '@/lib/content';
@@ -9,6 +9,7 @@ import { SocialLinks } from './social-links';
 export function Header() {
   const [open, setOpen] = useState(false);
   const [hash, setHash] = useState('');
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const sync = () => setHash(window.location.hash);
@@ -17,6 +18,17 @@ export function Header() {
     return () => window.removeEventListener('hashchange', sync);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setOpen(false);
+      menuToggleRef.current?.focus();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
   return (
     <header className="sticky top-0 z-50 bg-ink/85 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-page items-center justify-between px-5 sm:px-8 md:grid md:grid-cols-3">
@@ -24,14 +36,18 @@ export function Header() {
           {site.name}
         </Link>
 
-        <nav className="hidden items-center justify-center gap-8 text-[13px] text-white/55 md:flex" aria-label="Primary">
+        <nav
+          className="hidden items-center justify-center gap-8 text-[13px] text-white/55 md:flex"
+          aria-label="Primary"
+        >
           {nav.map((item) => {
             const active = hash !== '' && item.href.endsWith(hash);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition-colors hover:text-white ${active ? 'text-white' : ''}`}>
+                className={`transition-colors hover:text-white ${active ? 'text-white' : ''}`}
+              >
                 {item.label}
               </Link>
             );
@@ -41,11 +57,13 @@ export function Header() {
         <div className="flex items-center justify-end gap-3">
           <SocialLinks className="hidden sm:flex" />
           <button
+            ref={menuToggleRef}
             type="button"
             className="inline-flex h-9 items-center rounded-full border border-white/15 px-3 text-[13px] text-white/70 md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            onClick={() => setOpen((value) => !value)}>
+            onClick={() => setOpen((value) => !value)}
+          >
             {open ? 'Close' : 'Menu'}
           </button>
         </div>
@@ -55,11 +73,7 @@ export function Header() {
         <nav id="mobile-nav" className="border-t border-white/10 px-5 py-4 md:hidden" aria-label="Mobile">
           <div className="flex flex-col gap-3 text-sm text-white/70">
             {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="py-1 hover:text-white"
-                onClick={() => setOpen(false)}>
+              <Link key={item.href} href={item.href} className="py-1 hover:text-white" onClick={() => setOpen(false)}>
                 {item.label}
               </Link>
             ))}

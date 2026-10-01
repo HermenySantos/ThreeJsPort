@@ -27,7 +27,7 @@ export const hero = {
   headlineEm: 'and the systems that make it work.',
   lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years across web, mobile and cloud.',
   proofLabel: 'Delivery proof',
-  proof: 'Ovee, live-event AI: four events, including a 600-participant summit where workshop themes reached the main display in about five seconds.',
+  proof: 'Ovee, live-event AI for a Fortune-500 multinational: cleared by the client’s IT, privacy and data-control teams; synthesised 60 roundtables for 600 leaders in seconds.',
   stack: 'Based in Portugal · Working across the stack',
   primaryCta: { label: 'Explore selected work', href: '#work' },
   secondaryCta: { label: 'Get in touch', href: '#contact' },
@@ -36,9 +36,9 @@ export const hero = {
 export const metrics = {
   kicker: hero.proofLabel,
   items: [
-    { value: '4', label: 'Live events' },
-    { value: '600', label: 'Summit participants' },
-    { value: '~5 s', label: 'Contributions to themes on screen' },
+    { value: '4', label: 'Global events, Asia & Europe' },
+    { value: '0', label: 'Off-message incidents on stage' },
+    { value: '~5 s', label: 'Workshop synthesis, vs ~30 min by hand' },
   ],
   footnote: hero.proof,
 } as const;

@@ -35,7 +35,7 @@ test('hero keeps the locked headline and leads with Ovee proof', () => {
   assert.match(hero.lede, /approval loop/);
   assert.equal(
     hero.proof,
-    'Ovee, live-event AI: four events, including a 600-participant summit where workshop themes reached the main display in about five seconds.',
+    'Ovee, live-event AI for a Fortune-500 multinational: cleared by the client’s IT, privacy and data-control teams; synthesised 60 roundtables for 600 leaders in seconds.',
   );
   assert.equal(hero.proof.includes('Live-event AI'), false);
   assert.equal(hero.primaryCta.label, 'Explore selected work');
@@ -133,13 +133,13 @@ test('metrics strip leads with Ovee, the primary story', () => {
   assert.deepEqual(
     metrics.items.map((item) => [item.value, item.label]),
     [
-      ['4', 'Live events'],
-      ['600', 'Summit participants'],
-      ['~5 s', 'Contributions to themes on screen'],
+      ['4', 'Global events, Asia & Europe'],
+      ['0', 'Off-message incidents on stage'],
+      ['~5 s', 'Workshop synthesis, vs ~30 min by hand'],
     ],
   );
   assert.equal(metrics.footnote, hero.proof);
-  assert.match(metrics.footnote, /600-participant summit/);
+  assert.match(metrics.footnote, /600 leaders/);
   assert.match(metrics.footnote, /Ovee/);
   assert.equal(metrics.footnote.includes('Live-event AI'), false);
   assert.equal(metrics.footnote.includes('Separately'), false);

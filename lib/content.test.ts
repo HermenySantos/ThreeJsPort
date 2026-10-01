@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import test from 'node:test';
 
@@ -352,12 +352,25 @@ test('figures attach to headings and missing anchors fail', () => {
         kind: figure.kind,
         label: figure.label,
         layout: figure.layout,
+        mobile: figure.mobile,
       })),
     })),
     [
       {
         heading: 'From arrival to a shared decision',
         figures: [
+          {
+            src: '/architecture/visitor/visitor-journey-desktop.svg',
+            alt: 'Four steps: join a scheduled tour and choose a language on the audio guide; explore with audio responding to location and show cues; cast a vote at a kiosk; see shared results. A guide tablet controls tour progression.',
+            caption:
+              'Visitors join a tour, explore with location-aware audio and take part in a shared voting experience. Staff coordinate the tour from a separate tablet.',
+            width: 1200,
+            height: 520,
+            kind: 'diagram',
+            label: undefined,
+            layout: 'article',
+            mobile: { src: '/architecture/visitor/visitor-journey-mobile.svg', width: 420, height: 1030 },
+          },
           {
             src: '/cases/visitor/visitor-audio-language.png',
             alt: 'Visitor audio guide language-selection screen with English highlighted and a Confirm button.',
@@ -367,6 +380,7 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: 'Visitor audio guide',
             layout: undefined,
+            mobile: undefined,
           },
           {
             src: '/cases/visitor/docent-running.png',
@@ -377,6 +391,7 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: 'Guide tablet',
             layout: undefined,
+            mobile: undefined,
           },
           {
             src: '/cases/visitor/kiosk-priority-vote-clean.png',
@@ -387,6 +402,7 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: 'Interactive kiosk',
             layout: undefined,
+            mobile: undefined,
           },
         ],
       },
@@ -394,15 +410,16 @@ test('figures attach to headings and missing anchors fail', () => {
         heading: 'How the platform fits together',
         figures: [
           {
-            src: '/architecture/visitor-simplified-system.png',
-            alt: 'Simplified system view of the guide tablet, voting kiosk, tour services, state coordination, visitor audio guide, CMS, show control and indoor positioning.',
+            src: '/architecture/visitor/visitor-coordination-desktop.svg',
+            alt: 'Tour API context, show-control cues and processed indoor-positioning updates feed state coordination, which sends live state to visitor audio guides. Separately, show-control integration sends cues and results to kiosks and receives visitor choices. CMS supplies content; APIs and MQTT carry requests and live updates.',
             caption:
-              'Tour services combine guide commands, show cues and visitor-location updates to coordinate the experience.',
-            width: 1080,
-            height: 560,
+              'Tour context, show cues and location updates determine each visitor’s audio state. Kiosks exchange choices, presentation cues and shared results through a separate messaging flow.',
+            width: 1200,
+            height: 860,
             kind: 'diagram',
             label: undefined,
-            layout: undefined,
+            layout: 'article',
+            mobile: { src: '/architecture/visitor/visitor-coordination-mobile.svg', width: 420, height: 1330 },
           },
         ],
       },
@@ -418,6 +435,7 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'diagram',
             label: undefined,
             layout: undefined,
+            mobile: undefined,
           },
         ],
       },
@@ -434,6 +452,7 @@ test('figures attach to headings and missing anchors fail', () => {
             kind: 'screenshot',
             label: undefined,
             layout: 'article',
+            mobile: undefined,
           },
         ],
       },
@@ -474,6 +493,19 @@ test('figures attach to headings and missing anchors fail', () => {
   ];
   assert.equal(new Set(visitorSrcs).size, visitorSrcs.length);
   assert.equal(statSync(join('public', 'architecture/visitor-simplified-system.svg')).isFile(), true);
+  assert.equal(existsSync(join('public', 'architecture/visitor-simplified-system.png')), false);
+  const layoutSource = readFileSync('lib/case-layout.ts', 'utf8');
+  assert.equal(layoutSource.includes('visitor-simplified-system.png'), false);
+  assert.equal(layoutSource.split('visitor-journey-desktop.svg').length - 1, 1);
+  assert.equal(layoutSource.split('visitor-coordination-desktop.svg').length - 1, 1);
+  for (const file of [
+    'architecture/visitor/visitor-journey-desktop.svg',
+    'architecture/visitor/visitor-journey-mobile.svg',
+    'architecture/visitor/visitor-coordination-desktop.svg',
+    'architecture/visitor/visitor-coordination-mobile.svg',
+  ]) {
+    assert.equal(statSync(join('public', file)).isFile(), true, file);
+  }
   assert.deepEqual(
     articles.visitor.sections.map((section) => section.anchor),
     articles.visitor.sections.map((section) => headingAnchor(section.heading)),
@@ -663,6 +695,10 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   assert.equal(media.includes('sourceHref'), false);
   assert.equal(media.includes('Open editable source'), false);
   assert.match(media, /figure\.layout !== 'article'/);
+  assert.match(media, /max-width: 767px/);
+  assert.match(media, /<picture/);
+  assert.equal(media.includes('object-cover'), false);
+  assert.equal(media.includes('object-fit'), false);
   assert.match(
     page,
     /Engineering an immersive visitor platform across React Native, native Android, Go and content services: location-aware audio, tour control and technical handover\./,

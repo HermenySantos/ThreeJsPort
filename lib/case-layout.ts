@@ -12,6 +12,8 @@ export type CaseFigure = {
   label?: string;
   /** article keeps a tall still at column width instead of the portrait cap. */
   layout?: 'portrait' | 'article';
+  /** Shown below 768px. Desktop `src` remains the fallback image. */
+  mobile?: { src: string; width: number; height: number };
 };
 
 export type CaseSection = {
@@ -45,7 +47,7 @@ function shot(
   alt: string,
   caption: string,
   kind: CaseFigure['kind'],
-  extras?: Pick<CaseFigure, 'label' | 'layout'>,
+  extras?: Pick<CaseFigure, 'label' | 'layout' | 'mobile'>,
 ): CaseFigure {
   return { src, alt, caption, width, height, kind, ...extras };
 }
@@ -150,6 +152,18 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       afterHeading: 'From arrival to a shared decision',
       figures: [
         shot(
+          '/architecture/visitor/visitor-journey-desktop.svg',
+          1200,
+          520,
+          'Four steps: join a scheduled tour and choose a language on the audio guide; explore with audio responding to location and show cues; cast a vote at a kiosk; see shared results. A guide tablet controls tour progression.',
+          'Visitors join a tour, explore with location-aware audio and take part in a shared voting experience. Staff coordinate the tour from a separate tablet.',
+          'diagram',
+          {
+            layout: 'article',
+            mobile: { src: '/architecture/visitor/visitor-journey-mobile.svg', width: 420, height: 1030 },
+          },
+        ),
+        shot(
           '/cases/visitor/visitor-audio-language.png',
           1080,
           2400,
@@ -182,12 +196,16 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       afterHeading: 'How the platform fits together',
       figures: [
         shot(
-          '/architecture/visitor-simplified-system.png',
-          1080,
-          560,
-          'Simplified system view of the guide tablet, voting kiosk, tour services, state coordination, visitor audio guide, CMS, show control and indoor positioning.',
-          'Tour services combine guide commands, show cues and visitor-location updates to coordinate the experience.',
+          '/architecture/visitor/visitor-coordination-desktop.svg',
+          1200,
+          860,
+          'Tour API context, show-control cues and processed indoor-positioning updates feed state coordination, which sends live state to visitor audio guides. Separately, show-control integration sends cues and results to kiosks and receives visitor choices. CMS supplies content; APIs and MQTT carry requests and live updates.',
+          'Tour context, show cues and location updates determine each visitor’s audio state. Kiosks exchange choices, presentation cues and shared results through a separate messaging flow.',
           'diagram',
+          {
+            layout: 'article',
+            mobile: { src: '/architecture/visitor/visitor-coordination-mobile.svg', width: 420, height: 1330 },
+          },
         ),
       ],
     },

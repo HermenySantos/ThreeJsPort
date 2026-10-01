@@ -278,6 +278,10 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   const homepage = readFileSync('lib/content.ts', 'utf8');
   assert.equal(homepage.includes('TimescaleDB'), false, 'TimescaleDB must not appear in homepage content');
 
+  for (const name of ['PMI', 'CheckedIn']) {
+    assert.equal(sourceBlob.includes(name), false, `client must stay unnamed: ${name}`);
+  }
+
   const ink = readFileSync('tailwind.config.ts', 'utf8');
   assert.match(ink, /ink: '#0a0a0a'/);
   assert.equal(readFileSync('app/globals.css', 'utf8').includes('background: #0a0a0a'), true);

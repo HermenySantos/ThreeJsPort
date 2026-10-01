@@ -1,8 +1,8 @@
 # Ovee — AI for live event moderation and workshop synthesis
 
-**Full-stack product engineering · Dorier for PMI and MCI · 2026**
+**Full-stack product engineering · Dorier for a Fortune-500 client · 2026**
 
-Ovee turns stage discussions and workshop contributions into questions, themes and reports, with operator controls for live delivery. It has been delivered at four live events: three for PMI and one for MCI’s CheckedIn. At one leadership summit, it supported 600 participants across 60 roundtables, with workshop inputs becoming themes on the main display in approximately five seconds.
+Ovee turns stage discussions and workshop contributions into questions, themes and reports, with operator controls for live delivery. It has been delivered at four global leadership events for a Fortune-500 multinational, across Asia and Europe. At one leadership summit, it supported 600 participants across 60 roundtables, with workshop inputs becoming themes on the main display in approximately five seconds.
 
 ## My responsibility
 

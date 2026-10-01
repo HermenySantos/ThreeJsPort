@@ -71,7 +71,7 @@ export const cases: readonly CaseStudy[] = [
     slug: 'ai',
     year: '2026',
     title: 'Ovee — AI for live events.',
-    label: 'Primary engineer across AI, operator tools and audience delivery · Dorier for PMI and MCI · 2026',
+    label: 'Primary engineer across AI, operator tools and audience delivery · Dorier for a Fortune-500 client · 2026',
     summary:
       'Ovee turns stage discussions and workshop contributions into questions, themes and reports. Delivered at four live events, it supported 600 participants across 60 roundtables at one leadership summit. I took primary implementation responsibility across the operator interfaces, Python services, model integration and audience delivery.',
     delivered: [

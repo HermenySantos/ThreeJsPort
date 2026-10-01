@@ -27,7 +27,7 @@ export const hero = {
   headlineEm: 'that can’t afford a second take.',
   lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years across web, mobile and cloud.',
   proofLabel: 'Delivery proof',
-  proof: 'Ovee, live-event AI for a Fortune-500 multinational: cleared by the client’s IT, privacy and data-control teams; synthesised 60 roundtables for 600 leaders in seconds.',
+  proof: 'Ovee, live-event AI: cleared by a Fortune-500 client’s IT, privacy and data-control review; synthesised 60 roundtables for 600 leaders in seconds.',
   stack: 'Based in Portugal · Working across the stack',
   primaryCta: { label: 'Explore selected work', href: '#work' },
   secondaryCta: { label: 'Get in touch', href: '#contact' },
@@ -36,7 +36,7 @@ export const hero = {
 export const metrics = {
   kicker: hero.proofLabel,
   items: [
-    { value: '4', label: 'Global events, Asia & Europe' },
+    { value: '4', label: 'Live events, Asia & Europe' },
     { value: '0', label: 'Off-message incidents on stage' },
     { value: '~5 s', label: 'Workshop synthesis, vs ~30 min by hand' },
   ],
@@ -72,9 +72,9 @@ export const cases: readonly CaseStudy[] = [
     slug: 'ai',
     year: '2026',
     title: 'Ovee — AI for live events.',
-    label: 'Primary engineer across AI, operator tools and audience delivery · Dorier for a Fortune-500 client · 2026',
+    label: 'Primary engineer across AI, operator tools and audience delivery · Dorier · Fortune-500 tour and hospitality conference · 2026',
     summary:
-      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at four global leadership events for a Fortune-500 multinational, with an operator approving every AI contribution before it reached the stage.',
+      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus a hospitality-industry conference. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
     delivered: [
       'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
       'Workshop synthesis that turned 60 roundtables into themes on the main display in about five seconds.',

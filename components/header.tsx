@@ -56,6 +56,14 @@ export function Header() {
 
         <div className="flex items-center justify-end gap-3">
           <SocialLinks className="hidden sm:flex" />
+          <a
+            href={site.cv}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-9 items-center rounded-full bg-white px-4 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
+          >
+            Résumé
+          </a>
           <button
             ref={menuToggleRef}
             type="button"

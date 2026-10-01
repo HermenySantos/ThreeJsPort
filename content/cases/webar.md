@@ -1,6 +1,6 @@
 # One experience across venues and phones
 
-**Global WebAR experience · Dorier · 2025**
+**Global WebAR experience · Scopely · Dorier · 2025**
 
 Participants joined a WebAR experience from their own phones—no app install—across twelve event locations. Phones, browsers, permissions and movement differed; staff needed results for their location, not one global scoreboard. I owned the browser experience, score APIs and administration within the wider event delivery.
 

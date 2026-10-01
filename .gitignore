@@ -39,4 +39,4 @@ threejscc_portfolio-public.zip
 
 # Uncleared concierge stills kept for local review only.
 # Not in public/, not imported, and not part of the deploy output.
-review-local/
+review-local/tsconfig.tsbuildinfo

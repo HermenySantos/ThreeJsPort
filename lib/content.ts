@@ -191,7 +191,7 @@ export const experience = {
       title: 'Project Development Manager / Full Stack Developer',
       company: 'NomadEngenuity',
       period: '2024–2025',
-      summary: 'Led development of a Next.js and NestJS microservice platform for an eye-care app, with GraphQL and REST APIs and Azure CI/CD; built the front end of a healthcare staffing product.',
+      summary: 'Seezy, a multi-partner eye-care plan platform: co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery. About ten NestJS microservices behind Azure API Management on Container Apps, an orchestrator owning a 21-state care-plan process, and Auth0 multi-tenant partner roles. Also built the front end of a healthcare staffing product.',
     },
     {
       title: 'Software Developer',

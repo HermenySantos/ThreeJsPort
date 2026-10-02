@@ -26,6 +26,13 @@ export function Experience() {
                 </p>
                 <p className="mt-1 text-[13px] text-white/60">{role.period}</p>
                 <p className="mt-3 text-[15px] leading-6 text-mute">{role.summary}</p>
+                {'bullets' in role && (
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-mute">
+                    {role.bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ol>

@@ -21,17 +21,11 @@ The scope planned a front-end developer and a back-end developer; I was both. I 
 
 **TypeScript · Mattercraft / Zappar · Azure Functions · Cosmos DB · React**
 
-## Connecting participants, scores and staff
+## Why the browser
 
-Participants needed to enter from their own phones without installing a native app. Device motion, browser permissions, and connectivity could vary from person to person. Staff needed location-specific results rather than one undifferentiated global scoreboard.
+Walk-up players at a venue will not install an app for a one-off game, so the hunt ran in the phone’s browser from a single QR code. Mattercraft provided the AR scene; TypeScript ran the game and talked to the backend.
 
-Those constraints connected three engineering responsibilities: the interaction must communicate what the participant should do, the API must validate and store results, and the administration surface must organise the data around how the event is run.
-
-## Letting participants join from the browser
-
-Browser AR avoids asking a walk-up participant to find and install an app. Mattercraft provided the authoring environment, while TypeScript controlled the game behaviour and its connection to the backend.
-
-**Tradeoff:** the browser becomes part of the product's operating environment. Native capabilities cannot be assumed, and camera/motion permissions need to be requested in the right interaction context. An experience that works on one developer phone is not enough to establish that the entry flow is dependable.
+The cost is that the browser becomes the operating environment. Camera and motion permissions have to be requested at the right moment, sensors behave differently on every phone, and frame rate depends on hardware nobody controls. Everything below is about making one experience behave on all of them.
 
 ## Handling permissions and movement on real phones
 
@@ -57,23 +51,13 @@ The game rewards movement, so the cheapest cheat is to stand still and shake the
 
 The plan was as explicit about what not to build: no machine learning, no GPS indoors, motion sensors only, and no harsh penalties beyond the one targeted case of an obvious heavy shake.
 
-## Organising scores around the event’s locations
+## A small backend, made defensible
 
-Score submission attaches a location partition, and leaderboard queries use that same location boundary. This follows the event's operating model: staff and participants care about the results at their own venue.
+Every score carries its location, and Cosmos DB is partitioned by it. That follows how the event was run: staff and players care about the results at their own venue, so a local leaderboard is a single-partition read rather than a global query filtered in the interface. Global reporting, in return, needs explicit aggregation.
 
-This keeps the access pattern understandable: a local leaderboard is a location-bound read, rather than a global query filtered only in the interface.
+The scope called for a minimal backend: per-location endpoints and admin pages protected only by obscured URLs. I kept it small but made it defensible. The server clamps every score to the 2,000-point maximum, accepts only the 12 known location codes, filters nicknames and rejects timestamps from the future. Each IP can submit five scores per location per hour, counted inside that location’s partition, and score data, including the IP used for rate limiting, deletes itself after seven days. A React dashboard gave each hub’s staff their own results.
 
-**Tradeoff:** global reporting needs explicit aggregation rather than being identical to a local lookup. The location boundary fits how the event is operated and how its leaderboards are read.
-
-## Following a score from interaction to administration
-
-The scope called for a minimal backend: per-location endpoints and admin pages protected only by obscured URLs. I kept it small but made it defensible. The server clamps every score to the 2,000-point maximum, accepts only the 12 known location codes, filters nicknames and rejects timestamps from the future. Each IP can submit five scores per location per hour, counted inside that location’s partition, and score data, including the IP used for rate limiting, deletes itself after seven days.
-
-The honest gaps: the endpoints are anonymous, a retried request can store a duplicate score, and an IP limit can catch real players sharing venue Wi-Fi.
-
-These checks make browser-submitted data usable, while gameplay tuning addresses the interaction itself. Validation should not be confused with a complete anti-cheat guarantee: the browser remains a participant-controlled environment.
-
-React administration gives staff a separate surface for location context and results. Owning the participant, backend, and staff layers together meant changes could be followed across their boundaries—for example, from how a score is produced to where it appears in a location's results.
+The honest gaps: the endpoints are anonymous, a retried request can store a duplicate score, and an IP limit can catch real players sharing venue Wi-Fi. Server checks make browser-submitted data usable; they do not make a browser game cheat-proof.
 
 ## Testing on real phones
 
@@ -87,6 +71,4 @@ The participant experience, data model and staff workflow were developed as one 
 
 ## What I would improve next
 
-I would make degraded-mode behaviour an explicit release check: permission denied, no sensor events, background/resume, and delayed score submission. I would also measure entry-to-first-interaction time and per-location request/error rates so the team could distinguish device friction from backend problems during an event.
-
-For score delivery, I would examine the retry and duplicate-submission contract before adding automatic retries. A retry is useful only if the system can tell whether it is repeating the same action.
+Automated tests first: the energy and anti-cheat rules live in their own managers and could be tested against recorded sensor traces, and manual device passes do not scale past one event. Then a retry contract for score submission, with an idempotency key so a retry can never create a duplicate. And per-location request and error metrics, so on the day the team could tell device friction from backend problems at a glance.

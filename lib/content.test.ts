@@ -666,6 +666,7 @@ test('figures attach to headings and missing anchors fail', () => {
       }),
     ),
   );
+  for (const study of cases) referenced.add(study.cover.src.slice(1));
   for (const src of referenced) {
     assert.equal(statSync(join('public', src)).isFile(), true, src);
   }

@@ -179,10 +179,10 @@ export const cases: readonly CaseStudy[] = [
     cta: 'Explore the architecture',
     href: '/cases/seezy',
     cover: {
-      src: '/architecture/seezy-orchestrator.png',
+      src: '/architecture/seezy-orchestrator-card.png',
       alt: 'Architecture diagram: services report state changes to one orchestrator that owns a process with two administrator approval gates.',
       width: 3200,
-      height: 1320,
+      height: 2000,
     },
   },
 ];

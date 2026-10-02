@@ -119,7 +119,7 @@ export const cases: readonly CaseStudy[] = [
     year: '2025',
     title: 'Global WebAR experience.',
     label:
-      'Owned the browser experience, backend and admin tools · Dorier for Scopely · 2025',
+      'Sole engineer: browser AR, backend and admin tools · Dorier for Scopely · 2025',
     summary:
       'Participants joined from their own phones in the browser — no app install — across twelve event locations. I built the core in five weeks, then refined it through testing and client feedback: interaction layer, score APIs, location-scoped leaderboards and React administration.',
     delivered: [
@@ -136,7 +136,7 @@ export const cases: readonly CaseStudy[] = [
       width: 2000,
       height: 1333,
     },
-    scale: '~2,100 participants across 12 locations.',
+    scale: '12 hubs on one day, designed for ~2,100 players.',
   },
   {
     id: '04',

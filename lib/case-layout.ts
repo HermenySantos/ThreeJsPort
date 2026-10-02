@@ -360,6 +360,20 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       ],
     },
     {
+      afterHeading: 'Walking, not shaking',
+      figures: [
+        shot(
+          '/architecture/webar-anticheat.png',
+          3120,
+          940,
+          'Decision path: sensor data is normalised across iOS and Android sampling rates, with raw sensors as a fallback; shaking is penalised only when there is walking evidence and the shake lasts at least 200 milliseconds; otherwise movement counts as normal play.',
+          'Shaking costs energy only when the phone is also walking and the shake is sustained, so honest players are not punished for a bump.',
+          'diagram',
+          { mobile: { src: '/architecture/webar-anticheat-mobile.svg', width: 420, height: 644 } },
+        ),
+      ],
+    },
+    {
       afterHeading: 'Following a score from interaction to administration',
       figures: [
         shot(

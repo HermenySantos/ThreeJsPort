@@ -631,9 +631,9 @@ test('figures attach to headings and missing anchors fail', () => {
         ],
       },
       {
-        heading: 'When a search match is the wrong source',
+        heading: 'Making adaptation decisions explicit',
         captions: [
-          'The guide acknowledges missing source support and offers a suggested next step. Working prototype.',
+          'What a triggered intervention looks like to the visitor: a small, optional spark rather than a lecture. Working prototype.',
         ],
       },
       {

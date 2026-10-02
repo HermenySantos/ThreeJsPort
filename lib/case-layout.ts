@@ -432,14 +432,14 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       ],
     },
     {
-      afterHeading: 'When a search match is the wrong source',
+      afterHeading: 'Making adaptation decisions explicit',
       figures: [
         shot(
-          '/cases/concierge/concierge-spark-livetest.png',
-          2560,
-          1724,
-          'Guide response stating that source support is missing, with a suggested next step.',
-          'The guide acknowledges missing source support and offers a suggested next step. Working prototype.',
+          '/cases/concierge/concierge-visitor-spark.png',
+          1100,
+          470,
+          'A visitor-facing card titled Find the hidden chain, offering to link the last three things the visitor looked at.',
+          'What a triggered intervention looks like to the visitor: a small, optional spark rather than a lecture. Working prototype.',
           'screenshot',
         ),
       ],

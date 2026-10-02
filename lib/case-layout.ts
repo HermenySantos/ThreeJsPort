@@ -202,6 +202,27 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'diagram',
           { mobile: { src: '/architecture/seezy-orchestrator-mobile.svg', width: 420, height: 808 } },
         ),
+        shot(
+          '/cases/seezy/seezy-process-history.png',
+          1920,
+          1080,
+          'Seezy admin dashboard listing three care-plan processes, each with its plan, pack, financing approval, location and current state, such as glasses delivered to the client or optician voucher validated. Client names and phone numbers are hidden.',
+          'The administrator view of the orchestrator’s record: every process shows its current state and when it last moved. Client details hidden.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'Shipping it, and what on-premises would cost',
+      figures: [
+        shot(
+          '/cases/seezy/seezy-service-status.png',
+          1920,
+          640,
+          'Seezy settings page showing the status of nine microservices: Client, Provider, Lab, Finance, Inventory, Insurance, Notification, Orchestrator and Cheque, most active and two waking up.',
+          'The admin’s live view of nine of the services; two are still waking up when the page loads.',
+          'screenshot',
+        ),
       ],
     },
   ],

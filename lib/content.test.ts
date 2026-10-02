@@ -330,6 +330,10 @@ test('figures attach to headings and missing anchors fail', () => {
         ],
       ],
       ['One response, one playback start', ['/architecture/ai-playback-desktop.png']],
+      [
+        'Sixty tables, one synthesis',
+        ['/cases/ai/01-stage-workshop-synthesis-themes.png', '/cases/ai/02-workshop-operator-tables-submitting.png'],
+      ],
     ],
   );
   assert.equal(articles.ai.sections[0]?.heading, 'My responsibility');
@@ -370,7 +374,7 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(articles.ai.disclosure?.figures.length, 3);
   assert.equal(
     aiMain.reduce((count, section) => count + section.figures.length, 0),
-    7,
+    9,
   );
 
   assert.deepEqual(

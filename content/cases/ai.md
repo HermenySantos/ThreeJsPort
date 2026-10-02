@@ -65,6 +65,28 @@ Server-time alignment also supports late arrivals. The first clip starts from th
 
 When the stage’s realtime connection drops, it reconnects with exponential backoff: 1.5 seconds, doubling, capped at 20, so a room full of screens never retries in lockstep. The conversation mode’s realtime voice session can reconnect carrying the transcript so far, so the model resumes with context instead of starting cold.
 
+## Sixty tables, one synthesis
+
+A leadership workshop can put 60 roundtables in a room at once. Each table claims a number from a phone, submits its conclusions, and expects to see the whole room’s thinking on the main screen moments later.
+
+The workshop runtime holds that state behind a single async lock: timer, table claims, contributions, summaries and summary audio. Two phones claiming the same table get a clear “already taken” instead of a silent overwrite, and an operator can free a table when a device drops. Summary audio carries a server-time playback position, so a screen that joins late picks up mid-sentence instead of restarting. In testing, summaries were generated in 3–6 seconds.
+
+The trade-off is deliberate: state lives in one process, in memory. That keeps a single event simple and fast, but it cannot scale horizontally and does not survive a restart. When CheckedIn needed two workshop rooms running at once, I added Room A and Room B overnight, with their own tests, instead of redesigning the store mid-event.
+
+## A French-speaking stage
+
+For an upcoming French-language event, Ovee has to speak French on stage. Instead of scattering language checks, one runtime setting (environment, then the instance’s language, then French by default) drives the draft language, the transcription hint, the model instructions and the voice style. I chose the *coral* voice because it held natural French better than the alternatives I tested.
+
+## Rehearsal as engineering
+
+Live events do not allow a second take, so the tests have to stand in for one: **699 backend test functions and 73 frontend test files**. Before one event I fixed nine existing failures to take the suite from 270 to 280 passing. Browser rehearsals caught bugs that unit tests did not, such as participants submitting “undefined” in a workshop, and a live QA pass found that a stale backend broke endpoints, which added a restart step to the operator runbook. Each mode has its own rehearsal checklist.
+
+After an event, the report PDFs go through a release check before they leave: a four-file allowlist, raster fingerprints and a privacy scan of every page, plus a SHA-256 manifest of the archive.
+
+## From event builds to a product
+
+Each event started as its own build. After CheckedIn I turned them into one codebase: configurable modules, a tenant registry, and one instance setting that selects branding, language and features. That is how the same platform runs as differently branded co-hosts in different markets.
+
 ## Model behaviour as application logic
 
 Mode-specific prompt builders and tests keep provider integration out of individual screens. Operator context and notes shape the request.

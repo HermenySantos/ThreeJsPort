@@ -117,6 +117,27 @@ const oveePlacements: readonly Placement[] = [
     ],
   },
   {
+    afterHeading: 'Sixty tables, one synthesis',
+    figures: [
+      shot(
+        '/cases/ai/01-stage-workshop-synthesis-themes.png',
+        2400,
+        1350,
+        'Stage display titled The room’s synthesis, listing key themes and roadblocks for the question of adopting AI at work.',
+        'Room synthesis on the main display. Reconstructed with synthetic data on the production build.',
+        'screenshot',
+      ),
+      shot(
+        '/cases/ai/02-workshop-operator-tables-submitting.png',
+        2400,
+        1350,
+        'Workshop operator view with ten claimed tables and a live feed of table responses.',
+        'Workshop operator view: tables claimed and contributions arriving. Reconstructed with synthetic data.',
+        'screenshot',
+      ),
+    ],
+  },
+  {
     afterHeading: 'One response, one playback start',
     figures: [
       shot(

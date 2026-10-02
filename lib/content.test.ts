@@ -165,6 +165,13 @@ test('about, experience and contact match V4.1', () => {
   );
 });
 
+test('case prose avoids single-asterisk italics, which the renderer does not support', () => {
+  for (const slug of ['ai', 'visitor', 'webar', 'concierge']) {
+    const text = readFileSync(join('content/cases', `${slug}.md`), 'utf8').replace(/\*\*[^*]+\*\*/g, '');
+    assert.equal(/\*[^*\s][^*]*\*/.test(text), false, slug);
+  }
+});
+
 test('case prose keeps engineering substance and supplied headings', () => {
   const slugs = ['ai', 'visitor', 'webar', 'concierge'] as const;
   const files = Object.fromEntries(
@@ -303,7 +310,7 @@ test('homepage cards scan scope, then bullets, then stack, then link', () => {
   assert.ok(ctaAt > stackAt);
 });
 
-const VISITOR_PHOTO_SECTIONS = ['My responsibility', 'The Gathering: position becomes light'];
+const VISITOR_PHOTO_SECTIONS = ['My responsibility', 'The Gathering: position becomes light', 'A show that works without sound', 'Making tour ownership part of the client–server contract'];
 
 test('figures attach to headings and missing anchors fail', () => {
   const articles = Object.fromEntries(
@@ -466,22 +473,6 @@ test('figures attach to headings and missing anchors fail', () => {
         ],
       },
       {
-        heading: 'Making tour ownership part of the client–server contract',
-        figures: [
-          {
-            src: '/architecture/visitor-docent-controller-01.png',
-            alt: 'Tour takeover sequence showing ownership update, notification to the previous controller and confirmation to the new controller.',
-            caption: 'The takeover flow updates the controlling device and notifies the previous controller.',
-            width: 2118,
-            height: 975,
-            kind: 'diagram',
-            label: undefined,
-            layout: undefined,
-            mobile: undefined,
-          },
-        ],
-      },
-      {
         heading: 'Making the platform understandable after handover',
         figures: [
           {
@@ -511,17 +502,17 @@ test('figures attach to headings and missing anchors fail', () => {
     })),
     [
       {
-        src: '/architecture/visitor-system-overview-02.png',
-        alt: 'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
+        src: '/architecture/visitor-system-overview.png',
+        alt: 'System overview: indoor positioning, guide-tablet commands and show cues merge in one State Manager, which sends one state per visitor to each audio guide over MQTT; the CMS supplies content; voting kiosks follow show cues on a separate path.',
         caption:
-          'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+          'Every input merges in one State Manager, which publishes one state per visitor. Show control, positioning hardware and the kiosks’ show integration were owned by colleagues.',
         kind: 'diagram',
       },
     ],
   );
   assert.equal(
     articles.visitor.sections.some((section) =>
-      section.figures.some((figure) => figure.src.includes('visitor-system-overview-02')),
+      section.figures.some((figure) => figure.src.includes('visitor-system-overview.png')),
     ),
     false,
   );
@@ -529,8 +520,14 @@ test('figures attach to headings and missing anchors fail', () => {
     articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.map((figure) => figure.src),
     ['/cases/visitor/together-voting-chamber.jpg', '/cases/visitor/together-exterior.jpg'],
   );
+  assert.deepEqual(
+    articles.visitor.sections
+      .find((section) => section.heading === 'Making tour ownership part of the client–server contract')
+      ?.figures.map((figure) => figure.src),
+    ['/architecture/visitor-docent-controller-01.png', '/cases/visitor/docent-tour-taken-over.png'],
+  );
   for (const section of articles.visitor.sections.filter((s) => VISITOR_PHOTO_SECTIONS.includes(s.heading))) {
-    for (const figure of section.figures) assert.match(figure.caption, /Photo: Filipe Lopes Pires\.$/);
+    for (const figure of section.figures.filter((f) => f.src.includes('together-'))) assert.match(figure.caption, /Photo: Filipe Lopes Pires\.$/);
   }
   const visitorSrcs = [
     ...articles.visitor.sections.flatMap((section) => section.figures.map((figure) => figure.src)),

@@ -212,8 +212,31 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       ],
     },
     {
+      afterHeading: 'A show that works without sound',
+      figures: [
+        shot(
+          '/cases/visitor/docent-device-control-languages.png',
+          910,
+          1513,
+          'Guide tablet Device Control panel with eight language options, a captions toggle switched on and a Resync Audio button. Device identifiers are blurred.',
+          'Per-visitor control on the guide’s tablet: eight languages, captions, and a forced audio resync. Device identifiers blurred.',
+          'screenshot',
+          { label: 'Guide tablet' },
+        ),
+      ],
+    },
+    {
       afterHeading: 'The Gathering: position becomes light',
       figures: [
+        shot(
+          '/architecture/visitor-gathering-ramp.png',
+          2400,
+          920,
+          'Chart: flash intensity rises linearly from off at 5 metres to full at 0.5 metres; within 0.5 metres of the totem the screen is solid white.',
+          'Distance to the totem drives the flash: linear from 5 m to 0.5 m, solid white on arrival.',
+          'diagram',
+          { mobile: { src: '/architecture/visitor-gathering-ramp-mobile.svg', width: 420, height: 420 } },
+        ),
         shot(
           '/cases/visitor/together-first-pavilion.jpg',
           2000,
@@ -295,6 +318,15 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Tour takeover sequence showing ownership update, notification to the previous controller and confirmation to the new controller.',
           'The takeover flow updates the controlling device and notifies the previous controller.',
           'diagram',
+        ),
+        shot(
+          '/cases/visitor/docent-tour-taken-over.png',
+          1600,
+          1000,
+          'Guide tablet showing a Tour Taken Over dialog: another device has taken control of this tour.',
+          'What the previous guide sees: control moved to another tablet, so this one disconnects instead of competing.',
+          'screenshot',
+          { label: 'Guide tablet' },
         ),
       ],
     },
@@ -434,12 +466,13 @@ const visitorDisclosure: CaseDisclosure = {
   afterHeading: 'How the platform fits together',
   figures: [
     shot(
-      '/architecture/visitor-system-overview-02.png',
-      1951,
-      1961,
-      'System overview connecting visitor and guide applications, kiosks, content services and external show-control and positioning systems.',
-      'Applications, content services, show control and positioning contribute to the visitor experience. My work covered application and service integration; external systems were owned by colleagues.',
+      '/architecture/visitor-system-overview.png',
+      3120,
+      1280,
+      'System overview: indoor positioning, guide-tablet commands and show cues merge in one State Manager, which sends one state per visitor to each audio guide over MQTT; the CMS supplies content; voting kiosks follow show cues on a separate path.',
+      'Every input merges in one State Manager, which publishes one state per visitor. Show control, positioning hardware and the kiosks’ show integration were owned by colleagues.',
       'diagram',
+      { mobile: { src: '/architecture/visitor-system-overview-mobile.svg', width: 420, height: 802 } },
     ),
   ],
 };

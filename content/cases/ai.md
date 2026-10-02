@@ -75,7 +75,7 @@ The trade-off is deliberate: state lives in one process, in memory. That keeps a
 
 ## A French-speaking stage
 
-For an upcoming French-language event, Ovee has to speak French on stage. Instead of scattering language checks, one runtime setting (environment, then the instance’s language, then French by default) drives the draft language, the transcription hint, the model instructions and the voice style. I chose the *coral* voice because it held natural French better than the alternatives I tested.
+For an upcoming French-language event, Ovee has to speak French on stage. Instead of scattering language checks, one runtime setting (environment, then the instance’s language, then French by default) drives the draft language, the transcription hint, the model instructions and the voice style. I chose the “coral” voice because it held natural French better than the alternatives I tested.
 
 ## Rehearsal as engineering
 

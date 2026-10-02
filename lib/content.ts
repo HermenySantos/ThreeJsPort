@@ -45,10 +45,10 @@ export const metrics = {
 
 export const work = {
   heading: 'Selected work',
-  eyebrow: 'Selected work / 01—04',
+  eyebrow: 'Selected work / 01—05',
 } as const;
 
-export type CaseSlug = 'ai' | 'visitor' | 'webar' | 'concierge';
+export type CaseSlug = 'ai' | 'visitor' | 'webar' | 'concierge' | 'seezy';
 
 export type CaseStudy = {
   id: string;
@@ -161,6 +161,29 @@ export const cases: readonly CaseStudy[] = [
       height: 1716,
     },
     prototype: true,
+  },
+  {
+    id: '05',
+    slug: 'seezy',
+    year: '2024–2025',
+    title: 'Seezy — one process, five partners.',
+    label: 'Co-architect, then sole engineer to delivery · NomadEngenuity · 2024–2025',
+    summary:
+      'A multi-partner eye-care plan platform: sales partners, optical stores, labs, insurers and administrators working one shared process, from the first lead to the client collecting their glasses. I co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery.',
+    delivered: [
+      'An orchestrator service that owns a 21-state process, with every other service reporting its state changes back.',
+      'Two administrator approval gates before vouchers, insurance and lab orders are released.',
+      'Multi-tenant partner access with Auth0: admins, managers, users and branches per organisation, with rollback on failed registration.',
+    ],
+    stack: ['TypeScript', 'Next.js', 'NestJS', 'Azure API Management', 'Azure Container Apps', 'MongoDB', 'Auth0'],
+    cta: 'Explore the architecture',
+    href: '/cases/seezy',
+    cover: {
+      src: '/architecture/seezy-orchestrator.png',
+      alt: 'Architecture diagram: services report state changes to one orchestrator that owns a process with two administrator approval gates.',
+      width: 3200,
+      height: 1320,
+    },
   },
 ];
 

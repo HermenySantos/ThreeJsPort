@@ -191,6 +191,40 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
   ai: oveePlacements,
   visitor: [
     {
+      afterHeading: 'My responsibility',
+      figures: [
+        shot(
+          '/cases/visitor/together-voting-chamber.jpg',
+          2000,
+          1333,
+          'Visitors seated in a curved negotiation chamber, voting at kiosks under blue ceiling rings.',
+          'A Common Answer, the third pavilion: visitors negotiate and vote on a shared resolution. Photo: Filipe Lopes Pires.',
+          'screenshot',
+        ),
+        shot(
+          '/cases/visitor/together-exterior.jpg',
+          2000,
+          1500,
+          'White colonnaded pavilions of the Portail des Nations among trees.',
+          'The Portail des Nations pavilions in the park of the Palais des Nations. Photo: Filipe Lopes Pires.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'The Gathering: position becomes light',
+      figures: [
+        shot(
+          '/cases/visitor/together-first-pavilion.jpg',
+          2000,
+          1334,
+          'A long dark pavilion with projected walls and a central lit totem under a circular ceiling light.',
+          'A Common Language, the first pavilion, with the central piece visitors gather around. Photo: Filipe Lopes Pires.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
       afterHeading: 'From arrival to a shared decision',
       figures: [
         shot(

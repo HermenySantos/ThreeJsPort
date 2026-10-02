@@ -110,10 +110,10 @@ test('visitor homepage card uses the immersive platform copy', () => {
   assert.equal(visitor.year, '2025–2026');
   assert.equal(visitor.href, '/cases/visitor');
   assert.equal(visitor.title, 'Immersive visitor platform.');
-  assert.equal(visitor.label, 'Core engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026');
+  assert.equal(visitor.label, 'Software engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026');
   assert.equal(
     visitor.summary,
-    'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
+    'UN Geneva’s new visitor centre, open since June 2026 for an expected 200,000 visitors a year. Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
   );
   assert.deepEqual(visitor.delivered, [
     'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',
@@ -219,7 +219,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.equal(files.visitor.includes('```'), false);
   assert.equal(files.visitor.includes('TimescaleDB'), false);
   assert.equal(files.visitor.includes('Fondation'), false);
-  assert.equal(files.visitor.includes('Portail des Nations'), false);
+  assert.match(files.visitor, /opened UN Geneva’s new public visitor centre in June 2026/);
   assert.match(files.webar, /Approximately 2,100 participants/);
   const huntAt = files.webar.indexOf('## An event space became a character hunt');
   const responsibilityAt = files.webar.indexOf('## My responsibility');
@@ -303,6 +303,8 @@ test('homepage cards scan scope, then bullets, then stack, then link', () => {
   assert.ok(ctaAt > stackAt);
 });
 
+const VISITOR_PHOTO_SECTIONS = ['My responsibility', 'The Gathering: position becomes light'];
+
 test('figures attach to headings and missing anchors fail', () => {
   const articles = Object.fromEntries(
     (['ai', 'visitor', 'webar', 'concierge'] as const).map((slug) => {
@@ -380,7 +382,7 @@ test('figures attach to headings and missing anchors fail', () => {
 
   assert.deepEqual(
     articles.visitor.sections
-      .filter((section) => section.figures.length > 0)
+      .filter((section) => section.figures.length > 0 && !VISITOR_PHOTO_SECTIONS.includes(section.heading))
       .map((section) => ({
         heading: section.heading,
         figures: section.figures.map((figure) => ({
@@ -523,7 +525,13 @@ test('figures attach to headings and missing anchors fail', () => {
     ),
     false,
   );
-  assert.equal(articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.length, 0);
+  assert.deepEqual(
+    articles.visitor.sections.find((section) => section.heading === 'My responsibility')?.figures.map((figure) => figure.src),
+    ['/cases/visitor/together-voting-chamber.jpg', '/cases/visitor/together-exterior.jpg'],
+  );
+  for (const section of articles.visitor.sections.filter((s) => VISITOR_PHOTO_SECTIONS.includes(s.heading))) {
+    for (const figure of section.figures) assert.match(figure.caption, /Photo: Filipe Lopes Pires\.$/);
+  }
   const visitorSrcs = [
     ...articles.visitor.sections.flatMap((section) => section.figures.map((figure) => figure.src)),
     ...(articles.visitor.disclosure?.figures.map((figure) => figure.src) ?? []),

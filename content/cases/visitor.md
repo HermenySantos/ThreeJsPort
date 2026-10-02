@@ -2,9 +2,13 @@
 
 **Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026**
 
-Visitors move through three experiences with a handheld audio guide, while a guide controls the tour from a tablet. Audio responds to visitor location and show cues; interactive kiosks bring the group into a shared voting exercise.
+The Portail des Nations opened UN Geneva’s new public visitor centre in June 2026. At its heart is *Together*, a 60-minute journey through three pavilions. Up to 40 visitors take it at a time with a handheld audio guide while a guide runs the tour from a tablet. Audio follows each visitor’s position, projections and show cues stay in step across rooms, and the final pavilion ends in a group negotiation and vote on kiosks.
 
-Within Dorier’s delivery team, I extended the software across React Native applications, native Android modules, Go services and Payload CMS. My work connected the visitor experience to the systems behind it: positioning, audio playback, tour control, multilingual content and the documentation needed to operate the platform.
+**At a glance**
+
+- **Open to the public since June 2026**, with about **200,000 visitors a year** expected.
+- **3 pavilions · 8 languages · up to 40 visitors per session**, every hour.
+- Covered at opening by Geneva Solutions, UN Today and geneveMonde.ch. [Watch the experience](https://www.youtube.com/watch?v=lnpywaN94lY).
 
 ## From arrival to a shared decision
 
@@ -16,9 +20,9 @@ What looks like one continuous experience spans several applications, content se
 
 ## My responsibility
 
-I contributed to an existing platform within a wider delivery team. My implementation work included native positioning and headphone-reconnection handling, audio synchronisation fixes, device-aware tour control, group-tour language flows, multilingual content integration and operator tools.
+Local Projects built the original platform from January 2024, with software engineers Charles Veasey and Miguel Bermudez. From autumn 2025 Dorier’s Creative Technology team took it over and carried it to opening. Filipe Lopes Pires led the engineering team under David Granite, director of Creative Technology, with André d’Melo, Boris Poget, Pierre-Igor Berthet and me as software engineers.
 
-I also assembled the technical documentation and operating guidance, combining software verification with material from the colleagues responsible for external systems.
+I worked across the visitor’s audio guide, the guide’s tablet and the Go tour services: positioning inside the app, audio synchronisation and headphone recovery, device-aware tour control, group language flows, the accessibility mode, the Gathering effect, emergency audio, the per-site release builds, and most of the technical documentation the Foundation’s team now operates from.
 
 **React Native · TypeScript · Kotlin · Go · MQTT · Payload CMS · PostgreSQL**
 
@@ -76,6 +80,22 @@ I also extended multilingual content handling and integrated approved translatio
 
 These changes crossed boundaries that are easy to miss when applications are treated separately: a field selected by staff must retain the same meaning in the API, stored tour and presentation system.
 
+## A show that works without sound
+
+Deaf visitors needed the full experience, with captions that stay timed to the show. Instead of building a separate caption clock, I kept the audio pipeline running muted, so captions follow exactly the same timeline as everyone else’s audio. A setup question turns the mode on; it skips the sound check, offers caption size and background options, and survives an app restart. Closing a leak where zone audio could still play in deaf mode was part of the same work.
+
+## The Gathering: position becomes light
+
+In the first pavilion, visitors are drawn towards a central totem. Each handheld turns the indoor-positioning stream into a flash that intensifies as the visitor gets closer, scaling from 5 metres down to 0.5 metres and turning solid white when they arrive. Position updates are throttled to 10 a second and reference-counted across screens.
+
+Two bugs shaped it: the flash stopping at 3 metres, and position messages corrupting the tour server’s state and breaking audio. The first fix for the second bug was reverted and then reworked. The totem’s position now comes from the CMS, and a stress test with simulated positions covers the path.
+
+## Emergency audio: built and tested, not switched on
+
+Operators needed a way to interrupt every visitor’s audio safely. I built it end to end: database migrations, a Go service and REST API with tests, a CMS collection of pre-recorded messages, MQTT delivery to every handheld, and an emergency button on the guide’s tablet. Operator announcements lower the background to 30% and the foreground to 50%; evacuation messages cut everything and loop. Messages are stored on the device so they play even when the network does not, at the cost of keeping that content in sync.
+
+The feature is complete and tested, but it is not enabled at the site.
+
 ## Giving staff tools to operate the system
 
 I added a device-flag flow that connects an action on the audio guide to a backend update and a visible indicator on the guide’s tablet. It gives staff a way to identify a particular visitor device within the group.
@@ -91,6 +111,10 @@ I assembled the technical documentation around how the system actually fits toge
 The documentation connects source inspection with recorded API checks and application walkthroughs. It distinguishes verified behaviour from remaining checks and identifies where a subsystem belongs to another specialist.
 
 That distinction is part of the handover itself. The next engineer or operator needs to know both how a flow works and where to look when one part stops behaving as expected.
+
+## Testing and release
+
+I wrote most of the platform’s automated tests across the audio guide, the tablet and the Go services, plus load-test plans that simulate visitor positions and emergency messages. Release builds are reproducible per site: one script per venue bakes in its configuration and restores the workspace afterwards.
 
 ## Additional engineering: a tour flight recorder
 

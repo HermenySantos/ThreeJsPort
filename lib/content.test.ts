@@ -226,7 +226,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.equal(files.visitor.includes('```'), false);
   assert.equal(files.visitor.includes('TimescaleDB'), false);
   assert.equal(files.visitor.includes('Fondation'), false);
-  assert.match(files.visitor, /opened UN Geneva’s new public visitor centre in June 2026/);
+  assert.match(files.visitor, /UN Geneva’s new visitor centre, open since June 2026/);
   assert.match(files.webar, /Approximately 2,100 participants/);
   const huntAt = files.webar.indexOf('## An event space became a character hunt');
   const responsibilityAt = files.webar.indexOf('## My responsibility');

@@ -89,12 +89,12 @@ Each event started as its own build. After CheckedIn I turned them into one code
 
 ## Model behaviour as application logic
 
-Mode-specific prompt builders and tests keep provider integration out of individual screens. Operator context and notes shape the request.
+Mode-specific prompt builders and tests keep provider integration out of individual screens. Language and text-to-speech models sit behind small provider interfaces, so moving between OpenAI and Azure OpenAI, or to a local voice, is a configuration change, not a rewrite.
 
-Prompt instructions help guide responses. Application state determines whether a draft can be approved and whether an audio action is dispatched. Keeping those responsibilities separate makes the system easier to test and operate.
+Prompt instructions guide what the model says. Application state decides whether a draft can be approved and whether audio is dispatched. Keeping those responsibilities separate makes the system easier to test and safer to operate.
 
-## Delivery and further validation
+## Delivery and what I would measure next
 
-The product has been delivered at four live events. Separately from the 600-person summit, a preserved event export contains six captured stage sessions, and its workshop summary records 163 contributions across six topics.
+Ovee has run at four live events. Separately from the 600-person summit, a preserved CheckedIn export contains six captured stage sessions, and its workshop summary records 163 contributions across six topics.
 
-The next measurement I would add is approval-to-audible-output time, tracked separately from model response time. I would also extend scenario testing around reconnects, stale notifications and replay during an in-flight fetch.
+The next number I would instrument is approval-to-audible time: how long from the operator’s click to sound in the room, tracked separately from model latency. I would also extend scenario tests around reconnects, stale notifications and replay during an in-flight fetch, and add the peak-load test to CI rather than running it by hand before each event.

@@ -196,7 +196,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.ai, /163 contributions/);
   assert.equal(files.ai.includes('An AI response is not ready just because the model finished'), false);
 
-  assert.match(files.visitor, /^# Coordinating an immersive visitor experience across rooms and devices\n/);
+  assert.match(files.visitor, /^# The software behind UN Geneva’s new visitor centre\n/);
   assert.match(files.visitor, /\*\*Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026\*\*/);
   assert.match(files.visitor, /## From arrival to a shared decision/);
   assert.match(files.visitor, /## My responsibility/);
@@ -555,7 +555,7 @@ test('figures attach to headings and missing anchors fail', () => {
   const visitorCase = parseCaseMarkdown(readFileSync(join('content/cases', 'visitor.md'), 'utf8'));
   assert.equal(
     `${visitorCase.title} | ${site.fullName}`,
-    'Coordinating an immersive visitor experience across rooms and devices | Hermenegildo Santos',
+    'The software behind UN Geneva’s new visitor centre | Hermenegildo Santos',
   );
 
   const webarPlaced = articles.webar.sections.filter((section) => section.figures.length > 0);

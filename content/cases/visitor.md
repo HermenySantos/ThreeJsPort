@@ -1,4 +1,4 @@
-# Coordinating an immersive visitor experience across rooms and devices
+# The software behind UN Geneva’s new visitor centre
 
 **Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026**
 
@@ -27,6 +27,8 @@ I worked across the visitor’s audio guide, the guide’s tablet and the Go tou
 **React Native · TypeScript · Kotlin · Go · MQTT · Payload CMS · PostgreSQL**
 
 ## How the platform fits together
+
+One rule shapes the system: the devices render the state they are told; they never decide the flow. The guide’s tablet and show control drive the tour, one State Manager computes each visitor’s state, and every handheld and kiosk simply displays what arrives over MQTT. That rule is what lets 40 devices stay in step. A device that drops out never has to reconstruct the tour: it picks up from the next state it is sent, or the guide forces a resync from the tablet.
 
 The audio guide, guide tablet and voting kiosk serve different roles. Tour services coordinate session and visitor state; the CMS supplies schedules, content and media. Live messages carry tour updates, show cues and kiosk choices alongside the application APIs.
 
@@ -128,4 +130,6 @@ It separates event time from receipt time, retains a bounded offline replay queu
 
 ## What this work demonstrates
 
-This project required following behaviour across interfaces, native device APIs, live messaging, backend state and content. My contribution combined new capabilities with investigation and refinement of an established platform—and the documentation needed to make that work understandable to the team operating it.
+Together has to work for up to 40 people at once, every hour, for an expected 200,000 visitors a year, run day to day by the Foundation’s own operations team. The hard part was never one screen. It was keeping each visitor’s audio, position, language and the show’s cues in step across handhelds, a guide’s tablet, kiosks and three pavilions, and recovering cleanly when a device or a headset drops.
+
+I took over an established platform from another studio, extended it across the mobile apps and Go services, built the accessibility mode, the Gathering effect and emergency audio, and wrote the manuals and documentation the Foundation now runs it from.

@@ -145,11 +145,11 @@ export const cases: readonly CaseStudy[] = [
     title: 'Museum AI concierge.',
     label: 'Primary engineer · working prototype · Dorier · 2026',
     summary:
-      'An AI answer can sound convincing while drawing on the wrong source. I built a concierge for voice, text and camera input, connecting source selection, conversation monitoring and explicit adaptation rules. An operator view shows how the conversation is being assessed and adapted.',
+      'A voice, text and camera guide that answers only from sources it can stand behind, and says “I don’t have that” when it can’t. Two model agents talk and watch engagement; deterministic rules decide how to adapt. Before the demo I attacked the deployed system with 101 probes and fixed most of what broke, test-first.',
     delivered: [
-      'A visitor web app supporting voice, text and camera input in English and French.',
-      'Catalog retrieval and relevance checks to assess whether a source fits the question.',
-      'A diagnostic cockpit showing monitoring estimates, adaptation decisions and strategy carried between turns.',
+      'A grounding ladder: museum catalogue, then a cited allow-listed web source, then established facts, then an honest refusal.',
+      'A relevance gate that stopped keyword search binding unrelated questions to the wrong exhibit, found by live probes.',
+      'An operator cockpit showing every engagement score, trigger and strategy behind the conversation, backed by 474 automated tests.',
     ],
     stack: ['React', 'TypeScript', 'Express', 'Azure AI Search', 'Azure Speech', 'Vitest'],
     cta: 'Explore the architecture',
@@ -207,7 +207,6 @@ export const experience = {
     'Sole engineer on a browser AR character hunt run at 12 Scopely hubs on the same day.',
     'Primary engineer on a museum AI concierge prototype with grounded answers and a live stress-testing campaign.',
     'Built CT Project Pulse, an internal hours and budget dashboard (Entra sign-in, SharePoint via Microsoft Graph, a Teams bot), now rolling out to the 11-person Creative Technology team.',
-    'Build video-delivery automation and the interfaces needed to operate it.',
   ],
   earlier: [
     {
@@ -248,5 +247,5 @@ export const experience = {
 
 export const contact = {
   heading: 'Let’s talk about what you’re building.',
-  lede: 'For senior full-stack and product engineering roles, product collaborations, or a closer look at the decisions behind this work, get in touch.',
+  lede: 'For full-stack AI and product engineering roles, product collaborations, or a closer look at the decisions behind this work, get in touch.',
 } as const;

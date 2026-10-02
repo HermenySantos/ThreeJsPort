@@ -239,11 +239,8 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.webar, /## A small backend, made defensible/);
   assert.match(files.webar, /energy trickles in on its own, one point every two seconds/);
   assert.match(files.concierge, /Working prototype/);
-  assert.match(files.concierge, /## Connecting conversation, monitoring and adaptation/);
-  assert.match(
-    files.concierge,
-    /## Connecting conversation, monitoring and adaptation\n\nThe Guide and Monitor providers handle conversation and monitoring according to the runtime configuration\./,
-  );
+  assert.match(files.concierge, /## Two agents talk and watch; rules decide\n\nEach turn runs in a fixed order\./);
+  assert.equal(/\bcatalog\b/i.test(files.concierge), false);
   assert.equal(files.concierge.includes('```'), false);
   assert.equal(files.concierge.includes('Visitor PWA'), false);
   assert.match(files.webar, /staff and players care about the results at their own venue/);
@@ -625,14 +622,14 @@ test('figures attach to headings and missing anchors fail', () => {
     })),
     [
       {
-        heading: 'Connecting conversation, monitoring and adaptation',
+        heading: 'Two agents talk and watch; rules decide',
         captions: [
           'The guide completes its response before monitoring; adaptation rules run when the turn produces a trigger. Working prototype.',
           'The diagnostic cockpit shows monitoring estimates while the adaptation gate stays quiet. Working prototype.',
         ],
       },
       {
-        heading: 'Making adaptation decisions explicit',
+        heading: 'When a visitor drifts, rules decide what happens',
         captions: [
           'What a triggered intervention looks like to the visitor: a small, optional spark rather than a lecture. Working prototype.',
           'A previously selected strategy remains active without a new trigger. Working prototype.',
@@ -642,7 +639,7 @@ test('figures attach to headings and missing anchors fail', () => {
   );
   assert.equal(articles.concierge.disclosure, undefined);
   const conciergeTurn = articles.concierge.sections.find(
-    (section) => section.heading === 'Connecting conversation, monitoring and adaptation',
+    (section) => section.heading === 'Two agents talk and watch; rules decide',
   )?.figures[0];
   assert.equal(conciergeTurn?.src, '/architecture/concierge-turn-desktop.png');
   assert.deepEqual(conciergeTurn?.mobile, {

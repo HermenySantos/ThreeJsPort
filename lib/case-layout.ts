@@ -445,7 +445,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
   ],
   concierge: [
     {
-      afterHeading: 'Connecting conversation, monitoring and adaptation',
+      afterHeading: 'Two agents talk and watch; rules decide',
       figures: [
         shot(
           '/architecture/concierge-turn-desktop.png',
@@ -469,7 +469,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       ],
     },
     {
-      afterHeading: 'Making adaptation decisions explicit',
+      afterHeading: 'When a visitor drifts, rules decide what happens',
       figures: [
         shot(
           '/cases/concierge/concierge-visitor-spark.png',

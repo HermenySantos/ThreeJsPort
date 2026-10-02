@@ -202,6 +202,27 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'diagram',
           { mobile: { src: '/architecture/seezy-orchestrator-mobile.svg', width: 420, height: 808 } },
         ),
+        shot(
+          '/cases/seezy/seezy-process-dashboard.png',
+          1505,
+          778,
+          'Seezy dashboard in Portuguese: lead and revenue tiles, a process search with a filter by state, and process cards showing plan, financing status, location and the current state. Client names and phone numbers are redacted.',
+          'The administrator’s view of every process, searchable and filterable by state. Client details redacted.',
+          'screenshot',
+        ),
+      ],
+    },
+    {
+      afterHeading: 'People approve the steps that matter',
+      figures: [
+        shot(
+          '/cases/seezy/seezy-process-history.png',
+          1505,
+          778,
+          'Seezy process detail in Portuguese: selected plan and pack, pre-eligibility marked eligible and final eligibility pending, and a timestamped process history from lead created to the voucher validated. Client details are redacted.',
+          'One process as the orchestrator recorded it: each state with its timestamp, pre-eligibility approved, final eligibility still pending. Client details redacted.',
+          'screenshot',
+        ),
       ],
     },
   ],

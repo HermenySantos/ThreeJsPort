@@ -2,7 +2,7 @@
 
 **Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026**
 
-The Portail des Nations opened UN Geneva’s new public visitor centre in June 2026. At its heart is Together, a 60-minute journey through three pavilions. Up to 40 visitors take it at a time with a handheld audio guide while a guide runs the tour from a tablet. Audio follows each visitor’s position, projections and show cues stay in step across rooms, and the final pavilion ends in a group negotiation and vote on kiosks.
+Forty visitors walk through three pavilions, each hearing narration in their own language that follows them from room to room and stays in step with the projections around them, while a guide runs the tour from a tablet. That is Together, the 60-minute experience at the heart of UN Geneva’s new visitor centre, open since June 2026. I was one of the software engineers on the system behind it: the visitor’s audio guide, the guide’s tablet and the Go services that keep every device in sync.
 
 **At a glance**
 
@@ -21,6 +21,8 @@ What looks like one continuous experience spans several applications, content se
 ## My responsibility
 
 Local Projects built the original platform from January 2024, with software engineers Charles Veasey and Miguel Bermudez. From autumn 2025 Dorier’s Creative Technology team took it over and carried it to opening. Filipe Lopes Pires led the engineering team under David Granite, director of Creative Technology, with André d’Melo, Boris Poget, Pierre-Igor Berthet and me as software engineers.
+
+Taking over meant learning a production system we had not written, a monorepo of React Native apps, native Android modules, Go services and a CMS, before changing any of it. We went through onboarding sessions with Local Projects and then read our way through the codebase, tracing each flow from the device to the services and back. Much of the documentation I later wrote started as the map I needed for that.
 
 I worked across the visitor’s audio guide, the guide’s tablet and the Go tour services: positioning inside the app, audio synchronisation and headphone recovery, device-aware tour control, group language flows, the accessibility mode, the Gathering effect, emergency audio, the per-site release builds, and most of the technical documentation the Foundation’s team now operates from.
 

@@ -1,8 +1,8 @@
 # Ovee — AI for live event moderation and workshop synthesis
 
-**Full-stack product engineering · Dorier · Fortune-500 tour and hospitality conference · 2026**
+**Full-stack product engineering · Dorier · Fortune-500 tour and mci group’s CheckedIn · 2026**
 
-Ovee turns stage discussions and workshop contributions into questions, themes and reports, with operator controls for live delivery. It has been delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus a hospitality-industry conference. At one leadership summit, it supported 600 participants across 60 roundtables, with workshop inputs becoming themes on the main display in approximately five seconds.
+Ovee turns stage discussions and workshop contributions into questions, themes and reports, with operator controls for live delivery. It has been delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s [CheckedIn 2026](https://checkedin.digiplace.site/) in Geneva (25–27 August), where Ovee was on the programme as a panellist alongside the group CEO. At one leadership summit, it supported 600 participants across 60 roundtables, with workshop inputs becoming themes on the main display in approximately five seconds.
 
 ## My responsibility
 

@@ -95,9 +95,9 @@ export const cases: readonly CaseStudy[] = [
     slug: 'visitor',
     year: '2025–2026',
     title: 'Immersive visitor platform.',
-    label: 'Core engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026',
+    label: 'Software engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026',
     summary:
-      'Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
+      'UN Geneva’s new visitor centre, open since June 2026 for an expected 200,000 visitors a year. Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
     delivered: [
       'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',
       'Device-aware tour control and group-tour language flows across applications, CMS and backend services.',

@@ -35,7 +35,7 @@ test('hero keeps the locked headline and leads with Ovee proof', () => {
   assert.match(hero.lede, /approval loop/);
   assert.equal(
     hero.proof,
-    'Ovee, live-event AI for a Fortune-500 multinational: cleared by the client’s IT, privacy and data-control teams; synthesised 60 roundtables for 600 leaders in seconds.',
+    'Ovee, live-event AI: cleared by a Fortune-500 client’s IT, privacy and data-control review; synthesised 60 roundtables for 600 leaders in seconds.',
   );
   assert.equal(hero.proof.includes('Live-event AI'), false);
   assert.equal(hero.primaryCta.label, 'Explore selected work');
@@ -78,7 +78,7 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.equal(cases[2].scale, '~2,100 participants across 12 locations.');
   assert.equal(
     cases[0].summary,
-    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at four global leadership events for a Fortune-500 multinational, with an operator approving every AI contribution before it reached the stage.',
+    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus a hospitality-industry conference. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
   );
   assert.deepEqual(cases[0].delivered, [
     'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
@@ -133,7 +133,7 @@ test('metrics strip leads with Ovee, the primary story', () => {
   assert.deepEqual(
     metrics.items.map((item) => [item.value, item.label]),
     [
-      ['4', 'Global events, Asia & Europe'],
+      ['4', 'Live events, Asia & Europe'],
       ['0', 'Off-message incidents on stage'],
       ['~5 s', 'Workshop synthesis, vs ~30 min by hand'],
     ],

@@ -78,7 +78,7 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.equal(cases[2].scale, '~2,100 participants across 12 locations.');
   assert.equal(
     cases[0].summary,
-    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus a hospitality-industry conference. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
+    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as a panellist alongside the group CEO. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
   );
   assert.deepEqual(cases[0].delivered, [
     'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
@@ -278,7 +278,7 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   const homepage = readFileSync('lib/content.ts', 'utf8');
   assert.equal(homepage.includes('TimescaleDB'), false, 'TimescaleDB must not appear in homepage content');
 
-  for (const name of ['PMI', 'CheckedIn']) {
+  for (const name of ['PMI']) {
     assert.equal(sourceBlob.includes(name), false, `client must stay unnamed: ${name}`);
   }
 

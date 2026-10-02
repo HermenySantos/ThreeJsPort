@@ -9,10 +9,18 @@ type Block =
   | { type: 'pre'; text: string };
 
 function inline(text: string): ReactNode[] {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(https:\/\/[^)\s]+\))/g);
   return parts.map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    const link = /^\[([^\]]+)\]\((https:\/\/[^)\s]+)\)$/.exec(part);
+    if (link) {
+      return (
+        <a key={index} href={link[2]} target="_blank" rel="noreferrer" className="underline underline-offset-4">
+          {link[1]}
+        </a>
+      );
     }
     return <span key={index}>{part}</span>;
   });

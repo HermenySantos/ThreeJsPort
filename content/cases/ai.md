@@ -25,13 +25,6 @@ At CheckedIn I shipped fixes between sessions and built a second simultaneous wo
 
 **React · TypeScript · Python · FastAPI · OpenAI / Azure OpenAI · WebRTC · WebSockets · Cosmos DB · Three.js**
 
-## What I delivered
-
-- Operator workflows for context, draft review and controlled stage delivery.
-- Model integration and session services connecting operator and audience interfaces.
-- Playback guards and recovery paths for generated speech.
-- Event workflows that later evolved into configurable product modules.
-
 ## Two interfaces, one live experience
 
 The backstage operator needs context and control. The audience needs the right response at the right time, with a display that reflects what is happening.
@@ -44,7 +37,13 @@ The current Ovee wall brings ambient insights, poll takeovers and speech into on
 
 For the moderated stage workflow, I separated generating a response from permission to speak. The operator can review, approve or discard a draft before it reaches the audience.
 
+A draft also expires. If nobody approves it within **12 seconds** it is discarded silently, so a slow decision becomes a missed line, never a late interruption. I first set 8 seconds; a solo rehearsal, with me as both operator and speaker, showed that was too tight.
+
 I added guards so an empty response cannot become a blank approval card, and a second approval click cannot dispatch the same response while the first is being handled. Component tests cover both cases.
+
+Two controls came from the event floor at CheckedIn. Yoav asked for them during the event and I shipped them between sessions: an operator Mute that takes the room off the record, and strict correction of speaker names in the transcript.
+
+The operator also sees whether the room is actually being heard. A capture-health light turns amber after 60 seconds without new transcript and red after 180, so a dead microphone shows up before Ovee misses a question.
 
 The extra review step gives the operator a clear point to stop an unsuitable answer. This boundary applies to the moderated stage workflow; other modes have their own delivery controls.
 
@@ -63,6 +62,8 @@ WebSocket notifications help discover fresh audio quickly; HTTP polling provides
 Browser audio may remain blocked until a user gesture unlocks playback. The audio hook can stay disabled until the audience surface is ready, avoiding consuming a clip version before it can be heard.
 
 Server-time alignment also supports late arrivals. The first clip starts from the beginning; later clips can use a bounded offset while retaining a short lead-in. I also worked on lowering competing live audio during generated speech and on operator mute behaviour.
+
+When the stage’s realtime connection drops, it reconnects with exponential backoff: 1.5 seconds, doubling, capped at 20, so a room full of screens never retries in lockstep. The conversation mode’s realtime voice session can reconnect carrying the transcript so far, so the model resumes with context instead of starting cold.
 
 ## Model behaviour as application logic
 

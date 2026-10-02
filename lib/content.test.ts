@@ -175,7 +175,8 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.ai, /four live events/);
   assert.match(files.ai, /600 participants across 60 roundtables/);
   assert.match(files.ai, /approximately five seconds/);
-  assert.match(files.ai, /## What I delivered/);
+  assert.equal(files.ai.includes('## What I delivered'), false);
+  assert.match(files.ai, /within \*\*12 seconds\*\*/);
   assert.match(files.ai, /## Two interfaces, one live experience/);
   assert.match(files.ai, /## A draft needs permission to reach the stage/);
   assert.match(files.ai, /## One response, one playback start/);
@@ -317,8 +318,10 @@ test('figures attach to headings and missing anchors fail', () => {
         'My responsibility',
         ['/cases/ai/checkedin-main-stage-recurring-themes.jpg', '/cases/ai/checkedin-breakout-key-messages-audience.jpg'],
       ],
-      ['What I delivered', ['/cases/ai/04b-stage-poll-takeover-readable.png']],
-      ['Two interfaces, one live experience', ['/architecture/ovee-runtime-flow.png']],
+      [
+        'Two interfaces, one live experience',
+        ['/architecture/ovee-runtime-flow.png', '/cases/ai/04b-stage-poll-takeover-readable.png'],
+      ],
       [
         'A draft needs permission to reach the stage',
         [
@@ -341,7 +344,7 @@ test('figures attach to headings and missing anchors fail', () => {
     ],
   );
   assert.equal(
-    articles.ai.sections.find((section) => section.heading === 'What I delivered')?.figures[0]?.caption,
+    articles.ai.sections.find((section) => section.heading === 'Two interfaces, one live experience')?.figures[1]?.caption,
     'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
   );
   const playbackFigure = articles.ai.sections.find((section) => section.heading === 'One response, one playback start')

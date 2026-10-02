@@ -75,19 +75,6 @@ const oveePlacements: readonly Placement[] = [
     ],
   },
   {
-    afterHeading: 'What I delivered',
-    figures: [
-      shot(
-        '/cases/ai/04b-stage-poll-takeover-readable.png',
-        1920,
-        1080,
-        'Audience wall showing a poll takeover with result bars and a sample vote count.',
-        'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
-        'screenshot',
-      ),
-    ],
-  },
-  {
     afterHeading: 'Two interfaces, one live experience',
     figures: [
       shot(
@@ -97,6 +84,14 @@ const oveePlacements: readonly Placement[] = [
         'Diagram linking the operator interface, the participant interface, the backend, and the room wall.',
         'Operator and participant interfaces connect to the backend; the room wall presents audience output.',
         'diagram',
+      ),
+      shot(
+        '/cases/ai/04b-stage-poll-takeover-readable.png',
+        1920,
+        1080,
+        'Audience wall showing a poll takeover with result bars and a sample vote count.',
+        'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
+        'screenshot',
       ),
     ],
   },

@@ -214,7 +214,7 @@ export const experience = {
       title: 'Project Development Manager / Full Stack Developer',
       company: 'NomadEngenuity',
       period: '2024–2025',
-      summary: 'Seezy, a multi-partner eye-care plan platform: co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery. About ten NestJS microservices behind Azure API Management on Container Apps, an orchestrator owning a 21-state care-plan process, and Auth0 multi-tenant partner roles. Also built the front end of a healthcare staffing product.',
+      summary: 'Led a team of four as project manager: client conversations, sprint planning and hiring. On Seezy, a multi-partner eye-care plan platform, I also co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery: about ten NestJS microservices, an orchestrator owning a 21-state care-plan process and Auth0 multi-tenant partner roles. As project manager I also delivered PharmaSee, a staffing platform for pharmacy, optical and audiology professionals that is now live, and FactorAI, an industrial AI venture I pitched at a startup competition; it was incubated, and its first prospective client, ROPRE, is now a client partner.',
     },
     {
       title: 'Software Developer',

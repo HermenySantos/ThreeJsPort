@@ -153,7 +153,8 @@ test('about, experience and contact match V4.1', () => {
   assert.equal(experience.title, 'Full Stack Engineer');
   assert.equal(experience.company, 'Dorier');
   assert.equal(experience.period, '2025–present');
-  assert.match(experience.items[2], /within the wider event delivery/);
+  assert.match(experience.items[2], /^Sole engineer/);
+  assert.match(experience.items[4], /11-person Creative Technology team/);
   assert.equal(contact.heading, 'Let’s talk about what you’re building.');
   assert.equal(site.email, 'hermeny7@hotmail.com');
   assert.equal(site.github, 'https://github.com/HermenySantos');

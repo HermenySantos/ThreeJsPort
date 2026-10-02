@@ -2,7 +2,7 @@
 
 **Immersive visitor platform · UN Geneva Visitor Centre · Dorier · 2025–2026**
 
-The Portail des Nations opened UN Geneva’s new public visitor centre in June 2026. At its heart is *Together*, a 60-minute journey through three pavilions. Up to 40 visitors take it at a time with a handheld audio guide while a guide runs the tour from a tablet. Audio follows each visitor’s position, projections and show cues stay in step across rooms, and the final pavilion ends in a group negotiation and vote on kiosks.
+The Portail des Nations opened UN Geneva’s new public visitor centre in June 2026. At its heart is Together, a 60-minute journey through three pavilions. Up to 40 visitors take it at a time with a handheld audio guide while a guide runs the tour from a tablet. Audio follows each visitor’s position, projections and show cues stay in step across rooms, and the final pavilion ends in a group negotiation and vote on kiosks.
 
 **At a glance**
 

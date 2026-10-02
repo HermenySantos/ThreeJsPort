@@ -241,7 +241,7 @@ export const experience = {
     },
   ],
   education: [
-    { title: 'MBA, ESG focus', school: 'University of Beira Interior', period: '2024–present' },
+    { title: 'MBA, ESG focus', school: 'University of Beira Interior', period: '2024–2025' },
     { title: 'BSc Computer Science', school: 'University of Beira Interior', period: '2018–2021' },
   ],
 } as const;

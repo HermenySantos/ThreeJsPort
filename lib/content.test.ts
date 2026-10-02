@@ -208,11 +208,10 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.match(files.visitor, /## Carrying language and content through the stack/);
   assert.match(files.visitor, /## Giving staff tools to operate the system/);
   assert.match(files.visitor, /## Making the platform understandable after handover/);
-  assert.match(files.visitor, /## Additional engineering: a tour flight recorder/);
-  assert.match(files.visitor, /\*\*Development-branch implementation; production rollout is not confirmed\.\*\*/);
+  assert.equal(files.visitor.includes('flight recorder'), false);
+  assert.equal(files.visitor.includes('Foundation'), false);
   assert.match(files.visitor, /## What this work demonstrates/);
   const visitorHeadings = [...files.visitor.matchAll(/^## (.+)$/gm)].map((match) => match[1]);
-  assert.equal(visitorHeadings.at(-2), 'Additional engineering: a tour flight recorder');
   assert.equal(visitorHeadings.at(-1), 'What this work demonstrates');
   const audioAt = files.visitor.indexOf('## Keeping audio aligned with the experience');
   const ownershipAt = files.visitor.indexOf('## Making tour ownership part of the client–server contract');

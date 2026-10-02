@@ -321,7 +321,7 @@ test('figures attach to headings and missing anchors fail', () => {
       ],
       [
         'Two interfaces, one live experience',
-        ['/architecture/ovee-runtime-flow.png', '/cases/ai/04b-stage-poll-takeover-readable.png'],
+        ['/architecture/ovee-architecture.png', '/cases/ai/04b-stage-poll-takeover-readable.png'],
       ],
       [
         'A draft needs permission to reach the stage',

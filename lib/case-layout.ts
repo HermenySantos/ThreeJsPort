@@ -78,12 +78,13 @@ const oveePlacements: readonly Placement[] = [
     afterHeading: 'Two interfaces, one live experience',
     figures: [
       shot(
-        '/architecture/ovee-runtime-flow.png',
-        1400,
-        640,
-        'Diagram linking the operator interface, the participant interface, the backend, and the room wall.',
-        'Operator and participant interfaces connect to the backend; the room wall presents audience output.',
+        '/architecture/ovee-architecture.png',
+        3040,
+        1280,
+        'Architecture diagram: stage audio is transcribed and drafted on the backend, but a draft reaches text-to-speech only after the operator approves it; discarded or expired drafts are dropped. Phones feed a workshop runtime whose synthesis reaches the same room wall.',
+        'A draft has no path to the room except through the operator. Discarded drafts, and drafts left for 12 seconds, are dropped.',
         'diagram',
+        { mobile: { src: '/architecture/ovee-architecture-mobile.svg', width: 420, height: 1306 } },
       ),
       shot(
         '/cases/ai/04b-stage-poll-takeover-readable.png',

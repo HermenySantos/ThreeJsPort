@@ -38,7 +38,7 @@ export const metrics = {
   items: [
     { value: '4', label: 'Live events, Asia & Europe' },
     { value: '0', label: 'Off-message incidents on stage' },
-    { value: '~5 s', label: 'Workshop synthesis, vs ~30 min by hand' },
+    { value: '~5 s', label: 'Workshop synthesis across 60 tables' },
   ],
   footnote: hero.proof,
 } as const;
@@ -84,10 +84,10 @@ export const cases: readonly CaseStudy[] = [
     cta: 'Explore the engineering',
     href: '/cases/ai',
     cover: {
-      src: '/cases/ai/06b-operator-pending-draft-awaiting-approval.png',
-      alt: 'Operator screen with a generated draft waiting for approval or discard.',
-      width: 1440,
-      height: 900,
+      src: '/cases/ai/checkedin-main-stage-recurring-themes.jpg',
+      alt: 'Panel on a lit stage in front of a large LED wall showing recurring themes generated live by Ovee.',
+      width: 2000,
+      height: 1333,
     },
   },
   {

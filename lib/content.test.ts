@@ -135,7 +135,7 @@ test('metrics strip leads with Ovee, the primary story', () => {
     [
       ['4', 'Live events, Asia & Europe'],
       ['0', 'Off-message incidents on stage'],
-      ['~5 s', 'Workshop synthesis, vs ~30 min by hand'],
+      ['~5 s', 'Workshop synthesis across 60 tables'],
     ],
   );
   assert.equal(metrics.footnote, hero.proof);
@@ -279,6 +279,7 @@ test('source tree does not reintroduce forbidden media, clients, or #18 copy', (
   const homepage = readFileSync('lib/content.ts', 'utf8');
   assert.equal(homepage.includes('TimescaleDB'), false, 'TimescaleDB must not appear in homepage content');
 
+  assert.equal(sourceBlob.includes('30 min by hand'), false, 'unverifiable claim');
   for (const name of ['PMI']) {
     assert.equal(sourceBlob.includes(name), false, `client must stay unnamed: ${name}`);
   }

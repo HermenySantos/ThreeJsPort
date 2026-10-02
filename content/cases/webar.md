@@ -13,7 +13,7 @@ Scopely’s Global Celebration Day brought 2,400 employees together across 12 hu
 
 ## An event space became a character hunt
 
-Participants used their phone’s browser to discover characters around the venue and choose the right props to befriend them. Each encounter contributed to a final summary of points, characters found and completion time—without an app download.
+Participants used their phone’s browser to discover five characters around the venue and choose the right prop to befriend each one. Walking builds energy; standing still lets it decay. Each character appears at its own energy threshold, and new power moves (spin, jump, wave, a quick dodge) unlock as energy grows. Pick the wrong prop and the character leaves, then comes back for another try. Each encounter contributed to a final summary of points, characters found and completion time, without an app download.
 
 ## My responsibility
 
@@ -45,15 +45,17 @@ That separation matters because “the sensor API exists” and “the browser i
 
 The sensor manager checks health every five seconds and tracks how long it has been since activity arrived. Ten seconds without activity is treated as a stuck-sensor condition, which can switch the sensor status into a fallback mode.
 
-In the development version described here, synthetic fallback movement is disabled for real-movement testing. Entering fallback mode therefore does not itself guarantee that gameplay will progress.
+The scope asked for a timer that would spawn characters on phones without usable sensors. A timer like that walks for you, which would let anyone progress by standing still: the very cheat the game had to prevent. The fallback that shipped is narrower. Once a player reaches 80% of the energy needed for the next character, energy trickles in on its own, one point every two seconds, so a slow walker or a weak sensor still gets over the line to every character. Standing still never skips ahead, because the trickle only starts near a threshold.
 
-**Tradeoff:** synthetic progress can keep an experience moving, but it can also flatten the movement mechanic and obscure whether real sensors work. The exact fallback behaviour needs to be part of the release configuration and device test plan.
+**Tradeoff:** a phone that delivers no motion events at all cannot reach that first 80%. In exchange, movement stays meaningful for everyone else.
 
 ## Walking, not shaking
 
 The game rewards movement, so the cheapest cheat is to stand still and shake the phone. Telling the two apart on a phone is harder than it sounds. iOS and Android sample motion at different rates (30, 60 or 100 Hz), so I normalised the sensor stream first, falling back to the raw sensors if the normalising library did not load within 1.5 seconds. Shaking is only penalised when there is also evidence of walking and it lasts at least 200 ms, so a real walker who jolts their phone is not punished. Thresholds calibrate to each device, and I softened them after testing showed too many false positives.
 
 **Tradeoff:** every extra bit of strictness catches more cheats and more honest players. I tuned towards fairness, because the game was never meant to be a competition.
+
+The plan was as explicit about what not to build: no machine learning, no GPS indoors, motion sensors only, and no harsh penalties beyond the one targeted case of an obvious heavy shake.
 
 ## Organising scores around the event’s locations
 
@@ -75,7 +77,7 @@ React administration gives staff a separate surface for location context and res
 
 ## Testing on real phones
 
-Testing was manual and on real devices: about 70 single-purpose test pages for sensors, permissions, spawning and scoring, plus an event-day FAQ for staff covering camera, motion and recovery. There were no automated tests; with hindsight, that is the first thing I would add.
+Testing was manual and on real devices: about 70 single-purpose test pages for sensors, permissions, spawning and scoring, plus an event-day FAQ I wrote once and the organisers distributed to all 12 hubs, so local staff could handle camera, motion and character problems without an engineer at each hub. There were no automated tests; with hindsight, that is the first thing I would add.
 
 ## Result
 

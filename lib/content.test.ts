@@ -233,10 +233,10 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.ok(huntAt > 0 && responsibilityAt > huntAt);
   assert.match(
     files.webar,
-    /Participants used their phone’s browser to discover characters around the venue and choose the right props to befriend them\. Each encounter contributed to a final summary of points, characters found and completion time—without an app download\./,
+    /Participants used their phone’s browser to discover five characters around the venue/,
   );
   assert.match(files.webar, /## Following a score from interaction to administration/);
-  assert.match(files.webar, /does not itself guarantee that gameplay will progress/);
+  assert.match(files.webar, /energy trickles in on its own, one point every two seconds/);
   assert.match(files.concierge, /Working prototype/);
   assert.match(files.concierge, /## Connecting conversation, monitoring and adaptation/);
   assert.match(
@@ -563,7 +563,7 @@ test('figures attach to headings and missing anchors fail', () => {
     webarPlaced.map((section) => section.heading),
     ['An event space became a character hunt', 'Walking, not shaking', 'Following a score from interaction to administration'],
   );
-  assert.equal(webarPlaced[0]?.figures.length, 1);
+  assert.equal(webarPlaced[0]?.figures.length, 3);
   assert.equal(webarPlaced[0]?.figures[0]?.kind, 'screenshot');
   assert.equal(webarPlaced[0]?.figures[0]?.src, '/cases/webar/webar-event-lead-phone-ar.jpg');
   assert.equal(webarPlaced[0]?.figures[0]?.width, 2000);
@@ -602,22 +602,6 @@ test('figures attach to headings and missing anchors fail', () => {
       alt: figure.alt,
     })),
     [
-      {
-        src: '/cases/webar/webar-event-prop-choice.jpg',
-        width: 2000,
-        height: 1333,
-        kind: 'screenshot',
-        caption: 'A participant chooses a prop for a character on their phone during the event.',
-        alt: 'Indoor photo of a phone screen asking which prop a Scopely game character wants.',
-      },
-      {
-        src: '/cases/webar/webar-event-success-points.jpg',
-        width: 1333,
-        height: 2000,
-        kind: 'screenshot',
-        caption: 'A phone shows a successful character interaction and points earned in the browser experience.',
-        alt: 'Hands holding a phone with a SUCCESS and 100 points overlay in the Character Hunt AR quest.',
-      },
       {
         src: '/cases/webar/webar-event-signage-phones.jpg',
         width: 2000,

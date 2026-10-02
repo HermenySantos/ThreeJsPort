@@ -357,6 +357,22 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'A participant holds a phone showing the Character Hunt AR experience over the live camera view.',
           'screenshot',
         ),
+        shot(
+          '/cases/webar/webar-event-prop-choice.jpg',
+          2000,
+          1333,
+          'Indoor photo of a phone screen asking which prop a Scopely game character wants.',
+          'A participant chooses a prop for a character on their phone during the event.',
+          'screenshot',
+        ),
+        shot(
+          '/cases/webar/webar-event-success-points.jpg',
+          1333,
+          2000,
+          'Hands holding a phone with a SUCCESS and 100 points overlay in the Character Hunt AR quest.',
+          'A phone shows a successful character interaction and points earned in the browser experience.',
+          'screenshot',
+        ),
       ],
     },
     {
@@ -448,22 +464,6 @@ const webarDisclosure: CaseDisclosure = {
   label: 'Event photography',
   afterHeading: 'Result',
   figures: [
-    shot(
-      '/cases/webar/webar-event-prop-choice.jpg',
-      2000,
-      1333,
-      'Indoor photo of a phone screen asking which prop a Scopely game character wants.',
-      'A participant chooses a prop for a character on their phone during the event.',
-      'screenshot',
-    ),
-    shot(
-      '/cases/webar/webar-event-success-points.jpg',
-      1333,
-      2000,
-      'Hands holding a phone with a SUCCESS and 100 points overlay in the Character Hunt AR quest.',
-      'A phone shows a successful character interaction and points earned in the browser experience.',
-      'screenshot',
-    ),
     shot(
       '/cases/webar/webar-event-signage-phones.jpg',
       2000,

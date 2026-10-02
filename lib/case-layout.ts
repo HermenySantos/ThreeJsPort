@@ -390,7 +390,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
       ],
     },
     {
-      afterHeading: 'Following a score from interaction to administration',
+      afterHeading: 'A small backend, made defensible',
       figures: [
         shot(
           '/architecture/webar-data-desktop.png',

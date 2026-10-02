@@ -235,7 +235,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
     files.webar,
     /Participants used their phone’s browser to discover five characters around the venue/,
   );
-  assert.match(files.webar, /## Following a score from interaction to administration/);
+  assert.match(files.webar, /## A small backend, made defensible/);
   assert.match(files.webar, /energy trickles in on its own, one point every two seconds/);
   assert.match(files.concierge, /Working prototype/);
   assert.match(files.concierge, /## Connecting conversation, monitoring and adaptation/);
@@ -245,9 +245,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
   );
   assert.equal(files.concierge.includes('```'), false);
   assert.equal(files.concierge.includes('Visitor PWA'), false);
-  assert.match(files.webar, /Those constraints connected three engineering responsibilities/);
-  assert.match(files.webar, /This keeps the access pattern understandable/);
-  assert.match(files.webar, /staff and participants care about the results at their own venue\./);
+  assert.match(files.webar, /staff and players care about the results at their own venue/);
   assert.equal(files.webar.includes('```'), false);
   assert.equal(files.webar.includes('Phone browser / Mattercraft'), false);
   assert.equal(files.webar.includes('Show local leaderboard'), false);
@@ -561,7 +559,7 @@ test('figures attach to headings and missing anchors fail', () => {
   const webarPlaced = articles.webar.sections.filter((section) => section.figures.length > 0);
   assert.deepEqual(
     webarPlaced.map((section) => section.heading),
-    ['An event space became a character hunt', 'Walking, not shaking', 'Following a score from interaction to administration'],
+    ['An event space became a character hunt', 'Walking, not shaking', 'A small backend, made defensible'],
   );
   assert.equal(webarPlaced[0]?.figures.length, 3);
   assert.equal(webarPlaced[0]?.figures[0]?.kind, 'screenshot');
@@ -576,7 +574,7 @@ test('figures attach to headings and missing anchors fail', () => {
     webarPlaced[0]?.figures[0]?.alt,
     'Close-up of hands holding a smartphone displaying a Monopoly character in browser AR outdoors.',
   );
-  const scoreFigure = webarPlaced.find((section) => section.heading === 'Following a score from interaction to administration')?.figures[0];
+  const scoreFigure = webarPlaced.find((section) => section.heading === 'A small backend, made defensible')?.figures[0];
   assert.equal(scoreFigure?.src, '/architecture/webar-data-desktop.png');
   assert.deepEqual(scoreFigure?.mobile, {
     src: '/architecture/webar-data-mobile.svg',

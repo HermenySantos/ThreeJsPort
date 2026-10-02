@@ -2,7 +2,7 @@
 
 **Primary engineer · Museum AI concierge · Working prototype · Dorier · 2026**
 
-A visitor speaks, types or points a camera at an exhibit, and the guide answers in a natural conversation, but only from sources it can stand behind. I built it as a pitch prototype for a major museum. When that museum did not go ahead, we generalised it into a concierge Dorier can offer any cultural venue: voice, vision, a grounding ladder that ends in an honest “I don’t have that”, and a silent second agent that notices when a visitor is losing interest.
+A visitor speaks, types or points a camera at an exhibit, and the guide answers in a natural conversation, but only from sources it can stand behind. I built it as a pitch prototype for a major museum. When that museum did not go ahead, we generalised it into a concierge Dorier can offer any cultural venue: voice, vision, a grounding ladder that ends in an honest “I don’t have that”, and a silent second agent that notices when a visitor is losing interest. An operator cockpit shows every decision behind the conversation as it happens.
 
 **At a glance**
 
@@ -19,17 +19,9 @@ I built the rest, about 100 of 118 commits: the Azure stack, speech and vision, 
 
 **React · TypeScript · Express · Azure AI Foundry · Azure AI Search · Azure Speech · Vitest**
 
-## A visitor interface and a view behind it
-
-The visitor gets a focused interface for voice, text and camera input. The operator cockpit exposes the behaviour behind that interface: source selection, monitoring estimates, and whether a strategy is newly issued or carried over from a previous turn.
-
-The recorded demo shows voice and text interaction, language switching and the diagnostic cockpit. The cockpit makes it possible to examine source selection and adaptation alongside the visitor-facing experience.
-
 ## Connecting conversation, monitoring and adaptation
 
 The Guide and Monitor providers handle conversation and monitoring according to the runtime configuration. When the Monitor produces a trigger, synchronous rule-based functions select a strategy and an intervention. This makes the adaptation logic explicit and available to inspect.
-
-## Monitoring the answer the visitor actually received
 
 The turn handler runs the Guide first. The provider may rewrite the draft response before returning, so the application appends the visitor/assistant pair to the session transcript only after that final response is available.
 
@@ -89,8 +81,6 @@ Intervention selection uses that strategy and its confidence:
 - A calmness constraint can override an overly stimulating choice for the visitor profile.
 
 These thresholds are implementation choices, not psychological ground truth. Their value is that the decisions are explicit enough to inspect, test, and revise.
-
-## Keeping a strategy across turns
 
 A strategy can remain active after the turn that issued it. The cockpit exposes this distinction: a gate can be quiet on the current turn while the session still carries a previous strategy.
 

@@ -442,11 +442,6 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'What a triggered intervention looks like to the visitor: a small, optional spark rather than a lecture. Working prototype.',
           'screenshot',
         ),
-      ],
-    },
-    {
-      afterHeading: 'Keeping a strategy across turns',
-      figures: [
         shot(
           '/cases/concierge/concierge-05-strategy-carryover.png',
           1036,

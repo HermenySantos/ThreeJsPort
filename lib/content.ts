@@ -25,7 +25,7 @@ export const hero = {
   headline: 'I build AI systems that can’t afford a second take.',
   headlineLead: 'I build AI systems ',
   headlineEm: 'that can’t afford a second take.',
-  lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years across web, mobile and cloud.',
+  lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
   proofLabel: 'Delivery proof',
   proof: 'Ovee, live-event AI: cleared by a Fortune-500 client’s IT, privacy and data-control review; synthesised 60 roundtables for 600 leaders in seconds.',
   stack: 'Based in Portugal · Working across the stack',
@@ -191,6 +191,7 @@ export const about = {
   heading: 'About',
   body: [
     'I’m Hermenegildo—Gildo for short—a full-stack AI engineer based in Portugal.',
+    'Most of what I build runs live, in front of people: a conference stage, a visitor centre, twelve event venues on the same day. There is no second take, so I design for a person in the loop where judgement matters, and a safe fallback for when something fails.',
     'I like work that connects a usable product to the engineering underneath it: a mobile interface to a shared state model, an AI response to an operator’s decision, or an event experience to its backend and delivery tools.',
     'At Dorier, I work across interactive platforms, live-event AI and automation. I’m comfortable contributing to an established team and architecture, or carrying a defined product from its first implementation through delivery. I value clear ownership, practical testing and documentation that helps the next person understand the system.',
   ],

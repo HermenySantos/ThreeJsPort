@@ -30,7 +30,7 @@ test('hero keeps the locked headline and leads with Ovee proof', () => {
   assert.equal(hero.headlineLead + hero.headlineEm, hero.headline);
   assert.equal(
     hero.lede,
-    'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years across web, mobile and cloud.',
+    'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
   );
   assert.match(hero.lede, /approval loop/);
   assert.equal(

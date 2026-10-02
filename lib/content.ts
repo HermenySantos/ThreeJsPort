@@ -107,10 +107,10 @@ export const cases: readonly CaseStudy[] = [
     cta: 'Explore the engineering',
     href: '/cases/visitor',
     cover: {
-      src: '/cases/visitor/kiosk-priority-vote-clean.png',
-      alt: 'Visitor kiosk presenting three policy priorities for a fictional-country voting exercise.',
-      width: 1600,
-      height: 900,
+      src: '/cases/visitor/together-voting-chamber.jpg',
+      alt: 'Visitors seated in the curved negotiation chamber of the Together experience, voting at kiosks.',
+      width: 2000,
+      height: 1333,
     },
   },
   {

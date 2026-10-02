@@ -19,7 +19,7 @@ I built Ovee: about 600 of roughly 670 commits, from the first commit in March 2
 
 Filipe Lopes Pires, lead immersive engineer, built the first version of the speech-approval step and the early workshop mode. Yoav Sochen, the project manager, operated Ovee live at all four events. I trained him on it and stayed on technical standby.
 
-That standby was needed once. At the first summit, a spike in concurrent audience connections went past the server’s capacity and Ovee dropped out. It self-healed within about a minute, but participants would reconnect all at once, so I scaled the server up live before they did. It held for the rest of the event. Afterwards I moved Ovee to a larger plan and made load testing a standard step before every event.
+That standby was needed once. At the first summit, a spike in concurrent audience connections overwhelmed the single-core App Service plan (S1) and Ovee dropped out. It self-healed within about a minute, but participants would all reconnect at once, so I scaled up to P2v2 (2 cores, 7 GB) live, before they did. It held for the rest of the event. Two days before the second summit I moved Ovee to P2v3 (4 vCPU, 16 GB), and load testing became a standard step before every event.
 
 At CheckedIn I shipped fixes between sessions and built a second simultaneous workshop room overnight, while the platform kept serving the event.
 

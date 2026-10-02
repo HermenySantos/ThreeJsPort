@@ -179,9 +179,11 @@ export const experience = {
   company: 'Dorier',
   period: '2025–present',
   items: [
-    'Contribute across React Native applications, content management and Go services for a multi-device visitor platform.',
-    'Build operator-controlled AI workflows, real-time voice interfaces and audience delivery for live events.',
-    'Delivered end-to-end engineering for a global WebAR experience (browser, Azure backend, React admin) within the wider event delivery.',
+    'Primary engineer on Ovee, live-event AI with an operator approving each AI contribution, delivered at four events across Asia and Europe.',
+    'Software engineer on the UN Geneva visitor centre’s tour system, from a nine-week takeover to the June 2026 public opening.',
+    'Sole engineer on a browser AR character hunt run at 12 Scopely hubs on the same day.',
+    'Primary engineer on a museum AI concierge prototype with grounded answers and a live stress-testing campaign.',
+    'Built CT Project Pulse, an internal hours and budget dashboard (Entra sign-in, SharePoint via Microsoft Graph, a Teams bot), now rolling out to the 11-person Creative Technology team.',
     'Build video-delivery automation and the interfaces needed to operate it.',
   ],
   earlier: [

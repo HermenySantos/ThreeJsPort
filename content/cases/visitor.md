@@ -24,7 +24,7 @@ Local Projects built the original platform from January 2024, with software engi
 
 Taking over meant learning a production system we had not written, a monorepo of React Native apps, native Android modules, Go services and a CMS, before changing any of it. Local Projects ran a nine-week handoff from 21 July to 19 September 2025: the repository and core services, the guide’s tablet and audio guide, deployment, show control and positioning, logging and how to modify the apps safely, the voting kiosks, testing procedures and the handoff documentation. Alongside those sessions we read our way through the codebase, tracing each flow from the device to the services and back. My first change landed in week eight. Much of the documentation I later wrote started as the map I needed for that.
 
-I worked across the visitor’s audio guide, the guide’s tablet and the Go tour services: positioning inside the app, audio synchronisation and headphone recovery, device-aware tour control, group language flows, the accessibility mode, the Gathering effect, emergency audio, the per-site release builds, and most of the technical documentation the Foundation’s team now operates from.
+I worked across the visitor’s audio guide, the guide’s tablet and the Go tour services: positioning inside the app, audio synchronisation and headphone recovery, device-aware tour control, group language flows, the accessibility mode, the Gathering effect, emergency audio, the per-site release builds, and most of the technical documentation the visitor centre’s team now operates from.
 
 **React Native · TypeScript · Kotlin · Go · MQTT · Payload CMS · PostgreSQL**
 
@@ -112,7 +112,7 @@ These features support the people running the experience as well as the people t
 
 I assembled the technical documentation around how the system actually fits together: application journeys, backend services, API and messaging contracts, verification steps and operating procedures.
 
-That includes the four user manuals the Foundation’s staff work from, for the audio guide, the guide’s tablet, the voting kiosk and the CMS: 82 pages and 56 annotated screens. I verified each one against the running application and recorded what I checked in a separate verification report, so the manual describes the system as it behaves rather than as it was designed.
+That includes the four user manuals the visitor centre’s staff work from, for the audio guide, the guide’s tablet, the voting kiosk and the CMS: 82 pages and 56 annotated screens. I verified each one against the running application and recorded what I checked in a separate verification report, so the manual describes the system as it behaves rather than as it was designed.
 
 The documentation connects source inspection with recorded API checks and application walkthroughs. It distinguishes verified behaviour from remaining checks and identifies where a subsystem belongs to another specialist.
 
@@ -122,16 +122,8 @@ That distinction is part of the handover itself. The next engineer or operator n
 
 I wrote most of the platform’s automated tests across the audio guide, the tablet and the Go services, plus load-test plans that simulate visitor positions and emergency messages. Release builds are reproducible per site: one script per venue bakes in its configuration and restores the workspace afterwards.
 
-## Additional engineering: a tour flight recorder
-
-**Development-branch implementation; production rollout is not confirmed.**
-
-I also built a flight recorder across the applications, Go service and database, with an operator console for inspecting problems and device or tour timelines.
-
-It separates event time from receipt time, retains a bounded offline replay queue, records messaging lifecycle events and applies deduplication and retention rules. The aim is to reconstruct what happened across devices without treating late-arriving events as if they occurred at receipt time.
-
 ## What this work demonstrates
 
-Together has to work for up to 40 people at once, every hour, for an expected 200,000 visitors a year, run day to day by the Foundation’s own operations team. The hard part was never one screen. It was keeping each visitor’s audio, position, language and the show’s cues in step across handhelds, a guide’s tablet, kiosks and three pavilions, and recovering cleanly when a device or a headset drops.
+Together has to work for up to 40 people at once, every hour, for an expected 200,000 visitors a year, run day to day by the visitor centre’s own operations team. The hard part was never one screen. It was keeping each visitor’s audio, position, language and the show’s cues in step across handhelds, a guide’s tablet, kiosks and three pavilions, and recovering cleanly when a device or a headset drops.
 
-I took over an established platform from another studio, extended it across the mobile apps and Go services, built the accessibility mode, the Gathering effect and emergency audio, and wrote the manuals and documentation the Foundation now runs it from.
+I took over an established platform from another studio, extended it across the mobile apps and Go services, built the accessibility mode, the Gathering effect and emergency audio, and wrote the manuals and documentation the visitor centre now runs it from.

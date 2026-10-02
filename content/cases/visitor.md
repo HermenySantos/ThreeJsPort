@@ -108,6 +108,8 @@ These features support the people running the experience as well as the people t
 
 I assembled the technical documentation around how the system actually fits together: application journeys, backend services, API and messaging contracts, verification steps and operating procedures.
 
+That includes the four user manuals the Foundation’s staff work from, for the audio guide, the guide’s tablet, the voting kiosk and the CMS: 82 pages and 56 annotated screens. I verified each one against the running application and recorded what I checked in a separate verification report, so the manual describes the system as it behaves rather than as it was designed.
+
 The documentation connects source inspection with recorded API checks and application walkthroughs. It distinguishes verified behaviour from remaining checks and identifies where a subsystem belongs to another specialist.
 
 That distinction is part of the handover itself. The next engineer or operator needs to know both how a flow works and where to look when one part stops behaving as expected.

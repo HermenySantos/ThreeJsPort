@@ -54,6 +54,27 @@ function shot(
 
 const oveePlacements: readonly Placement[] = [
   {
+    afterHeading: 'My responsibility',
+    figures: [
+      shot(
+        '/cases/ai/checkedin-main-stage-recurring-themes.jpg',
+        2000,
+        1333,
+        'Panel of three on a lit stage in front of a large LED wall showing eight recurring themes generated during the session.',
+        'CheckedIn 2026, Geneva: recurring themes from the session, generated live by Ovee on the main LED wall.',
+        'screenshot',
+      ),
+      shot(
+        '/cases/ai/checkedin-breakout-key-messages-audience.jpg',
+        2000,
+        1333,
+        'Audience facing a two-person conversation on a small stage, flanked by two screens showing key messages from the talk.',
+        'A breakout session: key messages from the conversation appear on both screens while it is still under way.',
+        'screenshot',
+      ),
+    ],
+  },
+  {
     afterHeading: 'What I delivered',
     figures: [
       shot(

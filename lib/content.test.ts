@@ -171,7 +171,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
     slugs.map((slug) => [slug, readFileSync(join('content/cases', `${slug}.md`), 'utf8')]),
   );
 
-  assert.match(files.ai, /Ovee — AI for live event moderation and workshop synthesis/);
+  assert.match(files.ai, /Ovee — live-event AI with a human in control/);
   assert.match(files.ai, /four live events/);
   assert.match(files.ai, /600 participants across 60 roundtables/);
   assert.match(files.ai, /approximately five seconds/);
@@ -313,6 +313,10 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.deepEqual(
     aiMain.map((section) => [section.heading, section.figures.map((figure) => figure.src)]),
     [
+      [
+        'My responsibility',
+        ['/cases/ai/checkedin-main-stage-recurring-themes.jpg', '/cases/ai/checkedin-breakout-key-messages-audience.jpg'],
+      ],
       ['What I delivered', ['/cases/ai/04b-stage-poll-takeover-readable.png']],
       ['Two interfaces, one live experience', ['/architecture/ovee-runtime-flow.png']],
       [
@@ -326,7 +330,7 @@ test('figures attach to headings and missing anchors fail', () => {
     ],
   );
   assert.equal(articles.ai.sections[0]?.heading, 'My responsibility');
-  assert.equal(articles.ai.sections[0]?.figures.length, 0);
+  assert.equal(articles.ai.sections[0]?.figures.length, 2);
   assert.equal(articles.ai.disclosure?.label, 'More product views');
   assert.deepEqual(
     articles.ai.disclosure?.figures.map((figure) => figure.src),
@@ -363,7 +367,7 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(articles.ai.disclosure?.figures.length, 3);
   assert.equal(
     aiMain.reduce((count, section) => count + section.figures.length, 0),
-    5,
+    7,
   );
 
   assert.deepEqual(

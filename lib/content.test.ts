@@ -634,11 +634,8 @@ test('figures attach to headings and missing anchors fail', () => {
         heading: 'Making adaptation decisions explicit',
         captions: [
           'What a triggered intervention looks like to the visitor: a small, optional spark rather than a lecture. Working prototype.',
+          'A previously selected strategy remains active without a new trigger. Working prototype.',
         ],
-      },
-      {
-        heading: 'Keeping a strategy across turns',
-        captions: ['A previously selected strategy remains active without a new trigger. Working prototype.'],
       },
     ],
   );

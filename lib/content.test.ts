@@ -171,11 +171,12 @@ test('case prose keeps engineering substance and supplied headings', () => {
     slugs.map((slug) => [slug, readFileSync(join('content/cases', `${slug}.md`), 'utf8')]),
   );
 
-  assert.match(files.ai, /Ovee — AI for live event moderation and workshop synthesis/);
+  assert.match(files.ai, /Ovee — live-event AI with a human in control/);
   assert.match(files.ai, /four live events/);
   assert.match(files.ai, /600 participants across 60 roundtables/);
   assert.match(files.ai, /approximately five seconds/);
-  assert.match(files.ai, /## What I delivered/);
+  assert.equal(files.ai.includes('## What I delivered'), false);
+  assert.match(files.ai, /within \*\*12 seconds\*\*/);
   assert.match(files.ai, /## Two interfaces, one live experience/);
   assert.match(files.ai, /## A draft needs permission to reach the stage/);
   assert.match(files.ai, /## One response, one playback start/);
@@ -313,8 +314,14 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.deepEqual(
     aiMain.map((section) => [section.heading, section.figures.map((figure) => figure.src)]),
     [
-      ['What I delivered', ['/cases/ai/04b-stage-poll-takeover-readable.png']],
-      ['Two interfaces, one live experience', ['/architecture/ovee-runtime-flow.png']],
+      [
+        'My responsibility',
+        ['/cases/ai/checkedin-main-stage-recurring-themes.jpg', '/cases/ai/checkedin-breakout-key-messages-audience.jpg'],
+      ],
+      [
+        'Two interfaces, one live experience',
+        ['/architecture/ovee-runtime-flow.png', '/cases/ai/04b-stage-poll-takeover-readable.png'],
+      ],
       [
         'A draft needs permission to reach the stage',
         [
@@ -323,10 +330,14 @@ test('figures attach to headings and missing anchors fail', () => {
         ],
       ],
       ['One response, one playback start', ['/architecture/ai-playback-desktop.png']],
+      [
+        'Sixty tables, one synthesis',
+        ['/cases/ai/01-stage-workshop-synthesis-themes.png', '/cases/ai/02-workshop-operator-tables-submitting.png'],
+      ],
     ],
   );
   assert.equal(articles.ai.sections[0]?.heading, 'My responsibility');
-  assert.equal(articles.ai.sections[0]?.figures.length, 0);
+  assert.equal(articles.ai.sections[0]?.figures.length, 2);
   assert.equal(articles.ai.disclosure?.label, 'More product views');
   assert.deepEqual(
     articles.ai.disclosure?.figures.map((figure) => figure.src),
@@ -337,7 +348,7 @@ test('figures attach to headings and missing anchors fail', () => {
     ],
   );
   assert.equal(
-    articles.ai.sections.find((section) => section.heading === 'What I delivered')?.figures[0]?.caption,
+    articles.ai.sections.find((section) => section.heading === 'Two interfaces, one live experience')?.figures[1]?.caption,
     'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
   );
   const playbackFigure = articles.ai.sections.find((section) => section.heading === 'One response, one playback start')
@@ -363,7 +374,7 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(articles.ai.disclosure?.figures.length, 3);
   assert.equal(
     aiMain.reduce((count, section) => count + section.figures.length, 0),
-    5,
+    9,
   );
 
   assert.deepEqual(

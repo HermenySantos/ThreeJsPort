@@ -54,14 +54,22 @@ function shot(
 
 const oveePlacements: readonly Placement[] = [
   {
-    afterHeading: 'What I delivered',
+    afterHeading: 'My responsibility',
     figures: [
       shot(
-        '/cases/ai/04b-stage-poll-takeover-readable.png',
-        1920,
-        1080,
-        'Audience wall showing a poll takeover with result bars and a sample vote count.',
-        'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
+        '/cases/ai/checkedin-main-stage-recurring-themes.jpg',
+        2000,
+        1333,
+        'Panel of three on a lit stage in front of a large LED wall showing eight recurring themes generated during the session.',
+        'CheckedIn 2026, Geneva: recurring themes from the session, generated live by Ovee on the main LED wall.',
+        'screenshot',
+      ),
+      shot(
+        '/cases/ai/checkedin-breakout-key-messages-audience.jpg',
+        2000,
+        1333,
+        'Audience facing a two-person conversation on a small stage, flanked by two screens showing key messages from the talk.',
+        'A breakout session: key messages from the conversation appear on both screens while it is still under way.',
         'screenshot',
       ),
     ],
@@ -76,6 +84,14 @@ const oveePlacements: readonly Placement[] = [
         'Diagram linking the operator interface, the participant interface, the backend, and the room wall.',
         'Operator and participant interfaces connect to the backend; the room wall presents audience output.',
         'diagram',
+      ),
+      shot(
+        '/cases/ai/04b-stage-poll-takeover-readable.png',
+        1920,
+        1080,
+        'Audience wall showing a poll takeover with result bars and a sample vote count.',
+        'Audience poll takeover in a synthetic demonstration. The 120 votes shown are sample data.',
+        'screenshot',
       ),
     ],
   },
@@ -96,6 +112,27 @@ const oveePlacements: readonly Placement[] = [
         900,
         'Operator transcript and delivery history after a response was approved.',
         '2. After approval, the response appears in the transcript and delivery history. Synthetic demonstration.',
+        'screenshot',
+      ),
+    ],
+  },
+  {
+    afterHeading: 'Sixty tables, one synthesis',
+    figures: [
+      shot(
+        '/cases/ai/01-stage-workshop-synthesis-themes.png',
+        2400,
+        1350,
+        'Stage display titled The room’s synthesis, listing key themes and roadblocks for the question of adopting AI at work.',
+        'Room synthesis on the main display. Reconstructed with synthetic data on the production build.',
+        'screenshot',
+      ),
+      shot(
+        '/cases/ai/02-workshop-operator-tables-submitting.png',
+        2400,
+        1350,
+        'Workshop operator view with ten claimed tables and a live feed of table responses.',
+        'Workshop operator view: tables claimed and contributions arriving. Reconstructed with synthetic data.',
         'screenshot',
       ),
     ],

@@ -74,8 +74,8 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   }
   assert.equal(cases[3].prototype, true);
   assert.match(cases[3].label, /working prototype/);
-  assert.match(cases[2].label, /^Owned the browser experience/);
-  assert.equal(cases[2].scale, '~2,100 participants across 12 locations.');
+  assert.match(cases[2].label, /^Sole engineer/);
+  assert.equal(cases[2].scale, '12 hubs on one day, designed for ~2,100 players.');
   assert.equal(
     cases[0].summary,
     'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as a panellist alongside the group CEO. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
@@ -227,7 +227,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
   assert.equal(files.visitor.includes('TimescaleDB'), false);
   assert.equal(files.visitor.includes('Fondation'), false);
   assert.match(files.visitor, /UN Geneva’s new visitor centre, open since June 2026/);
-  assert.match(files.webar, /Approximately 2,100 participants/);
+  assert.match(files.webar, /Designed for approximately 2,100 players/);
   const huntAt = files.webar.indexOf('## An event space became a character hunt');
   const responsibilityAt = files.webar.indexOf('## My responsibility');
   assert.ok(huntAt > 0 && responsibilityAt > huntAt);
@@ -561,7 +561,7 @@ test('figures attach to headings and missing anchors fail', () => {
   const webarPlaced = articles.webar.sections.filter((section) => section.figures.length > 0);
   assert.deepEqual(
     webarPlaced.map((section) => section.heading),
-    ['An event space became a character hunt', 'Following a score from interaction to administration'],
+    ['An event space became a character hunt', 'Walking, not shaking', 'Following a score from interaction to administration'],
   );
   assert.equal(webarPlaced[0]?.figures.length, 1);
   assert.equal(webarPlaced[0]?.figures[0]?.kind, 'screenshot');
@@ -576,7 +576,7 @@ test('figures attach to headings and missing anchors fail', () => {
     webarPlaced[0]?.figures[0]?.alt,
     'Close-up of hands holding a smartphone displaying a Monopoly character in browser AR outdoors.',
   );
-  const scoreFigure = webarPlaced[1]?.figures[0];
+  const scoreFigure = webarPlaced.find((section) => section.heading === 'Following a score from interaction to administration')?.figures[0];
   assert.equal(scoreFigure?.src, '/architecture/webar-data-desktop.png');
   assert.deepEqual(scoreFigure?.mobile, {
     src: '/architecture/webar-data-mobile.svg',

@@ -1,10 +1,15 @@
-# One experience across venues and phones
+# One QR code, twelve cities, one day
 
-**Global WebAR experience · Scopely · Dorier · 2025**
+**Sole engineer · Global WebAR experience · Dorier for Scopely · 2025**
 
-Participants joined a WebAR experience from their own phones—no app install—across twelve event locations. Phones, browsers, permissions and movement differed; staff needed results for their location, not one global scoreboard. I owned the browser experience, score APIs and administration within the wider event delivery.
+Scopely’s Global Celebration Day brought 2,400 employees together across 12 hubs, from Tokyo to Mexico, each running the event in its own time zone. Part of it was a character hunt in the browser: one QR code, no app, characters that appear as you walk and that you befriend with the right prop. I was the only engineer: the AR experience, the score API, the database and the staff dashboard.
 
-**Approximately 2,100 participants · 12 locations · five weeks for the core implementation, followed by refinement.**
+**At a glance**
+
+- **12 hubs, one day**, served by a single deployment and the same QR code everywhere.
+- **Designed for approximately 2,100 players**; Scopely’s global employee-experience lead reported 2,400 employees at the event.
+- **Five-week core build** (7 July to 8 August 2025), then three weeks of refinement, including anti-cheat.
+- **Targets:** iOS 14+ and Android 8+, 60 fps on mid-range phones.
 
 ## An event space became a character hunt
 
@@ -12,7 +17,7 @@ Participants used their phone’s browser to discover characters around the venu
 
 ## My responsibility
 
-I owned the engineering across the Mattercraft/Zappar browser experience, Azure Functions API, Cosmos DB integration and React administration within the wider event delivery. That included gameplay, feedback, data handling and the interfaces used to inspect results.
+The scope planned a front-end developer and a back-end developer; I was both. I built the Mattercraft/Zappar browser experience and its gameplay, the Azure Functions API, the Cosmos DB data model and the React dashboard event staff used. Filipe Lopes Pires was the project manager, and John’C Salansky designed the moodboard and the UI and prepared the 3D characters.
 
 **TypeScript · Mattercraft / Zappar · Azure Functions · Cosmos DB · React**
 
@@ -44,6 +49,12 @@ In the development version described here, synthetic fallback movement is disabl
 
 **Tradeoff:** synthetic progress can keep an experience moving, but it can also flatten the movement mechanic and obscure whether real sensors work. The exact fallback behaviour needs to be part of the release configuration and device test plan.
 
+## Walking, not shaking
+
+The game rewards movement, so the cheapest cheat is to stand still and shake the phone. Telling the two apart on a phone is harder than it sounds. iOS and Android sample motion at different rates (30, 60 or 100 Hz), so I normalised the sensor stream first, falling back to the raw sensors if the normalising library did not load within 1.5 seconds. Shaking is only penalised when there is also evidence of walking and it lasts at least 200 ms, so a real walker who jolts their phone is not punished. Thresholds calibrate to each device, and I softened them after testing showed too many false positives.
+
+**Tradeoff:** every extra bit of strictness catches more cheats and more honest players. I tuned towards fairness, because the game was never meant to be a competition.
+
 ## Organising scores around the event’s locations
 
 Score submission attaches a location partition, and leaderboard queries use that same location boundary. This follows the event's operating model: staff and participants care about the results at their own venue.
@@ -54,13 +65,21 @@ This keeps the access pattern understandable: a local leaderboard is a location-
 
 ## Following a score from interaction to administration
 
-The backend includes bounds checks and nickname sanitization. These are part of making browser-submitted data usable, while gameplay tuning addresses the interaction itself. Validation should not be confused with a complete anti-cheat guarantee: the browser remains a participant-controlled environment.
+The scope called for a minimal backend: per-location endpoints and admin pages protected only by obscured URLs. I kept it small but made it defensible. The server clamps every score to the 2,000-point maximum, accepts only the 12 known location codes, filters nicknames and rejects timestamps from the future. Each IP can submit five scores per location per hour, counted inside that location’s partition, and score data, including the IP used for rate limiting, deletes itself after seven days.
+
+The honest gaps: the endpoints are anonymous, a retried request can store a duplicate score, and an IP limit can catch real players sharing venue Wi-Fi.
+
+These checks make browser-submitted data usable, while gameplay tuning addresses the interaction itself. Validation should not be confused with a complete anti-cheat guarantee: the browser remains a participant-controlled environment.
 
 React administration gives staff a separate surface for location context and results. Owning the participant, backend, and staff layers together meant changes could be followed across their boundaries—for example, from how a score is produced to where it appears in a location's results.
 
+## Testing on real phones
+
+Testing was manual and on real devices: about 70 single-purpose test pages for sensors, permissions, spawning and scoring, plus an event-day FAQ for staff covering camera, motion and recovery. There were no automated tests; with hindsight, that is the first thing I would add.
+
 ## Result
 
-The experience served approximately **2,100 participants across 12 locations**. The core implementation took **five weeks**, with subsequent interaction refinement.
+The hunt ran at all 12 hubs on the same day, designed for approximately 2,100 players, as part of a celebration Scopely reported at 2,400 employees. The core implementation took five weeks, followed by three weeks of refinement.
 
 The participant experience, data model and staff workflow were developed as one connected product.
 

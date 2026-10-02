@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { buildArticle, parseCaseMarkdown, type CaseArticle } from './case-layout';
 import { cases, type CaseSlug } from './content';
 
-export const caseSlugs = ['ai', 'visitor', 'webar', 'concierge'] as const;
+export const caseSlugs = ['ai', 'visitor', 'webar', 'concierge', 'seezy'] as const;
 
 export type { CaseSlug };
 export type { CaseArticle, CaseFigure } from './case-layout';

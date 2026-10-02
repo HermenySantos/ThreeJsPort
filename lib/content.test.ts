@@ -44,18 +44,18 @@ test('hero keeps the locked headline and leads with Ovee proof', () => {
   assert.equal(hero.secondaryCta.href, '#contact');
 });
 
-test('selected work order is AI, visitor, WebAR, concierge', () => {
+test('selected work order is AI, visitor, WebAR, concierge, Seezy', () => {
   assert.deepEqual(
     cases.map((item) => item.slug),
-    ['ai', 'visitor', 'webar', 'concierge'],
+    ['ai', 'visitor', 'webar', 'concierge', 'seezy'],
   );
   assert.deepEqual(
     cases.map((item) => item.id),
-    ['01', '02', '03', '04'],
+    ['01', '02', '03', '04', '05'],
   );
   assert.deepEqual(
     cases.map((item) => item.href),
-    ['/cases/ai', '/cases/visitor', '/cases/webar', '/cases/concierge'],
+    ['/cases/ai', '/cases/visitor', '/cases/webar', '/cases/concierge', '/cases/seezy'],
   );
 });
 
@@ -167,7 +167,7 @@ test('about, experience and contact match V4.1', () => {
 });
 
 test('case prose avoids single-asterisk italics, which the renderer does not support', () => {
-  for (const slug of ['ai', 'visitor', 'webar', 'concierge']) {
+  for (const slug of ['ai', 'visitor', 'webar', 'concierge', 'seezy']) {
     const text = readFileSync(join('content/cases', `${slug}.md`), 'utf8').replace(/\*\*[^*]+\*\*/g, '');
     assert.equal(/\*[^*\s][^*]*\*/.test(text), false, slug);
   }
@@ -313,7 +313,7 @@ const VISITOR_PHOTO_SECTIONS = ['My responsibility', 'The Gathering: position be
 
 test('figures attach to headings and missing anchors fail', () => {
   const articles = Object.fromEntries(
-    (['ai', 'visitor', 'webar', 'concierge'] as const).map((slug) => {
+    (['ai', 'visitor', 'webar', 'concierge', 'seezy'] as const).map((slug) => {
       const parsed = parseCaseMarkdown(readFileSync(join('content/cases', `${slug}.md`), 'utf8'));
       return [slug, buildArticle(slug, parsed.body)];
     }),
@@ -658,7 +658,7 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(headingAnchor('How the platform fits together'), 'how-the-platform-fits-together');
 
   const referenced = new Set(
-    (['ai', 'visitor', 'webar', 'concierge'] as const).flatMap((slug) =>
+    (['ai', 'visitor', 'webar', 'concierge', 'seezy'] as const).flatMap((slug) =>
       figuresFor(slug).flatMap((figure) => {
         const paths = [figure.src.slice(1)];
         if (figure.mobile) paths.push(figure.mobile.src.slice(1));

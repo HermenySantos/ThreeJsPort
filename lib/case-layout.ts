@@ -1,4 +1,4 @@
-export const layoutSlugs = ['ai', 'visitor', 'webar', 'concierge'] as const;
+export const layoutSlugs = ['ai', 'visitor', 'webar', 'concierge', 'seezy'] as const;
 
 export type LayoutSlug = (typeof layoutSlugs)[number];
 
@@ -189,6 +189,22 @@ const oveeDisclosure: CaseDisclosure = {
 
 const placements: Record<LayoutSlug, readonly Placement[]> = {
   ai: oveePlacements,
+  seezy: [
+    {
+      afterHeading: 'One owner for the state of every process',
+      figures: [
+        shot(
+          '/architecture/seezy-orchestrator.png',
+          3200,
+          1320,
+          'Architecture diagram: the front end calls services through Azure API Management; each service reports its state change to one orchestrator, which owns the process from lead to completed with two administrator approval gates.',
+          'Every service reports back to one orchestrator, which owns the process and its two human approval gates.',
+          'diagram',
+          { mobile: { src: '/architecture/seezy-orchestrator-mobile.svg', width: 420, height: 808 } },
+        ),
+      ],
+    },
+  ],
   visitor: [
     {
       afterHeading: 'My responsibility',

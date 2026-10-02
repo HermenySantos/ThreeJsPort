@@ -19,19 +19,15 @@ I built the rest, about 100 of 118 commits: the Azure stack, speech and vision, 
 
 **React · TypeScript · Express · Azure AI Foundry · Azure AI Search · Azure Speech · Vitest**
 
-## Connecting conversation, monitoring and adaptation
+## Two agents talk and watch; rules decide
 
-The Guide and Monitor providers handle conversation and monitoring according to the runtime configuration. When the Monitor produces a trigger, synchronous rule-based functions select a strategy and an intervention. This makes the adaptation logic explicit and available to inspect.
+Each turn runs in a fixed order. The Guide answers first, and the Monitor only sees the answer once it is final, so it judges what the visitor actually heard rather than a draft the Guide later rewrote. The Monitor scores engagement and, when it drops, raises a trigger. Only then do the Strategy and Gamification rules wake up; on an ordinary turn they cost nothing.
 
-The turn handler runs the Guide first. The provider may rewrite the draft response before returning, so the application appends the visitor/assistant pair to the session transcript only after that final response is available.
-
-The Monitor then receives the finalized text, the visitor input, source-record information, and recent state snapshots. That ordering keeps the next decision aligned with what the visitor actually saw rather than an intermediate draft.
-
-**Tradeoff:** the ordinary turn path is sequential. Guide completion precedes monitoring and adaptation, so the orchestration boundary must be considered when evaluating end-to-end response time. Splitting responsibilities does not automatically make them concurrent or cheaper.
+**Tradeoff:** the turn is sequential, so the Monitor adds to response time rather than running beside the Guide. Splitting the work into agents made each one testable on its own, not faster.
 
 ## When a search match is the wrong source
 
-Catalog retrieval was not simply a matter of asking search for a result. Keyword search over a 43-record catalogue was too eager, and the live probes caught it binding unrelated questions to records:
+Catalogue retrieval was not simply a matter of asking search for a result. Keyword search over a 43-record catalogue was too eager, and the live probes caught it binding unrelated questions to records:
 
 - “Who won the 2018 World Cup?” grounded to Usain Bolt’s shirt.
 - The connector “at” was enough to tie a question about Norway’s medals to Jesse Owens’ page.
@@ -45,7 +41,7 @@ I worked on several parts of that boundary:
 - Relevance checks examine whether a candidate record actually fits the question, rather than relying solely on the ranking score.
 - Camera-related records and nonvisual factual questions need different treatment; a camera cue should not automatically dominate a general factual question.
 - Allow-listed source matching also needs relevance checks, so a common verb or connector does not create a false match.
-- When the available sources do not support the question, the response path can expose uncertainty rather than forcing a catalog answer.
+- When the available sources do not support the question, the response path can expose uncertainty rather than forcing a catalogue answer.
 
 **Tradeoff:** a single global search-score threshold cannot resolve every query. Longer irrelevant questions can score above shorter legitimate ones. Adding a relevance check addresses that mismatch but introduces another component with its own failure behaviour. On some relevance-model failures, the check fails open: it allows the request to continue without a successful relevance check. That favours availability but leaves a source-selection risk to address.
 
@@ -67,24 +63,15 @@ The data model supports six languages. Probes showed German, Italian, Spanish an
 
 On a normal turn only the Guide and the Monitor run; the strategy and intervention path runs only when the Monitor’s gate fires. The relevance check is a single-token yes/no call: the no-cost alternative to a paid semantic ranker, at the price of one extra model call per turn.
 
-## Making adaptation decisions explicit
+## When a visitor drifts, rules decide what happens
 
-The Monitor produces estimates and trigger events; the application retains recent snapshots and scores for subsequent turns. When a trigger exists, strategy selection examines the trigger, signals, session state, and conversation transcript.
+When the Monitor raises a trigger, a deterministic Strategy function picks the likely cause, such as an unresolved visual reference, overload or a mismatch with the visitor’s interests, and turns it into an approach: tone, what to avoid, what to change. Its confidence then picks the intervention:
 
-The strategy function prioritizes diagnosed causes such as an unresolved visual reference, cognitive overload, or a mismatch in relevance. It then produces a recommended approach, tone, things to avoid, and target changes.
+- Below **0.4**: stay quiet or pause.
+- From **0.4** to below **0.7**: a gentle probe.
+- Above that: the primary intervention for the diagnosed cause, unless a calmness rule overrides an overly stimulating choice for that visitor.
 
-Intervention selection uses that strategy and its confidence:
-
-- Below **0.4** confidence, the selection favours quiet or pause-oriented behaviour.
-- From **0.4** to below **0.7**, it favours a gentler probe.
-- At higher confidence, it can select the primary intervention for the diagnosed cause.
-- A calmness constraint can override an overly stimulating choice for the visitor profile.
-
-These thresholds are implementation choices, not psychological ground truth. Their value is that the decisions are explicit enough to inspect, test, and revise.
-
-A strategy can remain active after the turn that issued it. The cockpit exposes this distinction: a gate can be quiet on the current turn while the session still carries a previous strategy.
-
-The cockpit labels a carried strategy separately from a new trigger. A turn can therefore show the Guide and Monitor running, a quiet adaptation gate and a strategy retained from earlier in the conversation. That distinction helps explain why the system is continuing an approach without choosing it again.
+These thresholds are design choices, not psychology; their value is that every decision can be read, tested and changed. A strategy can also stay active over later turns, and the cockpit labels a carried strategy separately from a new trigger, so an operator can see why the guide keeps an approach without choosing it again.
 
 ## Result
 

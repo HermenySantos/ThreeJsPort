@@ -182,6 +182,7 @@ const oveeDisclosure: CaseDisclosure = {
       'Diagram of wall priority: an active takeover over ambient content, with voice state controlling the overlay.',
       'An active takeover takes priority over ambient content; voice state controls the accompanying overlay.',
       'diagram',
+      { mobile: { src: '/architecture/ovee-wall-decision-paths-mobile.svg', width: 420, height: 910 } },
     ),
   ],
 };

@@ -214,7 +214,12 @@ export const experience = {
       title: 'Project Development Manager / Full Stack Developer',
       company: 'NomadEngenuity',
       period: '2024–2025',
-      summary: 'Led a team of four as project manager: client conversations, sprint planning and hiring. On Seezy, a multi-partner eye-care plan platform, I also co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery: about ten NestJS microservices, an orchestrator owning a 21-state care-plan process and Auth0 multi-tenant partner roles. As project manager I also delivered PharmaSee, a staffing platform for pharmacy, optical and audiology professionals that is now live, and FactorAI, an industrial AI venture for small manufacturers that I co-pitched at the INNOCUP competition at UBI Medical in November 2024; it was then incubated, and its first prospective client, ROPRE, is now a client partner.',
+      summary: 'Led a team of four as project manager: client conversations, sprint planning and hiring.',
+      bullets: [
+        'Seezy, a multi-partner eye-care plan platform: co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery. About ten NestJS microservices, an orchestrator owning a 21-state care-plan process and Auth0 multi-tenant partner roles.',
+        'PharmaSee, a staffing platform for pharmacy, optical and audiology professionals: delivered as project manager; now live.',
+        'FactorAI, an industrial AI venture for small manufacturers: co-pitched at the INNOCUP competition at UBI Medical in November 2024; then incubated, and its first prospective client, ROPRE, is now a client partner.',
+      ],
     },
     {
       title: 'Software Developer',

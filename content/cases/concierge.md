@@ -35,17 +35,17 @@ Catalogue retrieval was not simply a matter of asking search for a result. Keywo
 
 No single score threshold separates these, because keyword scores are not normalised.
 
-I worked on several parts of that boundary:
+So I stopped trusting the score alone:
 
-- Minimum-score filtering rejects weak lexical matches before they become an answer source.
-- Relevance checks examine whether a candidate record actually fits the question, rather than relying solely on the ranking score.
-- Camera-related records and nonvisual factual questions need different treatment; a camera cue should not automatically dominate a general factual question.
-- Allow-listed source matching also needs relevance checks, so a common verb or connector does not create a false match.
-- When the available sources do not support the question, the response path can expose uncertainty rather than forcing a catalogue answer.
+- A minimum score drops weak keyword matches before they can become a source.
+- A relevance gate, a single yes/no model call, asks whether the top record actually answers the question.
+- Camera cues are weighed differently from plain factual questions, so a tagged cue no longer hijacks a general factual question.
+- The allow-listed web tier gets the same check, so a connector like “at” cannot create a match on its own.
+- When nothing fits, the Guide says it doesn’t know instead of forcing a catalogue answer.
 
-**Tradeoff:** a single global search-score threshold cannot resolve every query. Longer irrelevant questions can score above shorter legitimate ones. Adding a relevance check addresses that mismatch but introduces another component with its own failure behaviour. On some relevance-model failures, the check fails open: it allows the request to continue without a successful relevance check. That favours availability but leaves a source-selection risk to address.
+**Tradeoff:** the gate is one more component that can fail, and on some model errors it fails open, letting the turn continue unchecked. That keeps the guide talking, but it is a known source-selection risk.
 
-The engineering lesson is to evaluate source selection separately from fluent answer generation. An answer can sound good while pointing to the wrong evidence.
+The lesson: test source selection separately from answer quality. An answer can sound right while citing the wrong evidence.
 
 ## Breaking it before a visitor does
 
@@ -75,9 +75,7 @@ These thresholds are design choices, not psychology; their value is that every d
 
 ## Result
 
-I delivered a working development/demo application connecting visitor interaction, source-based response behaviour, monitoring, rule-based adaptation and a diagnostic cockpit. The project includes mock and Azure runtime configurations, unit and integration tests, and probes for checking how the components cooperate.
-
-The prototype demonstrates the complete turn flow in a recorded development environment. A public museum rollout remains a separate milestone.
+A working prototype that runs the full turn end to end: voice, text and camera in; a grounded answer out; engagement monitored and adaptation decided by rules; every step visible in the operator cockpit. It runs against Azure or against mocks, with unit and integration tests and the probe harness alongside. A public museum rollout remains a separate milestone.
 
 ## What I would improve next
 

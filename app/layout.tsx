@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import Script from 'next/script';
 
+import { MotionRoot } from '@/components/motion-root';
 import { site } from '@/lib/content';
 
 import './globals.css';
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to work
         </Link>
         {children}
+        <MotionRoot />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2YJQBY70JT" strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];

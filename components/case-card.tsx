@@ -8,7 +8,9 @@ export function CaseCard({ study }: { study: CaseStudy }) {
   return (
     <article
       id={`case-${study.slug}`}
-      className="scroll-mt-24 rounded-[28px] border border-white/10 px-5 py-6 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+      data-reveal
+      data-glow
+      className="relative scroll-mt-24 rounded-[28px] border border-white/10 px-5 py-6 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.15fr)] lg:gap-16">
         <div>
           <p className="text-[13px] text-white/60">

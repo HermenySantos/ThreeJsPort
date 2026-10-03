@@ -1,4 +1,5 @@
 import { hero, metrics } from '@/lib/content';
+import { CountUp } from './count-up';
 import { HeroConsole } from './hero-console';
 import { ArrowRightIcon } from './icons';
 
@@ -31,7 +32,7 @@ export function Hero() {
 
         <HeroConsole />
       </div>
-      <aside aria-label={metrics.kicker} className="mt-14 border-t border-white/10 pt-8 sm:mt-20">
+      <aside data-reveal aria-label={metrics.kicker} className="mt-14 border-t border-white/10 pt-8 sm:mt-20">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16">
           <div>
             <p className="text-[11px] uppercase tracking-label text-white/60">{metrics.kicker}</p>
@@ -40,7 +41,7 @@ export function Hero() {
                 <div key={item.label} className="flex flex-col-reverse justify-end gap-2">
                   <dt className="text-[11px] leading-4 text-white/60 sm:text-[13px]">{item.label}</dt>
                   <dd className="text-[1.65rem] font-medium leading-none tracking-tight text-white sm:text-[3.15rem]">
-                    {item.value}
+                    <CountUp value={item.value} />
                   </dd>
                 </div>
               ))}

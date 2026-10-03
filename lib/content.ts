@@ -1,9 +1,9 @@
 export const site = {
   name: 'Gildo Santos',
   fullName: 'Hermenegildo Santos',
-  title: 'Hermenegildo Santos | Software Engineer · Full-Stack AI, Real-Time & Human-in-the-Loop Systems',
+  title: 'Hermenegildo Santos | Software Engineer · Full-Stack & AI, Real-Time & Human-in-the-Loop Systems',
   description:
-    'Software engineer in Portugal building full-stack AI: real-time, human-in-the-loop systems and interactive platforms. Explore delivered work and the engineering decisions behind it.',
+    'Software engineer in Portugal building real-time, human-in-the-loop systems across mobile, web, backend and AI. Explore delivered work and the engineering decisions behind it.',
   url: 'https://www.hermenegildosantos.com',
   email: 'hermeny7@hotmail.com',
   github: 'https://github.com/HermenySantos',
@@ -20,8 +20,8 @@ export const nav = [
 ] as const;
 
 export const hero = {
-  eyebrow: 'Hermenegildo Santos / Software engineer, full-stack AI',
-  role: 'Software engineer · Full-stack AI · Real-time & human-in-the-loop systems · Portugal',
+  eyebrow: 'Hermenegildo Santos / Software engineer, full-stack & AI',
+  role: 'Software engineer · Full-stack & AI · Real-time & human-in-the-loop systems · Portugal',
   headline: 'I build AI systems that can’t afford a second take.',
   headlineLead: 'I build AI systems ',
   headlineEm: 'that can’t afford a second take.',
@@ -190,7 +190,7 @@ export const cases: readonly CaseStudy[] = [
 export const about = {
   heading: 'About',
   body: [
-    'I’m Hermenegildo—Gildo for short—a software engineer in Portugal who builds full-stack AI systems.',
+    'I’m Hermenegildo—Gildo for short—a software engineer in Portugal building real-time systems across the stack, from mobile to AI.',
     'Most of what I build runs live, in front of people: a conference stage, a visitor centre, twelve event venues on the same day. There is no second take, so I design for a person in the loop where judgement matters, and a safe fallback for when something fails.',
     'I like work that connects a usable product to the engineering underneath it: a mobile interface to a shared state model, an AI response to an operator’s decision, or an event experience to its backend and delivery tools.',
     'At Dorier, I work across interactive platforms, live-event AI and automation. I’m comfortable contributing to an established team and architecture, or carrying a defined product from its first implementation through delivery. I value clear ownership, practical testing and documentation that helps the next person understand the system.',
@@ -249,5 +249,5 @@ export const experience = {
 
 export const contact = {
   heading: 'Let’s talk about what you’re building.',
-  lede: 'For full-stack AI and product engineering roles, product collaborations, or a closer look at the decisions behind this work, get in touch.',
+  lede: 'For software engineering roles across full-stack and AI, product collaborations, or a closer look at the decisions behind this work, get in touch.',
 } as const;

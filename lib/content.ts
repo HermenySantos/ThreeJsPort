@@ -208,7 +208,7 @@ export const experience = {
     'Sole engineer on a browser AR character hunt run at 12 Scopely hubs on the same day.',
     'Primary engineer on a museum AI concierge prototype with grounded answers and a live stress-testing campaign.',
     'Built CT Project Pulse, an internal hours and budget dashboard (Entra sign-in, SharePoint via Microsoft Graph, a Teams bot), now rolling out to the 11-person Creative Technology team.',
-    'Built video-delivery automation used for client video deliveries: a Python tool with GUI and CLI, Dropbox API with OAuth2 token refresh, and cross-platform builds with GitHub Actions.',
+    'Built video-delivery automation now in production for Galderma: a Python tool with GUI and CLI, Dropbox API with OAuth2 token refresh, and cross-platform builds with GitHub Actions.',
   ],
   earlier: [
     {

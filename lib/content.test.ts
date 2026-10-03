@@ -78,7 +78,7 @@ test('homepage cards keep V4.1 anatomy and titles', () => {
   assert.equal(cases[2].scale, '12 hubs on one day, designed for ~2,100 players.');
   assert.equal(
     cases[0].summary,
-    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as a panellist alongside the group CEO. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
+    'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as co-moderator of the main-stage conversation with the group CEO and led a workshop breakout. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
   );
   assert.deepEqual(cases[0].delivered, [
     'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',

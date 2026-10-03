@@ -22,6 +22,12 @@ const config: Config = {
       letterSpacing: {
         label: '0.18em',
       },
+      keyframes: {
+        wave: {
+          '0%, 100%': { transform: 'scaleY(0.3)' },
+          '50%': { transform: 'scaleY(1)' },
+        },
+      },
     },
   },
   plugins: [],

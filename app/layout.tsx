@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
-import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 
 import { MotionRoot } from '@/components/motion-root';
 import { ViewTransitionBridge } from '@/components/transition-link';
@@ -43,21 +42,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={sans.variable}>
       <body className={`${sans.className} min-h-screen bg-ink antialiased`}>
-        <Link
-          href="/#work"
+        <a
+          href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-black">
-          Skip to work
-        </Link>
+          Skip to content
+        </a>
         {children}
         <MotionRoot />
         <ViewTransitionBridge />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-2YJQBY70JT" strategy="afterInteractive" />
-        <Script id="ga" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2YJQBY70JT');`}
-        </Script>
+        <Analytics />
       </body>
     </html>
   );

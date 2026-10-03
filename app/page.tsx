@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div id="top">
       <Header />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <Work />
         <About />

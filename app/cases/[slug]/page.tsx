@@ -4,6 +4,7 @@ import { CaseArticle } from '@/components/case-article';
 import { getFullCase, isCaseSlug } from '@/lib/cases';
 import { cases, site } from '@/lib/content';
 import { ArrowRightIcon } from '@/components/icons';
+import { CaseReadingAids } from '@/components/case-reading-aids';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -68,8 +69,15 @@ export default async function CasePage({ params }: CasePageProps) {
         <p className="mt-10 text-[11px] uppercase tracking-label text-white/40">
           {study ? `${study.id} / ${study.title}${study.prototype ? ' / Working prototype' : ''}` : 'Engineering case'}
         </p>
-        <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
+        <h1
+          style={{ viewTransitionName: `case-title-${slug}` }}
+          className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">
+          {full.title}
+        </h1>
         <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
+        <CaseReadingAids
+          items={full.article.sections.map((section) => ({ anchor: section.anchor, heading: section.heading }))}
+        />
         <CaseArticle
           article={full.article}
           constrainPortraits={slug === 'visitor' || slug === 'concierge' || slug === 'webar'}

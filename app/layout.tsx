@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 import { MotionRoot } from '@/components/motion-root';
+import { ViewTransitionBridge } from '@/components/transition-link';
 import { site } from '@/lib/content';
 
 import './globals.css';
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Link>
         {children}
         <MotionRoot />
+        <ViewTransitionBridge />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2YJQBY70JT" strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];

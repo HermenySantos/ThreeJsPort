@@ -1,10 +1,11 @@
 import { hero, metrics } from '@/lib/content';
+import { HeroConsole } from './hero-console';
 import { ArrowRightIcon } from './icons';
 
 export function Hero() {
   return (
     <section className="mx-auto max-w-page px-5 pb-8 pt-8 sm:min-h-[calc(100svh-72px)] sm:px-8 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-20">
+      <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16">
         <div>
           <p className="text-[11px] uppercase tracking-label text-white/60">{hero.eyebrow}</p>
           <h1 className="mt-4 max-w-[13.5em] text-[2.75rem] font-medium leading-[0.98] tracking-[-0.035em] text-white sm:mt-5 sm:text-6xl lg:max-w-[9.6em] lg:text-[4.35rem]">
@@ -28,21 +29,26 @@ export function Hero() {
           </div>
         </div>
 
-        <aside aria-label={metrics.kicker} className="lg:pt-1">
-          <p className="text-[11px] uppercase tracking-label text-white/60">{metrics.kicker}</p>
-          <dl className="mt-4 grid grid-cols-3 gap-x-3 sm:mt-8 sm:block sm:space-y-7">
-            {metrics.items.map((item) => (
-              <div key={item.label} className="grid grid-cols-1 gap-1 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-x-6">
-                <dt className="order-2 text-[11px] leading-4 text-white/60 sm:text-[13px]">{item.label}</dt>
-                <dd className="order-1 text-[1.65rem] font-medium leading-none tracking-tight text-white sm:text-[3.15rem]">
-                  {item.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-4 max-w-[18rem] text-[13px] leading-5 text-white/60 sm:mt-10">{metrics.footnote}</p>
-        </aside>
+        <HeroConsole />
       </div>
+      <aside aria-label={metrics.kicker} className="mt-14 border-t border-white/10 pt-8 sm:mt-20">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16">
+          <div>
+            <p className="text-[11px] uppercase tracking-label text-white/60">{metrics.kicker}</p>
+            <dl className="mt-5 grid grid-cols-3 gap-x-4">
+              {metrics.items.map((item) => (
+                <div key={item.label} className="flex flex-col-reverse justify-end gap-2">
+                  <dt className="text-[11px] leading-4 text-white/60 sm:text-[13px]">{item.label}</dt>
+                  <dd className="text-[1.65rem] font-medium leading-none tracking-tight text-white sm:text-[3.15rem]">
+                    {item.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <p className="self-end text-[13px] leading-5 text-white/60">{metrics.footnote}</p>
+        </div>
+      </aside>
     </section>
   );
 }

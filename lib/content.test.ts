@@ -741,9 +741,10 @@ test('case pages attach figures inside sections, then keep contact navigation', 
   );
   assert.match(page, /slug === 'visitor'/);
   assert.match(page, /\$\{full\.title\} \| \$\{site\.fullName\}/);
-  assert.match(page, /images: \[\{ url: site\.ogImage, alt: site\.title \}\]/);
+  // Case pages get their own preview image from opengraph-image.tsx.
+  assert.equal(page.includes('site.ogImage'), false);
+  assert.ok(existsSync('app/cases/[slug]/opengraph-image.tsx'));
   assert.match(page, /card: 'summary_large_image'/);
-  assert.match(page, /images: \[site\.ogImage\]/);
 
   const header = readFileSync('components/header.tsx', 'utf8');
   assert.match(header, /event\.key !== 'Escape'/);

@@ -37,13 +37,11 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
       description,
       url: `${site.url}/cases/${slug}`,
       type: 'article',
-      images: [{ url: site.ogImage, alt: site.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [site.ogImage],
     },
   };
 }

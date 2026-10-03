@@ -174,7 +174,7 @@ export function HeroConsole() {
         aria-label="Illustration of Ovee's operator gate. The AI listens to the stage, drafts a reply only when it is addressed, and a person approves it before it is spoken. Unapproved drafts expire after 12 seconds."
         className="rounded-[28px] border border-white/10 bg-[#0f0f0f] p-4 shadow-[0_30px_80px_-40px_rgba(127,224,191,0.25)] sm:p-5">
         <div aria-hidden className="space-y-3">
-          <div className="flex items-center justify-between text-[11px] uppercase tracking-label text-white/50">
+          <div className="flex items-center justify-between text-[11px] uppercase tracking-label text-white/55">
             <span className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/60 motion-reduce:hidden" />
@@ -186,7 +186,7 @@ export function HeroConsole() {
           </div>
 
           <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-3.5">
-            <p className="text-[10px] uppercase tracking-label text-white/40">Transcript</p>
+            <p className="text-[10px] uppercase tracking-label text-white/55">Transcript</p>
             <p className="mt-2 text-[12px] font-medium text-white/70">{scene.speaker}</p>
             <p className="mt-1 min-h-[2.5rem] text-[14px] leading-5 text-white">
               {scene.line.slice(0, frame.lineChars)}
@@ -197,14 +197,14 @@ export function HeroConsole() {
           </div>
 
           <div className="flex items-center gap-2 text-[12px]">
-            <span className="text-[10px] uppercase tracking-label text-white/40">Gate</span>
+            <span className="text-[10px] uppercase tracking-label text-white/55">Gate</span>
             <span
               className={`rounded-full border px-2.5 py-0.5 transition-colors duration-300 ${
                 frame.gate === 'addressed'
                   ? 'border-[#7fe0bf]/40 text-[#7fe0bf]'
                   : frame.gate === 'silent'
                     ? 'border-white/20 text-white/70'
-                    : 'border-white/10 text-white/45'
+                    : 'border-white/10 text-white/55'
               }`}>
               {frame.gate === 'addressed'
                 ? frame.draftChars < (scene.draft?.length ?? 0)
@@ -221,12 +221,12 @@ export function HeroConsole() {
               hasDraft ? 'border-white/[0.12] opacity-100' : 'border-white/[0.05] opacity-40'
             } ${frame.approved ? 'border-[#7fe0bf]/40' : ''} ${frame.outcome === 'expired' ? 'opacity-50' : ''}`}>
             <div className="flex items-center justify-between">
-              <p className="text-[10px] uppercase tracking-label text-white/40">
+              <p className="text-[10px] uppercase tracking-label text-white/55">
                 {frame.approved ? 'Approved' : frame.outcome === 'expired' ? 'Expired' : 'Draft · awaiting approval'}
               </p>
               <span className="flex items-center gap-1.5 text-[11px] tabular-nums text-white/55">
                 {scene.kind === 'expire' && remaining !== null && frame.outcome !== 'expired' && (
-                  <span className="rounded border border-white/10 px-1 text-[9px] text-white/40">{EXPIRE_SPEEDUP}×</span>
+                  <span className="rounded border border-white/10 px-1 text-[9px] text-white/55">{EXPIRE_SPEEDUP}×</span>
                 )}
                 {remaining !== null && !frame.approved && `${Math.max(0, Math.ceil(remaining))} s`}
                 <svg viewBox="0 0 20 20" className="h-4 w-4 -rotate-90">
@@ -245,11 +245,11 @@ export function HeroConsole() {
                 </svg>
               </span>
             </div>
-            <p className={`mt-2 min-h-[2.5rem] text-[14px] leading-5 ${frame.outcome === 'expired' ? 'text-white/40 line-through' : 'text-white/85'}`}>
+            <p className={`mt-2 min-h-[2.5rem] text-[14px] leading-5 ${frame.outcome === 'expired' ? 'text-white/55 line-through' : 'text-white/85'}`}>
               {hasDraft ? (scene.draft ?? '').slice(0, frame.draftChars) : ''}
             </p>
             <div className="mt-3 flex justify-end gap-2 text-[12px]">
-              <span className="rounded-full border border-white/10 px-3 py-1 text-white/45">Discard</span>
+              <span className="rounded-full border border-white/10 px-3 py-1 text-white/55">Discard</span>
               <span
                 className={`rounded-full px-3 py-1 font-medium transition-colors duration-200 ${
                   frame.approved ? 'bg-[#7fe0bf] text-black' : 'bg-white/10 text-white/70'
@@ -260,7 +260,7 @@ export function HeroConsole() {
           </div>
 
           <div className="flex h-7 items-center justify-between rounded-full bg-white/[0.03] px-3.5 text-[12px]">
-            <span className="text-[10px] uppercase tracking-label text-white/40">Room</span>
+            <span className="text-[10px] uppercase tracking-label text-white/55">Room</span>
             {frame.outcome === 'spoken' ? (
               <span className="flex items-center gap-2 text-[#7fe0bf]">
                 <span className="flex h-3 items-end gap-[2px]">
@@ -279,12 +279,12 @@ export function HeroConsole() {
             ) : frame.outcome === 'silent' ? (
               <span className="text-white/55">Not addressed · nothing reached the room</span>
             ) : (
-              <span className="text-white/35">Waiting</span>
+              <span className="text-white/55">Waiting</span>
             )}
           </div>
         </div>
       </div>
-      <figcaption className="mt-3 px-1 text-[12px] leading-5 text-white/45">
+      <figcaption className="mt-3 px-1 text-[12px] leading-5 text-white/55">
         Illustration of Ovee’s operator gate: the AI drafts, a person decides. Drafts nobody approves expire after 12 seconds.
       </figcaption>
     </figure>

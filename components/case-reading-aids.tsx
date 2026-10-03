@@ -57,7 +57,7 @@ export function CaseReadingAids({ items }: { items: readonly TocItem[] }) {
         aria-label="On this page"
         className="fixed top-28 hidden w-[200px] min-[1380px]:block"
         style={{ left: 'calc(50% - 670px)' }}>
-        <p className="text-[11px] uppercase tracking-label text-white/40">On this page</p>
+        <p className="text-[11px] uppercase tracking-label text-white/55">On this page</p>
         <ol className="mt-4 space-y-2 border-l border-white/10">
           {items.map((item) => (
             <li key={item.anchor}>
@@ -67,7 +67,7 @@ export function CaseReadingAids({ items }: { items: readonly TocItem[] }) {
                 className={`-ml-px block border-l py-0.5 pl-3 text-[12px] leading-5 transition-colors ${
                   active === item.anchor
                     ? 'border-[#7fe0bf] text-white'
-                    : 'border-transparent text-white/45 hover:text-white/80'
+                    : 'border-transparent text-white/55 hover:text-white/80'
                 }`}>
                 {item.heading}
               </a>

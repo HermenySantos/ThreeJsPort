@@ -149,7 +149,7 @@ test('metrics strip leads with Ovee, the primary story', () => {
 });
 
 test('about, experience and contact match V4.1', () => {
-  assert.equal(about.body[0], 'I’m Hermenegildo—Gildo for short—a full-stack AI engineer based in Portugal.');
+  assert.equal(about.body[0], 'I’m Hermenegildo—Gildo for short—a software engineer in Portugal who builds full-stack AI systems.');
   assert.equal(experience.title, 'Full Stack Engineer');
   assert.equal(experience.company, 'Dorier');
   assert.equal(experience.period, '2025–present');
@@ -159,10 +159,10 @@ test('about, experience and contact match V4.1', () => {
   assert.equal(site.email, 'hermeny7@hotmail.com');
   assert.equal(site.github, 'https://github.com/HermenySantos');
   assert.equal(site.linkedin, 'https://www.linkedin.com/in/hermenegildosantos');
-  assert.equal(site.title, 'Hermenegildo Santos | Full-Stack AI Engineer · Real-Time & Human-in-the-Loop Systems');
+  assert.equal(site.title, 'Hermenegildo Santos | Software Engineer · Full-Stack AI, Real-Time & Human-in-the-Loop Systems');
   assert.equal(
     site.description,
-    'Full-stack AI engineer in Portugal building real-time, human-in-the-loop AI systems and interactive platforms. Explore delivered work and the engineering decisions behind it.',
+    'Software engineer in Portugal building full-stack AI: real-time, human-in-the-loop systems and interactive platforms. Explore delivered work and the engineering decisions behind it.',
   );
 });
 

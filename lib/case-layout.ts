@@ -14,6 +14,8 @@ export type CaseFigure = {
   layout?: 'portrait' | 'article';
   /** Shown below 768px. Desktop `src` remains the fallback image. */
   mobile?: { src: string; width: number; height: number };
+  /** Source SVG in /public, inlined from 768px up and animated as it scrolls into view. */
+  live?: string;
 };
 
 export type CaseSection = {
@@ -47,7 +49,7 @@ function shot(
   alt: string,
   caption: string,
   kind: CaseFigure['kind'],
-  extras?: Pick<CaseFigure, 'label' | 'layout' | 'mobile'>,
+  extras?: Pick<CaseFigure, 'label' | 'layout' | 'mobile' | 'live'>,
 ): CaseFigure {
   return { src, alt, caption, width, height, kind, ...extras };
 }
@@ -84,7 +86,10 @@ const oveePlacements: readonly Placement[] = [
         'Architecture diagram: stage audio is transcribed and drafted on the backend, but a draft reaches text-to-speech only after the operator approves it; discarded or expired drafts are dropped. Phones feed a workshop runtime whose synthesis reaches the same room wall.',
         'A draft has no path to the room except through the operator. Discarded drafts, and drafts left for 12 seconds, are dropped.',
         'diagram',
-        { mobile: { src: '/architecture/ovee-architecture-mobile.svg', width: 420, height: 1306 } },
+        {
+          mobile: { src: '/architecture/ovee-architecture-mobile.svg', width: 420, height: 1306 },
+          live: '/architecture/ovee-architecture.svg',
+        },
       ),
       shot(
         '/cases/ai/04b-stage-poll-takeover-readable.png',
@@ -200,7 +205,10 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Architecture diagram: the front end calls services through Azure API Management; each service reports its state change to one orchestrator, which owns the process from lead to completed with two administrator approval gates.',
           'Every service reports back to one orchestrator, which owns the process and its two human approval gates.',
           'diagram',
-          { mobile: { src: '/architecture/seezy-orchestrator-mobile.svg', width: 420, height: 808 } },
+          {
+            mobile: { src: '/architecture/seezy-orchestrator-mobile.svg', width: 420, height: 808 },
+            live: '/architecture/seezy-orchestrator.svg',
+          },
         ),
         shot(
           '/cases/seezy/seezy-process-history.png',
@@ -422,7 +430,7 @@ const placements: Record<LayoutSlug, readonly Placement[]> = {
           'Decision path: sensor data is normalised across iOS and Android sampling rates, with raw sensors as a fallback; shaking is penalised only when there is walking evidence and the shake lasts at least 200 milliseconds; otherwise movement counts as normal play.',
           'Shaking costs energy only when the phone is also walking and the shake is sustained, so honest players are not punished for a bump.',
           'diagram',
-          { mobile: { src: '/architecture/webar-anticheat-mobile.svg', width: 420, height: 644 } },
+          { mobile: { src: '/architecture/webar-anticheat-mobile.svg', width: 420, height: 644 }, live: '/architecture/webar-anticheat.svg' },
         ),
       ],
     },
@@ -518,7 +526,7 @@ const visitorDisclosure: CaseDisclosure = {
       'System overview: indoor positioning, guide-tablet commands and show cues merge in one State Manager, which sends one state per visitor to each audio guide over MQTT; the CMS supplies content; voting kiosks follow show cues on a separate path.',
       'Every input merges in one State Manager, which publishes one state per visitor. Show control, positioning hardware and the kiosks’ show integration were owned by colleagues.',
       'diagram',
-      { mobile: { src: '/architecture/visitor-system-overview-mobile.svg', width: 420, height: 802 } },
+      { mobile: { src: '/architecture/visitor-system-overview-mobile.svg', width: 420, height: 802 }, live: '/architecture/visitor-system-overview.svg' },
     ),
   ],
 };

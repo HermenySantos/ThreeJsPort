@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const alt =
-  'Hermenegildo Santos | Software Engineer · Full-Stack AI, Real-Time & Human-in-the-Loop Systems. I build AI systems that can’t afford a second take.';
+  'Hermenegildo Santos | Software Engineer · Full-Stack & AI, Real-Time & Human-in-the-Loop Systems. I build AI systems that can’t afford a second take.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -21,7 +21,7 @@ export default function OpenGraphImage() {
         }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 18, color: 'rgba(255,255,255,0.45)' }}>
           <span>HERMENEGILDO SANTOS</span>
-          <span>SOFTWARE ENGINEER · FULL-STACK AI</span>
+          <span>SOFTWARE ENGINEER · FULL-STACK & AI</span>
         </div>
         <div
           style={{

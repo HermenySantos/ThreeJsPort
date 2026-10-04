@@ -2,7 +2,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { CaseArticle } from '@/components/case-article';
 import { getFullCase, isCaseSlug } from '@/lib/cases';
-import { cases, site } from '@/lib/content';
+import { cases, plainText, site } from '@/lib/content';
 import { ArrowRightIcon } from '@/components/icons';
 import { CaseReadingAids } from '@/components/case-reading-aids';
 import type { Metadata } from 'next';
@@ -28,7 +28,9 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
   const description =
     slug === 'visitor'
       ? 'Engineering an immersive visitor platform across React Native, native Android, Go and content services: location-aware audio, tour control and technical handover.'
-      : (study?.summary ?? site.description);
+      : study
+        ? plainText(study.summary)
+        : site.description;
   return {
     title,
     description,

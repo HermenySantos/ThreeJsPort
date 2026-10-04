@@ -321,7 +321,11 @@ test('figures attach to headings and missing anchors fail', () => {
     [
       [
         'My responsibility',
-        ['/cases/ai/checkedin-main-stage-recurring-themes.jpg', '/cases/ai/checkedin-breakout-key-messages-audience.jpg'],
+        [
+          '/cases/ai/checkedin-main-stage-recurring-themes.jpg',
+          '/cases/ai/checkedin-in-the-rooms-words.jpg',
+          '/cases/ai/checkedin-breakout-key-messages-audience.jpg',
+        ],
       ],
       [
         'Two interfaces, one live experience',
@@ -337,12 +341,16 @@ test('figures attach to headings and missing anchors fail', () => {
       ['One response, one playback start', ['/architecture/ai-playback-desktop.png']],
       [
         'Sixty tables, one synthesis',
-        ['/cases/ai/01-stage-workshop-synthesis-themes.png', '/cases/ai/02-workshop-operator-tables-submitting.png'],
+        [
+          '/cases/ai/checkedin-workshop-live-round.jpg',
+          '/cases/ai/01-stage-workshop-synthesis-themes.png',
+          '/cases/ai/02-workshop-operator-tables-submitting.png',
+        ],
       ],
     ],
   );
   assert.equal(articles.ai.sections[0]?.heading, 'My responsibility');
-  assert.equal(articles.ai.sections[0]?.figures.length, 2);
+  assert.equal(articles.ai.sections[0]?.figures.length, 3);
   assert.equal(articles.ai.disclosure?.label, 'More product views');
   assert.deepEqual(
     articles.ai.disclosure?.figures.map((figure) => figure.src),
@@ -379,7 +387,7 @@ test('figures attach to headings and missing anchors fail', () => {
   assert.equal(articles.ai.disclosure?.figures.length, 3);
   assert.equal(
     aiMain.reduce((count, section) => count + section.figures.length, 0),
-    9,
+    11,
   );
 
   assert.deepEqual(

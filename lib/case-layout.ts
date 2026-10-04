@@ -67,6 +67,14 @@ const oveePlacements: readonly Placement[] = [
         'screenshot',
       ),
       shot(
+        '/cases/ai/checkedin-in-the-rooms-words.jpg',
+        2000,
+        1333,
+        'Panel of three on stage under an LED wall titled In the room’s words, showing three quotes from the conversation with speaker names.',
+        'In the room’s words: lines from the main-stage conversation, captured by Ovee and put on the main LED wall.',
+        'screenshot',
+      ),
+      shot(
         '/cases/ai/checkedin-breakout-key-messages-audience.jpg',
         2000,
         1333,
@@ -125,6 +133,14 @@ const oveePlacements: readonly Placement[] = [
   {
     afterHeading: 'Sixty tables, one synthesis',
     figures: [
+      shot(
+        '/cases/ai/checkedin-workshop-live-round.jpg',
+        2000,
+        1333,
+        'Workshop screen titled Working Better Together, with a join QR code, a 0:34 round timer and live submission counts for six topics.',
+        'The same workshop runtime live at CheckedIn 2026: participants join by QR code and submissions per topic update as the round runs.',
+        'screenshot',
+      ),
       shot(
         '/cases/ai/01-stage-workshop-synthesis-themes.png',
         2400,

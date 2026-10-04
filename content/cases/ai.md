@@ -1,4 +1,4 @@
-# Ovee — live-event AI with a human in control
+# Ovee: live-event AI with a human in control
 
 **Full-stack product engineering · Dorier · Fortune-500 tour and mci group’s CheckedIn · 2026**
 

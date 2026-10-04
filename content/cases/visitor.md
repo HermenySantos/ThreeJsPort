@@ -66,7 +66,7 @@ The handler avoids restarting audio during a pending recovery, priority audio pl
 
 A visitor should not need to move again just because the show has entered its exploration phase. I added backend handling that resolves the visitor’s already-known exhibit zone when that phase begins and publishes the corresponding audio state.
 
-This handles two independent triggers—show progression and visitor movement—without requiring them to arrive in a particular order.
+This handles two independent triggers, show progression and visitor movement, without requiring them to arrive in a particular order.
 
 ## Making tour ownership part of the client–server contract
 

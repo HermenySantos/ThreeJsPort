@@ -15,11 +15,11 @@ export function CaseCard({ study }: { study: CaseStudy }) {
         <div>
           <p className="text-[13px] text-white/60">
             {study.id}
-            <span className="mx-3 text-white/20">—</span>
+            <span className="mx-3 text-white/20">·</span>
             {study.year}
             {study.prototype ? (
               <>
-                <span className="mx-3 text-white/20">—</span>
+                <span className="mx-3 text-white/20">·</span>
                 Working prototype
               </>
             ) : null}

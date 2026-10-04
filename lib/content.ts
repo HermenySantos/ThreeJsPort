@@ -25,7 +25,7 @@ export const hero = {
   headline: 'I build AI systems that can’t afford a second take.',
   headlineLead: 'I build AI systems ',
   headlineEm: 'that can’t afford a second take.',
-  lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
+  lede: 'I build real-time AI systems people can trust in the room: live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
   proofLabel: 'Delivery proof',
   proof: 'Ovee, live-event AI: cleared by a Fortune-500 client’s IT, privacy and data-control review; synthesised 60 roundtables for 600 leaders in seconds.',
   stack: 'Based in Portugal · Working across the stack',
@@ -45,7 +45,7 @@ export const metrics = {
 
 export const work = {
   heading: 'Selected work',
-  eyebrow: 'Selected work / 01—05',
+  eyebrow: 'Selected work / 01–05',
 } as const;
 
 export type CaseSlug = 'ai' | 'visitor' | 'webar' | 'concierge' | 'seezy';
@@ -71,7 +71,7 @@ export const cases: readonly CaseStudy[] = [
     id: '01',
     slug: 'ai',
     year: '2026',
-    title: 'Ovee — AI for live events.',
+    title: 'Ovee: AI for live events.',
     label: 'Primary engineer across AI, operator tools and audience delivery · Dorier · Fortune-500 tour and mci group’s CheckedIn · 2026',
     summary:
       'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. **Delivered at 4 live events across Asia and Europe**: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as co-moderator of the main-stage conversation with the group CEO and powered a workshop breakout. In the moderated stage workflow, **an operator approves each AI contribution before it is spoken**.',
@@ -121,7 +121,7 @@ export const cases: readonly CaseStudy[] = [
     label:
       'Sole engineer: browser AR, backend and admin tools · Dorier for Scopely · 2025',
     summary:
-      'Participants joined from their own phones in the browser — **no app install** — across twelve event locations. **I built the core in five weeks**, then refined it through testing and client feedback: interaction layer, score APIs, location-scoped leaderboards and React administration.',
+      'Participants joined from their own phones in the browser, with **no app install**, across twelve event locations. **I built the core in five weeks**, then refined it through testing and client feedback: interaction layer, score APIs, location-scoped leaderboards and React administration.',
     delivered: [
       'A WebAR experience participants could enter without installing an app.',
       'An Azure Functions backend and Cosmos DB data model organised around event locations.',
@@ -166,7 +166,7 @@ export const cases: readonly CaseStudy[] = [
     id: '05',
     slug: 'seezy',
     year: '2024–2025',
-    title: 'Seezy — one process, five partners.',
+    title: 'Seezy: one process, five partners.',
     label: 'Co-architect, then sole engineer to delivery · NomadEngenuity · 2024–2025',
     summary:
       'A multi-partner eye-care plan platform: sales partners, optical stores, labs, insurers and administrators working one shared process, from the first lead to the client collecting their glasses. I co-designed the architecture, then **took over the whole system and carried it, front end to back end, to delivery**.',
@@ -190,7 +190,7 @@ export const cases: readonly CaseStudy[] = [
 export const about = {
   heading: 'About',
   body: [
-    'I’m Hermenegildo—Gildo for short—a software engineer in Portugal building real-time systems across the stack, from mobile to AI.',
+    'I’m Hermenegildo (Gildo for short), a software engineer in Portugal building real-time systems across the stack, from mobile to AI.',
     'Most of what I build runs live, in front of people: a conference stage, a visitor centre, twelve event venues on the same day. There is no second take, so I design for a person in the loop where judgement matters, and a safe fallback for when something fails.',
     'I like work that connects a usable product to the engineering underneath it: a mobile interface to a shared state model, an AI response to an operator’s decision, or an event experience to its backend and delivery tools.',
     'At Dorier, I work across interactive platforms, live-event AI and automation. I’m comfortable contributing to an established team and architecture, or carrying a defined product from its first implementation through delivery. I value clear ownership, practical testing and documentation that helps the next person understand the system.',

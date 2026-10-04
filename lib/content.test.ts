@@ -30,7 +30,7 @@ test('hero keeps the locked headline and leads with Ovee proof', () => {
   assert.equal(hero.headlineLead + hero.headlineEm, hero.headline);
   assert.equal(
     hero.lede,
-    'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
+    'I build real-time AI systems people can trust in the room: live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
   );
   assert.match(hero.lede, /approval loop/);
   assert.equal(
@@ -60,7 +60,7 @@ test('selected work order is AI, visitor, WebAR, concierge, Seezy', () => {
 });
 
 test('homepage cards keep V4.1 anatomy and titles', () => {
-  assert.equal(cases[0].title, 'Ovee — AI for live events.');
+  assert.equal(cases[0].title, 'Ovee: AI for live events.');
   assert.equal(cases[1].title, 'Immersive visitor platform.');
   assert.equal(`${cases[1].id} / ${cases[1].title}`, '02 / Immersive visitor platform.');
   assert.equal(cases[2].title, 'Global WebAR experience.');
@@ -149,7 +149,7 @@ test('metrics strip leads with Ovee, the primary story', () => {
 });
 
 test('about, experience and contact match V4.1', () => {
-  assert.equal(about.body[0], 'I’m Hermenegildo—Gildo for short—a software engineer in Portugal building real-time systems across the stack, from mobile to AI.');
+  assert.equal(about.body[0], 'I’m Hermenegildo (Gildo for short), a software engineer in Portugal building real-time systems across the stack, from mobile to AI.');
   assert.equal(experience.title, 'Full Stack Engineer');
   assert.equal(experience.company, 'Dorier');
   assert.equal(experience.period, '2025–present');
@@ -179,7 +179,7 @@ test('case prose keeps engineering substance and supplied headings', () => {
     slugs.map((slug) => [slug, readFileSync(join('content/cases', `${slug}.md`), 'utf8')]),
   );
 
-  assert.match(files.ai, /Ovee — live-event AI with a human in control/);
+  assert.match(files.ai, /Ovee: live-event AI with a human in control/);
   assert.match(files.ai, /four live events/);
   assert.match(files.ai, /600 participants across 60 roundtables/);
   assert.match(files.ai, /approximately five seconds/);
@@ -757,5 +757,16 @@ test('card summaries highlight at most two key phrases, all balanced', () => {
     const marks = study.summary.split('**').length - 1;
     assert.equal(marks % 2, 0, `${study.slug} has an unclosed highlight`);
     assert.ok(marks / 2 >= 1 && marks / 2 <= 2, `${study.slug} has ${marks / 2} highlights`);
+  }
+});
+
+test('site copy uses no em dashes', () => {
+  const sources = [
+    'lib/content.ts',
+    'components/case-card.tsx',
+    ...readdirSync('content/cases').map((file) => join('content/cases', file)),
+  ];
+  for (const file of sources) {
+    assert.equal(readFileSync(file, 'utf8').includes('\u2014'), false, `${file} contains an em dash`);
   }
 });

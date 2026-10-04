@@ -84,8 +84,8 @@ export const cases: readonly CaseStudy[] = [
     cta: 'Explore the engineering',
     href: '/cases/ai',
     cover: {
-      src: '/cases/ai/checkedin-main-stage-recurring-themes.jpg',
-      alt: 'Panel on a lit stage in front of a large LED wall showing recurring themes generated live by Ovee.',
+      src: '/cases/ai/checkedin-in-the-rooms-words.jpg',
+      alt: 'Panel of three on stage under an LED wall titled In the room’s words, showing quotes from the conversation captured live by Ovee.',
       width: 2000,
       height: 1333,
     },

@@ -17,7 +17,7 @@ export default function HomePage() {
         <Experience />
         <Contact />
       </main>
-      <Footer />
+      <Footer showSocial={false} />
     </div>
   );
 }

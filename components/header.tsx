@@ -32,8 +32,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-ink/85 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-page items-center justify-between px-5 sm:px-8 md:grid md:grid-cols-3">
-        <Link href="/#top" className="justify-self-start text-[15px] tracking-tight text-white">
-          {site.name}
+        <Link href="/#top" className="justify-self-start" aria-label={`${site.name}, home`}>
+          {/* Outlined SVG wordmark; the green dot is the same accent used across the site. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/gildo-wordmark.svg" alt={site.name} width={58} height={27} className="block h-[27px] w-auto" />
         </Link>
 
         <nav

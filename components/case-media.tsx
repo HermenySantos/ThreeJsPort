@@ -1,6 +1,11 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+
 import Image from 'next/image';
 
 import type { CaseFigure } from '@/lib/case-layout';
+
+import { LiveDiagram } from './live-diagram';
 
 export function CaseMediaList({
   figures,
@@ -53,8 +58,13 @@ function CaseMedia({
       {figure.label ? (
         <p className="border-b border-white/10 px-5 py-3 text-[13px] font-medium text-white">{figure.label}</p>
       ) : null}
+      {figure.live ? (
+        <div className="hidden bg-ink md:block">
+          <LiveDiagram svg={inlineSvg(figure.live)} />
+        </div>
+      ) : null}
       {figure.mobile ? (
-        <picture className="block w-full">
+        <picture className={figure.live ? 'block w-full md:hidden' : 'block w-full'}>
           <source
             media="(max-width: 767px)"
             srcSet={figure.mobile.src}
@@ -69,7 +79,8 @@ function CaseMedia({
             width={figure.width}
             height={figure.height}
             className="block h-auto w-full"
-            fetchPriority={priority ? 'high' : undefined}
+            fetchPriority={priority && !figure.live ? 'high' : undefined}
+            loading={figure.live ? 'lazy' : undefined}
           />
         </picture>
       ) : (
@@ -102,4 +113,14 @@ function CaseMedia({
       </figcaption>
     </figure>
   );
+}
+
+/** Reads a diagram from /public and namespaces its ids so two inline SVGs on one page cannot collide. */
+function inlineSvg(src: string): string {
+  const raw = readFileSync(path.join(process.cwd(), 'public', src), 'utf8');
+  const prefix = path.basename(src, '.svg').replace(/[^a-z0-9]/gi, '');
+  return raw
+    .replace(/\bid="([^"]+)"/g, `id="${prefix}-$1"`)
+    .replace(/url\(#([^)]+)\)/g, `url(#${prefix}-$1)`)
+    .replace(/href="#([^"]+)"/g, `href="#${prefix}-$1"`);
 }

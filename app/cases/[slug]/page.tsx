@@ -4,6 +4,7 @@ import { CaseArticle } from '@/components/case-article';
 import { getFullCase, isCaseSlug } from '@/lib/cases';
 import { cases, site } from '@/lib/content';
 import { ArrowRightIcon } from '@/components/icons';
+import { CaseReadingAids } from '@/components/case-reading-aids';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -37,13 +38,11 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
       description,
       url: `${site.url}/cases/${slug}`,
       type: 'article',
-      images: [{ url: site.ogImage, alt: site.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [site.ogImage],
     },
   };
 }
@@ -60,18 +59,25 @@ export default async function CasePage({ params }: CasePageProps) {
   return (
     <div>
       <Header />
-      <main className="mx-auto max-w-[860px] px-5 pb-24 pt-12 sm:px-8 lg:pb-32">
+      <main id="main" tabIndex={-1} className="mx-auto max-w-[860px] outline-none px-5 pb-24 pt-12 sm:px-8 lg:pb-32">
         <Link
           href="/#work"
-          className="inline-flex items-center gap-2 text-[13px] text-white/45 transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 text-[13px] text-white/55 transition-colors hover:text-white"
         >
           Selected work
         </Link>
-        <p className="mt-10 text-[11px] uppercase tracking-label text-white/40">
+        <p className="mt-10 text-[11px] uppercase tracking-label text-white/55">
           {study ? `${study.id} / ${study.title}${study.prototype ? ' / Working prototype' : ''}` : 'Engineering case'}
         </p>
-        <h1 className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">{full.title}</h1>
-        <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/45">{full.roleLine}</p>
+        <h1
+          style={{ viewTransitionName: `case-title-${slug}` }}
+          className="mt-5 text-4xl font-medium tracking-tight text-white sm:text-5xl">
+          {full.title}
+        </h1>
+        <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-white/55">{full.roleLine}</p>
+        <CaseReadingAids
+          items={full.article.sections.map((section) => ({ anchor: section.anchor, heading: section.heading }))}
+        />
         <CaseArticle
           article={full.article}
           constrainPortraits={slug === 'visitor' || slug === 'concierge' || slug === 'webar'}
@@ -84,7 +90,7 @@ export default async function CasePage({ params }: CasePageProps) {
             Get in touch
             <ArrowRightIcon className="h-3.5 w-3.5" />
           </Link>
-          <Link href="/#work" className="text-[13px] text-white/45 transition-colors hover:text-white">
+          <Link href="/#work" className="text-[13px] text-white/55 transition-colors hover:text-white">
             Back to selected work
           </Link>
         </div>

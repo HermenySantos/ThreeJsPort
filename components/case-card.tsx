@@ -1,14 +1,16 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import type { CaseStudy } from '@/lib/content';
 import { ArrowRightIcon } from './icons';
+import { TransitionLink } from './transition-link';
 
 export function CaseCard({ study }: { study: CaseStudy }) {
   return (
     <article
       id={`case-${study.slug}`}
-      className="scroll-mt-24 rounded-[28px] border border-white/10 px-5 py-6 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+      data-reveal
+      data-glow
+      className="relative scroll-mt-24 rounded-[28px] border border-white/10 px-5 py-6 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.15fr)] lg:gap-16">
         <div>
           <p className="text-[13px] text-white/60">
@@ -22,11 +24,13 @@ export function CaseCard({ study }: { study: CaseStudy }) {
               </>
             ) : null}
           </p>
-          <h3 className="mt-3 max-w-[16ch] text-[1.85rem] font-medium leading-[1.15] tracking-tight text-white sm:mt-6 sm:text-[2.15rem]">
+          <h3
+            style={{ viewTransitionName: `case-title-${study.slug}` }}
+            className="mt-3 max-w-[16ch] text-[1.85rem] font-medium leading-[1.15] tracking-tight text-white sm:mt-6 sm:text-[2.15rem]">
             {study.title}
           </h3>
           <p className="mt-3 max-w-[22rem] text-[14px] leading-6 text-white/60 sm:mt-5">{study.label}</p>
-          <Link
+          <TransitionLink
             href={study.href}
             tabIndex={-1}
             aria-hidden="true"
@@ -39,7 +43,7 @@ export function CaseCard({ study }: { study: CaseStudy }) {
               sizes="(min-width: 1024px) 40vw, 100vw"
               className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none"
             />
-          </Link>
+          </TransitionLink>
         </div>
 
         <div>
@@ -58,12 +62,12 @@ export function CaseCard({ study }: { study: CaseStudy }) {
               </li>
             ))}
           </ul>
-          <Link
+          <TransitionLink
             href={study.href}
             className="mt-5 inline-flex items-center gap-2 text-[13px] text-white/70 transition-colors hover:text-white sm:mt-6">
             {study.cta}
             <ArrowRightIcon className="h-3.5 w-3.5" />
-          </Link>
+          </TransitionLink>
         </div>
       </div>
     </article>

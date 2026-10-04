@@ -15,11 +15,11 @@ export function CaseCard({ study }: { study: CaseStudy }) {
         <div>
           <p className="text-[13px] text-white/60">
             {study.id}
-            <span className="mx-3 text-white/20">—</span>
+            <span className="mx-3 text-white/20">·</span>
             {study.year}
             {study.prototype ? (
               <>
-                <span className="mx-3 text-white/20">—</span>
+                <span className="mx-3 text-white/20">·</span>
                 Working prototype
               </>
             ) : null}
@@ -47,7 +47,17 @@ export function CaseCard({ study }: { study: CaseStudy }) {
         </div>
 
         <div>
-          <p className="text-[15px] leading-7 text-mute">{study.summary}</p>
+          <p className="text-[15px] leading-7 text-mute">
+            {study.summary.split('**').map((part, i) =>
+              i % 2 === 1 ? (
+                <strong key={i} className="font-medium text-white">
+                  {part}
+                </strong>
+              ) : (
+                part
+              ),
+            )}
+          </p>
           <p className="mt-5 text-[11px] uppercase tracking-label text-white/60 sm:mt-6">What I delivered</p>
           {study.scale ? <p className="mt-3 text-[15px] leading-7 text-mute">Scale: {study.scale}</p> : null}
           <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-7 text-mute">

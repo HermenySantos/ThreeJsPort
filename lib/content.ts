@@ -25,7 +25,7 @@ export const hero = {
   headline: 'I build AI systems that can’t afford a second take.',
   headlineLead: 'I build AI systems ',
   headlineEm: 'that can’t afford a second take.',
-  lede: 'I build real-time AI systems people can trust in the room—live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
+  lede: 'I build real-time AI systems people can trust in the room: live-event AI with an operator in the approval loop, and the product around it. Five years shipping web, mobile and cloud, most recently AI that runs live in front of an audience.',
   proofLabel: 'Delivery proof',
   proof: 'Ovee, live-event AI: cleared by a Fortune-500 client’s IT, privacy and data-control review; synthesised 60 roundtables for 600 leaders in seconds.',
   stack: 'Based in Portugal · Working across the stack',
@@ -45,7 +45,7 @@ export const metrics = {
 
 export const work = {
   heading: 'Selected work',
-  eyebrow: 'Selected work / 01—05',
+  eyebrow: 'Selected work / 01–05',
 } as const;
 
 export type CaseSlug = 'ai' | 'visitor' | 'webar' | 'concierge' | 'seezy';
@@ -71,10 +71,10 @@ export const cases: readonly CaseStudy[] = [
     id: '01',
     slug: 'ai',
     year: '2026',
-    title: 'Ovee — AI for live events.',
+    title: 'Ovee: AI for live events.',
     label: 'Primary engineer across AI, operator tools and audience delivery · Dorier · Fortune-500 tour and mci group’s CheckedIn · 2026',
     summary:
-      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. Delivered at 4 live events across Asia and Europe: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as co-moderator of the main-stage conversation with the group CEO and powered a workshop breakout. In the moderated stage workflow, an operator approves each AI contribution before it is spoken.',
+      'Ovee turns stage discussions and workshop contributions into questions, themes and reports. I was the primary engineer across the operator interfaces, Python services, model integration and audience delivery. **Delivered at 4 live events across Asia and Europe**: a three-summit leadership tour for a Fortune-500 multinational, plus mci group’s CheckedIn 2026 in Geneva, where Ovee was billed as co-moderator of the main-stage conversation with the group CEO and powered a workshop breakout. In the moderated stage workflow, **an operator approves each AI contribution before it is spoken**.',
     delivered: [
       'Operator workflows for reviewing, approving and discarding AI contributions before stage delivery.',
       'Workshop synthesis that turned 60 roundtables into themes on the main display in about five seconds.',
@@ -97,7 +97,7 @@ export const cases: readonly CaseStudy[] = [
     title: 'Immersive visitor platform.',
     label: 'Software engineer across mobile apps, native Android and Go services · Dorier for the UN Geneva Visitor Centre · 2025–2026',
     summary:
-      'UN Geneva’s new visitor centre, open since June 2026 for an expected 200,000 visitors a year. Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
+      '**UN Geneva’s new visitor centre**, open since June 2026 for an expected **200,000 visitors a year**. Visitors explore with location-aware audio guides while staff control the tour and kiosks host a shared voting experience. As a core engineer on the team, I built across React Native apps, native Android modules, Go services and content tools to make that journey work.',
     delivered: [
       'Native positioning and headphone-reconnection handling, plus audio drift and playback fixes.',
       'Device-aware tour control and group-tour language flows across applications, CMS and backend services.',
@@ -121,7 +121,7 @@ export const cases: readonly CaseStudy[] = [
     label:
       'Sole engineer: browser AR, backend and admin tools · Dorier for Scopely · 2025',
     summary:
-      'Participants joined from their own phones in the browser — no app install — across twelve event locations. I built the core in five weeks, then refined it through testing and client feedback: interaction layer, score APIs, location-scoped leaderboards and React administration.',
+      'Participants joined from their own phones in the browser, with **no app install**, across twelve event locations. **I built the core in five weeks**, then refined it through testing and client feedback: interaction layer, score APIs, location-scoped leaderboards and React administration.',
     delivered: [
       'A WebAR experience participants could enter without installing an app.',
       'An Azure Functions backend and Cosmos DB data model organised around event locations.',
@@ -145,7 +145,7 @@ export const cases: readonly CaseStudy[] = [
     title: 'Museum AI concierge.',
     label: 'Primary engineer · working prototype · Dorier · 2026',
     summary:
-      'A voice, text and camera guide that answers only from sources it can stand behind, and says “I don’t have that” when it can’t. Two model agents talk and watch engagement; deterministic rules decide how to adapt. Before the demo I attacked the deployed system with 101 probes and fixed most of what broke, test-first.',
+      'A voice, text and camera guide that answers only from sources it can stand behind, and **says “I don’t have that” when it can’t**. Two model agents talk and watch engagement; deterministic rules decide how to adapt. Before the demo I attacked the deployed system with **101 probes** and fixed most of what broke, test-first.',
     delivered: [
       'A grounding ladder: museum catalogue, then a cited allow-listed web source, then established facts, then an honest refusal.',
       'A relevance gate that stopped keyword search binding unrelated questions to the wrong exhibit, found by live probes.',
@@ -166,10 +166,10 @@ export const cases: readonly CaseStudy[] = [
     id: '05',
     slug: 'seezy',
     year: '2024–2025',
-    title: 'Seezy — one process, five partners.',
+    title: 'Seezy: one process, five partners.',
     label: 'Co-architect, then sole engineer to delivery · NomadEngenuity · 2024–2025',
     summary:
-      'A multi-partner eye-care plan platform: sales partners, optical stores, labs, insurers and administrators working one shared process, from the first lead to the client collecting their glasses. I co-designed the architecture, then took over the whole system and carried it, front end to back end, to delivery.',
+      'A multi-partner eye-care plan platform: sales partners, optical stores, labs, insurers and administrators working one shared process, from the first lead to the client collecting their glasses. I co-designed the architecture, then **took over the whole system and carried it, front end to back end, to delivery**.',
     delivered: [
       'An orchestrator service that owns a 21-state process, with every other service reporting its state changes back.',
       'Two administrator approval gates before vouchers, insurance and lab orders are released.',
@@ -190,7 +190,7 @@ export const cases: readonly CaseStudy[] = [
 export const about = {
   heading: 'About',
   body: [
-    'I’m Hermenegildo—Gildo for short—a software engineer in Portugal building real-time systems across the stack, from mobile to AI.',
+    'I’m Hermenegildo (Gildo for short), a software engineer in Portugal building real-time systems across the stack, from mobile to AI.',
     'Most of what I build runs live, in front of people: a conference stage, a visitor centre, twelve event venues on the same day. There is no second take, so I design for a person in the loop where judgement matters, and a safe fallback for when something fails.',
     'I like work that connects a usable product to the engineering underneath it: a mobile interface to a shared state model, an AI response to an operator’s decision, or an event experience to its backend and delivery tools.',
     'At Dorier, I work across interactive platforms, live-event AI and automation. I’m comfortable contributing to an established team and architecture, or carrying a defined product from its first implementation through delivery. I value clear ownership, practical testing and documentation that helps the next person understand the system.',
@@ -251,3 +251,8 @@ export const contact = {
   heading: 'Let’s talk about what you’re building.',
   lede: 'For software engineering roles across full-stack and AI, product collaborations, or a closer look at the decisions behind this work, get in touch.',
 } as const;
+
+/** Card summaries mark a few key phrases with **double asterisks**; this strips them for plain-text uses like meta tags. */
+export function plainText(text: string): string {
+  return text.replace(/\*\*/g, '');
+}

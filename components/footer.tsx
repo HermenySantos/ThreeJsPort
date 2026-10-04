@@ -1,7 +1,8 @@
 import { site } from '@/lib/content';
 import { SocialLinks } from './social-links';
 
-export function Footer() {
+/** `showSocial` is off on the homepage, where Contact already shows the same links just above. */
+export function Footer({ showSocial = true }: { showSocial?: boolean }) {
   const year = new Date().getFullYear();
 
   return (
@@ -10,7 +11,7 @@ export function Footer() {
         <p className="text-[13px] text-white/55">
           © {year} {site.fullName}
         </p>
-        <SocialLinks />
+        {showSocial ? <SocialLinks /> : null}
       </div>
     </footer>
   );

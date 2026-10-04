@@ -57,8 +57,8 @@ export default async function CaseOpenGraphImage({ params }: { params: Promise<{
           style={{
             width: 640,
             height: 630,
-            // Diagrams must stay whole; photos and screenshots can fill the frame.
-            objectFit: study.cover.src.startsWith('/architecture/') ? 'contain' : 'cover',
+            // Diagrams and designed covers must stay whole; photos and screenshots can fill the frame.
+            objectFit: study.cover.src.startsWith('/architecture/') || study.cover.src.endsWith('-cover.png') ? 'contain' : 'cover',
             background: '#0e1412',
             borderLeft: '1px solid rgba(255,255,255,0.1)',
           }}

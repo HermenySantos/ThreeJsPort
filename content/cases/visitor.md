@@ -94,11 +94,11 @@ In the first pavilion, visitors are drawn towards a central totem. Each handheld
 
 Two bugs shaped it: the flash stopping at 3 metres, and position messages corrupting the tour server’s state and breaking audio. The first fix for the second bug was reverted and then reworked. The totem’s position now comes from the CMS, and a stress test with simulated positions covers the path.
 
-## Emergency audio: built and tested, not switched on
+## Emergency audio: built and tested
 
 Operators needed a way to interrupt every visitor’s audio safely. I built it end to end: database migrations, a Go service and REST API with tests, a CMS collection of pre-recorded messages, MQTT delivery to every handheld, and an emergency button on the guide’s tablet. Operator announcements lower the background to 30% and the foreground to 50%; evacuation messages cut everything and loop. Messages are stored on the device so they play even when the network does not, at the cost of keeping that content in sync.
 
-The feature is complete and tested, but it is not enabled at the site.
+The feature is complete and tested; when to activate it is the site’s decision.
 
 ## Giving staff tools to operate the system
 
